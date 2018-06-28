@@ -31,7 +31,7 @@
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/species',{outlets:{gene:'14'}}]">
+      <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/species',{outlets:{gene:gene.ptn}}]">
       </mat-row>
     </mat-table>
     <mat-paginator #paginator [pageIndex]="0" [pageSize]="50" [pageSizeOptions]="[5, 10, 25, 100]">

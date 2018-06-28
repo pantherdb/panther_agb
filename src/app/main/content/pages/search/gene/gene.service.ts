@@ -11,7 +11,7 @@ import { Gene } from './models/gene';
     providedIn: 'root',
 })
 export class GeneService {
-    genes: any[];
+    gene: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
     constructor(private httpClient: HttpClient) {
@@ -26,8 +26,8 @@ export class GeneService {
             this.httpClient.get<Gene>(url)
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
-                    this.genes = response[0].genes;
-                    this.onSpeciesChanged.next(this.genes);
+                    this.gene = response[0];
+                    this.onSpeciesChanged.next(this.gene);
                     resolve(response);
                 }, reject);
         });

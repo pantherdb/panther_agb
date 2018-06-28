@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ListService } from '@agb.common/services/data-loader/list.service';
-import { List } from '@agb.common/services/models/List';
+import { GeneService } from './gene.service';
+import { Gene } from './models/gene';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,36 +12,19 @@ import * as _ from 'lodash';
 
 export class GeneComponent implements OnInit {
 
+  ptn: string;
+  gene; Gene;
+
   constructor(
     private route: ActivatedRoute,
-    private listServ: ListService) { }
-
-
-  ptn: string;
-  gene;
+    private geneService: GeneService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.ptn = params['ptn'];
-      //console.log(this.ptn);
-      this.loadGenes(this.ptn);
-    });
-
-  }
-
-
-  public loadGenes(ptn) {
-
-    //Get all gene list from server and update the lists property
-    /* this.listServ.getAllSpecies().subscribe(
-        response => this.species = response) */
-
-    this.listServ.getGeneByPtn(ptn).subscribe(
-      response => {
-        //console.log(response);
-        this.gene = response[0];
-        //console.log(this.gene);
+      this.ptn = decodeURIComponent(params['ptn']);
+      this.geneService.getGeneByPtn(this.ptn).then(response => {
+        this.gene = this.geneService.gene;
       });
+    });
   }
-
 }
