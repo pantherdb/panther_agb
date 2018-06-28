@@ -1,0 +1,56 @@
+<div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
+  <div class="header" fxLayout="row">
+    <mat-form-field>
+      <mat-label>
+        Search
+        <strong>
+          {{species}}
+        </strong>
+      </mat-label>
+      <input id="search" matInput #filter placeholder="" autocomplete="off">
+    </mat-form-field>
+  </div>
+  <div class="genes-table" noctuaPerfectScrollbar>
+    <mat-table class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" fusePerfectScrollbar>
+      <ng-container cdkColumnDef="ptn">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Public ID</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene">
+          <p class="text-truncate">{{gene.ptn}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Gene Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene">
+          <p class="text-truncate">{{gene.name}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="pthr">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Family</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene">
+          <p class="text-truncate">{{gene.pthr}}</p>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/species',{outlets:{gene:'14'}}]">
+      </mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageIndex]="0" [pageSize]="50" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+  <!--
+  <ngx-datatable class="material" [rows]="genes" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48"
+    [footerHeight]="56" [scrollbarV]="true" [reorderable]="reorderable" [selectionType]="'checkbox'" [limit]="50">
+    <ngx-datatable-column [width]="48" [canAutoResize]="false" [sortable]="false">
+      <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+        <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+      </ng-template>
+      <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+        <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn($event)"></mat-checkbox>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Public ID" prop="ptn"></ngx-datatable-column>
+    <ngx-datatable-column name="Gene Name" prop="name"></ngx-datatable-column>
+    <ngx-datatable-column name="PANTHER Family" prop="pthr"></ngx-datatable-column>
+  </ngx-datatable>
+-->
+</div>

@@ -1,0 +1,46 @@
+@import "src/@noctua/scss/noctua";
+:host {
+  width: 100%;
+  .agb-species-panel {
+    width: 100%;
+  }
+  .header {
+    padding: 10px;
+    @include deep-height(65px);
+    border-bottom: #BBB solid 1px;
+    .search-input-wrapper {
+      //max-width: 480px;
+    }
+  }
+  .mat-tab-group,
+  .mat-tab-body-wrapper,
+  .tab-content {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+  .genes-table {
+    padding: 10px;
+    flex: 1 1 auto;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    overflow: auto;
+    .mat-header-row {
+      min-height: 50px;
+    }
+    .gene {
+      position: relative;
+      cursor: pointer;
+      height: 40px;
+    }
+    .mat-cell {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+    .mat-column-id {
+      flex: 0 1 84px;
+    }
+    .mat-column-buttons {
+      flex: 0 1 80px;
+    }
+  }
+}

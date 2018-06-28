@@ -1,54 +1,45 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import 'hammerjs';
 
-import { SimpleNotificationsModule } from 'angular2-notifications'
-import { NgPipesModule } from 'ngx-pipes';
-import { MaterialModule } from '../material.module';
-import {NgxPaginationModule} from 'ngx-pagination';
-import { TreeModule } from 'angular-tree-component';
-
-
-import { routing, appRoutingProviders } from './app.routes';
+import { NoctuaModule } from '@noctua/noctua.module';
+import { NoctuaSharedModule } from '@noctua/shared.module';
+import { noctuaConfig } from './noctua-config';
 import { AppComponent } from './app.component';
+import { NoctuaMainModule } from './main/main.module';
+import { PagesModule } from './main/content/pages/pages.module';
 
-//import { DocumentationModule } from '../documentation';
-import { agbCommonModule } from '../agb.common';
-import { SearchEngineModule } from "../agb.search-engine";
-import { ListService } from '../agb.common/services/data-loader/list.service';
-//import { VisualizationModule } from "../agb.visualization";
-//import { agbAuthModule } from "../agb.auth";
-//import { speciesAnalyzeModule } from "../agb.species-analyze";
-//import { agbPanelModule } from '../agb.panel';
-
+const appRoutes: Routes = [
+    {
+        path: '**',
+        redirectTo: 'search'
+    }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    NgxPaginationModule,
-    TreeModule,
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes),
+        TranslateModule.forRoot(),
 
-    agbCommonModule,
-    //DocumentationModule,
-    //agbAuthModule,
-    SearchEngineModule,
-    //speciesAnalyzeModule,
-    //agbPanelModule,
-    //VisualizationModule,
-
-    NgPipesModule,
-    MaterialModule,
-    SimpleNotificationsModule.forRoot(),
-
-    routing
-  ],
-  providers: [appRoutingProviders, ListService],
-  bootstrap: [AppComponent]
+        // Noctua Main and Shared modules
+        NoctuaModule.forRoot(noctuaConfig),
+        NoctuaSharedModule,
+        NoctuaMainModule,
+        PagesModule
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
-export class AppModule { }
+export class AppModule {
+}

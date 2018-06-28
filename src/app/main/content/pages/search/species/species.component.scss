@@ -1,0 +1,66 @@
+@import "src/@noctua/scss/noctua";
+:host {
+  width: 100%;
+  .agb-sidenav {
+    @include deep-width(300px);
+    @include deep-height(100%);
+    background-color: #F7F7F7;
+    border-right: #DDD solid 1px;
+    .header {
+      padding: 10px;
+      @include deep-height(65px);
+      border-bottom: #BBB solid 1px;
+    }
+    .agb-tree-container {
+      padding: 10px;
+    }
+  }
+  .agb-gene-detail {
+    @include deep-width(400px);
+    @include deep-height(100%);
+  }
+  /*
+.node-content-wrapper,
+.tree-children {
+  position: relative;
+}
+
+.node-content-wrapper::before,
+.tree-children::after {
+  content: "";
+  position: absolute;
+}
+
+.node-content-wrapper::before {
+  border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  height: 28px;
+  top: -17px;
+  width: 20px;
+  left: -28px;
+}
+
+.tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper::before {
+  display: none;
+}
+
+.tree-node-leaf>.node-wrapper>.node-content-wrapper::before {
+  width: 25px;
+}
+
+.tree-children::after {
+  border-left: 1px solid lightgrey;
+  height: 100%;
+  top: -15px;
+  left: -15px;
+}
+
+tree-node:last-child>.tree-node>.tree-children::after {
+  border-left: none;
+}
+
+.toggle-children {
+  z-index: 1;
+}
+*/
+}

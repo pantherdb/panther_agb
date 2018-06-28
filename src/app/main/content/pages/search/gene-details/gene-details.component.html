@@ -1,0 +1,30 @@
+<section class="geneDetails">
+  dfsfsdfsd
+  <div class="col-md-6">
+    <div *ngIf="gene" class="geneDetailsChild col-md-6 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <strong>{{gene.name}}</strong>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <p *ngIf="gene.ptn ">
+            ptn: {{gene.ptn}}
+          </p>
+          <p *ngIf="gene.name">
+            name: {{gene.name}}
+          </p>
+          <p *ngIf="gene.species">
+            species: {{ gene.species }}
+          </p>
+          <p *ngIf="gene.sequence">
+            sequence: {{ gene.sequence }}
+          </p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
