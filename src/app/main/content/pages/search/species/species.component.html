@@ -10,7 +10,7 @@
     <div class="agb-tree-container">
       <tree-root #tree [nodes]="nodes" [options]="speciesTreeOptions" [focused]="true" (event)="onEvent($event)" (initialized)="onInitialized(tree)">
         <ng-template #treeNodeTemplate let-node>
-          <div fxLayout="row" (click)="selectSpecies(node.data.name)">
+          <div fxLayout="row" (click)="selectSpecies(node)">
             <div title="{{node.data.name}}" class="noc-truncate">
               {{ node.data.name }}
             </div>

@@ -36,6 +36,13 @@
           </button>
         </div>
       </div>
+      <ol class="breadcrumb">
+        <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
+          <a [routerLink]="[breadcrumb.url, breadcrumb.params]">
+            {{ breadcrumb.label }}
+          </a>
+        </li>
+      </ol>
     </mat-toolbar-row>
   </div>
 </mat-toolbar>

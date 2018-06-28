@@ -4,6 +4,8 @@ import { ListService } from '@agb.common/services/data-loader/list.service';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
 import { speciesNodes } from './data/species-nodes';
 
+import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
+
 @Component({
   selector: 'app-species',
   templateUrl: 'species.component.html',
@@ -12,7 +14,7 @@ import { speciesNodes } from './data/species-nodes';
 
 export class SpeciesComponent {
 
-  constructor(private router: Router, private listServ: ListService) { }
+  constructor(private router: Router, private breadcrumbsService: BreadcrumbsService) { }
 
   @ViewChild('tree') tree;
 
@@ -47,13 +49,13 @@ export class SpeciesComponent {
     isExpandedField: 'expanded',
     idField: 'name',
     actionMapping: this.actionMapping,
-    //nodeHeight: 23,
-    //useVirtualScroll: true,
-    //animateExpand: true,
-    // animateSpeed: 30,
-    // animateAcceleration: 1.2,
-    /// scrollOnActivate: true,
-    // scrollContainer: document.body.parentElement
+    nodeHeight: 23,
+    // useVirtualScroll: true,
+    animateExpand: true,
+    animateSpeed: 30,
+    animateAcceleration: 1.2,
+    scrollOnActivate: true,
+    scrollContainer: document.body.parentElement
   };
 
   onInitialized(tree) {
@@ -61,16 +63,17 @@ export class SpeciesComponent {
   }
 
   ngAfterViewInit() {
-    //this.tree.treeModel.expandAll();
+    // this.tree.treeModel.expandAll();
     //  setTimeout(() => {
     //    this.tree.treeModel.expandAll();
     // }, 10);
   }
 
-  selectSpecies(name) {
-    this.species = name;
-    console.log(this.species);
+  selectSpecies(node) {
+    this.species = node.data.name;
+    console.log(this.species, '--path ', node.path);
     this.router.navigateByUrl(`/species/${this.species}`);
+    this.breadcrumbsService.setCurrentBreadcrumbs(node.path);
   }
 
   childrenCount(node: TreeNode): string {

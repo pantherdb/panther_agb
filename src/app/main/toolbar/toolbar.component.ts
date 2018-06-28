@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
 import { NoctuaConfigService } from '@noctua/services/config.service';
+
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'noctua-toolbar',
@@ -11,27 +14,22 @@ import { NoctuaConfigService } from '@noctua/services/config.service';
 })
 
 export class NoctuaToolbarComponent {
-    userStatusOptions: any[];
     languages: any;
     selectedLanguage: any;
     showLoadingBar: boolean;
-    horizontalNav: boolean;
-    noNav: boolean;
     navigation: any;
+    breadcrumbs: any;
 
     constructor(
         private router: Router,
         private noctuaConfig: NoctuaConfigService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private breadcrumbsService: BreadcrumbsService
     ) {
         this.languages = [{
             'id': 'en',
             'title': 'English',
             'flag': 'us'
-        }, {
-            'id': 'tr',
-            'title': 'Turkish',
-            'flag': 'tr'
         }];
 
         this.selectedLanguage = this.languages[0];
@@ -44,6 +42,13 @@ export class NoctuaToolbarComponent {
                 if (event instanceof NavigationEnd) {
                     this.showLoadingBar = false;
                 }
+            });
+
+        this.breadcrumbsService.onBreadcrumbsChanged
+            .pipe(filter(value => value !== null))
+            .subscribe(() => {
+                this.breadcrumbs = this.breadcrumbsService.getCurrentBreadcrumbs();
+                console.log(this.breadcrumbs, 'oooo')
             });
     }
 
