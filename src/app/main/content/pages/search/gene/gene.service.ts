@@ -10,7 +10,7 @@ import { Gene } from './models/gene';
 @Injectable({
     providedIn: 'root',
 })
-export class GenesService {
+export class GeneService {
     genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 

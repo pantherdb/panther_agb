@@ -6,11 +6,11 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'app-genes',
-  templateUrl: 'genes.component.html',
-  styleUrls: ['genes.component.scss'],
+  templateUrl: 'gene.component.html',
+  styleUrls: ['gene.component.scss'],
 })
 
-export class GenesComponent implements OnInit {
+export class GeneComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,

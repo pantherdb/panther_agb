@@ -10,6 +10,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { RouterModule, Routes } from '@angular/router';
 import { NoctuaSharedModule } from '@noctua/shared.module';
 
+import { GeneComponent } from './gene/gene.component';
 import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
 
@@ -21,7 +22,7 @@ const routes = [
     children: [{
       path: ':id', component: GenesComponent,
     }, {
-      path: ':ptn', component: GenesComponent, outlet: 'gene'
+      path: ':ptn', component: GeneComponent, outlet: 'gene'
     }]
   },
   { path: '', redirectTo: 'species', pathMatch: 'full' }
@@ -40,7 +41,7 @@ const routes = [
     RouterModule.forChild(routes),
   ],
   declarations: [
-    GenesComponent,
+    GeneComponent,
     SpeciesComponent,
     GenesComponent
   ]
