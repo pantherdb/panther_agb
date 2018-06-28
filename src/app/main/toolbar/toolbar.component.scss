@@ -11,7 +11,7 @@
     }
   }
   .mat-toolbar {
-    @include deep-height(71px);
+    @include deep-height(72px);
     background: inherit;
     color: inherit;
     position: relative;
@@ -21,14 +21,21 @@
         // border-bottom: #BBB solid 1px;
       }
       &.agb-subnavbar {
-        @include deep-height(30px);
+        @include deep-height(31px);
         button {
           margin-right: 8px;
           height: 30px;
           line-height: 30px;
           padding-left: 8px;
           padding-right: 8px;
-          font-size: 12px;
+          font-size: 14px;
+        }
+        .noc-breadcrumb {
+          button {
+            margin-right: 0px;
+            padding-left: 4px;
+            padding-right: 4px;
+          }
         }
       }
     }
@@ -47,9 +54,9 @@
       width: 38px;
     }
   }
-  .agb-logo-text {
-    padding-left: 8px;
-    padding-right: 8px;
-    font-size: 20px;
+  .agb-logo {
+    padding: 8px 14px 2px 8px;
+    font-size: 24px;
+    font-weight: 500;
   }
 }

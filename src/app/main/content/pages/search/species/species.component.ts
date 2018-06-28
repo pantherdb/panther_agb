@@ -73,7 +73,8 @@ export class SpeciesComponent {
     this.species = node.data.name;
     console.log(this.species, '--path ', node.path);
     this.router.navigateByUrl(`/species/${this.species}`);
-    this.breadcrumbsService.setCurrentBreadcrumbs(node.path);
+
+    this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => ({ label: species })));
   }
 
   childrenCount(node: TreeNode): string {

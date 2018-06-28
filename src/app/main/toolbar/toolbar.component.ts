@@ -48,7 +48,7 @@ export class NoctuaToolbarComponent {
             .pipe(filter(value => value !== null))
             .subscribe(() => {
                 this.breadcrumbs = this.breadcrumbsService.getCurrentBreadcrumbs();
-                console.log(this.breadcrumbs, 'oooo')
+                console.log(this.breadcrumbs, 'oooo');
             });
     }
 

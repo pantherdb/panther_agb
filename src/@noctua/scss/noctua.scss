@@ -41,17 +41,25 @@ $noc-secondary-color: #995014;
     font-size: 20px;
     color: #777;
     button {
+      margin-right: 0px;
+      margin-left: 0px;
       font-size: 20px;
       color: #999;
-      padding-left: 8px;
-      padding-right: 8px;
+      padding-left: 4px;
+      padding-right: 4px;
     }
     &.noc-active {
       color: #000;
     }
   }
-  md-icon {
-    margin-left: 10px;
-    margin-right: 10px;
+  .noc-breadcrumb-separator {
+    // margin-top: 10px; //margin-left: 10px;
+    // margin-right: 10px;
+    @include deep-width(24px);
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    mat-icon {
+      // @include deep-width(14px);
+    }
   }
 }

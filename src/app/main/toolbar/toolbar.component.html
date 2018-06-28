@@ -8,10 +8,8 @@
   <div fxFlex="100">
     <mat-toolbar-row class="agb-navbar">
       <div class="" fxLyout="row" fxLayoutAlign="start center">
-        <div class="">
-          <span class="agb-logo-text">
-            Ancestral Genome Browser
-          </span>
+        <div class="agb-logo">
+          Ancestral Genome Browser
         </div>
       </div>
       <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
@@ -32,17 +30,18 @@
       <div class="noc-breadcrumbs" fxLyout="row" fxLayoutAlign="start center">
         <div class="noc-breadcrumb">
           <button mat-button>
-            Home
+            <mat-icon>home</mat-icon>
+          </button>
+        </div>
+        <div *ngFor="let breadcrumb of breadcrumbs" class="noc-breadcrumb">
+          <button mat-icon-button class="noc-breadcrumb-separator">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+          <button class="" mat-button [routerLink]="[breadcrumb.url, breadcrumb.params]">
+            {{breadcrumb.label}}
           </button>
         </div>
       </div>
-      <ol class="breadcrumb">
-        <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
-          <a [routerLink]="[breadcrumb.url, breadcrumb.params]">
-            {{ breadcrumb.label }}
-          </a>
-        </li>
-      </ol>
     </mat-toolbar-row>
   </div>
 </mat-toolbar>
