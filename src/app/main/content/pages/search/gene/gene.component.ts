@@ -5,12 +5,12 @@ import { List } from '@agb.common/services/models/List';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-gene-details',
-  templateUrl: 'gene-details.component.html',
-  styleUrls: ['gene-details.component.scss'],
+  selector: 'app-genes',
+  templateUrl: 'genes.component.html',
+  styleUrls: ['genes.component.scss'],
 })
 
-export class GeneDetailsComponent implements OnInit {
+export class GenesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,

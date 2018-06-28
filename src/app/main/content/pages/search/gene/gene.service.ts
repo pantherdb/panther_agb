@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { SpeciesGeneList } from './models/species-gene-list';
+import { Gene } from './models/gene';
 
 @Injectable({
     providedIn: 'root',
 })
-export class SpeciesDetailsService {
+export class GenesService {
     genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
@@ -18,12 +18,11 @@ export class SpeciesDetailsService {
     }
 
 
-    getGenesBySpecies(species): Promise<SpeciesGeneList[]> {
+    getGeneByPtn(gene): Promise<Gene> {
+        const url = `${environment.apiUrl}/genelist/gene/${gene}`;
 
-        const url = `${environment.apiUrl}/genelist/species/${species}`;
-
-        return new Promise<SpeciesGeneList[]>((resolve, reject) => {
-            this.httpClient.get<SpeciesGeneList[]>(url)
+        return new Promise<Gene>((resolve, reject) => {
+            this.httpClient.get<Gene>(url)
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
                     this.genes = response[0].genes;

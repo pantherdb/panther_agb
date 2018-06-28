@@ -7,7 +7,7 @@ import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
 import { SpeciesGeneList } from './models/species-gene-list';
-import { SpeciesDetailsService } from './species-details.service';
+import { GenesService } from './genes.service';
 
 import { noctuaAnimations } from '@noctua/animations';
 import { NoctuaUtils } from '@noctua/utils/noctua-utils';
@@ -15,12 +15,12 @@ import { NoctuaUtils } from '@noctua/utils/noctua-utils';
 import { takeUntil } from 'rxjs/internal/operators';
 
 @Component({
-  selector: 'app-species-detail',
-  templateUrl: 'species-detail.component.html',
-  styleUrls: ['species-detail.component.scss'],
+  selector: 'app-genes',
+  templateUrl: 'genes.component.html',
+  styleUrls: ['genes.component.scss'],
   animations: noctuaAnimations
 })
-export class SpeciesDetailComponent implements OnInit, OnDestroy {
+export class GenesComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSource | null;
   displayedColumns = ['ptn', 'name', 'pthr'];
 
@@ -38,7 +38,7 @@ export class SpeciesDetailComponent implements OnInit, OnDestroy {
   private unsubscribeAll: Subject<any>;
 
 
-  constructor(private route: ActivatedRoute, private speciesDetailsService: SpeciesDetailsService) {
+  constructor(private route: ActivatedRoute, private speciesDetailsService: GenesService) {
     this.unsubscribeAll = new Subject();
   }
 
@@ -76,7 +76,7 @@ export class SpeciesDataSource extends DataSource<any> {
   private filteredDataChange = new BehaviorSubject('');
 
   constructor(
-    private speciesDetailsService: SpeciesDetailsService,
+    private speciesDetailsService: GenesService,
     private matPaginator: MatPaginator,
     private matSort: MatSort
   ) {

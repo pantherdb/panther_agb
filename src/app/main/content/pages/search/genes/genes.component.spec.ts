@@ -10,11 +10,11 @@
 //   async, inject
 // } from '@angular/core/testing';
 //
-// import { geneDetailsComponent } from './gene-details.component';
+// import { speciesDetailComponent } from './genes.component';
 //
-// describe('Component: geneDetails', () => {
-//  // it('should create an instance', () => {
-//     //let component = new geneDetailsComponent();
-//     //expect(component).toBeTruthy();
-//   //});
+// describe('Component: speciesDetail', () => {
+//   it('should create an instance', () => {
+//     // let component = new speciesDetailComponent();
+//     // expect(component).toBeTruthy();
+//   });
 // });
