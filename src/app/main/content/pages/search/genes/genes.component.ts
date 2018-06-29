@@ -32,8 +32,8 @@ export class GenesComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSort)
   sort: MatSort;
-
   species: string;
+  genes: any[];
 
   private unsubscribeAll: Subject<any>;
 
@@ -47,6 +47,7 @@ export class GenesComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
       this.speciesDetailsService.getGenesBySpecies(this.species).then(response => {
+        this.genes = this.speciesDetailsService.genes;
         this.dataSource = new SpeciesDataSource(this.speciesDetailsService, this.paginator, this.sort);
       });
     });

@@ -4,8 +4,12 @@
       <mat-label>
         Search
         <strong>
+          {{genes?.length}}
+        </strong>
+        <strong>
           {{species}}
         </strong>
+        genes
       </mat-label>
       <input id="search" matInput #filter placeholder="" autocomplete="off">
     </mat-form-field>

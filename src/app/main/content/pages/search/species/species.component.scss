@@ -3,7 +3,7 @@
 :host {
   width: 100%;
   .agb-sidenav {
-    @include deep-width(300px);
+    // @include deep-width(300px);
     @include deep-height(100%);
     background-color: #FFF;
     border-right: #DDD solid 1px;
@@ -12,9 +12,10 @@
     .agb-tree-container {
       padding: 10px;
     }
+    @include media-breakpoint('gt-md') {}
   }
   .agb-gene {
-    @include deep-width(400px);
+    // @include deep-width(400px);
     @include deep-height(100%);
   }
   /*
