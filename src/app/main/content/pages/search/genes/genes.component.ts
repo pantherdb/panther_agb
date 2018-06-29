@@ -32,13 +32,17 @@ export class GenesComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSort)
   sort: MatSort;
+<<<<<<< HEAD
+=======
+  genes:any[]=[];
+>>>>>>> f280f9f36dd612152d0c55cba91d5d008dc36fd6
   species: string;
   genes: any[];
 
   private unsubscribeAll: Subject<any>;
 
 
-  constructor(private route: ActivatedRoute, private speciesDetailsService: GenesService) {
+  constructor(private route: ActivatedRoute, private genesService: GenesService) {
     this.unsubscribeAll = new Subject();
   }
 
@@ -46,9 +50,9 @@ export class GenesComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
-      this.speciesDetailsService.getGenesBySpecies(this.species).then(response => {
-        this.genes = this.speciesDetailsService.genes;
-        this.dataSource = new SpeciesDataSource(this.speciesDetailsService, this.paginator, this.sort);
+      this.genesService.getGenesBySpecies(this.species).then(response => {
+        this.genes = this.genesService.genes;
+        this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
     });
 
