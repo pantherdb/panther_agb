@@ -1,16 +1,14 @@
 @import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
 :host {
   width: 100%;
   .agb-sidenav {
     @include deep-width(300px);
     @include deep-height(100%);
-    background-color: #F7F7F7;
+    background-color: #FFF;
     border-right: #DDD solid 1px;
-    .header {
-      padding: 10px;
-      @include deep-height(65px);
-      border-bottom: #BBB solid 1px;
-    }
+    z-index: 10;
+    .agb-column-toolbar {}
     .agb-tree-container {
       padding: 10px;
     }

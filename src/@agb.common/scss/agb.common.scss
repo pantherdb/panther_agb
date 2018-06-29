@@ -1,0 +1,32 @@
+.agb-column-toolbar {
+  padding: 10px;
+  @include deep-height(62px);
+  @include mat-elevation(2);
+  border-bottom: #BBB solid 1px;
+  background-color: #F2F2F2;
+  z-index: 10
+}
+
+.agb-alert {
+  padding: 10px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.agb-card-simple {
+  margin-bottom: 20px;
+  .agb-header {
+    padding: 10px;
+    @include deep-height(40px);
+    @include deep-width(100%);
+    border-bottom: #CCC solid 1px;
+    .agb-title {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  .agb-body {
+    @include deep-width(100%);
+    padding: 10px;
+  }
+}

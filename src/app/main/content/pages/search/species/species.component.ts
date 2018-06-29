@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListService } from '@agb.common/services/data-loader/list.service';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
 import { speciesNodes } from './data/species-nodes';
 
@@ -74,7 +73,11 @@ export class SpeciesComponent {
     console.log(this.species, '--path ', node.path);
     this.router.navigateByUrl(`/species/${this.species}`);
 
-    this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => ({ label: species })));
+    this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => (
+      {
+        label: species,
+        url: '/species/' + species
+      })));
   }
 
   childrenCount(node: TreeNode): string {

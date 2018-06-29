@@ -28,7 +28,7 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
-                    this.genes = response[0].genes;
+                    this.genes = response;
                     this.onSpeciesChanged.next(this.genes);
                     resolve(response);
                 }, reject);

@@ -15,6 +15,7 @@
     background: inherit;
     color: inherit;
     position: relative;
+    border-bottom: #CCC solid 1px;
     mat-toolbar-row {
       @include deep-height(40px);
       &.agb-navbar {

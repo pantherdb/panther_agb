@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeModule } from 'angular-tree-component';
+import { TreeviewModule } from 'ngx-treeview';
 
 import { NgPipesModule } from 'ngx-pipes';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -38,6 +39,7 @@ const routes = [
     NgxPaginationModule,
     NgxDatatableModule,
     TreeModule,
+    TreeviewModule.forRoot(),
     RouterModule.forChild(routes),
   ],
   declarations: [

@@ -1,4 +1,4 @@
-<mat-toolbar class="p-0  mat-elevation-z2" fxLayout="row" fxLayoutAlign="start">
+<mat-toolbar class="p-0" fxLayout="row" fxLayoutAlign="start">
   <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
   <div fxLayoutAlign="center center" class="noc-logo-filler">
     <button mat-button target="_blank">
@@ -29,7 +29,7 @@
     <mat-toolbar-row class="agb-subnavbar">
       <div class="noc-breadcrumbs" fxLyout="row" fxLayoutAlign="start center">
         <div class="noc-breadcrumb">
-          <button mat-button>
+          <button mat-button [routerLink]="['/species']">
             <mat-icon>home</mat-icon>
           </button>
         </div>
@@ -37,7 +37,7 @@
           <button mat-icon-button class="noc-breadcrumb-separator">
             <mat-icon>chevron_right</mat-icon>
           </button>
-          <button class="" mat-button [routerLink]="[breadcrumb.url, breadcrumb.params]">
+          <button class="" mat-button [routerLink]="[breadcrumb.url]">
             {{breadcrumb.label}}
           </button>
         </div>
