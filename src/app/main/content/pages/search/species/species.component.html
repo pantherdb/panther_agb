@@ -1,0 +1,61 @@
+<div fxLayout="row" class="w-100-p">
+  <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
+    <div class="agb-column-toolbar" fxLayout="row">
+      <form class="w-100-p">
+        <mat-form-field fxFlex floatPlaceholder="never">
+          <input matInput #filter (keyup)="filterNodes(filter.value, tree)" placeholder="Filter Species" />
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="agb-tree-container" noctuaPerfectScrollbar>
+      <tree-root #tree [nodes]="nodes" [options]="speciesTreeOptions" [focused]="true" (event)="onEvent($event)" (initialized)="onInitialized(tree)">
+        <ng-template #treeNodeTemplate let-node>
+          <div fxLayout="row" (click)="selectSpecies(node)">
+            <div title="{{node.data.name}}" class="noc-truncate">
+              {{ node.data.name }}
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #loadingTemplate>Loading....</ng-template>
+      </tree-root>
+    </div>
+    <div *ngIf="false">
+      <button (click)="tree.treeModel.focusNextNode()">next node</button>
+      <button (click)="tree.treeModel.focusPreviousNode()">previous node</button>
+      <button (click)="tree.treeModel.focusDrillDown()">drill down</button>
+      <button (click)="tree.treeModel.focusDrillUp()">drill up</button>
+      <button (click)="customTemplateStringOptions.allowDrag = true">allowDrag</button>
+      <p></p>
+      <button [disabled]="!tree.treeModel.getFocusedNode()" (click)="tree.treeModel.getFocusedNode().toggleActivated()">
+        {{ tree.treeModel.getFocusedNode()?.isActive ? 'deactivate' : 'activate' }}
+      </button>
+      <button [disabled]="!tree.treeModel.getFocusedNode()" (click)="tree.treeModel.getFocusedNode().toggleExpanded()">
+        {{ tree.treeModel.getFocusedNode()?.isExpanded ? 'collapse' : 'expand' }}
+      </button>
+      <button [disabled]="!tree.treeModel.getFocusedNode()" (click)="tree.treeModel.getFocusedNode().blur()">
+        blur
+      </button>
+      <button (click)="addNode(tree)">
+        Add Node
+      </button>
+      <button (click)="activateSubSub(tree)">
+        Activate inner node
+      </button>
+      <button (click)="tree.treeModel.expandAll()">
+        Expand All
+      </button>
+      <button (click)="tree.treeModel.collapseAll()">
+        Collapse All
+      </button>
+      <button (click)="activeNodes(tree.treeModel)">
+        getActiveNodes()
+      </button>
+    </div>
+  </div>
+  <div fxFlex="100">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="agb-gene">
+    <router-outlet name="gene"></router-outlet>
+  </div>
+</div>

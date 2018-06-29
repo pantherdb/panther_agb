@@ -1,0 +1,18 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
+:host {
+  width: 100%;
+  .agb-gene-panel {
+    background-color: #F2F2F2;
+    width: 100%;
+    border-left: #DDD solid 1px;
+  }
+  .agb-column-toolbar {}
+  .agb-gene-detail {
+    padding: 10px;
+  }
+  .agb-sequence {
+    @include deep-width(100%);
+    resize: none;
+  }
+}
