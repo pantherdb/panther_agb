@@ -32,12 +32,8 @@ export class GenesComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSort)
   sort: MatSort;
-<<<<<<< HEAD
-=======
-  genes:any[]=[];
->>>>>>> f280f9f36dd612152d0c55cba91d5d008dc36fd6
+  genes: any[] = [];
   species: string;
-  genes: any[];
 
   private unsubscribeAll: Subject<any>;
 
