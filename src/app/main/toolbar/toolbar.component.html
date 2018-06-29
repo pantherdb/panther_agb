@@ -14,11 +14,11 @@
       </div>
       <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-          <button mat-icon-button class="toggle-button-navbar" *ngIf="!noNav" (click)="toggleSidebarOpened('navbar')" fxHide.gt-md>
+          <button mat-icon-button class="toggle-button-navbar" fxHide.gt-md>
             <mat-icon>menu</mat-icon>
           </button>
           <div class="toolbar-separator" fxHide.gt-md></div>
-          <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNav">
+          <div fxLayout="row" fxLayoutAlign="start center">
             <div class="logo ml-16">
               <img class="logo-icon" src="assets/images/logos/go-logo.png">
             </div>
