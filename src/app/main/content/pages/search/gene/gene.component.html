@@ -30,7 +30,7 @@
       </div>
     </div>
     
-    <div class="agb-card-simple mat-elevation-z1">
+    <!-- <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
             Proxy Genes in Extant Species
@@ -41,7 +41,27 @@
                     {{ proxy.proxy_gene }}
             </ul>
         </div>
-    </div>
+    </div> -->
+    <table id="prox_genes" class="table table-hover" style="width:100%">
+      <tbody class="col-md-4">
+          <tr>
+              <th>Extant Species</th>
+              <th>PANTHER Gene Identifier</th> 
+            </tr>
+        <tr *ngFor="let proxy of gene.proxy_genes">
+          <td>
+              
+                {{proxy.proxy_org_long}}
+              
+          </td>
+          <td>
+                <a href="http://pantherdb.org/genes/gene.do?acc={{proxy.proxy_gene}}">
+                  {{proxy.proxy_gene}}
+                </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
