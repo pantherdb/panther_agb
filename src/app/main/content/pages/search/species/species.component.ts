@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
-import { speciesNodes } from './data/species-nodes';
+import { speciesNodes, treeNodes } from './data/species-nodes';
 
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
@@ -18,7 +18,8 @@ export class SpeciesComponent {
   @ViewChild('tree') tree;
 
   species: string;
-  nodes: any = speciesNodes;
+  //nodes: any = speciesNodes;
+  nodes: any = treeNodes;
   encodeURIComponent = encodeURIComponent;
 
 
@@ -46,7 +47,7 @@ export class SpeciesComponent {
 
   speciesTreeOptions: ITreeOptions = {
     isExpandedField: 'expanded',
-    idField: 'name',
+    idField: 'short_name',
     actionMapping: this.actionMapping,
     nodeHeight: 23,
     // useVirtualScroll: true,
@@ -69,7 +70,7 @@ export class SpeciesComponent {
   }
 
   selectSpecies(node) {
-    this.species = node.data.name;
+    this.species = node.data.short_name;
     console.log(this.species, '--path ', node.path);
     this.router.navigateByUrl(`/species/${this.species}`);
 
