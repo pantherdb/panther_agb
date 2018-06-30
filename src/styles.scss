@@ -1,2 +1,7 @@
 // Import Noctua core library
 @import "@noctua/scss/core";
+
+.mat-tooltip.tooltip {
+    //background-color: darkblue;
+    font-size: 16px;
+}

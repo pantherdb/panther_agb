@@ -33,7 +33,8 @@
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="proxy_gene">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Proxy Gene in Extant Species</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header matTooltip= "Proxy genes are genes in an extant genome, that are proxies for an ancestral gene.  The proxy is defined as the closest (smallest total branch length in the gene tree) descendant of the ancestral gene, in the selected extant proxy species.  Because an ancestral gene is extinct, it has not been studied, and the proxy may share characteristics (like function) that have been inherited from the ancestral gene. This list is defaulted to the proxy gene in model organisms." matTooltipPosition="left" [matTooltipClass]="'tooltip'">Proxy Gene in an Extant Species</mat-header-cell>
+        <span class="tooltiptext">Tooltip text</span>
         <mat-cell *cdkCellDef="let gene">
           <p class="text-truncate">{{gene.proxy_gene}}</p>
         </mat-cell>
