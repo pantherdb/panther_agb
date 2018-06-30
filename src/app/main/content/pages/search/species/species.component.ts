@@ -59,7 +59,7 @@ export class SpeciesComponent {
   };
 
   onInitialized(tree) {
-    // this.tree.treeModel.expandAll();
+    //this.tree.treeModel.expandAll();
   }
 
   ngAfterViewInit() {
@@ -67,6 +67,19 @@ export class SpeciesComponent {
     //  setTimeout(() => {
     //    this.tree.treeModel.expandAll();
     // }, 10);
+    const someNode1 = this.tree.treeModel.getNodeById('LUCA');
+    someNode1.expand();
+    const someNode2 = this.tree.treeModel.getNodeById('Archaea-Eukaryota');
+    someNode2.expand();
+    const someNode3 = this.tree.treeModel.getNodeById('Eubacteria');
+    someNode3.expand();
+    const someNode4 = this.tree.treeModel.getNodeById('Eukaryota');
+    someNode4.expand();
+    const someNode5 = this.tree.treeModel.getNodeById('Archaea');
+    someNode5.expand();
+           
+    const firstRoot = this.tree.treeModel.roots[0];
+    firstRoot.setActiveAndVisible();
   }
 
   selectSpecies(node) {

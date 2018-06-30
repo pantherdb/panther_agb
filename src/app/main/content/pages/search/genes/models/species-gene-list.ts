@@ -1,4 +1,4 @@
-export interface SpeciesGeneList {
+/* export interface SpeciesGeneList {
     ptn: string;
     name: string;
     species: string;
@@ -9,4 +9,11 @@ export interface SpeciesGeneList {
         proxy_org_long: string;
         proxy_gene: string;
     };
+} */
+
+export interface SpeciesGeneList {
+    ptn: string;
+    name: string;
+    pthr:string
+    proxy_gene:string;
 }
