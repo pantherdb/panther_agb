@@ -3,5 +3,10 @@ export interface SpeciesGeneList {
     name: string;
     species: string;
     sequence: string;
-    type: string;
+    event: string;
+    proxy_genes:{
+        proxy_org_short: string;
+        proxy_org_long: string;
+        proxy_gene: string;
+    };
 }

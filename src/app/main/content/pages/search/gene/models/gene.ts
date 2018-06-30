@@ -3,5 +3,6 @@ export interface Gene {
     name: string;
     species: string;
     sequence: string;
-    type: string;
+    event: string;
+    proxy_genes:any[];
 }

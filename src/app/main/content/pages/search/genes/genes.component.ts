@@ -13,6 +13,7 @@ import { noctuaAnimations } from '@noctua/animations';
 import { NoctuaUtils } from '@noctua/utils/noctua-utils';
 
 import { takeUntil } from 'rxjs/internal/operators';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-genes',
@@ -22,7 +23,7 @@ import { takeUntil } from 'rxjs/internal/operators';
 })
 export class GenesComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSource | null;
-  displayedColumns = ['ptn', 'name', 'pthr'];
+  displayedColumns = ['ptn', 'name', 'pthr', 'proxy_gene'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -33,7 +34,9 @@ export class GenesComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
+  //proxy_genes: any;
   species: string;
+  modelSpes=[{"short_name":"ARATH", "taxon_id":"3702", "long_name":"Arabidopsis thaliana"},{"short_name":"CAEEL", "taxon_id":"6239", "long_name":"Caenorhabditis elegans"},{"short_name":"CHICK", "taxon_id":"9031", "long_name":"Gallus gallus"},{"short_name":"DANRE", "taxon_id":"7955", "long_name":"Danio rerio"},{"short_name":"DICDI", "taxon_id":"44689", "long_name":"Dictyostelium discoideum"},{"short_name":"DROME", "taxon_id":"7227", "long_name":"Drosophila melanogaster"},{"short_name":"ECOLI", "taxon_id":"83333", "long_name":"Escherichia coli"},{"short_name":"HUMAN", "taxon_id":"9606", "long_name":"Homo sapiens"},{"short_name":"MOUSE", "taxon_id":"10090", "long_name":"Mus musculus"},{"short_name":"RAT", "taxon_id":"10116", "long_name":"Rattus norvegicus"},{"short_name":"SCHPO", "taxon_id":"284812", "long_name":"Schizosaccharomyces pombe"},{"short_name":"YEAST", "taxon_id":"559292", "long_name":"Saccharomyces cerevisiae"}];
 
   private unsubscribeAll: Subject<any>;
 
@@ -47,7 +50,10 @@ export class GenesComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
       this.genesService.getGenesBySpecies(this.species).then(response => {
-        this.genes = this.genesService.genes;
+        this.genes = this.genesService.ancestral_genes;
+        //this.proxy_genes = this.genesService.ancestral_genes;
+        //console.log(this.genes);
+        //console.log(this.proxy_genes);
         this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
     });
@@ -82,7 +88,7 @@ export class SpeciesDataSource extends DataSource<any> {
     private matSort: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.genes;
+    this.filteredData = this.speciesDetailsService.ancestral_genes;
   }
 
   get filteredData(): any {
@@ -110,7 +116,7 @@ export class SpeciesDataSource extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.genes.slice();
+      let data = this.speciesDetailsService.ancestral_genes.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);
@@ -144,6 +150,9 @@ export class SpeciesDataSource extends DataSource<any> {
           [propertyA, propertyB] = [a.name, b.name];
           break;
         case 'pthr':
+          [propertyA, propertyB] = [a.pthr, b.pthr];
+          break;
+        case 'proxy_gene':
           [propertyA, propertyB] = [a.pthr, b.pthr];
           break;
       }

@@ -12,7 +12,8 @@ import { SpeciesGeneList } from './models/species-gene-list';
     providedIn: 'root',
 })
 export class GenesService {
-    genes: any[];
+    ancestral_genes: SpeciesGeneList[];
+    //proxy_genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
     constructor(private httpClient: HttpClient) {
@@ -28,8 +29,9 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
-                    this.genes = response;
-                    this.onSpeciesChanged.next(this.genes);
+                    this.ancestral_genes = response;
+                    //this.proxy_genes = response.proxy_genes;
+                    this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);
                 }, reject);
         });

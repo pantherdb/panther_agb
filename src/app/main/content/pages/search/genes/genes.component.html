@@ -32,9 +32,16 @@
           <p class="text-truncate">{{gene.pthr}}</p>
         </mat-cell>
       </ng-container>
+      <ng-container cdkColumnDef="proxy_gene">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Proxy Gene in Extant Species</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene">
+          <p class="text-truncate">{{gene.proxy_genes[0].proxy_gene}}</p>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/species',{outlets:{gene:gene.ptn}}]">
-      </mat-row>
+      <!-- <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/species',{outlets:{gene:gene.ptn}}]"></mat-row> -->
+        <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/gene', gene.ptn]"></mat-row>
+      
     </mat-table>
     <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0" [pageSize]="50"
       [pageSizeOptions]="[5, 10, 25, 100]">

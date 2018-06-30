@@ -29,18 +29,31 @@
         </p>
       </div>
     </div>
+    
     <div class="agb-card-simple mat-elevation-z1">
-      <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-        <div class="agb-title">
-          Sequence
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Proxy Genes in Extant Species
+          </div>
+        </div>
+        <div *ngIf="gene?.proxy_genes;else no_info_content" class="agb-body">
+            <ul *ngFor="let proxy of gene.proxy_genes">
+                    {{ proxy.proxy_gene }}
+            </ul>
+        </div>
+    </div>
+    <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Inferred Ancestral Gene Sequence
+          </div>
+        </div>
+        <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
+          <textarea class="agb-sequence" rows="10">
+            {{gene.sequence}}
+          </textarea>
         </div>
       </div>
-      <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
-        <textarea class="agb-sequence" rows="10">
-          {{gene.sequence}}
-        </textarea>
-      </div>
-    </div>
   </div>
 </div>
 <ng-template #no_info_content>
