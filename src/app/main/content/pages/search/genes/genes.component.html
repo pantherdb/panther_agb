@@ -1,20 +1,21 @@
 <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
-    <mat-label><button mat-raised-button (click)="download()">
-        Export to CSV
-      </button></mat-label>
   <div class="agb-column-toolbar" fxLayout="row">
+      
     <mat-form-field fxFlex="80" class="">
       <mat-label>
         Search
         <strong class="">{{genes?.length}}</strong>
         <em>
-          {{species}}
+            genes in {{species}}
         </em>
-        genes
+        
       </mat-label>
       
       <input id="search" matInput #filter placeholder="" autocomplete="off">
     </mat-form-field>
+    <mat-label fxFlex="0" fxFlexOffset="60" ><button mat-raised-button (click)="download()">
+        Export to CSV
+      </button></mat-label>
   </div>
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
