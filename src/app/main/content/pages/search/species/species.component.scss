@@ -18,6 +18,13 @@
     // @include deep-width(400px);
     @include deep-height(100%);
   }
+
+  div#tree 
+{
+    width: 600px;   
+    overflow: auto;    
+    scrollbar-base-color:#ffeaff
+}
   /*
 .node-content-wrapper,
 .tree-children {

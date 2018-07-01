@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+//import {BrowserModule} from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeModule } from 'angular-tree-component';
@@ -12,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NoctuaSharedModule } from '@noctua/shared.module';
 
 import { GeneComponent } from './gene/gene.component';
+import { Replace } from './gene/gene.pipe';
 import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
 
@@ -43,6 +45,7 @@ const routes = [
 @NgModule({
   imports: [
     CommonModule,
+    //BrowserModule,
     NoctuaSharedModule,
     FormsModule,
     ReactiveFormsModule,
@@ -56,7 +59,8 @@ const routes = [
   declarations: [
     GeneComponent,
     SpeciesComponent,
-    GenesComponent
+    GenesComponent,
+    Replace
   ]
 })
 export class SearchModule { }

@@ -95,7 +95,7 @@
         </div>
         <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
           <textarea class="agb-sequence" rows="10">
-            {{gene.sequence}}
+            {{gene.sequence | replace | uppercase}}
           </textarea>
         </div>
       </div>
