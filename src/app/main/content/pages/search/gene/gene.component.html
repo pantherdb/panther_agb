@@ -8,7 +8,7 @@
     <div class="agb-card-simple mat-elevation-z1">
       <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
         <div class="agb-title">
-          Name
+          Gene Name
         </div>
       </div>
       <div *ngIf="gene?.name;else no_info_content" class="agb-body">
@@ -20,7 +20,7 @@
     <div class="agb-card-simple mat-elevation-z1">
       <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
         <div class="agb-title">
-          Species
+          Ancestral Species
         </div>
       </div>
       <div *ngIf="gene?.species;else no_info_content" class="agb-body">
@@ -32,7 +32,7 @@
     <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
-            PANTHER Protein Family
+            PANTHER Family
           </div>
         </div>
         <div *ngIf="gene?.pthr;else no_info_content" class="agb-body">
@@ -70,7 +70,7 @@
       <tbody class="col-md-4">
           <tr>
               <th>Extant Species</th>
-              <th>PANTHER Gene Identifier</th> 
+              <th>PANTHER Identifier of Proxy Gene</th> 
             </tr>
         <tr *ngFor="let proxy of gene.proxy_genes">
           <td>
