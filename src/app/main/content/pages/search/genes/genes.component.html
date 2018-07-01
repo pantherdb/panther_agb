@@ -1,4 +1,7 @@
 <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-label><button mat-raised-button (click)="download()">
+        Export to CSV
+      </button></mat-label>
   <div class="agb-column-toolbar" fxLayout="row">
     <mat-form-field fxFlex="80" class="">
       <mat-label>
@@ -9,6 +12,7 @@
         </em>
         genes
       </mat-label>
+      
       <input id="search" matInput #filter placeholder="" autocomplete="off">
     </mat-form-field>
   </div>
