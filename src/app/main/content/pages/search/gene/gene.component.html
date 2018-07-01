@@ -29,6 +29,23 @@
         </p>
       </div>
     </div>
+    <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            PANTHER Protein Family
+          </div>
+        </div>
+        <div *ngIf="gene?.pthr;else no_info_content" class="agb-body">
+          <p>
+          <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
+            {{gene.pthr}}
+          </a>
+          <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
+            ({{gene.family_name}})
+          </a>
+          </p>
+        </div>
+    </div>
     
     <!-- <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
