@@ -74,7 +74,7 @@ export class GenesComponent implements OnInit, OnDestroy {
   
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes, "list.csv", ["ptn", "name", "species", "pthr", "proxy_gene"]);
+    this.exporter.exportColumnsToCSV(this.genes, `${this.species}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
   }
   
 
