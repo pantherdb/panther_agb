@@ -12,7 +12,7 @@
         <strong>Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome (and their proxy genes in an extant genome).</strong>
       </p>
     </div>
-    <div class="agb-tree-container scroll" noctuaPerfectScrollbar>
+    <div id="scroll" class="agb-tree-container" noctuaPerfectScrollbar>
       <tree-root #tree [nodes]="nodes" [options]="speciesTreeOptions" [focused]="true" (event)="onEvent($event)" (initialized)="onInitialized(tree)">
         <ng-template #treeNodeTemplate let-node>
           <div fxLayout="row" (click)="selectSpecies(node)">
