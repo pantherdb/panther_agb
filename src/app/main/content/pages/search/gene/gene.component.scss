@@ -3,13 +3,13 @@
 :host {
   width: 100%;
   .agb-gene-panel {
-    background-color: #F2F2F2;
-    width: 100%;
-    border-left: #DDD solid 1px;
+    padding: 15px 5px;
+    background-color: #F7F7F7;
+    width: 100%; // border-left: #DDD solid 1px;
   }
   .agb-column-toolbar {}
   .agb-gene-detail {
-    padding: 10px;
+    padding: 10px; // background-color: #F2F2F2;
   }
   .agb-sequence {
     @include deep-width(100%);
