@@ -58,6 +58,18 @@
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
+            Inferred Ancestral Protein Sequence
+          </div>
+        </div>
+        <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
+          <textarea class="agb-sequence" rows="10" readonly>
+            {{gene.sequence | replace | uppercase}}
+          </textarea>
+        </div>
+      </div>
+      <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
             Proxy Genes in Extant Species
           </div>
           <span fxFlex></span>
@@ -82,18 +94,6 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let proxy; columns: displayedColumns;"></mat-row>
           </mat-table>
-        </div>
-      </div>
-      <div class="agb-card-simple mat-elevation-z1">
-        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
-            Inferred Ancestral Protein Sequence
-          </div>
-        </div>
-        <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
-          <textarea class="agb-sequence" rows="10" readonly>
-            {{gene.sequence | replace | uppercase}}
-          </textarea>
         </div>
       </div>
     </div>
