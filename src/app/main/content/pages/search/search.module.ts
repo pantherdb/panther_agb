@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 //import {BrowserModule} from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { TreeModule } from 'angular-tree-component';
 import { TreeviewModule } from 'ngx-treeview';
 
@@ -16,6 +19,7 @@ import { GeneComponent } from './gene/gene.component';
 import { Replace } from './gene/gene.pipe';
 import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
+import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
 
 
 /* const routes = [
@@ -38,6 +42,8 @@ const routes = [
     children: [{
       path: ':id', component: GenesComponent,
     }]
+  }, {
+    path: 'species-viewer', component: SpeciesViewerComponent
   },
   { path: '', redirectTo: 'species', pathMatch: 'full' }
 ];
@@ -53,6 +59,8 @@ const routes = [
     NgxPaginationModule,
     NgxDatatableModule,
     TreeModule,
+    NgxChartsModule,
+    NgxGraphModule,
     TreeviewModule.forRoot(),
     RouterModule.forChild(routes),
   ],
@@ -60,7 +68,8 @@ const routes = [
     GeneComponent,
     SpeciesComponent,
     GenesComponent,
-    Replace
+    Replace,
+    SpeciesViewerComponent
   ]
 })
 export class SearchModule { }
