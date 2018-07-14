@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 //import {BrowserModule} from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeModule } from 'angular-tree-component';
+//import { TreeModule } from 'angular-tree-component';
 import { TreeviewModule } from 'ngx-treeview';
+
+import { TreeModule } from './species/tree';
 
 import { NgPipesModule } from 'ngx-pipes';
 import { NgxPaginationModule } from 'ngx-pagination';
