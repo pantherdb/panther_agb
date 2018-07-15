@@ -67,5 +67,5 @@
 </div>
  -->
 
- <p-tree [value]="species" layout="horizontal" selectionMode="single" [(selection)]="selectedSpecies" ></p-tree>
+ <p-tree [value]="species" layout="horizontal" selectionMode="single" [(selection)]="selectedSpecies" (onNodeSelect)="nodeSelect($event)"></p-tree>
  <div style="margin-top:8px">Selected Node: {{selectedSpecies ? selectedSpecies.label : 'none'&#125;&#125;</div>

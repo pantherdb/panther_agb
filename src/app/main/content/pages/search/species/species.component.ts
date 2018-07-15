@@ -32,7 +32,7 @@ export class SpeciesComponent implements OnInit {
   items: MenuItem[];
   loading: boolean;
 
-  constructor(private nodeService: NodeService) { }
+  constructor(private router: Router,private nodeService: NodeService) { }
 
   ngOnInit() {
     this.loading = true;
@@ -43,9 +43,21 @@ export class SpeciesComponent implements OnInit {
         {label: 'Unselect', icon: 'fa fa-close', command: (event) => this.unselectFile()}
     ];
   }
-  nodeSelect(event) {
+/* nodeSelect(event) {
     this.msgs = [];
     this.msgs.push({severity: 'info', summary: 'Node Selected', detail: event.node.label});
+} */
+
+nodeSelect(event) {
+    this.species = event.node.label;
+    //console.log(this.species, '--path ', node.path);
+    this.router.navigateByUrl(`/species/${this.species}`);
+
+    /* this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => (
+      {
+        label: species,
+        url: '/species/' + species
+      }))); */
 }
 
 nodeUnselect(event) {
