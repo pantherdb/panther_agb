@@ -5,7 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { TreeModule } from 'angular-tree-component';
 import { TreeviewModule } from 'ngx-treeview';
 
-import { TreeModule } from './species/tree';
+//import { TreeModule } from './species/tree';
+import { TreeModule } from 'primeng/primeng';
 
 import { NgPipesModule } from 'ngx-pipes';
 import { NgxPaginationModule } from 'ngx-pagination';
