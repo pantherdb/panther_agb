@@ -20,6 +20,7 @@ import { Replace } from './gene/gene.pipe';
 import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
+import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 
 
 /* const routes = [
@@ -39,10 +40,16 @@ const routes = [
   { path: 'gene/:ptn', component: GeneComponent },
   {
     path: 'species', component: SpeciesComponent,
-    children: [{
-      path: ':id', component: GenesComponent,
-    }]
-  }, {
+    children: [
+      {
+        path: ':id', component: GenesComponent
+      },
+      {
+        path: 'species-info/:id', component: SpeciesDetailComponent,
+      }
+    ]
+  },
+  {
     path: 'species-viewer', component: SpeciesViewerComponent
   },
   { path: '', redirectTo: 'species', pathMatch: 'full' }
@@ -69,7 +76,8 @@ const routes = [
     SpeciesComponent,
     GenesComponent,
     Replace,
-    SpeciesViewerComponent
+    SpeciesViewerComponent,
+    SpeciesDetailComponent
   ]
 })
 export class SearchModule { }
