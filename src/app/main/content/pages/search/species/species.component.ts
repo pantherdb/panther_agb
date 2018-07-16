@@ -32,7 +32,7 @@ export class SpeciesComponent implements OnInit {
   }
 
 nodeSelect(event) {
-    this.species = event.node.label;
+    this.species = event.node.data;
     //console.log(this.species, '--path ', node.path);
     this.router.navigateByUrl(`/species/${this.species}`);
 
