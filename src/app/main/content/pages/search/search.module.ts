@@ -34,7 +34,7 @@ import { SpeciesComponent } from './species/species.component';
   { path: '', redirectTo: 'species', pathMatch: 'full' }
 ]; */
 
-const routes = [
+/* const routes = [
   { path: 'gene/:ptn', component: GeneComponent },
   {
     path: 'species', component: SpeciesComponent,
@@ -42,6 +42,13 @@ const routes = [
       path: ':id', component: GenesComponent,
     }]
   },
+  { path: '', redirectTo: 'species', pathMatch: 'full' }
+]; */
+
+const routes = [
+  { path: 'gene/:ptn', component: GeneComponent },
+  { path: 'species', component: SpeciesComponent },
+  { path: 'species/:id', component: GenesComponent },
   { path: '', redirectTo: 'species', pathMatch: 'full' }
 ];
 
