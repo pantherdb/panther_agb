@@ -18,6 +18,7 @@ export class SpeciesComponent {
   @ViewChild('tree') tree;
 
   species: string;
+  taxonId: string;
   //nodes: any = speciesNodes;
   nodes: any = treeNodes;
   encodeURIComponent = encodeURIComponent;
@@ -84,7 +85,9 @@ export class SpeciesComponent {
 
   selectSpecies(node) {
     this.species = node.data.short_name;
-    console.log(this.species, '--path ', node.path);
+    this.taxonId = node.data.taxon_id;
+    //console.log(this.species, '--path ', node.path);
+    console.log(this.taxonId);
     this.router.navigateByUrl(`/species/${this.species}`);
 
     this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => (
