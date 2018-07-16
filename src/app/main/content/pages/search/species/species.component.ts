@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import {NodeService} from './services/nodeservice';
 import {Tree} from './services/tree';
@@ -10,7 +10,7 @@ import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs
 @Component({
   selector: 'app-species',
   templateUrl: 'species.component.html',
-  styleUrls: ['species.component.scss'],
+  styleUrls: ['tree.css','species.component.scss'],
   providers: [TreeDragDropService, NodeService]
 })
 

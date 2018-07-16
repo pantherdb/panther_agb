@@ -14,11 +14,6 @@
       //white-space:nowrap;
       //@include deep-height(100%);
     //}
-    .ui-tree-horizontal {
-      padding: 10px;
-      //white-space:nowrap;
-      @include deep-height(100%);
-    }
     @include media-breakpoint('gt-md') {}
   }
   //.agb-gene {
