@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { v4 as uuid } from 'uuid';
 import * as shape from 'd3-shape';
 import { Subject } from 'rxjs';
 import { colorSets } from './color-sets';
-import { id } from './id';
 import chartGroups from './chart-types';
-import { countries, generateHierarchialGraph } from './data';
+import { generateSpeciesGraph } from './../data/species-nodes';
 
 @Component({
   selector: 'app-species-viewer',
@@ -13,26 +14,20 @@ import { countries, generateHierarchialGraph } from './data';
 })
 export class SpeciesViewerComponent implements OnInit {
 
-
-  version = 1;
-
-  theme = 'dark';
   chartType = 'directed-graph';
   chartTypeGroups: any;
   chart: any;
-  realTimeData: boolean = false;
-  countrySet: any[];
   graph: { links: any[]; nodes: any[] };
   hierarchialGraph: { links: any[]; nodes: any[] };
 
   view: any[];
-  width: number = 700;
-  height: number = 300;
-  fitContainer: boolean = true;
-  autoZoom: boolean = false;
-  panOnZoom: boolean = true;
-  enableZoom: boolean = true;
-  autoCenter: boolean = false;
+  width = 700;
+  height = 300;
+  fitContainer = true;
+  autoZoom = false;
+  panOnZoom = true;
+  enableZoom = true;
+  autoCenter = false;
 
   // observables
   update$: Subject<any> = new Subject();
@@ -41,28 +36,25 @@ export class SpeciesViewerComponent implements OnInit {
 
   // options
   showLegend = false;
-  orientation: string = 'LR'; // LR, RL, TB, BT
+  orientation = 'LR'; // LR, RL, TB, BT
   orientations: any[] = [
     {
       label: 'Left to Right',
       value: 'LR'
-    },
-    {
+    }, {
       label: 'Right to Left',
       value: 'RL'
-    },
-    {
+    }, {
       label: 'Top to Bottom',
       value: 'TB'
-    },
-    {
+    }, {
       label: 'Bottom to Top',
       value: 'BT'
     }
   ];
 
   // line interpolation
-  curveType: string = 'Linear';
+  curveType = 'Linear';
   curve: any = shape.curveLinear;
   interpolationTypes = [
     'Bundle',
@@ -79,23 +71,18 @@ export class SpeciesViewerComponent implements OnInit {
 
   colorSchemes: any;
   colorScheme: any;
-  schemeType: string = 'ordinal';
+  schemeType = 'ordinal';
   selectedColorScheme: string;
 
-  constructor() {
-    Object.assign(this, {
-      countrySet: countries,
-      colorSchemes: colorSets,
-      chartTypeGroups: chartGroups,
-      hierarchialGraph: generateHierarchialGraph()
-    });
+  constructor(private router: Router) {
+    this.colorSchemes = colorSets;
+    this.hierarchialGraph = generateSpeciesGraph();
 
     this.setColorScheme('picnic');
     this.setInterpolationType('Bundle');
   }
 
   ngOnInit() {
-    this.selectChart(this.chartType);
 
     setInterval(this.updateData.bind(this), 1000);
 
@@ -104,33 +91,12 @@ export class SpeciesViewerComponent implements OnInit {
     }
   }
 
+  selectSpecies(speciesLabel) {
+    this.router.navigateByUrl(`/species/${speciesLabel}`);
+  }
+
   updateData() {
-    if (!this.realTimeData) {
-      return;
-    }
 
-    const country = this.countrySet[Math.floor(Math.random() * this.countrySet.length)];
-    const add = Math.random() < 0.7;
-    const remove = Math.random() < 0.5;
-
-    if (add) {
-      // directed graph
-      const hNode = {
-        id: id(),
-        label: country
-      };
-
-      this.hierarchialGraph.nodes.push(hNode);
-
-      this.hierarchialGraph.links.push({
-        source: this.hierarchialGraph.nodes[Math.floor(Math.random() * (this.hierarchialGraph.nodes.length - 1))].id,
-        target: hNode.id,
-        label: 'on success'
-      });
-
-      this.hierarchialGraph.links = [...this.hierarchialGraph.links];
-      this.hierarchialGraph.nodes = [...this.hierarchialGraph.nodes];
-    }
   }
 
   applyDimensions() {
@@ -153,21 +119,9 @@ export class SpeciesViewerComponent implements OnInit {
     }
   }
 
-  selectChart(chartSelector) {
-    this.chartType = chartSelector;
-
-    for (const group of this.chartTypeGroups) {
-      for (const chart of group.charts) {
-        if (chart.selector === chartSelector) {
-          this.chart = chart;
-          return;
-        }
-      }
-    }
-  }
 
   select(data) {
-    console.log('Item clicked', data);
+    this.selectSpecies(data.label)
   }
 
   setColorScheme(name) {
