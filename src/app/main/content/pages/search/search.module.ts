@@ -21,6 +21,7 @@ import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
+import { SpeciesTreeViewerComponent } from './species/species-tree-viewer/species-tree-viewer.component';
 
 
 /* const routes = [
@@ -52,6 +53,9 @@ const routes = [
   {
     path: 'species-viewer', component: SpeciesViewerComponent
   },
+  {
+    path: 'species-tree-viewer', component: SpeciesTreeViewerComponent
+  },
   { path: '', redirectTo: 'species', pathMatch: 'full' }
 ];
 
@@ -77,7 +81,8 @@ const routes = [
     GenesComponent,
     Replace,
     SpeciesViewerComponent,
-    SpeciesDetailComponent
+    SpeciesDetailComponent,
+    SpeciesTreeViewerComponent
   ]
 })
 export class SearchModule { }
