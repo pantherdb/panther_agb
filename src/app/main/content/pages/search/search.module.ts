@@ -76,7 +76,3 @@ const routes = [
   ]
 })
 export class SearchModule { }
-
-
-
-
