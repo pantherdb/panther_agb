@@ -35,13 +35,13 @@ const routes = [
     children: [
       {
         path: ':id', component: GenesComponent
-      },
+      }, {
+        path: 'species-info/:id', component: SpeciesDetailComponent,
+      }
       // {
       //  path: 'species-info/:id', component: SpeciesDetailComponent,
       // }
     ]
-  }, {
-    path: 'species-info/:id', component: SpeciesDetailComponent,
   }, {
     path: 'species-horizontal-viewer', component: SpeciesHorizontalViewerComponent
   }, {

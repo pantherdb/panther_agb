@@ -11,6 +11,12 @@
         <div class="agb-logo">
           Ancestral Genomes
         </div>
+        <button class="noc-viewas-button" mat-button [matMenuTriggerFor]="menu">View As</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/species']">Tree View</button>
+          <button mat-menu-item [routerLink]="['/species-horizontal-viewer']">Species Tree View</button>
+          <button mat-menu-item [routerLink]="['/species-graph-viewer']">Graph View</button>
+        </mat-menu>
       </div>
     </mat-toolbar-row>
     <mat-toolbar-row class="agb-subnavbar">
