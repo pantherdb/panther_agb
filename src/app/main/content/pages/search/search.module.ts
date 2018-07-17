@@ -7,8 +7,6 @@ import { TreeModule as PgTreeModule } from 'primeng/primeng';
 
 import { TreeviewModule } from 'ngx-treeview';
 
-
-
 import { NgPipesModule } from 'ngx-pipes';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -25,6 +23,9 @@ import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesHorizontalViewerComponent } from './species/viewers/species-horizontal-viewer/species-horizontal-viewer.component';
 import { SpeciesGraphViewerComponent } from './species/viewers/species-graph-viewer/species-graph-viewer.component';
+import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
+import { SpeciesDetailComponent } from './species-detail/species-detail.component';
+import { SpeciesTreeViewerComponent } from './species/species-tree-viewer/species-tree-viewer.component';
 
 
 const routes = [
@@ -39,12 +40,14 @@ const routes = [
       //  path: 'species-info/:id', component: SpeciesDetailComponent,
       // }
     ]
-  },
-  {
+  }, {
+    path: 'species-info/:id', component: SpeciesDetailComponent,
+  }, {
     path: 'species-horizontal-viewer', component: SpeciesHorizontalViewerComponent
-  },
-  {
+  }, {
     path: 'species-graph-viewer', component: SpeciesGraphViewerComponent
+  }, {
+    path: 'species-tree-viewer', component: SpeciesTreeViewerComponent
   },
   { path: '', redirectTo: 'species', pathMatch: 'full' }
 ];
@@ -72,7 +75,9 @@ const routes = [
     GenesComponent,
     Replace,
     SpeciesHorizontalViewerComponent,
-    SpeciesGraphViewerComponent
+    SpeciesGraphViewerComponent,
+    SpeciesDetailComponent,
+    SpeciesTreeViewerComponent
   ]
 })
 export class SearchModule { }

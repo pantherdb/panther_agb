@@ -1,6 +1,6 @@
 
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
@@ -41,7 +41,7 @@ export class GenesComponent implements OnInit, OnDestroy {
   private unsubscribeAll: Subject<any>;
 
 
-  constructor(private route: ActivatedRoute, private genesService: GenesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private genesService: GenesService) {
     this.unsubscribeAll = new Subject();
   }
 
@@ -75,6 +75,10 @@ export class GenesComponent implements OnInit, OnDestroy {
   download(): void {
     this.exporter = new ExportToCSV();
     this.exporter.exportColumnsToCSV(this.genes, `${this.species}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
+  }
+
+  speciesDetail(): void {
+    this.router.navigateByUrl(`species/species-info/${this.species}`);
   }
   
 
