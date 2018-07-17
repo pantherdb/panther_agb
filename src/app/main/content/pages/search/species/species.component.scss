@@ -10,22 +10,17 @@
     border-right: #DDD solid 1px;
     z-index: 10;
     //white-space:nowrap;
-    .agb-column-toolbar {
+    //.agb-column-toolbar {
       //white-space:nowrap;
       //@include deep-height(100%);
-    }
-    .agb-tree-container {
-      padding: 10px;
-      //white-space:nowrap;
-      @include deep-height(100%);
-    }
+    //}
     @include media-breakpoint('gt-md') {}
   }
-  .agb-gene {
+  //.agb-gene {
     // @include deep-width(400px);
-    @include deep-height(100%);
+    //@include deep-height(100%);
     //white-space:nowrap;
-  }
+  //}
   
   #scroll {
     width:100%;
@@ -37,7 +32,7 @@
     overflow:auto;
     //box-shadow:0 0 10px #000;
     }
-    #scroll tree-root {
+    #scroll p-tree {
       float:left;
       margin-right:-999em;
       white-space:nowrap;

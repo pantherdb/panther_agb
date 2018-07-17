@@ -5,14 +5,14 @@ import * as shape from 'd3-shape';
 import { Subject } from 'rxjs';
 import { colorSets } from './color-sets';
 import chartGroups from './chart-types';
-import { generateSpeciesGraph } from './../data/species-nodes';
+import { generateSpeciesGraph } from './../../data/species-nodes';
 
 @Component({
   selector: 'app-species-viewer',
-  templateUrl: './species-viewer.component.html',
-  styleUrls: ['./species-viewer.component.scss']
+  templateUrl: './species-graph-viewer.component.html',
+  styleUrls: ['./species-graph-viewer.component.scss']
 })
-export class SpeciesViewerComponent implements OnInit {
+export class SpeciesGraphViewerComponent implements OnInit {
 
   chartType = 'directed-graph';
   chartTypeGroups: any;
