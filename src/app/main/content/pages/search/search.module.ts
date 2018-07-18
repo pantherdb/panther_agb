@@ -23,7 +23,7 @@ import { GenesComponent } from './genes/genes.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesHorizontalViewerComponent } from './species/viewers/species-horizontal-viewer/species-horizontal-viewer.component';
 import { SpeciesGraphViewerComponent } from './species/viewers/species-graph-viewer/species-graph-viewer.component';
-import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
+//import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 import { SpeciesTreeViewerComponent } from './species/species-tree-viewer/species-tree-viewer.component';
 
