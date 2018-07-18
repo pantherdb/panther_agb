@@ -3,148 +3,140 @@ export const SpeciesTree = [
         label: "LUCA",
         data: "LUCA",
         expanded: true,
-        expandedIcon: "fa fa-chevron-right",
-        collapsedIcon: "fa fa-chevron-down",
         children: [
             {
                 label: "Archaea-Eukaryota",
                 data: "Archaea-Eukaryota",
                 expanded: true,
-                expandedIcon: "icon-plus",
-                collapsedIcon: "icon-minus",
                 children: [
                     {
                         label: "Eukaryota",
                         data: "Eukaryota",
                         expanded: true,
-                        expandedIcon: "fa fa-folder-open",
-                        collapsedIcon: "fa fa-folder",
                         children: [
                             {
                                 label: "Unikonts",
                                 data: "Unikonts",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
                                 children: [
                                     {
                                         label: "Opisthokonts",
                                         data: "Opisthokonts",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Metazoa-Choanoflagellida",
                                                 data: "Metazoa-Choanoflagellida",
                                                 expanded: true,
-                                                expandedIcon: "fa fa-folder-open",
-                                                collapsedIcon: "fa fa-folder",
+
+
                                                 children: [
                                                     {
                                                         label: "Eumetazoa",
                                                         data: "Eumetazoa",
                                                         expanded: true,
-                                                        expandedIcon: "fa fa-folder-open",
-                                                        collapsedIcon: "fa fa-folder",
+
+
                                                         children: [
                                                             {
                                                                 label: "Bilateria",
                                                                 data: "Bilateria",
                                                                 expanded: true,
-                                                                expandedIcon: "fa fa-folder-open",
-                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                 children: [
                                                                     {
                                                                         label: "Deuterostomia",
                                                                         data: "Deuterostomia",
                                                                         expanded: true,
-                                                                        expandedIcon: "fa fa-folder-open",
-                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                         children: [
                                                                             {
                                                                                 label: "Chordata",
                                                                                 data: "Chordata",
                                                                                 expanded: true,
-                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                 children: [
                                                                                     {
                                                                                         label: "Craniata-Cephalochordata",
                                                                                         data: "Craniata-Cephalochordata",
                                                                                         expanded: true,
-                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                         children: [
                                                                                             {
                                                                                                 label: "Euteleostomi",
                                                                                                 data: "Euteleostomi",
                                                                                                 expanded: true,
-                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                 children: [
                                                                                                     {
                                                                                                         label: "Tetrapoda",
                                                                                                         data: "Tetrapoda",
                                                                                                         expanded: true,
-                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                         children: [
                                                                                                             {
                                                                                                                 label: "Amniota",
                                                                                                                 data: "Amniota",
                                                                                                                 expanded: true,
-                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                 children: [
                                                                                                                     {
                                                                                                                         label: "Mammalia",
                                                                                                                         data: "Mammalia",
                                                                                                                         expanded: true,
-                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                         children: [
                                                                                                                             {
                                                                                                                                 label: "Theria",
                                                                                                                                 data: "Theria",
                                                                                                                                 expanded: true,
-                                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                 children: [
                                                                                                                                     {
                                                                                                                                         label: "Eutheria",
                                                                                                                                         data: "Eutheria",
                                                                                                                                         expanded: true,
-                                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                         children: [
                                                                                                                                             {
                                                                                                                                                 label: "Euarchontoglires",
                                                                                                                                                 data: "Euarchontoglires",
                                                                                                                                                 expanded: true,
-                                                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                 children: [
                                                                                                                                                     {
                                                                                                                                                         label: "Catarrhini",
                                                                                                                                                         data: "Catarrhini",
                                                                                                                                                         expanded: true,
-                                                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                         children: [
                                                                                                                                                             {
                                                                                                                                                                 label: "Homininae",
                                                                                                                                                                 data: "Homininae",
                                                                                                                                                                 expanded: true,
-                                                                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                                 children: [
                                                                                                                                                                     {
                                                                                                                                                                         label: "Homo-Pan",
                                                                                                                                                                         data: "Homo-Pan",
                                                                                                                                                                         expanded: true,
-                                                                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                                         children: [
                                                                                                                                                                             {
                                                                                                                                                                                 label: "Homo sapiens",
@@ -172,8 +164,8 @@ export const SpeciesTree = [
                                                                                                                                                         label: "Murinae",
                                                                                                                                                         data: "Murinae",
                                                                                                                                                         expanded: true,
-                                                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                         children: [
                                                                                                                                                             {
                                                                                                                                                                 label: "Mus musculus",
@@ -191,22 +183,22 @@ export const SpeciesTree = [
                                                                                                                                                 label: "Laurasiatheria",
                                                                                                                                                 data: "Laurasiatheria",
                                                                                                                                                 expanded: true,
-                                                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                 children: [
                                                                                                                                                     {
                                                                                                                                                         label: "Perissodactyla",
                                                                                                                                                         data: "Perissodactyla",
                                                                                                                                                         expanded: true,
-                                                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                         children: [
                                                                                                                                                             {
                                                                                                                                                                 label: "Artiodactyla",
                                                                                                                                                                 data: "Artiodactyla",
                                                                                                                                                                 expanded: true,
-                                                                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                                 children: [
                                                                                                                                                                     {
                                                                                                                                                                         label: "Bos taurus",
@@ -228,8 +220,8 @@ export const SpeciesTree = [
                                                                                                                                                         label: "Carnivora",
                                                                                                                                                         data: "Carnivora",
                                                                                                                                                         expanded: true,
-                                                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                                                         children: [
                                                                                                                                                             {
                                                                                                                                                                 label: "Felis catus",
@@ -261,8 +253,8 @@ export const SpeciesTree = [
                                                                                                                         label: "Sauria",
                                                                                                                         data: "Sauria",
                                                                                                                         expanded: true,
-                                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                                         children: [
                                                                                                                             {
                                                                                                                                 label: "Gallus gallus",
@@ -286,15 +278,15 @@ export const SpeciesTree = [
                                                                                                         label: "Neopterygii",
                                                                                                         data: "Neopterygii",
                                                                                                         expanded: true,
-                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                         children: [
                                                                                                             {
                                                                                                                 label: "Teleostei",
                                                                                                                 data: "Teleostei",
                                                                                                                 expanded: true,
-                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                 children: [
                                                                                                                     {
                                                                                                                         label: "Oryzias latipes",
@@ -336,29 +328,29 @@ export const SpeciesTree = [
                                                                         label: "Protostomia",
                                                                         data: "Protostomia",
                                                                         expanded: true,
-                                                                        expandedIcon: "fa fa-folder-open",
-                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                         children: [
                                                                             {
                                                                                 label: "Ecdysozoa",
                                                                                 data: "Ecdysozoa",
                                                                                 expanded: true,
-                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                 children: [
                                                                                     {
                                                                                         label: "Rhabditida-Chromadorea",
                                                                                         data: "Rhabditida-Chromadorea",
                                                                                         expanded: true,
-                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                         children: [
                                                                                             {
                                                                                                 label: "Caenorhabditis",
                                                                                                 data: "Caenorhabditis",
                                                                                                 expanded: true,
-                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                 children: [
                                                                                                     {
                                                                                                         label: "Caenorhabditis elegans",
@@ -380,29 +372,29 @@ export const SpeciesTree = [
                                                                                         label: "Arthropoda",
                                                                                         data: "Arthropoda",
                                                                                         expanded: true,
-                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                         children: [
                                                                                             {
                                                                                                 label: "Hexapoda-Crustacea",
                                                                                                 data: "Hexapoda-Crustacea",
                                                                                                 expanded: true,
-                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                 children: [
                                                                                                     {
                                                                                                         label: "Endopterygota",
                                                                                                         data: "Endopterygota",
                                                                                                         expanded: true,
-                                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                                         children: [
                                                                                                             {
                                                                                                                 label: "Diptera",
                                                                                                                 data: "Diptera",
                                                                                                                 expanded: true,
-                                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                                 children: [
                                                                                                                     {
                                                                                                                         label: "Drosophila melanogaster",
@@ -462,50 +454,50 @@ export const SpeciesTree = [
                                                 label: "Fungi",
                                                 data: "Fungi",
                                                 expanded: true,
-                                                expandedIcon: "fa fa-folder-open",
-                                                collapsedIcon: "fa fa-folder",
+
+
                                                 children: [
                                                     {
                                                         label: "Dikarya",
                                                         data: "Dikarya",
                                                         expanded: true,
-                                                        expandedIcon: "fa fa-folder-open",
-                                                        collapsedIcon: "fa fa-folder",
+
+
                                                         children: [
                                                             {
                                                                 label: "Ascomycota",
                                                                 data: "Ascomycota",
                                                                 expanded: true,
-                                                                expandedIcon: "fa fa-folder-open",
-                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                 children: [
                                                                     {
                                                                         label: "Pezizomycotina-Saccharomycotina",
                                                                         data: "Pezizomycotina-Saccharomycotina",
                                                                         expanded: true,
-                                                                        expandedIcon: "fa fa-folder-open",
-                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                         children: [
                                                                             {
                                                                                 label: "Saccharomycetales",
                                                                                 data: "Saccharomycetales",
                                                                                 expanded: true,
-                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                 children: [
                                                                                     {
                                                                                         label: "Saccharomycetaceae-Candida",
                                                                                         data: "Saccharomycetaceae-Candida",
                                                                                         expanded: true,
-                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                         children: [
                                                                                             {
                                                                                                 label: "Saccharomycetaceae",
                                                                                                 data: "Saccharomycetaceae",
                                                                                                 expanded: true,
-                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                 children: [
                                                                                                     {
                                                                                                         label: "Saccharomyces cerevisiae",
@@ -533,15 +525,15 @@ export const SpeciesTree = [
                                                                                 label: "Pezizomycotina",
                                                                                 data: "Pezizomycotina",
                                                                                 expanded: true,
-                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                 children: [
                                                                                     {
                                                                                         label: "Aspergillus",
                                                                                         data: "Aspergillus",
                                                                                         expanded: true,
-                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                         children: [
                                                                                             {
                                                                                                 label: "Emericella nidulans",
@@ -557,15 +549,15 @@ export const SpeciesTree = [
                                                                                         label: "Sordariomycetes-Leotiomycetes",
                                                                                         data: "Sordariomycetes-Leotiomycetes",
                                                                                         expanded: true,
-                                                                                        expandedIcon: "fa fa-folder-open",
-                                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                                         children: [
                                                                                             {
                                                                                                 label: "Sordariomyceta",
                                                                                                 data: "Sordariomyceta",
                                                                                                 expanded: true,
-                                                                                                expandedIcon: "fa fa-folder-open",
-                                                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                                                 children: [
                                                                                                     {
                                                                                                         label: "Neurospora crassa",
@@ -597,8 +589,8 @@ export const SpeciesTree = [
                                                                 label: "Basidiomycota",
                                                                 data: "Basidiomycota",
                                                                 expanded: true,
-                                                                expandedIcon: "fa fa-folder-open",
-                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                 children: [
                                                                     {
                                                                         label: "Cryptococcus neoformans",
@@ -628,8 +620,8 @@ export const SpeciesTree = [
                                         label: "Amoebozoa",
                                         data: "Amoebozoa",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Entamoeba histolytica",
@@ -639,8 +631,8 @@ export const SpeciesTree = [
                                                 label: "Dictyostelium",
                                                 data: "Dictyostelium",
                                                 expanded: true,
-                                                expandedIcon: "fa fa-folder-open",
-                                                collapsedIcon: "fa fa-folder",
+
+
                                                 children: [
                                                     {
                                                         label: "Dictyostelium discoideum",
@@ -660,15 +652,15 @@ export const SpeciesTree = [
                                 label: "Alveolata-Stramenopiles",
                                 data: "Alveolata-Stramenopiles",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Alveolata",
                                         data: "Alveolata",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Plasmodium falciparum",
@@ -684,8 +676,8 @@ export const SpeciesTree = [
                                         label: "Stramenopiles",
                                         data: "Stramenopiles",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Thalassiosira pseudonana",
@@ -703,15 +695,15 @@ export const SpeciesTree = [
                                 label: "Excavates",
                                 data: "Excavates",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Trypanosomatidae",
                                         data: "Trypanosomatidae",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Leishmania major",
@@ -727,8 +719,8 @@ export const SpeciesTree = [
                                         label: "Fornicata-Parabasalids",
                                         data: "Fornicata-Parabasalids",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Giardia intestinalis",
@@ -746,8 +738,8 @@ export const SpeciesTree = [
                                 label: "Viridiplantae",
                                 data: "Viridiplantae",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Chlamydomonas reinhardtii",
@@ -757,22 +749,22 @@ export const SpeciesTree = [
                                         label: "Embryophyta",
                                         data: "Embryophyta",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Magnoliophyta",
                                                 data: "Magnoliophyta",
                                                 expanded: true,
-                                                expandedIcon: "fa fa-folder-open",
-                                                collapsedIcon: "fa fa-folder",
+
+
                                                 children: [
                                                     {
                                                         label: "Poaceae",
                                                         data: "Poaceae",
                                                         expanded: true,
-                                                        expandedIcon: "fa fa-folder-open",
-                                                        collapsedIcon: "fa fa-folder",
+
+
                                                         children: [
                                                             {
                                                                 label: "Zea mays",
@@ -781,8 +773,8 @@ export const SpeciesTree = [
                                                             {
                                                                 label: "BEP_clade",
                                                                 expanded: true,
-                                                                expandedIcon: "fa fa-folder-open",
-                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                 children: [
                                                                     {
                                                                         label: "Oryza sativa",
@@ -800,8 +792,8 @@ export const SpeciesTree = [
                                                         label: "Pentapetalae",
                                                         data: "Pentapetalae",
                                                         expanded: true,
-                                                        expandedIcon: "fa fa-folder-open",
-                                                        collapsedIcon: "fa fa-folder",
+
+
                                                         children: [
                                                             {
                                                                 label: "Solanum lycopersicum",
@@ -811,8 +803,8 @@ export const SpeciesTree = [
                                                                 label: "rosids",
                                                                 data: "rosids",
                                                                 expanded: true,
-                                                                expandedIcon: "fa fa-folder-open",
-                                                                collapsedIcon: "fa fa-folder",
+
+
                                                                 children: [
                                                                     {
                                                                         label: "Vitis vinifera",
@@ -826,8 +818,8 @@ export const SpeciesTree = [
                                                                         label: "fabids",
                                                                         data: "fabids",
                                                                         expanded: true,
-                                                                        expandedIcon: "fa fa-folder-open",
-                                                                        collapsedIcon: "fa fa-folder",
+
+
                                                                         children: [
                                                                             {
                                                                                 label: "Glycine max",
@@ -859,8 +851,8 @@ export const SpeciesTree = [
                         label: "Archaea",
                         data: "Archaea",
                         expanded: true,
-                        expandedIcon: "fa fa-folder-open",
-                        collapsedIcon: "fa fa-folder",
+
+
                         children: [
                             {
                                 label: "Nitrosopumilus maritimus",
@@ -874,8 +866,8 @@ export const SpeciesTree = [
                                 label: "Thermoprotei",
                                 data: "Thermoprotei",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Sulfolobus solfataricus",
@@ -891,8 +883,8 @@ export const SpeciesTree = [
                                 label: "Euryarchaeota",
                                 data: "Euryarchaeota",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Methanosarcina acetivorans",
@@ -920,15 +912,15 @@ export const SpeciesTree = [
                 label: "Eubacteria",
                 data: "Eubacteria",
                 expanded: true,
-                expandedIcon: "fa fa-folder-open",
-                collapsedIcon: "fa fa-folder",
+
+
                 children: [
                     {
                         label: "Firmicutes",
                         data: "Firmicutes",
                         expanded: true,
-                        expandedIcon: "fa fa-folder-open",
-                        collapsedIcon: "fa fa-folder",
+
+
                         children: [
                             {
                                 label: "Clostridium botulinum",
@@ -938,8 +930,8 @@ export const SpeciesTree = [
                                 label: "Bacilli",
                                 data: "Bacilli",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Streptococcus pneumoniae",
@@ -949,8 +941,8 @@ export const SpeciesTree = [
                                         label: "Bacillales",
                                         data: "Bacillales",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Staphylococcus aureus",
@@ -964,8 +956,8 @@ export const SpeciesTree = [
                                                 label: "Bacillus",
                                                 data: "Bacillus",
                                                 expanded: true,
-                                                expandedIcon: "fa fa-folder-open",
-                                                collapsedIcon: "fa fa-folder",
+
+
                                                 children: [
                                                     {
                                                         label: "Bacillus subtilis",
@@ -987,8 +979,8 @@ export const SpeciesTree = [
                         label: "Actinomycetales",
                         data: "Actinomycetales",
                         expanded: true,
-                        expandedIcon: "fa fa-folder-open",
-                        collapsedIcon: "fa fa-folder",
+
+
                         children: [
                             {
                                 label: "Streptomyces coelicolor",
@@ -1020,8 +1012,8 @@ export const SpeciesTree = [
                         label: "Cyanobacteria",
                         data: "Cyanobacteria",
                         expanded: true,
-                        expandedIcon: "fa fa-folder-open",
-                        collapsedIcon: "fa fa-folder",
+
+
                         children: [
                             {
                                 label: "Gloeobacter violaceus",
@@ -1069,8 +1061,8 @@ export const SpeciesTree = [
                         label: "Proteobacteria",
                         data: "Proteobacteria",
                         expanded: true,
-                        expandedIcon: "fa fa-folder-open",
-                        collapsedIcon: "fa fa-folder",
+
+
                         children: [
                             {
                                 label: "Helicobacter pylori",
@@ -1092,8 +1084,8 @@ export const SpeciesTree = [
                                 label: "Gammaproteobacteria",
                                 data: "Gammaproteobacteria",
                                 expanded: true,
-                                expandedIcon: "fa fa-folder-open",
-                                collapsedIcon: "fa fa-folder",
+
+
                                 children: [
                                     {
                                         label: "Coxiella burnetii",
@@ -1123,8 +1115,8 @@ export const SpeciesTree = [
                                         label: "Enterobacteriaceae",
                                         data: "Enterobacteriaceae",
                                         expanded: true,
-                                        expandedIcon: "fa fa-folder-open",
-                                        collapsedIcon: "fa fa-folder",
+
+
                                         children: [
                                             {
                                                 label: "Salmonella typhimurium",

@@ -14,7 +14,17 @@
       </p>
     </div>
     <div id="scroll" class="agb-tree-container" noctuaPerfectScrollbar>
-      <p-tree [value]="species" layout="horizontal" selectionMode="single" [(selection)]="selectedSpecies" (onNodeSelect)="nodeSelect($event)"></p-tree>
+      <p-tree [value]="species" layout="horizontal" selectionMode="single" [(selection)]="selectedSpecies" (onNodeSelect)="nodeSelect($event)">
+        <ng-template let-node pTemplate="default">
+          <button *ngIf="!node.expanded" mat-icon-button color="accent" (click)="$event.stopPropagation(); toggleExpand(node)">
+            +
+          </button>
+          <button *ngIf="node.expanded" mat-icon-button color="accent" (click)="$event.stopPropagation(); toggleExpand(node)">
+            -
+          </button>
+          <input [(ngModel)]="node.label " type="text " style="width:100% ">
+        </ng-template>
+      </p-tree>
       <!-- <div style="margin-top:8px">Selected Node: {{selectedSpecies ? selectedSpecies.label : 'none'&#125;&#125;</div> -->
     </div>
   </div>
