@@ -1,3 +1,105 @@
-<p>
-  {{species}}
-</p>
+<div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
+  <div class="noc-container">
+    <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
+      <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Species Name
+          </div>
+        </div>
+        <div *ngIf="SpeciesInfo?.long_name;else no_info_content" class="agb-body">
+          <p>
+            {{ SpeciesInfo.long_name }}
+          </p>
+        </div>
+      </div>
+      <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            NCBI taxonomy
+          </div>
+        </div>
+        <div *ngIf="SpeciesInfo?.taxon_id;else no_info_content" class="agb-body">
+          <p>
+            <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{SpeciesInfo.taxon_id}}">
+              {{SpeciesInfo.taxon_id}}
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Tree of Life Web Project
+          </div>
+        </div>
+        <div *ngIf="SpeciesInfo?.short_name;else no_info_content" class="agb-body">
+          <p>
+            <a *ngFor = "let s of SpeciesInfo.long_name.split('-')" href="http://tolweb.org/{{s}}">
+              {{ s }}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Proxy Genes in Extant Species
+          </div>
+        </div>
+        <div *ngIf="gene?.proxy_genes;else no_info_content" class="agb-body">
+            <ul *ngFor="let proxy of gene.proxy_genes">
+                    {{ proxy.proxy_gene }}
+            </ul>
+        </div>
+    </div> -->
+      <!-- <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Inferred Ancestral Protein Sequence
+          </div>
+        </div>
+        <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
+          <textarea class="agb-sequence" rows="10" readonly>
+            {{gene.sequence | replace | uppercase}}
+          </textarea>
+        </div>
+      </div> -->
+      <!--   <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Proxy Genes in Extant Species
+          </div>
+          <span fxFlex></span>
+          <mat-form-field class>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+        <div class="agb-body p-0">
+          <mat-table [dataSource]="dataSource" class="" matSort>
+            <ng-container matColumnDef="proxy_org_long">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Extant Species </mat-header-cell>
+              <mat-cell *matCellDef="let proxy"> {{proxy.proxy_org_long}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="proxy_gene">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PANTHER Identifier of Proxy Gene </mat-header-cell>
+              <mat-cell *matCellDef="let proxy">
+                <a href="http://pantherdb.org/genes/gene.do?acc={{proxy.proxy_gene}}">
+                  {{proxy.proxy_gene}}
+                </a>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let proxy; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+<ng-template #no_info_content>
+  <div class="agb-alert">
+    no information yet
+  </div>
+</ng-template>
