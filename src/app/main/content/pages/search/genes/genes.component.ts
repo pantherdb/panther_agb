@@ -6,7 +6,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
-import { SpeciesGeneList } from './models/species-gene-list';
+import { SpeciesService } from '../species-detail/species-detail.service';
 import { GenesService } from './genes.service';
 
 import { noctuaAnimations } from '@noctua/animations';
@@ -37,11 +37,13 @@ export class GenesComponent implements OnInit, OnDestroy {
   genes: any[] = [];
   //proxy_genes: any;
   species: string;
+  SpeciesInfo: any;
   exporter: any;
   private unsubscribeAll: Subject<any>;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private genesService: GenesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private genesService: GenesService,
+    private speciesService: SpeciesService) {
     this.unsubscribeAll = new Subject();
   }
 
@@ -55,6 +57,10 @@ export class GenesComponent implements OnInit, OnDestroy {
         //console.log(this.genes);
         //console.log(this.proxy_genes);
         this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
+      });
+      this.speciesService.getSpecies(this.species).then(response => {
+        this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
+        //console.log(this.SpeciesInfo);
       });
     });
 
