@@ -5,11 +5,13 @@ import { NoctuaSharedModule } from '@noctua/shared.module';
 import { NoctuaContentModule } from 'app/main/content/content.module';
 import { NoctuaToolbarModule } from 'app/main/toolbar/toolbar.module';
 import { NoctuaMainComponent } from './main.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
     declarations: [
         NoctuaMainComponent,
+        FooterComponent,
     ],
     imports: [
         RouterModule,
