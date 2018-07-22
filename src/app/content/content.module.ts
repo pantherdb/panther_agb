@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoctuaSharedModule } from '@noctua/shared.module';
-import { NoctuaContentComponent } from 'app/main/content/content.component';
+import { NoctuaContentComponent } from './content.component';
 //import { PagesModule } from './pages/pages.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 

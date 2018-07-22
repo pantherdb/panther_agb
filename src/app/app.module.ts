@@ -5,13 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
-
+import { MatSidenavModule } from '@angular/material';
+import { NoctuaContentModule } from './content/content.module';
+import { NoctuaToolbarModule } from './toolbar/toolbar.module';
 import { NoctuaModule } from '@noctua/noctua.module';
 import { NoctuaSharedModule } from '@noctua/shared.module';
 import { noctuaConfig } from './noctua-config';
 import { AppComponent } from './app.component';
-import { NoctuaMainModule } from './main/main.module';
-//import { PagesModule } from './main/content/pages/pages.module';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
     {
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
@@ -34,8 +36,10 @@ const appRoutes: Routes = [
         // Noctua Main and Shared modules
         NoctuaModule.forRoot(noctuaConfig),
         NoctuaSharedModule,
-        NoctuaMainModule,
-        //PagesModule
+        NoctuaContentModule,
+        NoctuaToolbarModule,
+        RouterModule,
+        MatSidenavModule,
     ],
     bootstrap: [
         AppComponent
