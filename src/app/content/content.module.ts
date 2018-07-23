@@ -30,10 +30,23 @@ import { SpeciesGraphViewerComponent } from './species/viewers/species-graph-vie
 //import { SpeciesViewerComponent } from './species/species-viewer/species-viewer.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 import { SpeciesTreeViewerComponent } from './species/species-tree-viewer/species-tree-viewer.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PrivaryPolicyComponent } from './privary-policy/privary-policy.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { ReleaseInfoComponent } from './release-info/release-info.component';
 
 const routes = [{
     path: 'about', component: AboutComponent
-}, { path: 'gene/:ptn', component: GeneComponent },
+}, {
+    path: 'contact-us', component: ContactUsComponent
+},{
+    path: 'privary-policy', component: PrivaryPolicyComponent
+},{
+    path: 'disclaimer', component: DisclaimerComponent
+},{
+    path: 'release-info', component: ReleaseInfoComponent
+},
+{ path: 'gene/:ptn', component: GeneComponent },
 {
     path: 'species', component: SpeciesComponent,
     children: [
@@ -68,7 +81,11 @@ const routes = [{
         SpeciesHorizontalViewerComponent,
         SpeciesGraphViewerComponent,
         SpeciesDetailComponent,
-        SpeciesTreeViewerComponent
+        SpeciesTreeViewerComponent,
+        ContactUsComponent,
+        PrivaryPolicyComponent,
+        DisclaimerComponent,
+        ReleaseInfoComponent
     ],
     imports: [
         RouterModule,
