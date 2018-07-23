@@ -13,6 +13,7 @@ import { NoctuaSharedModule } from '@noctua/shared.module';
 import { noctuaConfig } from './noctua-config';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 const appRoutes: Routes = [
     {
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         TranslateModule.forRoot(),
+        AppRoutingModule,
 
         // Noctua Main and Shared modules
         NoctuaModule.forRoot(noctuaConfig),
