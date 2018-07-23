@@ -16,7 +16,7 @@
     <div id="scroll" class="agb-tree-container" noctuaPerfectScrollbar>
       <p-tree [value]="species" layout="horizontal" selectionMode="single" [(selection)]="selectedSpecies" (onNodeSelect)="nodeSelect($event)">
         <ng-template let-node pTemplate="default">
-          <button *ngIf="!node.expanded" mat-icon-button color="accent" (click)="$event.stopPropagation(); toggleExpand(node)">
+          <button *ngIf="!node.expanded && !node.leaf" mat-icon-button color="accent" (click)="$event.stopPropagation(); toggleExpand(node)">
             +
           </button>
           <button *ngIf="node.expanded" mat-icon-button color="accent" (click)="$event.stopPropagation(); toggleExpand(node)">
