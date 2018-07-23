@@ -13,14 +13,14 @@
         </div>
         <button class="noc-viewas-button" mat-button [matMenuTriggerFor]="menu">View As</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item [routerLink]="['/species']">Tree View</button>
-          <button mat-menu-item [routerLink]="['/species-horizontal-viewer']">Species Tree View</button>
-          <button mat-menu-item [routerLink]="['/species-graph-viewer']">Graph View</button>
+          <button mat-menu-item [routerLink]="['/species']" routerLinkActive="active">Tree View</button>
+          <button mat-menu-item [routerLink]="['/species-horizontal-viewer']" routerLinkActive="active">Species Tree View</button>
+          <button mat-menu-item [routerLink]="['/species-graph-viewer']" routerLinkActive="active">Graph View</button>
         </mat-menu>
-        <button mat-button [routerLink]="['/about']">
+        <button mat-button [routerLink]="['/about']" routerLinkActive="active">
           About
         </button>
-        <button mat-button [routerLink]="['/downloads']">
+        <button mat-button [routerLink]="['/downloads']" routerLinkActive="active">
           Downloads
         </button>
       </div>
@@ -28,7 +28,7 @@
     <mat-toolbar-row class="agb-subnavbar">
       <div class="noc-breadcrumbs" fxLyout="row" fxLayoutAlign="start center">
         <div class="noc-breadcrumb">
-          <button mat-button [routerLink]="['/species']">
+          <button mat-button [routerLink]="['/species']" routerLinkActive="active">
             <mat-icon>home</mat-icon>
           </button>
         </div>
@@ -36,7 +36,7 @@
           <button mat-icon-button class="noc-breadcrumb-separator">
             <mat-icon>chevron_right</mat-icon>
           </button>
-          <button class="" mat-button [routerLink]="[breadcrumb.url]">
+          <button class="" mat-button [routerLink]="[breadcrumb.url]" routerLinkActive="active">
             {{breadcrumb.label}}
           </button>
         </div>

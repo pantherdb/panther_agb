@@ -73,3 +73,9 @@ mat-sidenav-container {
         @include mat-elevation(8);
     }
 }
+
+$background-dark: rgb(119, 117, 119);
+
+.active {
+    background-color: $background-dark;
+}
