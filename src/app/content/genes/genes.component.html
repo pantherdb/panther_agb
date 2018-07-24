@@ -1,7 +1,7 @@
 <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="agb-column-toolbar" fxLayout="row">
 
-    <mat-form-field fxFlex="80" class="">
+    <mat-form-field fxFlex="60" class="">
       <mat-label>
         Search
         <strong class="">{{genes?.length}}</strong>
@@ -17,7 +17,7 @@
       <button mat-raised-button (click)="speciesDetail()">
         {{SpeciesInfo.long_name}} detail information
       </button>
-      <button mat-raised-button (click)="download()" fxFlex="0" fxFlexOffset="10">
+      <button mat-raised-button (click)="download()" fxFlex="0" fxFlexOffset="2">
         Export to CSV
       </button>
     </mat-label>
