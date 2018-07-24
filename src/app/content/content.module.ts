@@ -28,7 +28,6 @@ import { SpeciesComponent } from './species/species.component';
 import { SpeciesHorizontalViewerComponent } from './species/viewers/species-horizontal-viewer/species-horizontal-viewer.component';
 import { SpeciesGraphViewerComponent } from './species/viewers/species-graph-viewer/species-graph-viewer.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
-import { SpeciesTreeViewerComponent } from './species/species-tree-viewer/species-tree-viewer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivaryPolicyComponent } from './privary-policy/privary-policy.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
@@ -47,7 +46,6 @@ import { DownloadsComponent } from './downloads/downloads.component';
         SpeciesHorizontalViewerComponent,
         SpeciesGraphViewerComponent,
         SpeciesDetailComponent,
-        SpeciesTreeViewerComponent,
         ContactUsComponent,
         PrivaryPolicyComponent,
         DisclaimerComponent,

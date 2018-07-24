@@ -22,7 +22,7 @@
           <button *ngIf="node.expanded" mat-icon-button color="accent" (click)="$event.stopPropagation(); toggleExpand(node)">
             -
           </button>
-          <input [(ngModel)]="node.label " type="text " style="width:100% ">
+          <input [(ngModel)]="node.label " type="text ">
         </ng-template>
       </p-tree>
       <!-- <div style="margin-top:8px">Selected Node: {{selectedSpecies ? selectedSpecies.label : 'none'&#125;&#125;</div> -->
