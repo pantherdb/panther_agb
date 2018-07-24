@@ -29,7 +29,7 @@ import { SpeciesHorizontalViewerComponent } from './species/viewers/species-hori
 import { SpeciesGraphViewerComponent } from './species/viewers/species-graph-viewer/species-graph-viewer.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { PrivaryPolicyComponent } from './privary-policy/privary-policy.component';
+import { privacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { ReleaseInfoComponent } from './release-info/release-info.component';
 import { DownloadsComponent } from './downloads/downloads.component';
@@ -47,7 +47,7 @@ import { DownloadsComponent } from './downloads/downloads.component';
         SpeciesGraphViewerComponent,
         SpeciesDetailComponent,
         ContactUsComponent,
-        PrivaryPolicyComponent,
+        privacyPolicyComponent,
         DisclaimerComponent,
         ReleaseInfoComponent,
         DownloadsComponent

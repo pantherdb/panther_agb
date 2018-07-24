@@ -9,7 +9,7 @@ import { SpeciesHorizontalViewerComponent } from '../content/species/viewers/spe
 import { SpeciesGraphViewerComponent } from '../content/species/viewers/species-graph-viewer/species-graph-viewer.component';
 import { SpeciesDetailComponent } from '../content/species-detail/species-detail.component';
 import { ContactUsComponent } from '../content/contact-us/contact-us.component';
-import { PrivaryPolicyComponent } from '../content/privary-policy/privary-policy.component';
+import { privacyPolicyComponent } from '../content/privacy-policy/privacy-policy.component';
 import { DisclaimerComponent } from '../content/disclaimer/disclaimer.component';
 import { ReleaseInfoComponent } from '../content/release-info/release-info.component';
 import { DownloadsComponent } from '../content/downloads/downloads.component';
@@ -19,7 +19,7 @@ export const routes = [{
 }, {
     path: 'contact-us', component: ContactUsComponent
 },{
-    path: 'privary-policy', component: PrivaryPolicyComponent
+    path: 'privacy-policy', component: privacyPolicyComponent
 },{
     path: 'disclaimer', component: DisclaimerComponent
 },{

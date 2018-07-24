@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrivaryPolicyComponent } from './privary-policy.component';
+import { privacyPolicyComponent } from './privacy-policy.component';
 
-describe('PrivaryPolicyComponent', () => {
-  let component: PrivaryPolicyComponent;
-  let fixture: ComponentFixture<PrivaryPolicyComponent>;
+describe('privacyPolicyComponent', () => {
+  let component: privacyPolicyComponent;
+  let fixture: ComponentFixture<privacyPolicyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrivaryPolicyComponent ]
+      declarations: [ privacyPolicyComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrivaryPolicyComponent);
+    fixture = TestBed.createComponent(privacyPolicyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
