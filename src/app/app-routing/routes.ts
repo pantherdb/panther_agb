@@ -8,7 +8,6 @@ import { SpeciesComponent } from '../content/species/species.component';
 import { SpeciesHorizontalViewerComponent } from '../content/species/viewers/species-horizontal-viewer/species-horizontal-viewer.component';
 import { SpeciesGraphViewerComponent } from '../content/species/viewers/species-graph-viewer/species-graph-viewer.component';
 import { SpeciesDetailComponent } from '../content/species-detail/species-detail.component';
-import { SpeciesTreeViewerComponent } from '../content/species/species-tree-viewer/species-tree-viewer.component';
 import { ContactUsComponent } from '../content/contact-us/contact-us.component';
 import { PrivaryPolicyComponent } from '../content/privary-policy/privary-policy.component';
 import { DisclaimerComponent } from '../content/disclaimer/disclaimer.component';
@@ -45,8 +44,6 @@ export const routes = [{
     path: 'species-horizontal-viewer', component: SpeciesHorizontalViewerComponent
 }, {
     path: 'species-graph-viewer', component: SpeciesGraphViewerComponent
-}, {
-    path: 'species-tree-viewer', component: SpeciesTreeViewerComponent
-},
+}, 
 { path: '', redirectTo: 'species', pathMatch: 'full' }
 ];
