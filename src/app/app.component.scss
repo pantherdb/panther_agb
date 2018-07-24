@@ -4,11 +4,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 90%;
+    height: 100%;
 
     > .mat-sidenav-container {
         display: flex;
         flex: 1;
+        overflow: auto;
 
         > .mat-sidenav-content,
         > .mat-drawer-content {
@@ -79,8 +80,8 @@ $background-dark: rgb(119, 117, 119);
 .active {
     background-color: $background-dark;
 }
-footer {
+#footer {
   background: #efefef;
-  padding: 5px;
+  //padding: 5px;
   height: 10%;
 }
