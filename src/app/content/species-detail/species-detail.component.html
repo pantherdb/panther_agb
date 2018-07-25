@@ -42,6 +42,20 @@
           </p>
         </div>
       </div>
+      <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Wikipedia
+            </div>
+          </div>
+          <div *ngIf="SpeciesInfo?.long_name;else no_info_content" class="agb-body">
+              <p>
+                  <a *ngFor = "let s of SpeciesInfo.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
+                    {{ s }}
+                  </a>
+              </p>
+          </div>
+        </div>
 
       <!-- <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
