@@ -2,18 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tree } from 'primeng/components/tree/tree';
 import { TreeNode, TreeDragDropService } from 'primeng/primeng';
-import { SpeciesTree } from './../../data/species-tree-nodes';
+import { SpeciesTree } from '../../data/species-tree-nodes';
 
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
 
 @Component({
-  selector: 'app-species-horizontal-viewer',
-  templateUrl: './species-horizontal-viewer.component.html',
-  styleUrls: ['./species-horizontal-viewer.component.scss'],
+  selector: 'app-species-horizontal-tree',
+  templateUrl: './species-horizontal-tree.component.html',
+  styleUrls: ['./species-horizontal-tree.component.scss'],
   providers: [TreeDragDropService]
 })
-export class SpeciesHorizontalViewerComponent implements OnInit {
+export class SpeciesHorizontalTreeComponent implements OnInit {
 
   @ViewChild('expandingTree')
   expandingTree: Tree;

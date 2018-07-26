@@ -1,17 +1,17 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
-import { speciesNodes, treeNodes } from './data/species-nodes';
+import { speciesNodes, treeNodes } from '../../data/species-nodes';
 
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
 @Component({
-  selector: 'app-species',
-  templateUrl: 'species.component.html',
-  styleUrls: ['species.component.scss'],
+  selector: 'app-species-vertical-tree',
+  templateUrl: './species-vertical-tree.component.html',
+  styleUrls: ['./species-vertical-tree.component.scss'],
 })
 
-export class SpeciesComponent {
+export class SpeciesVerticalTreeComponent {
 
   constructor(private router: Router, private breadcrumbsService: BreadcrumbsService) { }
 
@@ -88,7 +88,9 @@ export class SpeciesComponent {
     this.taxonId = node.data.taxon_id;
     //console.log(this.species, '--path ', node.path);
     console.log(this.taxonId);
-    this.router.navigateByUrl(`/species/${this.species}`);
+
+    this.router.navigate([`/species/`, { outlets: { 'genes': [this.species] } }]);
+    //  { relativeTo: this.route }););
 
     this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => (
       {

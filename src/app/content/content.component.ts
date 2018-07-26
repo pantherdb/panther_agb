@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { noctuaAnimations } from '@noctua/animations/index';
+import { noctuaAnimations } from '@noctua/animations';
 import { NoctuaConfigService } from '@noctua/services/config.service';
 
 @Component({
