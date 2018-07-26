@@ -15,16 +15,15 @@ import { SpeciesGraphTreeComponent } from './species-list/species-graph-tree/spe
 
 const routes = [
   {
+    path: '', component: SpeciesVerticalTreeComponent
+  }, {
+    path: 'horizontal-tree', component: SpeciesHorizontalTreeComponent
+  }, {
+    path: 'graph-tree', component: SpeciesGraphTreeComponent
+  }, {
     path: ':id', component: SpeciesDetailComponent,
-  }, {
-    path: 'view/species-vertical-tree', component: SpeciesVerticalTreeComponent
-  }, {
-    path: 'species-horizontal-tree', component: SpeciesHorizontalTreeComponent
-  }, {
-    path: 'species-graph-tree', component: SpeciesGraphTreeComponent
-  },
-  { path: '', redirectTo: 'species', pathMatch: 'full' }];
-
+    outlet: 'genes'
+  }];
 
 @NgModule({
   declarations: [
