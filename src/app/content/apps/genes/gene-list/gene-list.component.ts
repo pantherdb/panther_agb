@@ -6,8 +6,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
-import { SpeciesService } from '../species-detail/species-detail.service';
-import { GenesService } from './genes.service';
+import { SpeciesService } from '../../species/species-detail/species-detail.service';
+import { GenesService } from '../genes.service';
 
 import { noctuaAnimations } from '@noctua/animations';
 import { NoctuaUtils } from '@noctua/utils/noctua-utils';
@@ -17,12 +17,12 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { ExportToCSV } from "@molteni/export-csv";
 
 @Component({
-  selector: 'app-genes',
-  templateUrl: 'genes.component.html',
-  styleUrls: ['genes.component.scss'],
+  selector: 'app-gene-list',
+  templateUrl: 'gene-list.component.html',
+  styleUrls: ['gene-list.component.scss'],
   animations: noctuaAnimations
 })
-export class GenesComponent implements OnInit, OnDestroy {
+export class GeneListComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSource | null;
   displayedColumns = ['ptn', 'name', 'pthr', 'proxy_gene'];
 
@@ -77,7 +77,7 @@ export class GenesComponent implements OnInit, OnDestroy {
         this.dataSource.filter = this.filter.nativeElement.value;
       });
   }
-  
+
   download(): void {
     this.exporter = new ExportToCSV();
     this.exporter.exportColumnsToCSV(this.genes, `${this.species}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
@@ -86,7 +86,7 @@ export class GenesComponent implements OnInit, OnDestroy {
   speciesDetail(): void {
     this.router.navigateByUrl(`species/species-info/${this.species}`);
   }
-  
+
 
   ngOnDestroy(): void {
     this.unsubscribeAll.next();

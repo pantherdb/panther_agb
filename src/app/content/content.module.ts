@@ -8,49 +8,21 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeModule as NgxTreeModule } from 'angular-tree-component';
-import { TreeModule as PgTreeModule } from 'primeng/primeng';
+
 
 import { TreeviewModule } from 'ngx-treeview';
 
 import { NgPipesModule } from 'ngx-pipes';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 
-import { AboutComponent } from './about/about.component';
-import { GeneComponent } from './gene/gene.component';
-import { Replace } from './gene/gene.pipe';
-import { GenesComponent } from './genes/genes.component';
-import { SpeciesComponent } from './species/species.component';
-import { SpeciesHorizontalViewerComponent } from './species/viewers/species-horizontal-viewer/species-horizontal-viewer.component';
-import { SpeciesGraphViewerComponent } from './species/viewers/species-graph-viewer/species-graph-viewer.component';
-import { SpeciesDetailComponent } from './species-detail/species-detail.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { privacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { DisclaimerComponent } from './disclaimer/disclaimer.component';
-import { ReleaseInfoComponent } from './release-info/release-info.component';
-import { DownloadsComponent } from './downloads/downloads.component';
+
 
 
 @NgModule({
     declarations: [
         NoctuaContentComponent,
-        AboutComponent,
-        GeneComponent,
-        SpeciesComponent,
-        GenesComponent,
-        Replace,
-        SpeciesHorizontalViewerComponent,
-        SpeciesGraphViewerComponent,
-        SpeciesDetailComponent,
-        ContactUsComponent,
-        privacyPolicyComponent,
-        DisclaimerComponent,
-        ReleaseInfoComponent,
-        DownloadsComponent
     ],
     imports: [
         RouterModule,
@@ -64,10 +36,6 @@ import { DownloadsComponent } from './downloads/downloads.component';
         ReactiveFormsModule,
         NgPipesModule,
         NgxPaginationModule,
-        NgxTreeModule,
-        PgTreeModule,
-        NgxChartsModule,
-        NgxGraphModule,
         TreeviewModule.forRoot(),
     ],
     exports: [

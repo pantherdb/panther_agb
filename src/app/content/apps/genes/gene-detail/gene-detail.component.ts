@@ -7,12 +7,12 @@ import * as _ from 'lodash';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
 @Component({
-  selector: 'app-genes',
-  templateUrl: 'gene.component.html',
-  styleUrls: ['gene.component.scss'],
+  selector: 'app-gene-detail',
+  templateUrl: 'gene-detail.component.html',
+  styleUrls: ['gene-detail.component.scss'],
 })
 
-export class GeneComponent implements OnInit {
+export class GeneDetailComponent implements OnInit {
   @ViewChild(MatSort)
   sort: MatSort;
 

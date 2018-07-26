@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import PerfectScrollbar from 'perfect-scrollbar';
 
-import { NoctuaConfigService } from '@noctua/services/config.service';
+import { NoctuaConfigService } from '../../services/config.service';
 
 @Directive({
     selector: '[noctuaPerfectScrollbar]'
