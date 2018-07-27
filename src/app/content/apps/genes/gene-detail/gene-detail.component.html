@@ -63,7 +63,7 @@
         </div>
         <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
           <textarea class="agb-sequence" rows="10" readonly>
-            {{gene.sequence | replace | uppercase}}
+            {{gene.sequence | uppercase}}
           </textarea>
         </div>
       </div>

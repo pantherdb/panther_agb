@@ -89,7 +89,11 @@ export class SpeciesVerticalTreeComponent {
     //console.log(this.species, '--path ', node.path);
     console.log(this.taxonId);
 
-    this.router.navigate([`/species/`, { outlets: { 'genes': [this.species] } }]);
+    this.router.navigate([`species/genes`, {
+      outlets: {
+        'list': ['genes', `${this.species}`]
+      }
+    }]);
     //  { relativeTo: this.route }););
 
     this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => (
