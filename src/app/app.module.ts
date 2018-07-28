@@ -14,6 +14,8 @@ import { noctuaConfig } from './noctua-config';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { GeneReplacePipe } from '@agb.common/pipes/gene-replace.pipe';
+
 import { PagesModule } from './content/pages/pages.module';
 import { AppsModule } from './content/apps/apps.module';
 
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
+        GeneReplacePipe,
         AppComponent,
         FooterComponent
     ],
@@ -47,6 +50,9 @@ const appRoutes: Routes = [
         //Noctua App
         PagesModule,
         AppsModule
+    ],
+    exports: [
+        GeneReplacePipe
     ],
     bootstrap: [
         AppComponent

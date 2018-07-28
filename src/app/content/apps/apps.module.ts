@@ -12,11 +12,14 @@ const routes = [{
 }];
 
 @NgModule({
+  declarations: [
+  ],
   imports: [
     RouterModule.forChild(routes),
     TranslateModule,
-    NoctuaSharedModule
+    NoctuaSharedModule,
   ]
+
 })
 
 export class AppsModule {

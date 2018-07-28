@@ -13,6 +13,10 @@ const routes = [{
 }];
 
 @NgModule({
+  declarations: [
+    GeneListComponent,
+    GeneDetailComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
     TranslateModule,
