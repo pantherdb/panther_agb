@@ -22,5 +22,4 @@ import { NoctuaToolbarComponent } from './toolbar.component';
     ]
 })
 
-export class NoctuaToolbarModule {
-}
+export class NoctuaToolbarModule { }

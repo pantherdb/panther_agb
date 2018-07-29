@@ -1,7 +1,8 @@
-import { Component, ElementRef, HostBinding, Inject, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, HostBinding, Inject, OnInit, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { NoctuaConfigService } from '@noctua/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,10 +16,11 @@ import { NoctuaTranslationLoaderService } from '@noctua/services/translation-loa
     styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnDestroy {
-    onConfigChanged: Subscription;
-    noctuaSettings: any;
+export class AppComponent implements OnInit, OnDestroy {
+    noctuaConfig: any;
     navigation: any;
+
+    private _unsubscribeAll: Subject<any>;
 
     constructor(
         private translate: TranslateService,
@@ -26,7 +28,7 @@ export class AppComponent implements OnDestroy {
         private noctuaTranslationLoader: NoctuaTranslationLoaderService,
         private _renderer: Renderer2,
         private _elementRef: ElementRef,
-        private noctuaConfig: NoctuaConfigService,
+        private noctuaConfigService: NoctuaConfigService,
         private platform: Platform,
         @Inject(DOCUMENT) private document: any
     ) {
@@ -34,21 +36,25 @@ export class AppComponent implements OnDestroy {
         this.translate.setDefaultLang('en');
         this.noctuaTranslationLoader.loadTranslations();
         this.translate.use('en');
-        this.onConfigChanged =
-            this.noctuaConfig.onConfigChanged
-                .subscribe(
-                    (newSettings) => {
-                        this.noctuaSettings = newSettings;
-                    }
-                );
 
         if (this.platform.ANDROID || this.platform.IOS) {
             this.document.body.className += ' is-mobile';
         }
+
+        this._unsubscribeAll = new Subject();
+    }
+
+    ngOnInit(): void {
+        this.noctuaConfigService.config
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((config) => {
+                this.noctuaConfig = config;
+            });
     }
 
     ngOnDestroy() {
-        this.onConfigChanged.unsubscribe();
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 
     addClass(className: string) {
