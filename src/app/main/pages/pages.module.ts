@@ -9,8 +9,11 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { ReleaseInfoComponent } from './release-info/release-info.component';
 import { DownloadsComponent } from './downloads/downloads.component';
+import { HomeComponent } from './home/home.component';
 
 const routes = [{
+  path: '', component: HomeComponent
+}, {
   path: 'about', component: AboutComponent
 }, {
   path: 'contact-us', component: ContactUsComponent
@@ -31,7 +34,8 @@ const routes = [{
     PrivacyPolicyComponent,
     DisclaimerComponent,
     ReleaseInfoComponent,
-    DownloadsComponent
+    DownloadsComponent,
+    HomeComponent
   ],
   imports: [
     RouterModule.forChild(routes),

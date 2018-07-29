@@ -6,31 +6,31 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 import { MatSidenavModule } from '@angular/material';
-import { NoctuaContentModule } from './content/content.module';
-import { NoctuaToolbarModule } from './toolbar/toolbar.module';
 import { NoctuaModule } from '@noctua/noctua.module';
+import { NoctuaProgressBarModule } from '@noctua/components';
+
+
 import { NoctuaSharedModule } from '@noctua/shared.module';
 import { noctuaConfig } from './noctua-config';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer.component';
+import { LayoutModule } from 'app/layout/layout.module';
 
 import { GeneReplacePipe } from '@agb.common/pipes/gene-replace.pipe';
 
-import { PagesModule } from './content/pages/pages.module';
-import { AppsModule } from './content/apps/apps.module';
+import { PagesModule } from './main/pages/pages.module';
+import { AppsModule } from './main/apps/apps.module';
 
 const appRoutes: Routes = [
     {
         path: '**',
-        redirectTo: 'search'
+        redirectTo: ''
     }
 ];
 
 @NgModule({
     declarations: [
         GeneReplacePipe,
-        AppComponent,
-        FooterComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
@@ -42,10 +42,10 @@ const appRoutes: Routes = [
         // Noctua Main and Shared modules
         NoctuaModule.forRoot(noctuaConfig),
         NoctuaSharedModule,
-        NoctuaContentModule,
-        NoctuaToolbarModule,
+        LayoutModule,
         RouterModule,
         MatSidenavModule,
+        NoctuaProgressBarModule,
 
         //Noctua App
         PagesModule,
