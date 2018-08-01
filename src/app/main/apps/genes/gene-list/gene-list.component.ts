@@ -6,7 +6,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
-import { SpeciesService } from '../../species/species-detail/species-detail.service';
+import { SpeciesService } from '../../species/species.service';
 import { GenesService } from '../genes.service';
 
 import { noctuaAnimations } from '@noctua/animations';

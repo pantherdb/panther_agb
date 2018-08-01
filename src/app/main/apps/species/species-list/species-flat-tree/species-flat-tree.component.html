@@ -1,0 +1,22 @@
+<div fxLayout="row" class="w-100-p" fxLayoutAlign="start stretch">
+  <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
+    <div class="agb-column-toolbar" fxLayout="row">
+      <form class="w-100-p">
+        <mat-form-field fxFlex floatPlaceholder="never">
+          <input matInput #filter (keyup)="filterNodes(filter.value, tree)" placeholder="Filter Species" />
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="px-16">
+      <p>
+        <strong>Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
+          (and their proxy genes in an extant genome).</strong>
+      </p>
+    </div>
+    <div id="scroll" class="agb-tree-container" noctuaPerfectScrollbar>
+      <div *ngFor="let species of speciesList">
+        {{species| json}}
+      </div>
+    </div>
+  </div>
+</div>

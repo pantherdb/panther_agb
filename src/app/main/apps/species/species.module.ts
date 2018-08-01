@@ -13,20 +13,23 @@ import { SpeciesDetailComponent } from './species-detail/species-detail.componen
 import { SpeciesHorizontalTreeComponent } from './species-list/species-horizontal-tree/species-horizontal-tree.component';
 import { SpeciesVerticalTreeComponent } from './species-list/species-vertical-tree/species-vertical-tree.component';
 import { SpeciesGraphTreeComponent } from './species-list/species-graph-tree/species-graph-tree.component';
+import { SpeciesFlatTreeComponent } from './species-list/species-flat-tree/species-flat-tree.component';
 
 const routes = [
   {
     path: '', component: SpeciesListComponent,
     children: [{
-      path: '', component: SpeciesVerticalTreeComponent,
+      path: '', component: SpeciesFlatTreeComponent,
     }]
   }, {
     path: 'genes', component: SpeciesListComponent,
     children: [{
-      path: '', component: SpeciesVerticalTreeComponent,
+      path: '', component: SpeciesFlatTreeComponent,
     }, {
       path: ':id', loadChildren: './../genes/genes.module#GenesModule', outlet: 'list'
     }]
+  }, {
+    path: 'vertical-tree', component: SpeciesVerticalTreeComponent
   }, {
     path: 'horizontal-tree', component: SpeciesHorizontalTreeComponent
   }, {
@@ -42,6 +45,7 @@ const routes = [
     SpeciesHorizontalTreeComponent,
     SpeciesVerticalTreeComponent,
     SpeciesGraphTreeComponent,
+    SpeciesFlatTreeComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SpeciesService } from './species-detail.service';
+import { SpeciesService } from './../species.service';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Species } from './species';
@@ -27,11 +27,11 @@ export class SpeciesDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
-      this.speciesService.getSpecies(this.species).then(response => {
-        this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
+      this.speciesService.getSpeciesDetail(this.species).then(response => {
+        //  this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
         console.log(this.SpeciesInfo);
       });
-      });
-    }
+    });
+  }
 
 }
