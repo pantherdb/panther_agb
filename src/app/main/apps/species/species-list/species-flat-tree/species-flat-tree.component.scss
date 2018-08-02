@@ -10,4 +10,19 @@
     z-index: 10;
     @include media-breakpoint('gt-md') {}
   }
+  .agb-tree-container {
+    padding: 10px;
+  }
+  .agb-tree-node {
+    @include deep-height(20px);
+    font-size: 12px;
+    .agb-icon-button {
+      @include deep-height(20px);
+      @include deep-width(20px);
+      line-height: 20px;
+    }
+    &:hover {
+      background-color: rgba(#000000, 0.10);
+    }
+  }
 }

@@ -5,6 +5,7 @@ import { NoctuaSharedModule } from '@noctua/shared.module';
 
 import { TreeModule as NgxTreeModule } from 'angular-tree-component';
 import { TreeModule as PgTreeModule } from 'primeng/primeng';
+import { MatTreeModule } from '@angular/material/tree';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 
@@ -52,6 +53,7 @@ const routes = [
     TranslateModule,
     NoctuaSharedModule,
     NgxTreeModule,
+    MatTreeModule,
     PgTreeModule,
     NgxChartsModule,
     NgxGraphModule,

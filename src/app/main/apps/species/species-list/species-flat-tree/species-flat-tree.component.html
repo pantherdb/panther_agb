@@ -1,22 +1,28 @@
-<div fxLayout="row" class="w-100-p" fxLayoutAlign="start stretch">
-  <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
-    <div class="agb-column-toolbar" fxLayout="row">
-      <form class="w-100-p">
-        <mat-form-field fxFlex floatPlaceholder="never">
-          <input matInput #filter (keyup)="filterNodes(filter.value, tree)" placeholder="Filter Species" />
-        </mat-form-field>
-      </form>
-    </div>
-    <div class="px-16">
-      <p>
-        <strong>Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
-          (and their proxy genes in an extant genome).</strong>
-      </p>
-    </div>
-    <div id="scroll" class="agb-tree-container" noctuaPerfectScrollbar>
-      <div *ngFor="let species of speciesList">
-        {{species| json}}
-      </div>
-    </div>
+<div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
+  <div class="agb-column-toolbar" fxLayout="row">
+    <form class="w-100-p">
+      <mat-form-field fxFlex floatPlaceholder="never">
+        <input matInput #filter (keyup)="filterNodes(filter.value, tree)" placeholder="Filter Species" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="agb-tree-container" noctuaPerfectScrollbar>
+    <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+        <button mat-icon-button disabled class="s-16"></button>
+        {{node.long_name}}
+      </mat-tree-node>
+
+      <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.long_name">
+          <mat-icon *ngIf="treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-16 fa fa-caret-right">
+          </mat-icon>
+          <mat-icon *ngIf="!treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-10">
+            signal_cellular_4_bar
+          </mat-icon>
+        </button>
+        {{node.long_name}}
+      </mat-tree-node>
+    </mat-tree>
   </div>
 </div>
