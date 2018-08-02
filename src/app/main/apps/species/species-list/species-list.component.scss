@@ -1,1 +1,7 @@
-
+@import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
+:host {
+  split-gutter {
+    background-color: aqua;
+  }
+}

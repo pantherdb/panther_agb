@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoctuaSharedModule } from '@noctua/shared.module';
 
+import { AngularSplitModule } from 'angular-split';
 import { TreeModule as NgxTreeModule } from 'angular-tree-component';
 import { TreeModule as PgTreeModule } from 'primeng/primeng';
 import { MatTreeModule } from '@angular/material/tree';
@@ -52,6 +53,7 @@ const routes = [
     RouterModule.forChild(routes),
     TranslateModule,
     NoctuaSharedModule,
+    AngularSplitModule,
     NgxTreeModule,
     MatTreeModule,
     PgTreeModule,

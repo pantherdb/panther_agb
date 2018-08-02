@@ -1,8 +1,8 @@
-<div fxLayout="row" class="w-100-p" fxLayoutAlign="start stretch">
-  <div fxFlex="30%">
+<split gutterSize="20" fxLayout="row" class="w-100-p" fxLayoutAlign="start stretch">
+  <split-area size="30">
     <router-outlet></router-outlet>
-  </div>
-  <div fxFlex="70%">
+  </split-area>
+  <split-area size="70">
     <router-outlet name="list"></router-outlet>
-  </div>
-</div>
+  </split-area>
+</split>
