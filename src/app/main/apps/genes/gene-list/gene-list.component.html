@@ -6,7 +6,7 @@
         Search
         <strong class="">{{genes?.length}}</strong>
         <em>
-          genes in {{SpeciesInfo.long_name}}
+          genes in {{SpeciesInfo?.long_name}}
         </em>
 
       </mat-label>
@@ -15,7 +15,7 @@
     </mat-form-field>
     <mat-label fxFlex="0" fxFlexOffset="0">
       <button mat-raised-button (click)="speciesDetail()">
-        {{SpeciesInfo.long_name}} detail information
+        {{SpeciesInfo?.long_name}} detail information
       </button>
       <button mat-raised-button (click)="download()" fxFlex="0" fxFlexOffset="2">
         Export to CSV
@@ -27,7 +27,7 @@
         Export to CSV
       </button>
     </mat-label> -->
-    
+
   </div>
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>

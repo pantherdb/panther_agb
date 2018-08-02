@@ -35,8 +35,8 @@ export class SpeciesService {
                 .map(res => res['lists'])
                 .subscribe((response: Species[]) => {
                     this.speciesNodes = this._buildSpeciesTree(response);
-                    this.species = response;
-                    this.onSpeciesListChanged.next(this.species);
+                    // this.species = response;
+                    this.onSpeciesListChanged.next(this.speciesNodes);
                     resolve(this.speciesNodes);
                 }, reject);
         });

@@ -8,16 +8,18 @@
   </div>
   <div class="agb-tree-container" noctuaPerfectScrollbar>
     <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
-      <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-        <button mat-icon-button disabled class="s-16"></button>
+      <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node" (click)="selectSpecies(node)" matTreeNodeToggle
+        matTreeNodePadding matTreeNodePaddingIndent="15">
+        <button mat-icon-button disabled class="agb-icon-button"></button>
         {{node.long_name}}
       </mat-tree-node>
 
-      <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.long_name">
-          <mat-icon *ngIf="treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-16 fa fa-caret-right">
+      <mat-tree-node (click)="selectSpecies(node)" class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
+        matTreeNodePadding matTreeNodePaddingIndent="15">
+        <button mat-icon-button matTreeNodeToggle class="agb-icon-button" [attr.aria-label]="'toggle ' + node.long_name">
+          <mat-icon *ngIf="!treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-16 fa fa-caret-right">
           </mat-icon>
-          <mat-icon *ngIf="!treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-10">
+          <mat-icon *ngIf="treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-10">
             signal_cellular_4_bar
           </mat-icon>
         </button>

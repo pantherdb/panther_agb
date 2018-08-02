@@ -18,7 +18,9 @@ import { SpeciesService } from './../../species.service';
 export class SpeciesFlatTreeComponent implements OnInit {
   @ViewChild('tree') tree;
 
-  speciesList: Species[];
+  speciesList: SpeciesNode[];
+  selectedSpecies = null;
+
   treeControl: FlatTreeControl<SpeciesFlatNode>;
   treeFlattener: MatTreeFlattener<SpeciesNode, SpeciesFlatNode>;
   dataSource: MatTreeFlatDataSource<SpeciesNode, SpeciesFlatNode>;
@@ -36,36 +38,41 @@ export class SpeciesFlatTreeComponent implements OnInit {
 
   ngOnInit() {
     this.speciesService.getSpeciesList().then(response => {
-      this.speciesList = <SpeciesNode[]>response;
+      this.speciesList = response;
       console.dir(this.speciesList);
 
-      this.dataSource.data = response
+      this.dataSource.data = this.speciesList
       this.tree.treeControl.expandAll();
     });
   }
 
   selectSpecies(node) {
-    // this.species = node.data.short_name;
-    this.router.navigate([`species/species`, {
+    this.selectedSpecies = node;
+
+    this.router.navigate([`species/genes`, {
       outlets: {
-        //   'list': ['species', `${this.species}`]
+        'list': ['genes', `${this.selectedSpecies.short_name}`]
       }
     }]);
-    //  { relativeTo: this.route }););
 
-    this.breadcrumbsService.setCurrentBreadcrumbs(node.path.map(species => (
+    /*
+    this.breadcrumbsService.setCurrentBreadcrumbs(this.tree.getDescendants(node).map(species => (
       {
         label: species,
         url: '/species/' + species
       })));
+      */
   }
 
   transformer = (node: SpeciesNode, level: number) => {
     return new SpeciesFlatNode(
       node.id,
+      node.taxon_id,
+      node.short_name,
       node.long_name,
       node.parent_id,
       node.timescale,
+      node.gene_count,
       !!node.children,
       level);
   }

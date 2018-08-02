@@ -14,12 +14,12 @@
     padding: 10px;
   }
   .agb-tree-node {
-    @include deep-height(20px);
+    @include deep-height(25px);
     font-size: 12px;
     .agb-icon-button {
-      @include deep-height(20px);
-      @include deep-width(20px);
-      line-height: 20px;
+      @include deep-height(25px);
+      @include deep-width(25px);
+      line-height: 25px;
     }
     &:hover {
       background-color: rgba(#000000, 0.10);
