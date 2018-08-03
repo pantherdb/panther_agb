@@ -12,6 +12,9 @@
       "@noctua": [
         "@noctua/"
       ],
+      "@noctua.search": [
+        "@noctua.search/"
+      ],
       "@agb.common": [
         "@agb.common/"
       ]

@@ -1,7 +1,10 @@
 @import "src/@noctua/scss/noctua";
 @import "src/@agb.common/scss/agb.common";
 :host {
-  split-gutter {
-    background-color: aqua;
+  .agb-left-pane {
+    border-right: #AAA solid 1px;
+  }
+  .agb-right-pane {
+    border-left: #AAA solid 1px;
   }
 }
