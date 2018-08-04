@@ -13,6 +13,7 @@ import { SpeciesGeneList } from './models/species-gene-list';
 })
 export class GenesService {
     ancestral_genes: SpeciesGeneList[];
+    proxy_species: any[];
     //proxy_genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
@@ -32,6 +33,22 @@ export class GenesService {
                     this.ancestral_genes = response;
                     //this.proxy_genes = response.proxy_genes;
                     this.onSpeciesChanged.next(this.ancestral_genes);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    getProxySpecies(species): Promise<any[]> {
+
+        const url = `${environment.apiUrl}/genelist/proxy_species/${species}`;
+
+        return new Promise<any[]>((resolve, reject) => {
+            this.httpClient.get<any[]>(url)
+                .map(res => res['lists'])
+                .subscribe((response: any) => {
+                    this.proxy_species = response;
+                    //this.proxy_genes = response.proxy_genes;
+                    //this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);
                 }, reject);
         });
