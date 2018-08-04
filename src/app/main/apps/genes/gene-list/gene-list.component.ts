@@ -6,7 +6,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
-import { SpeciesService } from '../../species/species-detail/species-detail.service';
+import { SpeciesService } from '../../species/species.service';
 import { GenesService } from '../genes.service';
 
 import { noctuaAnimations } from '@noctua/animations';
@@ -54,14 +54,15 @@ export class GeneListComponent implements OnInit, OnDestroy {
       this.genesService.getGenesBySpecies(this.species).then(response => {
         this.genes = this.genesService.ancestral_genes;
         //this.proxy_genes = this.genesService.ancestral_genes;
-        //console.log(this.genes);
+        console.log(this.genes);
         //console.log(this.proxy_genes);
         this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
-      this.speciesService.getSpecies(this.species).then(response => {
-        this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
-        //console.log(this.SpeciesInfo);
-      });
+      /* this.speciesService.getSpecies(this.species).then(response => {
+         this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
+         //console.log(this.SpeciesInfo);
+       });
+       */
     });
 
     fromEvent(this.filter.nativeElement, 'keyup')

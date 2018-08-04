@@ -1,0 +1,28 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
+:host {
+  width: 100%; //white-space:nowrap;
+  .agb-sidenav {
+    @include deep-width(100%);
+    @include deep-height(100%);
+    background-color: #FFF;
+    border-right: #DDD solid 1px;
+    z-index: 10;
+    @include media-breakpoint('gt-md') {}
+  }
+  .agb-tree-container {
+    padding: 10px;
+  }
+  .agb-tree-node {
+    @include deep-height(25px);
+    font-size: 12px;
+    .agb-icon-button {
+      @include deep-height(25px);
+      @include deep-width(25px);
+      line-height: 25px;
+    }
+    &:hover {
+      background-color: rgba(#000000, 0.10);
+    }
+  }
+}
