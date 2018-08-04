@@ -36,6 +36,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
   sort: MatSort;
   genes: any[] = [];
   proxy_species: any[];
+  selected_proxy_species: any;
   species: string;
   SpeciesInfo: any;
   exporter: any;
@@ -60,7 +61,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
       });
       this.genesService.getProxySpecies(this.species).then(response => {
         this.proxy_species = this.genesService.proxy_species;
-        console.log(this.proxy_species);
+        //console.log(this.proxy_species);
         //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
       /* this.speciesService.getSpecies(this.species).then(response => {

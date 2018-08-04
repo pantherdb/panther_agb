@@ -31,12 +31,13 @@
   </div>
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
       <mat-form-field>
-          <mat-select placeholder="Favorite food">
-            <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-              {{food.viewValue}}
-            </mat-option> -->
+          <mat-select placeholder="proxy species" [(value)]="selected_proxy_species">
+            <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
+              {{ps}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
+        <p>You selected: {{selected_proxy_species}}</p>
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">Public ID</mat-header-cell>
