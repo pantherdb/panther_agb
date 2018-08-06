@@ -2,6 +2,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort } from '@angular/material';
+import { MatOptionSelectionChange} from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -36,6 +37,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
   sort: MatSort;
   genes: any[] = [];
   proxy_species: any[];
+  proxySpecies: any;
   selected_proxy_species: any;
   species: string;
   SpeciesInfo: any;
@@ -51,8 +53,9 @@ export class GeneListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.route.params.subscribe((params) => {
-      this.species = decodeURIComponent(params['id']);
-      this.genesService.getGenesBySpecies(this.species).then(response => {
+      this.species = decodeURIComponent(params['species']);
+      this.proxySpecies = decodeURIComponent(params['proxySpecies']);
+      this.genesService.getGenesBySpecies(this.species, this.proxySpecies).then(response => {
         this.genes = this.genesService.ancestral_genes;
         //this.proxy_genes = this.genesService.ancestral_genes;
         //console.log(this.genes);
@@ -92,6 +95,12 @@ export class GeneListComponent implements OnInit, OnDestroy {
 
   speciesDetail(): void {
     this.router.navigateByUrl(`species/species-info/${this.species}`);
+  }
+
+  changeProxyGenes(value){
+    console.log(value);
+    //this.selected_proxy_species = value;
+    this.router.navigateByUrl(`/species/genes/(list:genes/${this.species}/${value})`);
   }
 
 

@@ -7,7 +7,7 @@ import { GeneListComponent } from './gene-list/gene-list.component';
 import { GeneDetailComponent } from './gene-detail/gene-detail.component';
 
 const routes = [{
-  path: ':id', component: GeneListComponent
+  path: ':species/:proxySpecies', component: GeneListComponent
 }, {
   path: ':ptn', component: GeneDetailComponent
 }];

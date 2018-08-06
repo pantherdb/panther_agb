@@ -31,7 +31,7 @@
   </div>
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
       <mat-form-field>
-          <mat-select placeholder="proxy species" [(value)]="selected_proxy_species">
+          <mat-select placeholder="proxy species" [(value)]="selected_proxy_species" (selectionChange)="changeProxyGenes($event.value)">
             <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
               {{ps}}
             </mat-option>

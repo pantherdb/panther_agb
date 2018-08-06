@@ -22,20 +22,33 @@ export class GenesService {
     }
 
 
-    getGenesBySpecies(species): Promise<SpeciesGeneList[]> {
-
-        const url = `${environment.apiUrl}/genelist/species/${species}`;
-
-        return new Promise<SpeciesGeneList[]>((resolve, reject) => {
-            this.httpClient.get<SpeciesGeneList[]>(url)
-                .map(res => res['lists'])
-                .subscribe((response: any) => {
-                    this.ancestral_genes = response;
-                    //this.proxy_genes = response.proxy_genes;
-                    this.onSpeciesChanged.next(this.ancestral_genes);
-                    resolve(response);
-                }, reject);
-        });
+    getGenesBySpecies(species, proxySpecies): Promise<SpeciesGeneList[]> {
+        
+        if (proxySpecies == 'default') {
+            const url = `${environment.apiUrl}/genelist/species/${species}`;
+            return new Promise<SpeciesGeneList[]>((resolve, reject) => {
+                this.httpClient.get<SpeciesGeneList[]>(url)
+                    .map(res => res['lists'])
+                    .subscribe((response: any) => {
+                        this.ancestral_genes = response;
+                        //this.proxy_genes = response.proxy_genes;
+                        this.onSpeciesChanged.next(this.ancestral_genes);
+                        resolve(response);
+                    }, reject);
+            });
+        } else {
+            const url = `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}`;
+            return new Promise<SpeciesGeneList[]>((resolve, reject) => {
+                this.httpClient.get<SpeciesGeneList[]>(url)
+                    .map(res => res['lists'])
+                    .subscribe((response: any) => {
+                        this.ancestral_genes = response;
+                        //this.proxy_genes = response.proxy_genes;
+                        this.onSpeciesChanged.next(this.ancestral_genes);
+                        resolve(response);
+                    }, reject);
+            });
+        }
     }
 
     getProxySpecies(species): Promise<any[]> {

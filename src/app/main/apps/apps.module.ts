@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoctuaSharedModule } from '@noctua/shared.module';
+import { MaterialModule } from './material.module';
 
 const routes = [{
   path: 'genes',
@@ -18,6 +19,7 @@ const routes = [{
     RouterModule.forChild(routes),
     TranslateModule,
     NoctuaSharedModule,
+    MaterialModule
   ]
 
 })
