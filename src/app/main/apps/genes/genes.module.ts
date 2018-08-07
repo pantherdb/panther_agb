@@ -10,7 +10,7 @@ import { GeneDetailDialogComponent } from './gene-detail/dialogs/gene-detail-dia
 
 import { GenesDialogService } from './dialog.service';
 const routes = [{
-  path: ':id', component: GeneListComponent
+  path: ':species/:proxySpecies', component: GeneListComponent
 }, {
   path: ':ptn', component: GeneDetailComponent
 }];

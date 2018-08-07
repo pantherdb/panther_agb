@@ -2,6 +2,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort } from '@angular/material';
+import { MatOptionSelectionChange} from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -37,7 +38,9 @@ export class GeneListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  //proxy_genes: any;
+  proxy_species: any[];
+  proxySpecies: any;
+  selected_proxy_species: any;
   species: string;
   SpeciesInfo: any;
   exporter: any;
@@ -53,19 +56,25 @@ export class GeneListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.route.params.subscribe((params) => {
-      this.species = decodeURIComponent(params['id']);
-      this.genesService.getGenesBySpecies(this.species).then(response => {
+      this.species = decodeURIComponent(params['species']);
+      this.proxySpecies = decodeURIComponent(params['proxySpecies']);
+      this.genesService.getGenesBySpecies(this.species, this.proxySpecies).then(response => {
         this.genes = this.genesService.ancestral_genes;
         //this.proxy_genes = this.genesService.ancestral_genes;
-        console.log(this.genes);
+        //console.log(this.genes);
         //console.log(this.proxy_genes);
         this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
-      /* this.speciesService.getSpecies(this.species).then(response => {
-         this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
+      this.genesService.getProxySpecies(this.species).then(response => {
+        this.proxy_species = this.genesService.proxy_species.sort();
+        //console.log(this.proxy_species);
+        //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
+      });
+      this.speciesService.getSpeciesDetail(this.species).then(response => {
+         this.SpeciesInfo = this.speciesService.speciesDetail;
          //console.log(this.SpeciesInfo);
        });
-       */
+      
     });
 
     fromEvent(this.filter.nativeElement, 'keyup')
@@ -92,7 +101,13 @@ export class GeneListComponent implements OnInit, OnDestroy {
   }
 
   speciesDetail(): void {
-    this.router.navigateByUrl(`species/species-info/${this.species}`);
+    this.router.navigateByUrl(`species/${this.species}`);
+  }
+
+  changeProxyGenes(value){
+    console.log(value);
+    //this.selected_proxy_species = value;
+    this.router.navigateByUrl(`/species/genes/(list:genes/${this.species}/${value})`);
   }
 
 

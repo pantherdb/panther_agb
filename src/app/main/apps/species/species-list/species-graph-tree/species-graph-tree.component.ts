@@ -121,7 +121,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
 
 
   select(data) {
-    this.selectSpecies(data.label)
+    this.selectSpecies(data.short_label)
   }
 
   setColorScheme(name) {
