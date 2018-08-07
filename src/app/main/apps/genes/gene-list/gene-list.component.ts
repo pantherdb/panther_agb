@@ -94,7 +94,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
   }
 
   speciesDetail(): void {
-    this.router.navigateByUrl(`species/${this.species}`);
+    this.router.navigateByUrl(`species/${this.SpeciesInfo.short_name}`);
   }
 
   changeProxyGenes(value){

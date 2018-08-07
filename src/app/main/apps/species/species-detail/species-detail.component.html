@@ -16,13 +16,26 @@
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
+            Total Number of protein coding genes
+          </div>
+        </div>
+        <div *ngIf="SpeciesInfo?.gene_count;else no_info_content" class="agb-body">
+          <p>
+            <a [routerLink]="['/species/genes/{{ SpeciesInfo.short_name }}']" routerLinkActive="active">{{ SpeciesInfo.gene_count }}</a>
+
+          </p>
+        </div>
+      </div>
+      <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
             NCBI taxonomy
           </div>
         </div>
         <div *ngIf="SpeciesInfo?.taxon_id;else no_info_content" class="agb-body">
           <p>
             <!-- <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{SpeciesInfo.taxon_id}}"> -->
-              <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{SpeciesInfo.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
+            <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{SpeciesInfo.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
               {{SpeciesInfo.taxon_id}}
             </a>
           </p>
@@ -36,26 +49,26 @@
         </div>
         <div *ngIf="SpeciesInfo?.short_name;else no_info_content" class="agb-body">
           <p>
-            <a *ngFor = "let s of SpeciesInfo.long_name.split('-')" href="http://tolweb.org/{{s}}">
+            <a *ngFor="let s of SpeciesInfo.long_name.split('-')" href="http://tolweb.org/{{s}}">
               {{ s }}
             </a>
           </p>
         </div>
       </div>
       <div class="agb-card-simple mat-elevation-z1">
-          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-            <div class="agb-title">
-              Wikipedia
-            </div>
-          </div>
-          <div *ngIf="SpeciesInfo?.long_name;else no_info_content" class="agb-body">
-              <p>
-                  <a *ngFor = "let s of SpeciesInfo.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
-                    {{ s }}
-                  </a>
-              </p>
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Wikipedia
           </div>
         </div>
+        <div *ngIf="SpeciesInfo?.long_name;else no_info_content" class="agb-body">
+          <p>
+            <a *ngFor="let s of SpeciesInfo.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
+              {{ s }}
+            </a>
+          </p>
+        </div>
+      </div>
 
       <!-- <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
