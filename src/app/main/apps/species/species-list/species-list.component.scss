@@ -2,9 +2,9 @@
 @import "src/@agb.common/scss/agb.common";
 :host {
   .agb-left-pane {
-    border-right: #AAA solid 1px;
+    //  border-right: #555 solid 1px; //  @include mat-elevation(12);/
   }
   .agb-right-pane {
-    border-left: #AAA solid 1px;
+    // border-left: #555 solid 1px;
   }
 }

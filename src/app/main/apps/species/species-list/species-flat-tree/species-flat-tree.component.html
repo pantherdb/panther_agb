@@ -13,7 +13,7 @@
         <button mat-icon-button disabled class="agb-icon-button"></button>
         {{node.long_name}}
       </mat-tree-node>
-      <mat-tree-node (click)="selectSpecies(node)" class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
+      <mat-tree-node fxLayout="row" (click)="selectSpecies(node)" class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
         matTreeNodePadding matTreeNodePaddingIndent="10">
         <button mat-icon-button matTreeNodeToggle class="agb-icon-button" [attr.aria-label]="'toggle ' + node.long_name">
           <mat-icon *ngIf="!treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-16 fa fa-caret-right">
@@ -23,7 +23,11 @@
           </mat-icon>
         </button>
         {{node.long_name}}
-        < </mat-tree-node>
+        <span fxFlex></span>
+        <diV class="">
+          {{node.timescale}} - {{node.gene_count}}
+        </diV>
+      </mat-tree-node>
     </mat-tree>
   </div>
 </div>

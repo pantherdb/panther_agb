@@ -19,10 +19,11 @@ const routes = [{
     RouterModule.forChild(routes),
     TranslateModule,
     NoctuaSharedModule,
-    MaterialModule
-  ]
-
+  ],
+  exports: [
+    NoctuaSharedModule
+  ],
+  entryComponents: []
 })
 
-export class AppsModule {
-}
+export class AppsModule {}

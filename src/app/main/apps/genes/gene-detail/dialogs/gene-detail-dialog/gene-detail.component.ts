@@ -1,0 +1,64 @@
+import { Component, OnInit, OnDestroy, ViewChild, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatMenuTrigger } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
+import { Subject } from 'rxjs';
+import { GeneReplacePipe } from '@agb.common/pipes/gene-replace.pipe';
+import { GeneService } from './../../gene.service';
+import { Gene } from './../../models/gene';
+import * as _ from 'lodash';
+import { MatTableDataSource, MatSort } from '@angular/material';
+
+@Component({
+  selector: 'app-gene-detail',
+  templateUrl: 'gene-detail.component.html',
+  styleUrls: ['gene-detail.component.scss']
+})
+
+export class GeneDetailDialogComponent implements OnInit, OnDestroy {
+  private _unsubscribeAll: Subject<any>;
+
+  @ViewChild(MatSort)
+  sort: MatSort;
+
+  ptn: string;
+  gene; Gene;
+  displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
+  dataSource;
+
+  constructor(
+    private _matDialogRef: MatDialogRef<GeneDetailDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private _data: any,
+    private _matDialog: MatDialog,
+    private route: ActivatedRoute,
+    private breadcrumbsService: BreadcrumbsService,
+    private geneService: GeneService) {
+    this._unsubscribeAll = new Subject();
+  }
+
+  ngOnInit() {
+    this.ptn = this._data.ptn
+    this.geneService.getGeneByPtn(this.ptn).then(response => {
+      this.gene = this.geneService.gene;
+      //  this.gene.sequence = this.gene.sequence.toUppercase().repla  
+      this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
+      this.dataSource.sort = this.sort;
+
+      this.breadcrumbsService.setCurrentBreadcrumbs([{
+        label: this.gene.ptn,
+        url: 'gene/' + this.gene.ptn
+      }]);
+    });
+
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
