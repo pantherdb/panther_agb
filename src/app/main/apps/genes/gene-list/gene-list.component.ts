@@ -16,6 +16,8 @@ import { takeUntil } from 'rxjs/internal/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ExportToCSV } from "@molteni/export-csv";
 
+import { GenesDialogService } from './../dialog.service'
+
 @Component({
   selector: 'app-gene-list',
   templateUrl: 'gene-list.component.html',
@@ -43,6 +45,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
 
 
   constructor(private route: ActivatedRoute, private router: Router, private genesService: GenesService,
+    private genesDialogService: GenesDialogService,
     private speciesService: SpeciesService) {
     this.unsubscribeAll = new Subject();
   }
@@ -82,6 +85,10 @@ export class GeneListComponent implements OnInit, OnDestroy {
   download(): void {
     this.exporter = new ExportToCSV();
     this.exporter.exportColumnsToCSV(this.genes, `${this.species}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
+  }
+
+  openGenePreview(species) {
+    this.genesDialogService.openGenePreview(species);
   }
 
   speciesDetail(): void {
