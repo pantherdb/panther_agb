@@ -24,8 +24,6 @@ const routes = [{
     NoctuaSharedModule
   ],
   entryComponents: []
-
 })
 
-export class AppsModule {
-}
+export class AppsModule {}

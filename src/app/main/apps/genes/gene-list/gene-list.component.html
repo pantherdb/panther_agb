@@ -8,7 +8,6 @@
         <em>
           genes in {{SpeciesInfo?.long_name}}
         </em>
-
       </mat-label>
 
       <input id="search" matInput #filter placeholder="" autocomplete="off">
@@ -30,14 +29,6 @@
 
   </div>
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-    <mat-form-field>
-      <mat-select placeholder="select an extant species for proxy gene column" [(value)]="selected_proxy_species" (selectionChange)="changeProxyGenes($event.value)"
-        fxFlex="0" fxFlexOffset="2">
-        <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
-          {{ps}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
     <!-- <p>You selected: {{selected_proxy_species}}</p> -->
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn">
@@ -60,14 +51,29 @@
       </ng-container>
       <ng-container cdkColumnDef="proxy_gene">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header matTooltip="Proxy genes are genes in an extant genome, that are proxies for an ancestral gene.  The proxy is defined as the closest (smallest total branch length in the gene tree) descendant of the ancestral gene, in the selected extant proxy species.  Because an ancestral gene is extinct, it has not been studied, and the proxy may share characteristics (like function) that have been inherited from the ancestral gene. This column shows the proxy gene in model organisms if exists by default. Click the row to see the full list of proxy genes for a specific ancestral gene."
-          matTooltipPosition="left" [matTooltipClass]="'tooltip'">Proxy Gene in {{selected_proxy_species || 'a pre-selected extant species'}}</mat-header-cell>
+          matTooltipPosition="left" [matTooltipClass]="'tooltip'">
+          <div class="w-100-p" fxLayout="column" fxLayoutAlign="start startr">
+            <div class="w-100-p">
+              Proxy Gene in {{selected_proxy_species || 'a pre-selected extant species'}}
+            </div>
+            <mat-form-field class="w-100-p" fxFlex="100%" floatLabel="never">
+              <mat-select placeholder="select an extant species for proxy gene column" [(value)]="selected_proxy_species" (selectionChange)="changeProxyGenes($event.value)"
+                fxFlex="0" fxFlexOffset="2">
+                <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
+                  {{ps}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </mat-header-cell>
         <span class="tooltiptext">Tooltip text</span>
         <mat-cell *cdkCellDef="let gene">
           <p class="text-truncate">{{gene.proxy_gene}}</p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-      <!-- <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple [routerLink]="['/species',{outlets:{gene:gene.ptn}}]"></mat-row> -->
+
       <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple (click)="openGenePreview(gene.ptn)" routerLinkActive="active"></mat-row>
 
     </mat-table>
