@@ -28,8 +28,8 @@ export class SpeciesDetailComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
       this.speciesService.getSpeciesDetail(this.species).then(response => {
-        //  this.SpeciesInfo = this.speciesService.SpeciesDetail[0];
-        console.log(this.SpeciesInfo);
+        this.SpeciesInfo = this.speciesService.speciesDetail;
+        //console.log(this.SpeciesInfo);
       });
     });
   }
