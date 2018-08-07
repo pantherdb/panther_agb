@@ -19,6 +19,7 @@ import { Species, SpeciesNode, SpeciesFlatNode } from './models/species'
 export class SpeciesService {
     species: Species[];
     speciesNodes: SpeciesNode[];
+    speciesDetail: any;
     onSpeciesListChanged: BehaviorSubject<any>;
     onSpeciesDetailChanged: BehaviorSubject<any>;
 
@@ -50,7 +51,7 @@ export class SpeciesService {
             this.httpClient.get<Species>(url)
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
-                    // this.speciesDetail = response;
+                    this.speciesDetail = response[0];
                     // this.onSpeciesDetailChanged.next(this.species);
                     resolve(response);
                 }, reject);

@@ -40,7 +40,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PlatformModule } from '@angular/cdk/platform';
 import { ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
-import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
+//import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
 
 @NgModule({
   exports: [
@@ -86,7 +86,7 @@ import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material';
     PortalModule
     ],
   providers: [
-    {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+    //{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
   ],
 })
 export class MaterialModule { }

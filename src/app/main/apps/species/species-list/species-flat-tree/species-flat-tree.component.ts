@@ -51,7 +51,7 @@ export class SpeciesFlatTreeComponent implements OnInit {
 
     this.router.navigate([`species/genes`, {
       outlets: {
-        'list': ['genes', `${this.selectedSpecies.short_name}`]
+        'list': ['genes', `${this.selectedSpecies.short_name}`, 'default']
       }
     }]);
 
