@@ -21,7 +21,7 @@
         </div>
         <div *ngIf="SpeciesInfo?.gene_count;else no_info_content" class="agb-body">
           <p>
-            <a [routerLink]="['/species/genes/{{ SpeciesInfo.short_name }}']" routerLinkActive="active">{{ SpeciesInfo.gene_count }}</a>
+            <a href= "/species/genes/(list:genes/{{SpeciesInfo.short_name}}/default)">{{ SpeciesInfo.gene_count }}</a>
 
           </p>
         </div>
