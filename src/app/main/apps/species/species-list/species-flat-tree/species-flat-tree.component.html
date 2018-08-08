@@ -22,10 +22,10 @@
             signal_cellular_4_bar
           </mat-icon>
         </button>
-        {{node.long_name}}
+        {{node.long_name}} ({{node.timescale}} Ma)
         <span fxFlex></span>
         <diV class="">
-          {{node.timescale}} - {{node.gene_count}}
+           gene number: {{node.gene_count}}
         </diV>
       </mat-tree-node>
     </mat-tree>
