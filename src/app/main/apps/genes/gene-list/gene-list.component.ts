@@ -2,7 +2,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort } from '@angular/material';
-import { MatOptionSelectionChange} from '@angular/material';
+import { MatOptionSelectionChange } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -21,8 +21,8 @@ import { GenesDialogService } from './../dialog.service'
 
 @Component({
   selector: 'app-gene-list',
-  templateUrl: 'gene-list.component.html',
-  styleUrls: ['gene-list.component.scss'],
+  templateUrl: './gene-list.component.html',
+  styleUrls: ['./gene-list.component.scss'],
   animations: noctuaAnimations
 })
 export class GeneListComponent implements OnInit, OnDestroy {
@@ -71,10 +71,10 @@ export class GeneListComponent implements OnInit, OnDestroy {
         //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
       this.speciesService.getSpeciesDetail(this.species).then(response => {
-         this.SpeciesInfo = this.speciesService.speciesDetail;
-         //console.log(this.SpeciesInfo);
-       });
-      
+        this.SpeciesInfo = this.speciesService.speciesDetail;
+        //console.log(this.SpeciesInfo);
+      });
+
     });
 
     fromEvent(this.filter.nativeElement, 'keyup')
@@ -104,10 +104,15 @@ export class GeneListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`species/${this.SpeciesInfo.short_name}`);
   }
 
-  changeProxyGenes(value){
+  changeProxyGenes(value) {
     console.log(value);
     //this.selected_proxy_species = value;
     this.router.navigateByUrl(`/species/genes/(list:genes/${this.species}/${value})`);
+  }
+
+  onSelect({ selected }) {
+    console.log(selected)
+    this.openGenePreview(selected[0].ptn)
   }
 
 

@@ -28,8 +28,8 @@
     </mat-label> -->
 
   </div>
+  <!--
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-    <!-- <p>You selected: {{selected_proxy_species}}</p> -->
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">Public ID</mat-header-cell>
@@ -51,12 +51,13 @@
       </ng-container>
       <ng-container cdkColumnDef="proxy_gene">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>
-          <button mat-icon-button color='primary' matTooltip='Proxy genes are genes in an extant genome, that are proxies for an ancestral gene.  The proxy is defined as the closest (smallest total branch length in the gene tree) descendant of the ancestral gene, in the selected extant proxy species.  Because an ancestral gene is extinct, it has not been studied, and the proxy may share characteristics (like function) that have been inherited from the ancestral gene. This column shows the proxy gene in model organisms if exists by default. Select a specific extant species from the dropdown menu on the right to display the proxy gene in the selected species. Click the row to see the full list of proxy genes for a specific ancestral gene.' #tooltip="matTooltip" (mouseenter)='tooltip.toggle()' matTooltipPosition='above' [matTooltipClass]="'tooltip'">
+          <button mat-icon-button color='primary' matTooltip='Proxy genes are genes in an extant genome, that are proxies for an ancestral gene.  The proxy is defined as the closest (smallest total branch length in the gene tree) descendant of the ancestral gene, in the selected extant proxy species.  Because an ancestral gene is extinct, it has not been studied, and the proxy may share characteristics (like function) that have been inherited from the ancestral gene. This column shows the proxy gene in model organisms if exists by default. Select a specific extant species from the dropdown menu on the right to display the proxy gene in the selected species. Click the row to see the full list of proxy genes for a specific ancestral gene.'
+            #tooltip="matTooltip" (mouseenter)='tooltip.toggle()' matTooltipPosition='above' [matTooltipClass]="'tooltip'">
             <mat-icon>help</mat-icon>
           </button>
           <div class="w-100-p" fxLayout="column" fxLayoutAlign="start startr">
             <div class="w-100-p">
-              <!-- Proxy Gene in {{selected_proxy_species || 'a pre-selected extant species'}} -->
+              <!-- Proxy Gene in {{selected_proxy_species || 'a pre-selected extant species'}} --
               Proxy Gene in default extant species or
             </div>
             <mat-form-field class="w-100-p" fxFlex="100%" floatLabel="never">
@@ -68,7 +69,6 @@
               </mat-select>
             </mat-form-field>
           </div>
-
         </mat-header-cell>
         <span class="tooltiptext">Tooltip text</span>
         <mat-cell *cdkCellDef="let gene">
@@ -76,7 +76,7 @@
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-
+      <mat-header-row *cdkHeaderRowDef="displayedActionColumns"></mat-header-row>
       <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple (click)="openGenePreview(gene.ptn)" routerLinkActive="active"></mat-row>
 
     </mat-table>
@@ -84,20 +84,28 @@
       [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
-  <!--
-  <ngx-datatable class="material" [rows]="genes" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48"
-    [footerHeight]="56" [scrollbarV]="true" [reorderable]="reorderable" [selectionType]="'checkbox'" [limit]="50">
-    <ngx-datatable-column [width]="48" [canAutoResize]="false" [sortable]="false">
-      <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
-        <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
-      </ng-template>
-      <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-        <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn($event)"></mat-checkbox>
-      </ng-template>
-    </ngx-datatable-column>
+-->
+
+  <ngx-datatable class="genes-table material striped" [rows]="genes" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="56" [rowHeight]="'auto'" [reorderable]="reorderable" [selectionType]="'single'" (select)='onSelect($event)'
+    [limit]="20">
     <ngx-datatable-column name="Public ID" prop="ptn"></ngx-datatable-column>
     <ngx-datatable-column name="Gene Name" prop="name"></ngx-datatable-column>
+    <ngx-datatable-column name="Proxy Gene" prop="proxy_gene">
+      <ng-template let-sort="sortFn" ngx-datatable-header-template>
+        <div class="w-100-p h-100-p" fxlayout="row" fxLayoutAlign="center center">
+          <div *ngIf="false" (click)="sort()">
+            Proxy Genes in
+          </div>
+          <mat-select class="agb-select-legacy" placeholder="Proxy Gene in" [(value)]="selected_proxy_species" (selectionChange)="changeProxyGenes($event.value)"
+            fxFlex="0" fxFlexOffset="2">
+            <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
+              Proxy Genes in {{ps}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
     <ngx-datatable-column name="PANTHER Family" prop="pthr"></ngx-datatable-column>
   </ngx-datatable>
--->
 </div>

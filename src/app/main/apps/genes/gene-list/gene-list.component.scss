@@ -16,6 +16,23 @@
     flex: 1 1 auto;
     max-width: 100%;
   }
+  .agb-select-legacy {
+    margin-top: 10px;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #bbb;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+  }
   .genes-table {
     position: relative;
     flex: 1 1 auto;
@@ -24,6 +41,7 @@
     .mat-header-row {
       min-height: 50px;
     }
+    /*
     .noc-paginator {
       position: relative;
       bottom: 0;

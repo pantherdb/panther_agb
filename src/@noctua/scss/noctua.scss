@@ -14,6 +14,25 @@ $noc-secondary-color: #995014;
   max-height: $number;
 }
 
+datatable-footer {
+  // background-color: aqua;
+  // position: absolute;
+  // bottom: 0;
+  //left: 0;
+  // right: 0;
+}
+
+datatable-body-cell {
+  padding: 10px !important;
+  font-size: 10px;
+  line-height: 20px;
+}
+
+datatable-header-cell {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
 .mat-dialog-container {
   padding: 0 !important;
 }

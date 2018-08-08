@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 import { NoctuaDirectivesModule } from './directives/directives';
 import { NoctuaPipesModule } from './pipes/pipes.module';
 
@@ -15,6 +17,7 @@ import { NoctuaPipesModule } from './pipes/pipes.module';
         MaterialModule,
         ReactiveFormsModule,
         FlexLayoutModule,
+        NgxDatatableModule,
         NoctuaDirectivesModule,
         NoctuaPipesModule
     ],
@@ -23,6 +26,7 @@ import { NoctuaPipesModule } from './pipes/pipes.module';
         MaterialModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxDatatableModule,
         FlexLayoutModule,
         NoctuaDirectivesModule,
         NoctuaPipesModule
