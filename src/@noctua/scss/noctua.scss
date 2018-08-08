@@ -14,6 +14,10 @@ $noc-secondary-color: #995014;
   max-height: $number;
 }
 
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
 .noc-paginator {
   overflow: hidden;
   @include deep-height(40px);

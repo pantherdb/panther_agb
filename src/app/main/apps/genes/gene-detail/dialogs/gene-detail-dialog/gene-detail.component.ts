@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatMenuTrigger } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
@@ -10,9 +10,10 @@ import * as _ from 'lodash';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
 @Component({
-  selector: 'app-gene-detail',
-  templateUrl: 'gene-detail.component.html',
-  styleUrls: ['gene-detail.component.scss']
+  selector: 'gene-detail-dialog',
+  templateUrl: './gene-detail.component.html',
+  styleUrls: ['./gene-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class GeneDetailDialogComponent implements OnInit, OnDestroy {
@@ -50,6 +51,10 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
       }]);
     });
 
+  }
+
+  close() {
+    this._matDialogRef.close();
   }
 
   ngOnDestroy(): void {

@@ -24,7 +24,7 @@ export class GenesDialogService {
 
     openGenePreview(ptn): void {
         this.dialogRef = this._matDialog.open(GeneDetailDialogComponent, {
-            panelClass: 'gene-preview-dialog-component',
+            panelClass: 'gene-detail-dialog',
             data: {
                 ptn: ptn
             }
