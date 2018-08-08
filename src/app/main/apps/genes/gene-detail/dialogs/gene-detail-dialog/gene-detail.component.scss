@@ -1,7 +1,12 @@
 @import "src/@noctua/scss/noctua";
 @import "src/@agb.common/scss/agb.common";
-:host {
-  width: 100%;
+.gene-detail-dialog {
+  @include media-breakpoint('xs') {
+    width: 100%;
+  }
+  @include media-breakpoint-up('sm') {
+    width: 940px;
+  }
   .agb-gene-panel {
     padding: 15px 5px;
     background-color: #F7F7F7;
@@ -9,10 +14,19 @@
   }
   .agb-column-toolbar {}
   .agb-gene-detail {
-    padding: 10px; // background-color: #F2F2F2;
+    padding: 10px;
+    width: 100%;
   }
   .agb-sequence {
     @include deep-width(100%);
     resize: none;
+  }
+  .mat-dialog-container {
+    padding: 0;
+  }
+  .dialog-content-wrapper {
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
   }
 }
