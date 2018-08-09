@@ -6,6 +6,10 @@
       </mat-form-field>
     </form>
   </div>
+  <div class="px-10" class="agb-column-toolbar" fxLayout="row">
+    <strong>Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
+        (and their proxy genes in an extant genome).</strong>
+  </div>
   <div class="agb-tree-container" noctuaPerfectScrollbar>
     <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
       <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node" (click)="selectSpecies(node)" matTreeNodeToggle
