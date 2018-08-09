@@ -3,7 +3,7 @@
     <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="start center">
       <span class="title dialog-title">{{gene?.ptn}}</span>
       <span fxFlex></span>
-      <a mat-icon-button [routerLink]="['genes/', 'gene.ptn']" target="_blank" aria-label="Open Gene Detail Page">
+      <a mat-icon-button [routerLink]="['genes/', gene.ptn]" target="_blank" aria-label="Open Gene Detail Page">
         <mat-icon>fullscreen</mat-icon>
       </a>
       <button mat-icon-button (click)="close()" aria-label="Close dialog">

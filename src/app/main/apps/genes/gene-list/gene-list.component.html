@@ -86,8 +86,11 @@
   </div>
 -->
 
-  <ngx-datatable class="genes-table material striped" [rows]="genes" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+  <!-- <ngx-datatable class="genes-table material striped" [rows]="genes" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
     [headerHeight]="50" [footerHeight]="56" [rowHeight]="'auto'" [reorderable]="reorderable" [selectionType]="'single'" (select)='onSelect($event)'
+    [limit]="20"> -->
+    <ngx-datatable class="genes-table material striped" [rows]="genes" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="56" [rowHeight]="'auto'" [selectionType]="'single'" (select)='onSelect($event)'
     [limit]="20">
     <ngx-datatable-column name="Public ID" prop="ptn"></ngx-datatable-column>
     <ngx-datatable-column name="Gene Name" prop="name"></ngx-datatable-column>
