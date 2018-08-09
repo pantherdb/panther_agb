@@ -32,7 +32,8 @@ export class GeneDetailComponent implements OnInit {
       this.ptn = decodeURIComponent(params['ptn']);
       this.geneService.getGeneByPtn(this.ptn).then(response => {
         this.gene = this.geneService.gene;
-        //  this.gene.sequence = this.gene.sequence.toUppercase().repla  
+        this.gene.sequence = this.gene.sequence.replace(/\./g, '');
+        this.gene.sequence = this.gene.sequence.replace(/\_/g, '');   
         this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
         this.dataSource.sort = this.sort;
 
