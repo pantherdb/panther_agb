@@ -67,7 +67,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
       });
       this.genesService.getProxySpecies(this.species).then(response => {
         this.proxy_species = this.genesService.proxy_species.sort();
-        this.proxy_species.unshift('default');
+        this.proxy_species.unshift('default species');
         //console.log(this.proxy_species);
         //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });

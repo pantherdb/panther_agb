@@ -24,7 +24,7 @@ export class GenesService {
 
     getGenesBySpecies(species, proxySpecies): Promise<SpeciesGeneList[]> {
         
-        if (proxySpecies == 'default') {
+        if (proxySpecies == 'default species') {
             const url = `${environment.apiUrl}/genelist/species/${species}`;
             return new Promise<SpeciesGeneList[]>((resolve, reject) => {
                 this.httpClient.get<SpeciesGeneList[]>(url)
