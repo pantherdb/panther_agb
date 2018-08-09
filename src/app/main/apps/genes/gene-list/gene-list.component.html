@@ -97,6 +97,10 @@
           <div *ngIf="false" (click)="sort()">
             Proxy Genes in
           </div>
+          <button mat-icon-button color='primary' matTooltip='Proxy genes are genes in an extant genome, that are proxies for an ancestral gene.  The proxy is defined as the closest (smallest total branch length in the gene tree) descendant of the ancestral gene, in the selected extant proxy species.  Because an ancestral gene is extinct, it has not been studied, and the proxy may share characteristics (like function) that have been inherited from the ancestral gene. This column shows the proxy gene in model organisms if exists by default. Select a specific extant species from the dropdown menu on the right to display the proxy gene in the selected species. Click the row to see the full list of proxy genes for a specific ancestral gene.'
+            #tooltip="matTooltip" (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()" (click)="tooltip.toggle()" matTooltipPosition='above' [matTooltipClass]="'tooltip'">
+            <mat-icon>help</mat-icon>
+          </button>
           <mat-select class="agb-select-legacy" placeholder="Proxy Gene in" [(value)]="selected_proxy_species" (selectionChange)="changeProxyGenes($event.value)"
             fxFlex="0" fxFlexOffset="2">
             <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
