@@ -60,6 +60,8 @@ export class GenesService {
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
                     this.proxy_species = response;
+                    //this.proxy_species.push('default');
+                    //console.log(this.proxy_species);
                     //this.proxy_genes = response.proxy_genes;
                     //this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);

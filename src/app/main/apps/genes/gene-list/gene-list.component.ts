@@ -67,6 +67,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
       });
       this.genesService.getProxySpecies(this.species).then(response => {
         this.proxy_species = this.genesService.proxy_species.sort();
+        this.proxy_species.unshift('default');
         //console.log(this.proxy_species);
         //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
@@ -105,7 +106,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
   }
 
   changeProxyGenes(value) {
-    console.log(value);
+    //console.log(value);
     //this.selected_proxy_species = value;
     this.router.navigateByUrl(`/species/genes/(list:genes/${this.species}/${value})`);
   }
