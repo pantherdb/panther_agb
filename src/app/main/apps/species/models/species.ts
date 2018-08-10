@@ -5,6 +5,7 @@ export interface Species {
     long_name: string;
     parent_id: number;
     timescale: number;
+    timescaleColor: string;
     gene_count: number;
 }
 
@@ -15,6 +16,7 @@ export class SpeciesNode {
     long_name: string;
     parent_id: number;
     timescale: number;
+    timescaleColor: string;
     gene_count: number;
     level: number;
     expandable: boolean;
@@ -29,6 +31,7 @@ export class SpeciesFlatNode {
         public long_name: string,
         public parent_id: number,
         public timescale: number,
+        public timescaleColor: string,
         public gene_count: number,
         public expandable: boolean,
         public level: number) { }

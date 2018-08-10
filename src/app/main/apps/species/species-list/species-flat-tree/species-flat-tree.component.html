@@ -1,13 +1,23 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
   <div class="agb-column-toolbar" fxLayout="row">
-    <strong>Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
-      (and their proxy genes in an extant genome).</strong>
+    <span fxFlex></span>
+    <button mat-icon-button color='primary' matTooltip='Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
+       (and their proxy genes in an extant genome).' #tooltip="matTooltip" (mouseenter)="$event.stopImmediatePropagation()"
+      (mouseleave)="$event.stopImmediatePropagation()" (click)="tooltip.toggle()" matTooltipPosition='above' [matTooltipClass]="'tooltip'">
+      <mat-icon>help</mat-icon>
+    </button>
+    <button mat-button [matMenuTriggerFor]="changeView">Change View</button>
+    <mat-menu #changeView="matMenu">
+      <a [routerLink]="['/species']" mat-menu-item>Tree View</a>
+      <a [routerLink]="['/species/horizontal-tree']" mat-menu-item>Horizontal Tree View</a>
+      <a [routerLink]="['/species/graph-tree']" mat-menu-item>Graph View</a>
+    </mat-menu>
   </div>
   <div class="px-10" class="agb-column-subtoolbar" fxLayout="row">
     <div fxFlex="">
       Species
     </div>
-    <div fxFlex="80px">
+    <div class="text-right" fxFlex="80px">
       # of Genes
     </div>
   </div>
@@ -27,14 +37,15 @@
             signal_cellular_4_bar
           </mat-icon>
         </button>
+        <button [ngStyle]="{'color': node.timescaleColor}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
+          <mat-icon class="s-18">
+            history
+          </mat-icon>
+        </button>
         {{node.long_name}} ({{node.timescale}} Ma)
         <span fxFlex></span>
         <div fxFlex="50px">
-          <button mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
-            <mat-icon class=" s-10">
-              time
-            </mat-icon>
-          </button>
+
         </div>
         <diV class="">
           {{node.gene_count}}

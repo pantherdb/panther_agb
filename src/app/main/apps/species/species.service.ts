@@ -17,6 +17,11 @@ import { Species, SpeciesNode, SpeciesFlatNode } from './models/species'
     providedIn: 'root',
 })
 export class SpeciesService {
+    colors: string[] = [
+        'red',
+        'yellow',
+        'blue'
+    ];
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
@@ -35,7 +40,9 @@ export class SpeciesService {
             this.httpClient.get<Species[]>(url)
                 .map(res => res['lists'])
                 .subscribe((response: Species[]) => {
-                    this.speciesNodes = this._buildSpeciesTree(response);
+                    this.species = response;
+                    this._addSpeciesColor(this.species);
+                    this.speciesNodes = this._buildSpeciesTree(this.species);
                     // this.species = response;
                     this.onSpeciesListChanged.next(this.speciesNodes);
                     resolve(this.speciesNodes);
@@ -43,8 +50,18 @@ export class SpeciesService {
         });
     }
 
-    getTimescaleColor() {
-
+    getTimescaleColor(timescale?: number): string {
+        let range = 5000 / this.colors.length;
+        // let bucket = timescale / range;
+        if (isNaN(range)) {
+            return this.colors[0]
+        }
+        for (let i = 1; i++; i <= this.colors.length) {
+            if (timescale < i * range) {
+                return this.colors[i];
+            }
+        }
+        return this.colors[0];
     }
 
     getSpeciesDetail(species): Promise<Species> {
@@ -62,7 +79,12 @@ export class SpeciesService {
         });
     }
 
-
+    _addSpeciesColor(species: Species[]) {
+        const self = this;
+        _.each(species, function (speciesNode) {
+            speciesNode.timescaleColor = self.getTimescaleColor(speciesNode.timescale);
+        });
+    }
 
     _buildSpeciesTree(species: Species[]): SpeciesNode[] {
         let getNestedChildren = (arr, parent_id, level) => {

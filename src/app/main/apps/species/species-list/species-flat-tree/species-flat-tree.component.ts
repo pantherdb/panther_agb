@@ -72,6 +72,7 @@ export class SpeciesFlatTreeComponent implements OnInit {
       node.long_name,
       node.parent_id,
       node.timescale,
+      node.timescaleColor,
       node.gene_count,
       !!node.children,
       level);
