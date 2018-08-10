@@ -43,6 +43,10 @@ export class SpeciesService {
         });
     }
 
+    getTimescaleColor() {
+
+    }
+
     getSpeciesDetail(species): Promise<Species> {
 
         const url = `${environment.apiUrl}/genelist/species-info/${species}`;

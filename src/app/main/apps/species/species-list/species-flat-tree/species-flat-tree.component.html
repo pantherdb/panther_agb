@@ -1,14 +1,15 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
   <div class="agb-column-toolbar" fxLayout="row">
-    <form class="w-100-p">
-      <mat-form-field fxFlex floatPlaceholder="never">
-        <input matInput #filter (keyup)="filterNodes(filter.value, tree)" placeholder="Filter Species" />
-      </mat-form-field>
-    </form>
-  </div>
-  <div class="px-10" class="agb-column-toolbar" fxLayout="row">
     <strong>Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
-        (and their proxy genes in an extant genome).</strong>
+      (and their proxy genes in an extant genome).</strong>
+  </div>
+  <div class="px-10" class="agb-column-subtoolbar" fxLayout="row">
+    <div fxFlex="">
+      Species
+    </div>
+    <div fxFlex="80px">
+      # of Genes
+    </div>
   </div>
   <div class="agb-tree-container" noctuaPerfectScrollbar>
     <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
@@ -28,8 +29,15 @@
         </button>
         {{node.long_name}} ({{node.timescale}} Ma)
         <span fxFlex></span>
+        <div fxFlex="50px">
+          <button mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
+            <mat-icon class=" s-10">
+              time
+            </mat-icon>
+          </button>
+        </div>
         <diV class="">
-           gene number: {{node.gene_count}}
+          {{node.gene_count}}
         </diV>
       </mat-tree-node>
     </mat-tree>

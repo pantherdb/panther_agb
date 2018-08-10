@@ -7,6 +7,15 @@
   z-index: 10
 }
 
+.agb-column-subtoolbar {
+  padding: 10px;
+  @include deep-height(40px);
+  @include mat-elevation(2);
+  border-bottom: #BBB solid 1px;
+  background-color: #FFF;
+  z-index: 10
+}
+
 .agb-alert {
   padding: 10px;
   font-size: 12px;
