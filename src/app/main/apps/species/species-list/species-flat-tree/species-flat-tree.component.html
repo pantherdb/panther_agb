@@ -53,4 +53,15 @@
       </mat-tree-node>
     </mat-tree>
   </div>
+
+  <div class="agb-legend">
+    <div *ngFor="let legend of timescaleLegend">
+      <button [ngStyle]="{'color': legend.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
+        <mat-icon class="s-18">
+          history
+        </mat-icon>
+        <span>{{legend.range}}</span>
+      </button>
+    </div>
+  </div>
 </div>

@@ -20,8 +20,11 @@ export class SpeciesService {
     colors: string[] = [
         'red',
         'yellow',
-        'blue'
+        'blue',
+        'purple',
+        'green'
     ];
+    timescaleLegend: any = [];
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
@@ -31,6 +34,8 @@ export class SpeciesService {
     constructor(private httpClient: HttpClient) {
         this.onSpeciesListChanged = new BehaviorSubject({});
         this.onSpeciesDetailChanged = new BehaviorSubject({});
+
+        this._buildTimescaleLegend();
     }
 
     getSpeciesList(): Promise<SpeciesNode[]> {
@@ -52,16 +57,18 @@ export class SpeciesService {
 
     getTimescaleColor(timescale?: number): string {
         let range = 5000 / this.colors.length;
+        let bucket = 0
         // let bucket = timescale / range;
         if (isNaN(range)) {
-            return this.colors[0]
+            return this.colors[bucket];
         }
         for (let i = 1; i++; i <= this.colors.length) {
-            if (timescale < i * range) {
-                return this.colors[i];
+            if (timescale < (i * range)) {
+                bucket = i - 1;
+                break;
             }
         }
-        return this.colors[0];
+        return this.colors[bucket];
     }
 
     getSpeciesDetail(species): Promise<Species> {
@@ -77,6 +84,21 @@ export class SpeciesService {
                     resolve(response);
                 }, reject);
         });
+    }
+
+    _buildTimescaleLegend() {
+        let range = 5000 / this.colors.length;
+        this.timescaleLegend = []
+
+        for (let i = 0; i <= this.colors.length; i++) {
+            this.timescaleLegend.push(
+                {
+                    color: this.colors[i];
+                    range: range * (i) + " - " + range * (i + 1)
+                }
+            )
+
+        }
     }
 
     _addSpeciesColor(species: Species[]) {

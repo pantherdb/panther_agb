@@ -3,6 +3,7 @@
 :host {
   width: 100%; //white-space:nowrap;
   .agb-sidenav {
+    position: relative;
     @include deep-width(100%);
     @include deep-height(100%);
     background-color: #FFF;
@@ -24,5 +25,14 @@
     &:hover {
       background-color: rgba(#000000, 0.10);
     }
+  }
+  .agb-legend {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    @include deep-height(150px);
+    @include deep-width(150px);
+    background-color: rgba(#FFF, 0.4);
+    border: 3px solid #000000;
   }
 }

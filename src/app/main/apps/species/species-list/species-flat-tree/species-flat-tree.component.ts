@@ -25,6 +25,8 @@ export class SpeciesFlatTreeComponent implements OnInit {
   treeFlattener: MatTreeFlattener<SpeciesNode, SpeciesFlatNode>;
   dataSource: MatTreeFlatDataSource<SpeciesNode, SpeciesFlatNode>;
 
+  timescaleLegend: any = [];
+
   constructor(private router: Router,
     private speciesService: SpeciesService,
     private breadcrumbsService: BreadcrumbsService) {
@@ -33,6 +35,8 @@ export class SpeciesFlatTreeComponent implements OnInit {
       this._isExpandable, this._getChildren);
     this.treeControl = new FlatTreeControl<SpeciesFlatNode>(this._getLevel, this._isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+    this.timescaleLegend = speciesService.timescaleLegend;
 
   }
 
