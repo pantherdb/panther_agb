@@ -34,7 +34,8 @@
     bottom: 10px;
     @include deep-height(120px);
     @include deep-width(90px);
-    background-color: rgba(#CCC, 0.9); // border: 3px solid #BBB;
+    background-color: rgba(#DDD, 0.8); // border: 3px solid #BBB;
+    border: #BBB solid 1px;
     @include mat-elevation(6);
     .agb-legend-header {
       font-size: 10px;
