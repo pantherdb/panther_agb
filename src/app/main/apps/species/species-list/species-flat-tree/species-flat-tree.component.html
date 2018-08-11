@@ -26,7 +26,18 @@
       <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node" (click)="selectSpecies(node)" matTreeNodeToggle
         matTreeNodePadding matTreeNodePaddingIndent="10">
         <button mat-icon-button disabled class="agb-icon-button"></button>
+        <button [ngStyle]="{'color': node.timescaleColor}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
+          <mat-icon class="s-18">
+            history
+          </mat-icon>
+        </button>
         {{node.long_name}}
+        <span fxFlex></span>
+        <div fxFlex="50px">
+        </div>
+        <diV class="">
+          {{node.gene_count}}
+        </diV>
       </mat-tree-node>
       <mat-tree-node fxLayout="row" (click)="selectSpecies(node)" class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
         matTreeNodePadding matTreeNodePaddingIndent="10">
@@ -45,7 +56,6 @@
         {{node.long_name}} ({{node.timescale}} Ma)
         <span fxFlex></span>
         <div fxFlex="50px">
-
         </div>
         <diV class="">
           {{node.gene_count}}
@@ -55,9 +65,12 @@
   </div>
 
   <div class="agb-legend">
+    <div class="agb-legend-header">
+      TIMESCALE
+    </div>
     <div *ngFor="let legend of timescaleLegend">
-      <button [ngStyle]="{'color': legend.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
-        <mat-icon class="s-18">
+      <button [ngStyle]="{'color': legend.color}" mat-icon-button class="agb-legend-button" [attr.aria-label]="Timescale">
+        <mat-icon class="s-12">
           history
         </mat-icon>
         <span>{{legend.range}}</span>
