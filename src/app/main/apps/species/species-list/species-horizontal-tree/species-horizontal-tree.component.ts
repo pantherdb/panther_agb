@@ -37,7 +37,12 @@ export class SpeciesHorizontalTreeComponent implements OnInit {
   nodeSelect(event) {
     this.species = event.node.data;
     //console.log(this.species, '--path ', node.path);
-    this.router.navigateByUrl(`/species/${this.species}`);
+    //this.router.navigateByUrl(`/species/${this.species}`);
+    this.router.navigate([`species/genes`, {
+      outlets: {
+        'list': ['genes', `${this.species}`, 'default species']
+      }
+    }]);
 
     this.breadcrumbsService.setCurrentBreadcrumbs(event.node.path.map(species => (
       {

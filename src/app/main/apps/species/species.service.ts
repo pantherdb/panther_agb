@@ -93,7 +93,7 @@ export class SpeciesService {
         for (let i = 0; i <= this.colors.length; i++) {
             this.timescaleLegend.push(
                 {
-                    color: this.colors[i];
+                    color: this.colors[i],
                     range: range * (i) + " - " + range * (i + 1)
                 }
             )
