@@ -73,7 +73,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   colorScheme: any;
   schemeType = 'ordinal';
   selectedColorScheme: string;
-  dataVisible: any;
+  dataVisable: any;
   realTimeData: any;
   zoomLevel: any;
   panOffsetX;
