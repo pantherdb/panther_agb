@@ -17,13 +17,7 @@ import { Species, SpeciesNode, SpeciesFlatNode } from './models/species'
     providedIn: 'root',
 })
 export class SpeciesService {
-    colors: string[] = [
-        'red',
-        'yellow',
-        'blue',
-        'purple',
-        'green'
-    ];
+    colors: string[] = ['blue', 'purple', 'orange', 'red'];
     timescaleLegend: any = [];
     species: Species[];
     speciesNodes: SpeciesNode[];
@@ -56,13 +50,13 @@ export class SpeciesService {
     }
 
     getTimescaleColor(timescale?: number): string {
-        let range = 5000 / this.colors.length;
+        let range = 4000 / this.colors.length;
         let bucket = 0
         // let bucket = timescale / range;
-        if (isNaN(range)) {
+        if (isNaN(timescale)) {
             return this.colors[bucket];
         }
-        for (let i = 1; i++; i <= this.colors.length) {
+        for (let i = 1; i <= this.colors.length; i++) {
             if (timescale < (i * range)) {
                 bucket = i - 1;
                 break;
@@ -87,14 +81,14 @@ export class SpeciesService {
     }
 
     _buildTimescaleLegend() {
-        let range = 5000 / this.colors.length;
+        let range = 4000 / this.colors.length;
         this.timescaleLegend = []
 
-        for (let i = 0; i <= this.colors.length; i++) {
+        for (let i = 0; i < this.colors.length; i++) {
             this.timescaleLegend.push(
                 {
                     color: this.colors[i],
-                    range: range * (i) + " - " + range * (i + 1)
+                    range: range * i + " - " + range * (i + 1)
                 }
             )
 
@@ -105,6 +99,7 @@ export class SpeciesService {
         const self = this;
         _.each(species, function (speciesNode) {
             speciesNode.timescaleColor = self.getTimescaleColor(speciesNode.timescale);
+            //  console.log(speciesNode.timescale)
         });
     }
 
