@@ -1,11 +1,10 @@
-<div fxLayout="column">
-  <div>
-    <span class="legal">
-      <a [routerLink]="['/about']" routerLinkActive="active">About</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-      <a [routerLink]="['/release-info']" routerLinkActive="active">Release Information</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-      <a [routerLink]="['/contact-us']" routerLinkActive="active">Contact Us</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-      <a [routerLink]="['/privacy-policy']" routerLinkActive="active">Privacy Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-      <a [routerLink]="['/disclaimer']" routerLinkActive="active">Disclaimer</a>
-      <br> &copy;&nbsp;Copyright&nbsp;2018&nbsp;Paul Thomas&nbsp;All&nbsp;Rights&nbsp;Reserved.</span>
+<div fxLayout="column" fxLayoutAlign="sart center">
+  <div class="legal" fxLayout="row">
+    <a mat-button [routerLink]="['/about']" routerLinkActive="active">About</a>
+    <a mat-button [routerLink]="['/release-info']" routerLinkActive="active">Release Information</a>
+    <a mat-button [routerLink]="['/contact-us']" routerLinkActive="active">Contact Us</a>
+    <a mat-button [routerLink]="['/privacy-policy']" routerLinkActive="active">Privacy Policy</a>
+    <a mat-button [routerLink]="['/disclaimer']" routerLinkActive="active">Disclaimer</a>
   </div>
+  <div> &copy;&nbsp;Copyright&nbsp;2018&nbsp;Paul Thomas&nbsp;All&nbsp;Rights&nbsp;Reserved.</div>
 </div>

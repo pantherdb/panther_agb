@@ -8,16 +8,14 @@
       </a>
     </div>-->
     <div class="noc-logo" fxLayout="row" fxLayoutAlign="start">
-      <a href="http://www.pantherdb.org/" class="noc-main-logo" target="_blank">
-        Panther
-      </a>
-      <a [routerLink]="['/']" class="noc-sub-logo">
+      <a [routerLink]="['/']" class="noc-main-logo">
         Ancestral Genomes
       </a>
     </div>
   </div>
   <div class="toolbar-separator"></div>
-  <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+  <span fxFlex=""></span>
+  <div *ngIf="false" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
     <noctua-search-bar fxFlex="60" class="noc-search-bar" (input)="search($event)"></noctua-search-bar>
   </div>
   <div class="toolbar-separator"></div>
