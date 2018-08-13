@@ -21,8 +21,11 @@ export class GenesService {
     }
 
 
-    getGenesBySpecies(species, proxySpecies): Promise<SpeciesGeneList[]> {
-        const url = `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}`;
+    getGenesBySpecies(species, proxySpecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        const url = page ?
+            `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}/?page=${page}&limit=${limit}` :
+            `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}`;
+
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .map(res => res['lists'])
