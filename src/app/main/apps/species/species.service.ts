@@ -17,8 +17,34 @@ import { Species, SpeciesNode, SpeciesFlatNode } from './models/species'
     providedIn: 'root',
 })
 export class SpeciesService {
-    colors: string[] = ['blue', 'purple', 'orange', 'red'];
-    timescaleLegend: any = [];
+    timescaleLegend: any = [
+        {
+            color: 'blue',
+            min: 0,
+            max: 10,
+            label: '1 - 10'
+        }, {
+            color: 'orange',
+            min: 10,
+            max: 1000,
+            label: '10 - 1000'
+        }, {
+            color: 'purple',
+            min: 1000,
+            max: 2000,
+            label: '1000 - 2000'
+        }, {
+            color: '#e91e63',
+            min: 2000,
+            max: 3500,
+            label: '2000 - 3500'
+        }, {
+            color: 'red',
+            min: 3500,
+            max: 10000,
+            label: '3500+'
+        }
+    ];
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
@@ -28,8 +54,6 @@ export class SpeciesService {
     constructor(private httpClient: HttpClient) {
         this.onSpeciesListChanged = new BehaviorSubject({});
         this.onSpeciesDetailChanged = new BehaviorSubject({});
-
-        this._buildTimescaleLegend();
     }
 
     getSpeciesList(): Promise<SpeciesNode[]> {
@@ -49,21 +73,7 @@ export class SpeciesService {
         });
     }
 
-    getTimescaleColor(timescale?: number): string {
-        let range = 4000 / this.colors.length;
-        let bucket = 0
-        // let bucket = timescale / range;
-        if (isNaN(timescale)) {
-            return this.colors[bucket];
-        }
-        for (let i = 1; i <= this.colors.length; i++) {
-            if (timescale < (i * range)) {
-                bucket = i - 1;
-                break;
-            }
-        }
-        return this.colors[bucket];
-    }
+
 
     getSpeciesDetail(species): Promise<Species> {
 
@@ -80,26 +90,27 @@ export class SpeciesService {
         });
     }
 
-    _buildTimescaleLegend() {
-        let range = 4000 / this.colors.length;
-        this.timescaleLegend = []
+    _buildTimescaleColor(timescale?: number): string {
+        let bucket = 0;
+        timescale = Number(timescale);
 
-        for (let i = 0; i < this.colors.length; i++) {
-            this.timescaleLegend.push(
-                {
-                    color: this.colors[i],
-                    range: range * i + " - " + range * (i + 1)
-                }
-            )
-
+        if (isNaN(timescale)) {
+            return this.timescaleLegend[bucket];
         }
+
+        for (let i = 0; i < this.timescaleLegend.length; i++) {
+            if (timescale < this.timescaleLegend[i].max) {
+                bucket = i;
+                break;
+            }
+        }
+        return this.timescaleLegend[bucket];
     }
 
     _addSpeciesColor(species: Species[]) {
         const self = this;
         _.each(species, function (speciesNode) {
-            speciesNode.timescaleColor = self.getTimescaleColor(speciesNode.timescale);
-            //  console.log(speciesNode.timescale)
+            speciesNode.timescaleColor = self._buildTimescaleColor(speciesNode.timescale);
         });
     }
 

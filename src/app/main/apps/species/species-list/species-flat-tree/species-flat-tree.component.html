@@ -26,7 +26,7 @@
       <mat-tree-node class="agb-tree-node text-truncate" *matTreeNodeDef="let node" (click)="selectSpecies(node)" matTreeNodeToggle
         matTreeNodePadding matTreeNodePaddingIndent="10">
         <button mat-icon-button disabled class="agb-icon-button"></button>
-        <button [ngStyle]="{'color': node.timescaleColor}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
+        <button [ngStyle]="{'color': node.timescaleColor.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
           <mat-icon class="s-18">
             history
           </mat-icon>
@@ -48,7 +48,7 @@
             signal_cellular_4_bar
           </mat-icon>
         </button>
-        <button [ngStyle]="{'color': node.timescaleColor}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
+        <button [ngStyle]="{'color': node.timescaleColor.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
           <mat-icon class="s-18">
             history
           </mat-icon>
@@ -73,7 +73,7 @@
         <mat-icon class="s-12">
           history
         </mat-icon>
-        <span>{{legend.range}}</span>
+        <span>{{legend.label}}</span>
       </button>
     </div>
   </div>
