@@ -10,6 +10,9 @@ import { MatTreeModule } from '@angular/material/tree';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 
+import { SpeciesDialogService } from './dialog.service';
+import { SpeciesDetailDialogComponent } from './species-detail/dialogs/species-detail-dialog/species-detail.component';
+
 import { SpeciesListComponent } from './species-list/species-list.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 import { SpeciesHorizontalTreeComponent } from './species-list/species-horizontal-tree/species-horizontal-tree.component';
@@ -44,6 +47,7 @@ const routes = [
   declarations: [
     SpeciesListComponent,
     SpeciesDetailComponent,
+    SpeciesDetailDialogComponent,
     SpeciesHorizontalTreeComponent,
     SpeciesVerticalTreeComponent,
     SpeciesGraphTreeComponent,
@@ -59,6 +63,10 @@ const routes = [
     PgTreeModule,
     NgxChartsModule,
     NgxGraphModule,
+  ],
+  providers: [SpeciesDialogService],
+  entryComponents: [
+    SpeciesDetailDialogComponent
   ]
 })
 

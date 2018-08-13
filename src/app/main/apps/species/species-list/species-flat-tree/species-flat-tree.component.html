@@ -17,8 +17,11 @@
     <div fxFlex="">
       Species
     </div>
-    <div class="text-right" fxFlex="80px">
-      # of Genes
+    <div class="" fxFlex="40px">
+      Genes
+    </div>
+    <div class="text-right" fxFlex="30px">
+      Info
     </div>
   </div>
   <div class="agb-tree-container" noctuaPerfectScrollbar>
@@ -28,15 +31,20 @@
         <button mat-icon-button disabled class="agb-icon-button"></button>
         <button [ngStyle]="{'color': node.timescaleColor.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
           <mat-icon class="s-18">
-            history
+            pets
           </mat-icon>
         </button>
         {{node.long_name}}
         <span fxFlex></span>
-        <div fxFlex="50px">
-        </div>
-        <diV class="">
+        <diV fxFlex="40px" class="agb-gene-count">
           {{node.gene_count}}
+        </diV>
+        <diV class="" fxFlex="20px">
+          <button mat-icon-button class="agb-icon-button" (click)="openSpeciesPreview(node.short_name)" [attr.aria-label]="Timescale">
+            <mat-icon class="s-18">
+              more_horiz
+            </mat-icon>
+          </button>
         </diV>
       </mat-tree-node>
       <mat-tree-node fxLayout="row" (click)="selectSpecies(node)" class="agb-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
@@ -50,15 +58,20 @@
         </button>
         <button [ngStyle]="{'color': node.timescaleColor.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
           <mat-icon class="s-18">
-            history
+            pets
           </mat-icon>
         </button>
-        {{node.long_name}} ({{node.timescale}} Ma)
+        {{node.long_name}}
         <span fxFlex></span>
-        <div fxFlex="50px">
-        </div>
-        <diV class="">
+        <div fxFlex="40px" class="agb-gene-count">
           {{node.gene_count}}
+        </div>
+        <diV class="" fxFlex="20px">
+          <button mat-icon-button class="agb-icon-button" (click)="openSpeciesPreview(node.short_name)" [attr.aria-label]="Timescale">
+            <mat-icon class="s-18">
+              more_horiz
+            </mat-icon>
+          </button>
         </diV>
       </mat-tree-node>
     </mat-tree>
@@ -71,7 +84,7 @@
     <div *ngFor="let legend of timescaleLegend">
       <button [ngStyle]="{'color': legend.color}" mat-icon-button class="agb-legend-button" [attr.aria-label]="Timescale">
         <mat-icon class="s-12">
-          history
+          pets
         </mat-icon>
         <span>{{legend.label}}</span>
       </button>

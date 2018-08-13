@@ -1,0 +1,32 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
+.species-detail-dialog {
+  @include media-breakpoint('xs') {
+    width: 100%;
+  }
+  @include media-breakpoint-up('sm') {
+    width: 940px;
+  }
+  .agb-gene-panel {
+    padding: 15px 5px;
+    background-color: #F7F7F7;
+    width: 100%; // border-left: #DDD solid 1px;
+  }
+  .agb-column-toolbar {}
+  .agb-gene-detail {
+    padding: 10px;
+    width: 100%;
+  }
+  .agb-sequence {
+    @include deep-width(100%);
+    resize: none;
+  }
+  .mat-dialog-container {
+    padding: 0;
+  }
+  .dialog-content-wrapper {
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+  }
+}

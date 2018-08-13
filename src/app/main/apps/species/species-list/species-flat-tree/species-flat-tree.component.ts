@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
 import { Species, SpeciesNode, SpeciesFlatNode } from './../../models/species'
+import { SpeciesDialogService } from './../../dialog.service';
 import { SpeciesService } from './../../species.service';
 
 
@@ -28,6 +29,7 @@ export class SpeciesFlatTreeComponent implements OnInit {
   timescaleLegend: any = [];
 
   constructor(private router: Router,
+    private speciesDialogService: SpeciesDialogService,
     private speciesService: SpeciesService,
     private breadcrumbsService: BreadcrumbsService) {
 
@@ -66,6 +68,10 @@ export class SpeciesFlatTreeComponent implements OnInit {
         url: '/species/' + species
       })));
       */
+  }
+
+  openSpeciesPreview(species) {
+    this.speciesDialogService.openSpeciesPreview(species);
   }
 
   transformer = (node: SpeciesNode, level: number) => {

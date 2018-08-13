@@ -1,0 +1,100 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar class="mat-accent m-0">
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <span class="title dialog-title">{{speciesDetail?.short_name}}</span>
+      <span fxFlex></span>
+      <a mat-icon-button [routerLink]="['species/', speciesDetail.short_name]" target="_blank" aria-label="Open Gene Detail Page">
+        <mat-icon>fullscreen</mat-icon>
+      </a>
+      <button mat-icon-button (click)="close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="" fusePerfectScrollbar>
+    <div class="agb-gene-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start center" noctuaPerfectScrollbar>
+      <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Species Name
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.long_name;else no_info_content" class="agb-body">
+            <p>
+              {{ speciesDetail.long_name }}
+            </p>
+          </div>
+        </div>
+        <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Total Number of protein coding genes
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.gene_count;else no_info_content" class="agb-body">
+            <p>
+              <a href="/species/genes/(list:genes/{{speciesDetail.short_name}}/default)">{{ speciesDetail.gene_count }}</a>
+
+            </p>
+          </div>
+        </div>
+        <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              NCBI taxonomy
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.taxon_id;else no_info_content" class="agb-body">
+            <p>
+              <!-- <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{speciesDetail.taxon_id}}"> -->
+              <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{speciesDetail.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
+                {{speciesDetail.taxon_id}}
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Tree of Life Web Project
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.short_name;else no_info_content" class="agb-body">
+            <p>
+              <a *ngFor="let s of speciesDetail.long_name.split('-')" href="http://tolweb.org/{{s}}">
+                {{ s }}
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Wikipedia
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.long_name;else no_info_content" class="agb-body">
+            <p>
+              <a *ngFor="let s of speciesDetail.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
+                {{ s }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #no_info_content>
+  <div class="agb-alert">
+    no information yet
+  </div>
+</ng-template>
