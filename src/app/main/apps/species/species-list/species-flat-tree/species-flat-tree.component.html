@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
   <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
     <strong>
-      Tree View
+      Nested View
     </strong>
     <span fxFlex></span>
     <button mat-icon-button color='primary' matTooltip='Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
@@ -11,9 +11,8 @@
     </button>
     <button mat-button [matMenuTriggerFor]="changeView">Change View</button>
     <mat-menu #changeView="matMenu">
-      <a [routerLink]="['/species']" mat-menu-item>Tree View</a>
-      <a [routerLink]="['/species/horizontal-tree']" mat-menu-item>Horizontal Tree View</a>
-      <a [routerLink]="['/species/graph-tree']" mat-menu-item>Graph View</a>
+      <a [routerLink]="['/species']" mat-menu-item>Nested View</a>
+      <a [routerLink]="['/species/treeview']" mat-menu-item>Tree View</a>
     </mat-menu>
   </div>
   <div class="px-10" class="agb-column-subtoolbar" fxLayout="row" fxLayoutAlign="start center">

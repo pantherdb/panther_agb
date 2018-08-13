@@ -38,7 +38,7 @@ const routes = [
   }, {
     path: 'horizontal-tree', component: SpeciesHorizontalTreeComponent
   }, {
-    path: 'graph-tree', component: SpeciesGraphTreeComponent
+    path: 'treeview', component: SpeciesGraphTreeComponent
   }, {
     path: ':id', component: SpeciesDetailComponent
   }];
