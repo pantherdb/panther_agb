@@ -42,7 +42,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
   proxySpecies: any;
   selected_proxy_species: any;
   species: string;
-  SpeciesInfo: any;
+  speciesDetail: any;
   exporter: any;
   private unsubscribeAll: Subject<any>;
 
@@ -72,8 +72,8 @@ export class GeneListComponent implements OnInit, OnDestroy {
         //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
       });
       this.speciesService.getSpeciesDetail(this.species).then(response => {
-        this.SpeciesInfo = this.speciesService.speciesDetail;
-        //console.log(this.SpeciesInfo);
+        this.speciesDetail = this.speciesService.speciesDetail;
+        //console.log(this.speciesDetail);
       });
 
     });
@@ -101,8 +101,8 @@ export class GeneListComponent implements OnInit, OnDestroy {
     this.genesDialogService.openGenePreview(species);
   }
 
-  speciesDetail(): void {
-    this.router.navigateByUrl(`species/${this.SpeciesInfo.short_name}`);
+  openSpeciesDetail() {
+    this.router.navigateByUrl(`species/${this.speciesDetail.short_name}`);
   }
 
   changeProxyGenes(value) {

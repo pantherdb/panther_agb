@@ -7,9 +7,9 @@
             Species Name
           </div>
         </div>
-        <div *ngIf="SpeciesInfo?.long_name;else no_info_content" class="agb-body">
+        <div *ngIf="speciesDetail?.long_name;else no_info_content" class="agb-body">
           <p>
-            {{ SpeciesInfo.long_name }}
+            {{ speciesDetail.long_name }}
           </p>
         </div>
       </div>
@@ -19,9 +19,9 @@
             Total Number of protein coding genes
           </div>
         </div>
-        <div *ngIf="SpeciesInfo?.gene_count;else no_info_content" class="agb-body">
+        <div *ngIf="speciesDetail?.gene_count;else no_info_content" class="agb-body">
           <p>
-            <a href= "/species/genes/(list:genes/{{SpeciesInfo.short_name}}/default)">{{ SpeciesInfo.gene_count }}</a>
+            <a href= "/species/genes/(list:genes/{{speciesDetail.short_name}}/default)">{{ speciesDetail.gene_count }}</a>
 
           </p>
         </div>
@@ -32,11 +32,11 @@
             NCBI taxonomy
           </div>
         </div>
-        <div *ngIf="SpeciesInfo?.taxon_id;else no_info_content" class="agb-body">
+        <div *ngIf="speciesDetail?.taxon_id;else no_info_content" class="agb-body">
           <p>
-            <!-- <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{SpeciesInfo.taxon_id}}"> -->
-            <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{SpeciesInfo.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
-              {{SpeciesInfo.taxon_id}}
+            <!-- <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{speciesDetail.taxon_id}}"> -->
+            <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{speciesDetail.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
+              {{speciesDetail.taxon_id}}
             </a>
           </p>
         </div>
@@ -47,9 +47,9 @@
             Tree of Life Web Project
           </div>
         </div>
-        <div *ngIf="SpeciesInfo?.short_name;else no_info_content" class="agb-body">
+        <div *ngIf="speciesDetail?.short_name;else no_info_content" class="agb-body">
           <p>
-            <a *ngFor="let s of SpeciesInfo.long_name.split('-')" href="http://tolweb.org/{{s}}">
+            <a *ngFor="let s of speciesDetail.long_name.split('-')" href="http://tolweb.org/{{s}}">
               {{ s }}
             </a>
           </p>
@@ -61,9 +61,9 @@
             Wikipedia
           </div>
         </div>
-        <div *ngIf="SpeciesInfo?.long_name;else no_info_content" class="agb-body">
+        <div *ngIf="speciesDetail?.long_name;else no_info_content" class="agb-body">
           <p>
-            <a *ngFor="let s of SpeciesInfo.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
+            <a *ngFor="let s of speciesDetail.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
               {{ s }}
             </a>
           </p>

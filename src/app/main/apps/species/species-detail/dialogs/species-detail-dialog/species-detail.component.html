@@ -12,7 +12,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div mat-dialog-content class="" fusePerfectScrollbar>
+  <div mat-dialog-content class="" noctuaPerfectScrollbar>
     <div class="agb-gene-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start center" noctuaPerfectScrollbar>
       <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
         <div class="agb-card-simple mat-elevation-z1">
@@ -35,8 +35,20 @@
           </div>
           <div *ngIf="speciesDetail?.gene_count;else no_info_content" class="agb-body">
             <p>
-              <a href="/species/genes/(list:genes/{{speciesDetail.short_name}}/default)">{{ speciesDetail.gene_count }}</a>
-
+              <a href="/species/genes/(list:genes/{{speciesDetail.short_name}}/default)" target="_blank">
+                {{ speciesDetail.gene_count }}</a>
+            </p>
+          </div>
+        </div>
+        <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Species Timescale
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.timescale;else no_info_content" class="agb-body">
+            <p>
+              {{ speciesDetail.timescale }}
             </p>
           </div>
         </div>
@@ -49,7 +61,8 @@
           <div *ngIf="speciesDetail?.taxon_id;else no_info_content" class="agb-body">
             <p>
               <!-- <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{speciesDetail.taxon_id}}"> -->
-              <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{speciesDetail.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
+              <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{speciesDetail.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock"
+                target="_blank">
                 {{speciesDetail.taxon_id}}
               </a>
             </p>
@@ -63,7 +76,7 @@
           </div>
           <div *ngIf="speciesDetail?.short_name;else no_info_content" class="agb-body">
             <p>
-              <a *ngFor="let s of speciesDetail.long_name.split('-')" href="http://tolweb.org/{{s}}">
+              <a *ngFor="let s of speciesDetail.long_name.split('-')" href="http://tolweb.org/{{s}}" target="_blank">
                 {{ s }}
               </a>
             </p>
@@ -77,7 +90,7 @@
           </div>
           <div *ngIf="speciesDetail?.long_name;else no_info_content" class="agb-body">
             <p>
-              <a *ngFor="let s of speciesDetail.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
+              <a *ngFor="let s of speciesDetail.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}" target="_blank">
                 {{ s }}
               </a>
             </p>

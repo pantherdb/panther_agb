@@ -12,8 +12,8 @@
     @include media-breakpoint('gt-md') {}
   }
   .agb-tree-container {
-    padding: 10px;
-    padding-bottom: 300px;
+    padding: 5px;
+    padding-bottom: 200px;
   }
   .agb-tree-node {
     @include deep-height(25px);

@@ -1,17 +1,19 @@
 .agb-column-toolbar {
-  padding: 10px;
-  @include deep-height(62px);
-  @include mat-elevation(2);
+  padding: 5px;
+  @include deep-height(40px); // @include mat-elevation(2);
   border-bottom: #BBB solid 1px;
   background-color: #F2F2F2;
-  z-index: 10
+  z-index: 10;
+  button {
+    @include deep-height(30px);
+    line-height: 30px;
+  }
 }
 
 .agb-column-subtoolbar {
-  padding: 10px;
+  padding: 5px;
   color: rgba(0, 0, 0, 0.54);
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 12px; //line-height: 20px;
   font-weight: 500;
   @include deep-height(40px);
   @include mat-elevation(2);

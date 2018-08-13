@@ -15,7 +15,7 @@ export class SpeciesDetailComponent implements OnInit {
   sort: MatSort;
 
   species: string;
-  SpeciesInfo: any;
+  speciesDetail: any;
   //displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   //dataSource;
 
@@ -28,8 +28,8 @@ export class SpeciesDetailComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
       this.speciesService.getSpeciesDetail(this.species).then(response => {
-        this.SpeciesInfo = this.speciesService.speciesDetail;
-        //console.log(this.SpeciesInfo);
+        this.speciesDetail = this.speciesService.speciesDetail;
+        //console.log(this.speciesDetail);
       });
     });
   }

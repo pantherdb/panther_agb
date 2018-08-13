@@ -1,10 +1,13 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="agb-sidenav mat-elevation-z4">
-  <div class="agb-column-toolbar" fxLayout="row">
+  <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
+    <strong>
+      Tree View
+    </strong>
     <span fxFlex></span>
     <button mat-icon-button color='primary' matTooltip='Select ancestral genome by clicking on a node in the tree, to retrieve a list of protein-coding genes in that genome
        (and their proxy genes in an extant genome).' #tooltip="matTooltip" (mouseenter)="$event.stopImmediatePropagation()"
       (mouseleave)="$event.stopImmediatePropagation()" (click)="tooltip.toggle()" matTooltipPosition='above' [matTooltipClass]="'tooltip'">
-      <mat-icon>help</mat-icon>
+      <mat-icon class="s-16">help</mat-icon>
     </button>
     <button mat-button [matMenuTriggerFor]="changeView">Change View</button>
     <mat-menu #changeView="matMenu">
@@ -13,7 +16,7 @@
       <a [routerLink]="['/species/graph-tree']" mat-menu-item>Graph View</a>
     </mat-menu>
   </div>
-  <div class="px-10" class="agb-column-subtoolbar" fxLayout="row">
+  <div class="px-10" class="agb-column-subtoolbar" fxLayout="row" fxLayoutAlign="start center">
     <div fxFlex="">
       Species
     </div>

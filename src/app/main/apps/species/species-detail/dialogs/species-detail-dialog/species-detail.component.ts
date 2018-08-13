@@ -34,7 +34,7 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
     this.species = this._data.species
     this.speciesService.getSpeciesDetail(this.species).then(response => {
       this.speciesDetail = this.speciesService.speciesDetail;
-      //console.log(this.SpeciesInfo);
+      //console.log(this.speciesDetail);
     });
 
   }
