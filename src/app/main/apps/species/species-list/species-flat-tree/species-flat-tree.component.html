@@ -34,7 +34,7 @@
         <button mat-icon-button disabled class="agb-icon-button"></button>
         <button [ngStyle]="{'color': node.timescaleColor.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
           <mat-icon class="s-18">
-            pets
+            history
           </mat-icon>
         </button>
         {{node.long_name}}
@@ -61,7 +61,7 @@
         </button>
         <button [ngStyle]="{'color': node.timescaleColor.color}" mat-icon-button class="agb-icon-button" [attr.aria-label]="Timescale">
           <mat-icon class="s-18">
-            pets
+            history
           </mat-icon>
         </button>
         {{node.long_name}}
@@ -87,7 +87,7 @@
     <div *ngFor="let legend of timescaleLegend">
       <button [ngStyle]="{'color': legend.color}" mat-icon-button class="agb-legend-button" [attr.aria-label]="Timescale">
         <mat-icon class="s-12">
-          pets
+          history
         </mat-icon>
         <span>{{legend.label}}</span>
       </button>

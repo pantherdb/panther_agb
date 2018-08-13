@@ -1,27 +1,17 @@
 <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-    <!--
-    <mat-form-field fxFlex="60" class="">
-      <mat-label>
-        Search
-        <strong class="">{{genes?.length}}</strong>
-        <em>
-          genes in {{speciesDetail?.long_name}}
-        </em>
-      </mat-label>
-
-      <input id="search" matInput #filter placeholder="" autocomplete="off">
-    </mat-form-field>
-  -->
+    Filter
+    <input class="agb-select-legacy" fxFlex="300px" matInput #filter placeholder="{{genes?.length}} genes in {{speciesDetail?.long_name}}"
+      autocomplete="off">
     <div>
-      <strong class="">{{genes?.length}}</strong> genes in {{speciesDetail?.long_name}}
+      <strong class=""></strong>
     </div>
     <span fxFlex=""></span>
     <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000" (click)="openSpeciesDetail()">
       <mat-icon class="fa fa-info s-16"> </mat-icon>
     </button>
-    <button mat-icon-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download()">
-      <mat-icon class="fa fa-file-excel-o s-16"> </mat-icon>
+    <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download()">
+      Export
     </button>
 
     <!-- <mat-label fxFlex="10" fxFlexOffset="1000">

@@ -1,7 +1,6 @@
 import { environment } from 'environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
@@ -90,7 +89,7 @@ export class SpeciesService {
         });
     }
 
-    _buildTimescaleColor(timescale?: number): string {
+    private _buildTimescaleColor(timescale?: number): string {
         let bucket = 0;
         timescale = Number(timescale);
 
@@ -107,14 +106,14 @@ export class SpeciesService {
         return this.timescaleLegend[bucket];
     }
 
-    _addSpeciesColor(species: Species[]) {
+    private _addSpeciesColor(species: Species[]) {
         const self = this;
         _.each(species, function (speciesNode) {
             speciesNode.timescaleColor = self._buildTimescaleColor(speciesNode.timescale);
         });
     }
 
-    _buildSpeciesTree(species: Species[]): SpeciesNode[] {
+    private _buildSpeciesTree(species: Species[]): SpeciesNode[] {
         let getNestedChildren = (arr, parent_id, level) => {
             let out = []
             for (let i in arr) {
@@ -134,7 +133,7 @@ export class SpeciesService {
     }
 
 
-    _addHeirarchyLevel(speciesNodes: Species[]) {
+    private _addHeirarchyLevel(speciesNodes: Species[]) {
         _.each(speciesNodes, function (speciesNode) {
             let level = 0;
             let parent = speciesNode;

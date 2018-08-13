@@ -2,6 +2,12 @@
 @import "src/@agb.common/scss/agb.common";
 :host {
   width: 100%;
+  h2 {
+    font-size: 30px;
+  }
+  h4 {
+    font-size: 24px;
+  }
   .header {
     position: relative;
     height: 280px;
@@ -47,7 +53,14 @@
           font-size: 14px;
         }
       }
-      .noc-action {}
+      .noc-action {
+        button {
+          small {
+            font-size: 8px;
+            color: #999;
+          }
+        }
+      }
     }
   }
   .content {}

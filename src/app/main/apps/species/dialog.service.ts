@@ -3,11 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-
 import { SpeciesDetailDialogComponent } from './species-detail/dialogs/species-detail-dialog/species-detail.component';
-import { SpeciesDetailComponent } from './species-detail/species-detail.component';
+
 
 import 'rxjs/add/operator/map';
 

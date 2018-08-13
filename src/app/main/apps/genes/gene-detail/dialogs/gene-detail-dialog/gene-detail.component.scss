@@ -5,7 +5,8 @@
     width: 100%;
   }
   @include media-breakpoint-up('sm') {
-    width: 940px;
+    width: 600px;
+    @include deep-height(95%);
   }
   .agb-gene-panel {
     padding: 15px 5px;
@@ -24,8 +25,11 @@
   .mat-dialog-container {
     padding: 0;
   }
+  .mat-dialog-content {
+    @include deep-height(95%);
+  }
   .dialog-content-wrapper {
-    max-height: 85vh;
+    @include deep-height(95%);
     display: flex;
     flex-direction: column;
   }

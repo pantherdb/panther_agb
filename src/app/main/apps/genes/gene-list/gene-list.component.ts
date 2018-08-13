@@ -78,6 +78,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
 
     });
 
+
     fromEvent(this.filter.nativeElement, 'keyup')
       .pipe(
         takeUntil(this.unsubscribeAll),
@@ -90,6 +91,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+
   }
 
   download(): void {

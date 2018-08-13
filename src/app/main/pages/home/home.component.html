@@ -1,13 +1,14 @@
-<div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
+<div class="w-100-p" noctuaPerfectScrollbar>
   <div class="header mat-accent-bg p-16 p-sm-24" fxLayout="column" fxLayoutAlign="center center">
     <div class="hero-text">
-      <mat-icon class="hero-icon">filter_list</mat-icon>
+      <mat-icon class="hero-icon">pets</mat-icon>
       <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
         <strong class="">PANTHER</strong>
         <br> Ancestral Genomes Database
       </h1>
       <h3 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
-        Comparative analysis of protein sequences from diverse extant species can infer the evolutionary history of protein coding genes and reconstruct the repertoire of protein coding genes in extinct ancestral species.
+        Comparative analysis of protein sequences from diverse extant species can infer the evolutionary history of protein coding
+        genes and reconstruct the repertoire of protein coding genes in extinct ancestral species.
       </h3>
       <div class="noc-action mt-8 mb-8">
         <button mat-raised-button [routerLink]="['species']" class="mat-green-600-bg">
@@ -16,6 +17,49 @@
       </div>
     </div>
   </div>
-  <div class="content p-24">
+  <div class="w-100-p content p-24" fxLayout="column" fxLayoutAlign="start center">
+    <div class="" fxLayout="row" fxLayoutAlign="center center">
+      <div class="p-24">
+        <h2>
+          Explore
+        </h2>
+      </div>
+    </div>
+    <div class="noc-container">
+      <div class="mb-48" fxLayout="row">
+        <div class="p-24" fxFlex="40%">
+          <h4>
+            Browse the ancestral genomes
+          </h4>
+          Select a node in a species tree to retrieve the set of protein coding genes inferred to have been present in that common
+          ancestor
+        </div>
+        <div class="p-24" fxFlex="60%">
+          <img class="w-100-p" src="assets/images/home/treeview.png">
+        </div>
+      </div>
+
+      <div class="" fxLayout="row" fxLayoutAlign="center center">
+        <div class="p-24">
+          <h2>
+            Ready To Browse the
+            <strong>Ancestral Genomes Database</strong>
+          </h2>
+        </div>
+      </div>
+      <div class="noc-action mt-8 mb-8" fxLayout="row" fxLayoutAlign="center center">
+        <button mat-raised-button [routerLink]="['species']" class="mat-green-600-bg">
+          Go To Species Tree
+        </button>
+        <button mat-raised-button [routerLink]="['species/graph-tree']" class="mat-grey-100-bg">
+          Graph Tree
+          <small>(experimental)</small>
+        </button>
+        <button mat-raised-button [routerLink]="['species/horizontal-tree']" class="mat-grey-100-bg">
+          Horizontal Tree
+          <small>(experimental)</small>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
