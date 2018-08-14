@@ -18,33 +18,33 @@ import { Species, SpeciesNode, SpeciesFlatNode } from './models/species'
 export class SpeciesService {
     timescaleLegend: any = [
         {
-            color: 'blue',
+            color: 'black',
             min: 0,
             max: 0.5,
             label: '0'
         }, 
         {
-            color: '#483d8b',
+            color: 'blue',
             min: 1,
             max: 50,
             label: '1 - 50'
         }, {
-            color: 'orange',
+            color: 'cyan',
             min: 51,
             max: 200,
             label: '51 - 200'
         }, {
-            color: 'purple',
+            color: 'green',
             min: 201,
             max: 500,
             label: '201 - 500'
         }, {
-            color: '#8B0000',
+            color: 'orange',
             min: 501,
             max: 1000,
             label: '501 - 1000'
         }, {
-            color: '#e91e63',
+            color: 'purple',
             min: 1001,
             max: 2000,
             label: '1001 - 2000'
