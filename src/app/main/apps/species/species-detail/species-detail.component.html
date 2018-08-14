@@ -16,6 +16,18 @@
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
+            Estimated Speciation Time
+          </div>
+        </div>
+        <div *ngIf="speciesDetail?.timescale;else no_info_content" class="agb-body">
+          <p>
+            {{ speciesDetail.timescale }} (Million Years Ago)
+          </p>
+        </div>
+      </div>
+      <div class="agb-card-simple mat-elevation-z1">
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
             Total Number of protein coding genes
           </div>
         </div>

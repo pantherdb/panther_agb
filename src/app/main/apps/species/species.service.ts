@@ -20,28 +20,39 @@ export class SpeciesService {
         {
             color: 'blue',
             min: 0,
-            max: 10,
-            label: '1 - 10'
+            max: 0.5,
+            label: '0'
+        }, 
+        {
+            color: '#483d8b',
+            min: 1,
+            max: 50,
+            label: '1 - 50'
         }, {
             color: 'orange',
-            min: 10,
-            max: 1000,
-            label: '10 - 1000'
+            min: 51,
+            max: 200,
+            label: '51 - 200'
         }, {
             color: 'purple',
-            min: 1000,
-            max: 2000,
-            label: '1000 - 2000'
+            min: 201,
+            max: 500,
+            label: '201 - 500'
+        }, {
+            color: '#8B0000',
+            min: 501,
+            max: 1000,
+            label: '501 - 1000'
         }, {
             color: '#e91e63',
-            min: 2000,
-            max: 3500,
-            label: '2000 - 3500'
+            min: 1001,
+            max: 2000,
+            label: '1001 - 2000'
         }, {
             color: 'red',
-            min: 3500,
-            max: 10000,
-            label: '3500+'
+            min: 2001,
+            max: 8000,
+            label: '2001 - 8000'
         }
     ];
     species: Species[];

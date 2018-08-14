@@ -37,7 +37,7 @@
     position: absolute;
     left: 10px;
     bottom: 10px;
-    @include deep-height(140px);
+    @include deep-height(180px);
     @include deep-width(90px);
     background-color: rgba(#DDD, 0.85); // border: 3px solid #BBB;
     border: #BBB solid 1px;
