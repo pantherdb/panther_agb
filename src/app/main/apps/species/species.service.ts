@@ -52,7 +52,7 @@ export class SpeciesService {
             color: 'red',
             min: 2001,
             max: 8000,
-            label: '2001 - 8000'
+            label: '2001+'
         }
     ];
     species: Species[];
