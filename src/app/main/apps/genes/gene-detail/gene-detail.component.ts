@@ -21,6 +21,10 @@ export class GeneDetailComponent implements OnInit {
   gene; Gene;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
+  displayedColumns_da: string[] = ['go_accession', 'go_name'];
+  dataSource_da;
+  displayedColumns_ia: string[] = ['go_accession', 'go_name'];
+  dataSource_ia;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +40,8 @@ export class GeneDetailComponent implements OnInit {
         this.gene.sequence = this.gene.sequence.replace(/\_/g, '');   
         this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
         this.dataSource.sort = this.sort;
+        this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
+        this.dataSource_ia = new MatTableDataSource(this.gene.inherited_paint_annotations);
 
         this.breadcrumbsService.setCurrentBreadcrumbs([{
           label: this.gene.ptn,
