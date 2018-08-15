@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
-import { speciesNodes, treeNodes } from '../../data/species-nodes';
+import { treeNodes } from '../../data/species-nodes';
 
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
