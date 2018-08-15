@@ -2,6 +2,9 @@
 @import "src/@agb.common/scss/agb.common";
 :host {
   width: 100%; //white-space:nowrap;
+  .background-highlight {
+    background-color: rgb(210, 242, 68);
+  }
   .agb-sidenav {
     position: relative;
     @include deep-width(100%);

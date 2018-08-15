@@ -1,8 +1,8 @@
-import { Component, OnInit, Injectable, ViewChild } from '@angular/core';
+import { Component, OnInit, Injectable, AfterViewChecked, ViewChild, ViewChildren, Renderer2, ElementRef } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNode } from '@angular/material/tree';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
@@ -16,9 +16,20 @@ import { SpeciesService } from './../../species.service';
   templateUrl: './species-flat-tree.component.html',
   styleUrls: ['./species-flat-tree.component.scss'],
 })
-export class SpeciesFlatTreeComponent implements OnInit {
+export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
   @ViewChild('tree') tree;
+  @ViewChildren(MatTreeNode, { read: ElementRef }) treeNodes: ElementRef[];
 
+  hasListener: any[] = [];
+  oldHighlight: ElementRef;
+
+  updateHighlight = (newHighlight: ElementRef) => {
+    this.oldHighlight && this.renderer.removeClass(this.oldHighlight.nativeElement, 'background-highlight');
+
+    this.renderer.addClass(newHighlight.nativeElement, 'background-highlight');
+    this.oldHighlight = newHighlight;
+  }
+  
   speciesList: SpeciesNode[];
   selectedSpecies = null;
 
@@ -31,6 +42,7 @@ export class SpeciesFlatTreeComponent implements OnInit {
   constructor(private router: Router,
     private speciesDialogService: SpeciesDialogService,
     private speciesService: SpeciesService,
+    private renderer: Renderer2,
     private breadcrumbsService: BreadcrumbsService) {
 
     this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
@@ -95,4 +107,24 @@ export class SpeciesFlatTreeComponent implements OnInit {
   private _getChildren = (node: SpeciesNode): Observable<SpeciesNode[]> => observableOf(node.children);
 
   hasChild = (_: number, _nodeData: SpeciesFlatNode) => _nodeData.expandable;
+
+  ngAfterViewChecked() {
+    this.treeNodes.forEach((reference) => {
+      if (!this.hasListener.includes(reference.nativeElement)) {
+        console.log('* tick');
+        
+        this.renderer.listen(reference.nativeElement, 'click', () => {
+          this.updateHighlight(reference);
+        });
+        this.renderer.listen(reference.nativeElement.children.item(0), 'click', () => {
+          this.updateHighlight(reference);
+        });
+        
+        this.hasListener = this.hasListener.concat([ reference.nativeElement ]);
+      }
+    });
+    
+    this.hasListener = this.hasListener.filter((element) => document.contains(element));
+    console.log('*', this.hasListener.length);
+  }
 }
