@@ -40,6 +40,11 @@
               ({{gene.family_name}})
             </a>
           </p>
+          <p>
+            <a href="http://pantherdb.org/treeViewer/treeViewer.jsp?book={{gene.pthr}}">
+              Gene Tree Viewer
+            </a>
+          </p>
         </div>
       </div>
 
@@ -97,34 +102,34 @@
         </div>
       </div>
       <div class="agb-card-simple mat-elevation-z1">
-          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-            <div class="agb-title">
-              Inherited Gene Ontology annotations to this ancestral gene
-            </div>
-          </div>
-          <div class="agb-body p-0">
-            <mat-table [dataSource]="dataSource_ia" class="" matSort>
-              <ng-container matColumnDef="go_accession">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> GO Accession </mat-header-cell>
-                <mat-cell *matCellDef="let inherited_anno">
-                  <a href="http://amigo.geneontology.org/amigo/term/{{inherited_anno.go_accession}}">
-                    {{inherited_anno.go_accession}}
-                  </a>
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="go_name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> GO Name </mat-header-cell>
-                <mat-cell *matCellDef="let inherited_anno">
-                  <a href="http://amigo.geneontology.org/amigo/term/{{inherited_anno.go_accession}}">
-                    {{inherited_anno.go_name}}
-                  </a>
-                </mat-cell>
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
-              <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
-            </mat-table>
+        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="agb-title">
+            Inherited Gene Ontology annotations to this ancestral gene
           </div>
         </div>
+        <div class="agb-body p-0">
+          <mat-table [dataSource]="dataSource_ia" class="" matSort>
+            <ng-container matColumnDef="go_accession">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> GO Accession </mat-header-cell>
+              <mat-cell *matCellDef="let inherited_anno">
+                <a href="http://amigo.geneontology.org/amigo/term/{{inherited_anno.go_accession}}">
+                  {{inherited_anno.go_accession}}
+                </a>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="go_name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> GO Name </mat-header-cell>
+              <mat-cell *matCellDef="let inherited_anno">
+                <a href="http://amigo.geneontology.org/amigo/term/{{inherited_anno.go_accession}}">
+                  {{inherited_anno.go_name}}
+                </a>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
+            <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
+          </mat-table>
+        </div>
+      </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
