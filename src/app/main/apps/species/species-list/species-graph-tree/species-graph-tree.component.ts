@@ -75,7 +75,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   selectedColorScheme: string;
   dataVisable: any;
   realTimeData: any;
-  zoomLevel: any;
+  zoomLevel = 0.06643847827763708;
   panOffsetX;
   panOffsetY;
 
