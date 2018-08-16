@@ -89,7 +89,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   ngOnInit() {
 
     setInterval(this.updateData.bind(this), 1000);
-
+    setTimeout(this.disableZoom.bind(this), 1000);
     if (!this.fitContainer) {
       this.applyDimensions();
     }
@@ -101,6 +101,10 @@ export class SpeciesGraphTreeComponent implements OnInit {
 
   updateData() {
 
+  }
+
+  disableZoom() {
+    this.autoZoom = false;    
   }
 
   applyDimensions() {
@@ -185,6 +189,15 @@ export class SpeciesGraphTreeComponent implements OnInit {
 
   center() {
     this.center$.next(true);
+  }
+
+  onMouseWheel(event, graph) {
+    if(this.autoZoom || !this.enableZoom)
+      return;
+    let zoom = graph.zoomLevel + 0.0015;
+    if(zoom < 0.1) zoom = 0.1;
+    if(zoom > 1) zoom = 1;
+    graph.zoomLevel = zoom;
   }
 
 }
