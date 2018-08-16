@@ -27,7 +27,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   autoZoom = true;
   panOnZoom = true;
   enableZoom = true;
-  autoCenter = false;
+  autoCenter = true;
 
   // observables
   update$: Subject<any> = new Subject();

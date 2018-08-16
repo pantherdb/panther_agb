@@ -35,7 +35,7 @@
           </div>
           <div *ngIf="speciesDetail?.gene_count;else no_info_content" class="agb-body">
             <p>
-              <a href="/species/genes/(list:genes/{{speciesDetail.short_name}}/default)" target="_blank">
+              <a href="/species/genes/(list:genes/{{speciesDetail.short_name}}/default species)" target="_blank">
                 {{ speciesDetail.gene_count }}</a>
             </p>
           </div>
