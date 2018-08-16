@@ -10,6 +10,7 @@ export function generateSpeciesGraph() {
     function addSpeciesIds(nodes) {
         _.each(nodes, function (node) {
             node.id = uuid();
+            node.id = node.id.replace(/-/g, '');
             node.children && addSpeciesIds(node.children)
         });
     }
