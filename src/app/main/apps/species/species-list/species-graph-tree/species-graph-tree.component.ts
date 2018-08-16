@@ -24,7 +24,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   width = 700;
   height = 300;
   fitContainer = true;
-  autoZoom = false;
+  autoZoom = true;
   panOnZoom = true;
   enableZoom = true;
   autoCenter = false;
@@ -75,7 +75,8 @@ export class SpeciesGraphTreeComponent implements OnInit {
   selectedColorScheme: string;
   dataVisable: any;
   realTimeData: any;
-  zoomLevel = 0.06643847827763708;
+  //zoomLevel = 0.06643847827763708;
+  zoomLevel: any;
   panOffsetX;
   panOffsetY;
 
