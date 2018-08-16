@@ -17,7 +17,6 @@ export class SpeciesGraphTreeComponent implements OnInit {
   chartType = 'directed-graph';
   chartTypeGroups: any;
   chart: any;
-  graph: { links: any[]; nodes: any[] };
   hierarchialGraph: { links: any[]; nodes: any[] };
 
   view: any[];
@@ -75,8 +74,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   selectedColorScheme: string;
   dataVisable: any;
   realTimeData: any;
-  //zoomLevel = 0.06643847827763708;
-  zoomLevel: any;
+  zoomLevel = 1;
   panOffsetX;
   panOffsetY;
 
