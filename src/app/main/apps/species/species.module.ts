@@ -19,6 +19,7 @@ import { SpeciesHorizontalTreeComponent } from './species-list/species-horizonta
 import { SpeciesVerticalTreeComponent } from './species-list/species-vertical-tree/species-vertical-tree.component';
 import { SpeciesGraphTreeComponent } from './species-list/species-graph-tree/species-graph-tree.component';
 import { SpeciesFlatTreeComponent } from './species-list/species-flat-tree/species-flat-tree.component';
+import { SpeciesD3TreeComponent } from './species-list/species-d3-tree/species-d3-tree.component';
 
 const routes = [
   {
@@ -40,6 +41,8 @@ const routes = [
   }, {
     path: 'treeview', component: SpeciesGraphTreeComponent
   }, {
+    path: 'd3-tree', component: SpeciesD3TreeComponent
+  }, {
     path: ':id', component: SpeciesDetailComponent
   }];
 
@@ -52,6 +55,7 @@ const routes = [
     SpeciesVerticalTreeComponent,
     SpeciesGraphTreeComponent,
     SpeciesFlatTreeComponent,
+    SpeciesD3TreeComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

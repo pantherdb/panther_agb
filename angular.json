@@ -34,7 +34,7 @@
               "node_modules/primeng/resources/themes/omega/theme.css"
 
             ],
-            "scripts": []
+            "scripts": [ "node_modules/jquery/dist/jquery.min.js" ]
           },
           "configurations": {
             "production": {
