@@ -5,7 +5,7 @@ import * as $ from "jquery";
 @Component({
   selector: 'app-species-d3-tree',
   templateUrl: './species-d3-tree.component.html',
-  styleUrls: ['./species-d3-tree.component.scss']
+  styleUrls: ['./species-d3-tree.component.css']
 })
 export class SpeciesD3TreeComponent implements OnInit {
 
@@ -13,8 +13,8 @@ export class SpeciesD3TreeComponent implements OnInit {
 
   ngOnInit() {
     // Get JSON data
-    const treeJSON = d3.json("assets/data/flare.json", function (error, treeData) {
-
+    const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
+      console.log(treeData);
       // Calculate total nodes, max label length
       var totalNodes = 0;
       var maxLabelLength = 0;
