@@ -75,7 +75,7 @@ export class SpeciesD3TreeComponent implements OnInit {
       // sort the tree according to the node names
 
       function sortTree() {
-        tree.sort(function (a:any, b:any) {
+        tree.sort(function (a: any, b: any) {
           return b.name.toLowerCase() < a.name.toLowerCase() ? 1 : -1;
         });
       }
@@ -122,8 +122,8 @@ export class SpeciesD3TreeComponent implements OnInit {
       // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
       var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 3]).on("zoom", zoom);
 
-      function initiateDrag(d:any, domNode:any) {
-        
+      function initiateDrag(d: any, domNode: any) {
+
         draggingNode = d;
         d3.select(domNode).select('.ghostCircle').attr('pointer-events', 'none');
         d3.selectAll('.ghostCircle').attr('class', 'ghostCircle show');
@@ -138,12 +138,12 @@ export class SpeciesD3TreeComponent implements OnInit {
           // remove link paths
           links = tree.links(nodes);
           nodePaths = svgGroup.selectAll("path.link")
-            .data(links, function (d:any) {
+            .data(links, function (d: any) {
               return d.target.id;
             }).remove();
           // remove child nodes
           nodesExit = svgGroup.selectAll("g.node")
-            .data(nodes, function (d:any) {
+            .data(nodes, function (d: any) {
               return d.id;
             }).filter(function (d, i) {
               if (d.id == draggingNode.id) {
@@ -184,7 +184,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           (<any>d3.event).sourceEvent.stopPropagation();
           // it's important that we suppress the mouseover event on the node being dragged. Otherwise it will absorb the mouseover event and the underlying node will not detect it d3.select(this).attr('pointer-events', 'none');
         })
-        .on("drag", (d:any, i) => {
+        .on("drag", (d: any, i) => {
           if (d == root) {
             return;
           }
@@ -383,15 +383,20 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         // Set widths between levels based on maxLabelLength.
         nodes.forEach(function (d) {
-          d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
+          //d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
           // alternatively to keep a fixed scale one can set a fixed depth per level
           // Normalize for fixed-depth by commenting out below line
           // d.y = (d.depth * 500); //500px per level.
+          var depthSize = 50;
+          if (!d.children) {
+            d.depth = treeDepth;
+          }
+          d.y = d.depth * depthSize;
         });
 
         // Update the nodes…
         var node = svgGroup.selectAll("g.node")
-          .data(nodes, function (d:any) {
+          .data(nodes, function (d: any) {
             return d.id || (d.id = ++i);
           });
 
@@ -485,7 +490,7 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         // Update the links…
         var link = svgGroup.selectAll("path.link")
-          .data(links, function (d:any) {
+          .data(links, function (d: any) {
             return d.target.id;
           });
 
@@ -524,7 +529,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           .remove();
 
         // Stash the old positions for transition.
-        nodes.forEach(function (d:any) {
+        nodes.forEach(function (d: any) {
           d.x0 = d.x;
           d.y0 = d.y;
         });
@@ -538,9 +543,15 @@ export class SpeciesD3TreeComponent implements OnInit {
       root.x0 = viewerHeight / 2;
       root.y0 = 0;
 
+      var treeDepth = d3.max(tree(root), function (d) {
+        return d.depth;
+      });
+
+      console.log(treeDepth);
+
       // Layout the tree initially and center on the root node.
       update(root);
-      centerNode(root);
+      //centerNode(root);
 
       var couplingParent1 = tree.nodes(root).filter(function (d) {
         return d['name'] === 'cluster';
@@ -554,7 +565,7 @@ export class SpeciesD3TreeComponent implements OnInit {
         child: couplingChild1
       }];
 
-      multiParents.forEach(function (multiPair:any) {
+      multiParents.forEach(function (multiPair: any) {
         svgGroup.append("path")
           .attr("class", "additionalParentLink")
           .attr("d", function () {
