@@ -12,6 +12,7 @@ import { SpeciesGeneList } from './models/species-gene-list';
 })
 export class GenesService {
     ancestral_genes: SpeciesGeneList[];
+    totalGenes: any;
     proxy_species: any[];
     //proxy_genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
@@ -28,9 +29,10 @@ export class GenesService {
 
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
-                .map(res => res['lists'])
+                //.map(res => res['lists'])
                 .subscribe((response: any) => {
-                    this.ancestral_genes = response;
+                    this.ancestral_genes = response['lists'];
+                    this.totalGenes = response['total'];
                     //this.proxy_genes = response.proxy_genes;
                     this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);
