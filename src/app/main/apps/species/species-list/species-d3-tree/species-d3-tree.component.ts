@@ -383,15 +383,15 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         // Set widths between levels based on maxLabelLength.
         nodes.forEach(function (d) {
-          //d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
-          // alternatively to keep a fixed scale one can set a fixed depth per level
-          // Normalize for fixed-depth by commenting out below line
-          // d.y = (d.depth * 500); //500px per level.
-          var depthSize = 50;
+          d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
+          //alternatively to keep a fixed scale one can set a fixed depth per level
+          //Normalize for fixed-depth by commenting out below line
+          //d.y = (d.depth * 500); //500px per level.
+          /* var depthSize = 50;
           if (!d.children) {
             d.depth = treeDepth;
           }
-          d.y = d.depth * depthSize;
+          d.y = d.depth * depthSize; */
         });
 
         // Update the nodes…
