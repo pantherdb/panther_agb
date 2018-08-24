@@ -22,10 +22,20 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
 
+  //ptn: string;
+  //gene; Gene;
+  //displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
+  //dataSource;
+
   ptn: string;
   gene; Gene;
+  hasProxyGene: boolean;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
+  displayedColumns_da: string[] = ['go_accession', 'go_name'];
+  dataSource_da;
+  displayedColumns_ia: string[] = ['go_accession', 'go_name'];
+  dataSource_ia;
 
   constructor(
     private _matDialogRef: MatDialogRef<GeneDetailDialogComponent>,
@@ -40,11 +50,22 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.ptn = this._data.ptn
     this.geneService.getGeneByPtn(this.ptn).then(response => {
+      //this.gene = this.geneService.gene;
+      //this.gene.sequence = this.gene.sequence.replace(/\./g, '');
+      //this.gene.sequence = this.gene.sequence.replace(/\_/g, '');  
+      //this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
+      //this.dataSource.sort = this.sort;
+
       this.gene = this.geneService.gene;
       this.gene.sequence = this.gene.sequence.replace(/\./g, '');
-      this.gene.sequence = this.gene.sequence.replace(/\_/g, '');  
+      this.gene.sequence = this.gene.sequence.replace(/\_/g, '');
+      this.gene.sequence = this.gene.sequence.replace(/\-/g, '');
+      //console.log(this.gene.proxy_genes);
+      this.hasProxyGene = (this.gene.proxy_genes.length > 0);   
       this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
       this.dataSource.sort = this.sort;
+      this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
+      this.dataSource_ia = new MatTableDataSource(this.gene.inherited_paint_annotations);
 
       this.breadcrumbsService.setCurrentBreadcrumbs([{
         label: this.gene.ptn,

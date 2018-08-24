@@ -19,6 +19,7 @@ export class GeneDetailComponent implements OnInit {
 
   ptn: string;
   gene; Gene;
+  hasProxyGene: boolean;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
   displayedColumns_da: string[] = ['go_accession', 'go_name'];
@@ -37,7 +38,10 @@ export class GeneDetailComponent implements OnInit {
       this.geneService.getGeneByPtn(this.ptn).then(response => {
         this.gene = this.geneService.gene;
         this.gene.sequence = this.gene.sequence.replace(/\./g, '');
-        this.gene.sequence = this.gene.sequence.replace(/\_/g, '');   
+        this.gene.sequence = this.gene.sequence.replace(/\_/g, '');
+        this.gene.sequence = this.gene.sequence.replace(/\-/g, '');
+        //console.log(this.gene.proxy_genes);
+        this.hasProxyGene = (this.gene.proxy_genes.length > 0);   
         this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
         this.dataSource.sort = this.sort;
         this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);

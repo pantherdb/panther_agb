@@ -57,7 +57,7 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.speciesService.getSpeciesList().then(response => {
       this.speciesList = response;
-      console.dir(this.speciesList);
+      //console.dir(this.speciesList);
 
       this.dataSource.data = this.speciesList
       this.tree.treeControl.expandAll();
@@ -111,7 +111,7 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.treeNodes.forEach((reference) => {
       if (!this.hasListener.includes(reference.nativeElement)) {
-        console.log('* tick');
+        //console.log('* tick');
         
         this.renderer.listen(reference.nativeElement, 'click', () => {
           this.updateHighlight(reference);
@@ -125,6 +125,6 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
     });
     
     this.hasListener = this.hasListener.filter((element) => document.contains(element));
-    console.log('*', this.hasListener.length);
+    //console.log('*', this.hasListener.length);
   }
 }
