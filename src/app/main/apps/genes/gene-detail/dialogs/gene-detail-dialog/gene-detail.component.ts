@@ -29,6 +29,8 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
 
   ptn: string;
   gene; Gene;
+  paint;
+  paintIsLoading = true;
   hasProxyGene: boolean;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
@@ -71,6 +73,13 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
         label: this.gene.ptn,
         url: 'gene/' + this.gene.ptn
       }]);
+      this.geneService.getPaintByPtn(this.ptn).then(response => {
+        this.paint = this.geneService.paint;
+        this.paintIsLoading = false;
+        //console.log(this.paint);
+        this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
+        this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
+      });
     });
 
   }

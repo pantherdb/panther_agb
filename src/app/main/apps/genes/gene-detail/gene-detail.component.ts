@@ -19,6 +19,8 @@ export class GeneDetailComponent implements OnInit {
 
   ptn: string;
   gene; Gene;
+  paint;
+  paintIsLoading = true;
   hasProxyGene: boolean;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
@@ -41,7 +43,7 @@ export class GeneDetailComponent implements OnInit {
         this.gene.sequence = this.gene.sequence.replace(/\_/g, '');
         this.gene.sequence = this.gene.sequence.replace(/\-/g, '');
         //console.log(this.gene.proxy_genes);
-        this.hasProxyGene = (this.gene.proxy_genes.length > 0);   
+        this.hasProxyGene = (this.gene.proxy_genes.length > 0);
         this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
         this.dataSource.sort = this.sort;
         this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
@@ -51,6 +53,13 @@ export class GeneDetailComponent implements OnInit {
           label: this.gene.ptn,
           url: 'gene/' + this.gene.ptn
         }]);
+      });
+      this.geneService.getPaintByPtn(this.ptn).then(response => {
+        this.paint = this.geneService.paint;
+        this.paintIsLoading = false;
+        //console.log(this.paint);
+        this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
+        this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
       });
     });
 

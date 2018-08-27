@@ -101,6 +101,10 @@
               <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
               <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
             </mat-table>
+            <mat-card *ngIf="paintIsLoading" style="display: flex; justify-content: center; align-items: center">
+              <mat-progress-spinner mode="indeterminate">
+              </mat-progress-spinner>
+            </mat-card>
           </div>
         </div>
         <div class="agb-card-simple mat-elevation-z1">
@@ -127,12 +131,16 @@
                   </a>
                 </mat-cell>
               </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
-              <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
+              <mat-header-row *matHeaderRowDef="displayedColumns_ia"></mat-header-row>
+              <mat-row *matRowDef="let inherited_anno; columns: displayedColumns_ia;"></mat-row>
             </mat-table>
+            <mat-card *ngIf="paintIsLoading" style="display: flex; justify-content: center; align-items: center">
+              <mat-progress-spinner mode="indeterminate">
+              </mat-progress-spinner>
+            </mat-card>
           </div>
         </div>
-        
+
         <div *ngIf="hasProxyGene" class="agb-card-simple mat-elevation-z1">
           <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
             <div class="agb-title">

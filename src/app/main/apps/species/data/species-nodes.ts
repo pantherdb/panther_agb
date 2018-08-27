@@ -36,8 +36,8 @@ export function generateSpeciesGraph() {
     resultNodes = getSpeciesNodes(treeNodes);
     resultLinks = getSpeciesLinks(1, treeNodes);
 
-    console.dir(resultNodes);
-    console.dir(resultLinks);
+    //console.dir(resultNodes);
+    //console.dir(resultLinks);
 
     return { links: resultLinks, nodes: resultNodes };
 }

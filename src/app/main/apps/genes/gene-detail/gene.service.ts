@@ -12,6 +12,7 @@ import { Gene } from './models/gene';
 })
 export class GeneService {
     gene: any[];
+    paint: any;
     onSpeciesChanged: BehaviorSubject<any>;
 
     constructor(private httpClient: HttpClient) {
@@ -27,6 +28,20 @@ export class GeneService {
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
                     this.gene = response[0];
+                    this.onSpeciesChanged.next(this.gene);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    getPaintByPtn(gene): Promise<any> {
+        const url = `${environment.apiUrl}/genelist/gene_go/${gene}`;
+
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.get<any>(url)
+                .map(res => res['lists'])
+                .subscribe((response: any) => {
+                    this.paint = response[0];
                     this.onSpeciesChanged.next(this.gene);
                     resolve(response);
                 }, reject);
