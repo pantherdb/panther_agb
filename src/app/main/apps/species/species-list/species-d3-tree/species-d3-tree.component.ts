@@ -2,32 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import * as d3 from "d3";
 import * as $ from "jquery";
 
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-
 @Component({
   selector: 'app-species-d3-tree',
   templateUrl: './species-d3-tree.component.html',
   styleUrls: ['./species-d3-tree.component.css']
 })
 export class SpeciesD3TreeComponent implements OnInit {
-  
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
 
   constructor() { }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
     
+    var outerTreeData;
     // Get JSON data
     const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
-      console.log(treeData);
+      //console.log(treeData);
+      outerTreeData = treeData;
       // Calculate total nodes, max label length
       var totalNodes = 0;
       var maxLabelLength = 0;
@@ -560,7 +550,7 @@ export class SpeciesD3TreeComponent implements OnInit {
         return d.depth;
       });
 
-      console.log(treeDepth);
+      //console.log(treeDepth);
 
       // Layout the tree initially and center on the root node.
       update(root);
@@ -601,12 +591,8 @@ export class SpeciesD3TreeComponent implements OnInit {
       });
     });
 
-  }
+    console.log(outerTreeData);
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

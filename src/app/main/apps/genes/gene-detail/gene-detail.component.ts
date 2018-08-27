@@ -7,6 +7,8 @@ import { Gene } from './models/gene';
 import * as _ from 'lodash';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
+import * as $ from "jquery";
+
 @Component({
   selector: 'app-gene-detail',
   templateUrl: 'gene-detail.component.html',
@@ -19,6 +21,7 @@ export class GeneDetailComponent implements OnInit {
 
   ptn: string;
   gene; Gene;
+  paint;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
   displayedColumns_da: string[] = ['go_accession', 'go_name'];
@@ -40,15 +43,23 @@ export class GeneDetailComponent implements OnInit {
         this.gene.sequence = this.gene.sequence.replace(/\_/g, '');   
         this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
         this.dataSource.sort = this.sort;
-        this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
-        this.dataSource_ia = new MatTableDataSource(this.gene.inherited_paint_annotations);
+        //this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
+        //this.dataSource_ia = new MatTableDataSource(this.gene.inherited_paint_annotations);
 
         this.breadcrumbsService.setCurrentBreadcrumbs([{
           label: this.gene.ptn,
           url: 'gene/' + this.gene.ptn
         }]);
       });
+      this.geneService.getPaintByPtn(this.ptn).then(response => {
+         this.paint = this.geneService.paint;
+         //console.log(this.paint);
+         this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
+         this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
+      });
     });
+
+    
 
   }
 

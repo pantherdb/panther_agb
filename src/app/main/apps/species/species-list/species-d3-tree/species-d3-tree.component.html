@@ -1,21 +1,7 @@
 <mat-card class="mat-elevation-z5">
-        <!-- <mat-card-header> -->
-                <!-- <mat-card-title>Species Tree</mat-card-title>
-                <mat-card-subtitle>{{ utils.lastUpdate() }}</mat-card-subtitle> -->
-                <mat-form-field class="example-full-width">
-                        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="selected">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
-              <!-- </mat-card-header> -->
+        
               <mat-card-content>
-<form class="example-form">
-    
-    <p>Hello {{selected}}!</p>
-  </form>
+                  <button (click)="onClickMe()">Click me!</button>
 
 <div id="d3-tree-container"></div>
 </mat-card-content>
