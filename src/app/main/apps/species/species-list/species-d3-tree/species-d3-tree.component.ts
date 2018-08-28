@@ -12,12 +12,9 @@ export class SpeciesD3TreeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
-    var outerTreeData;
     // Get JSON data
     const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
       //console.log(treeData);
-      outerTreeData = treeData;
       // Calculate total nodes, max label length
       var totalNodes = 0;
       var maxLabelLength = 0;
@@ -354,6 +351,7 @@ export class SpeciesD3TreeComponent implements OnInit {
       // Toggle children on click.
 
       function click(d) {
+        //console.log(d);
         if ((<any>d3.event).defaultPrevented) return; // click suppressed
         d = toggleChildren(d);
         update(d);
@@ -386,6 +384,7 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         // Set widths between levels based on maxLabelLength.
         nodes.forEach(function (d) {
+          //console.log(d);
           d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
           //alternatively to keep a fixed scale one can set a fixed depth per level
           //Normalize for fixed-depth by commenting out below line
@@ -416,7 +415,8 @@ export class SpeciesD3TreeComponent implements OnInit {
           .attr('class', 'nodeCircle')
           .attr("r", 0)
           .style("fill", function (d) {
-            return d._children ? "lightsteelblue" : "#fff";
+            //return d._children ? "lightsteelblue" : "#fff";
+            return d.color;
           });
 
         nodeEnter.append("text")
@@ -463,7 +463,8 @@ export class SpeciesD3TreeComponent implements OnInit {
         node.select("circle.nodeCircle")
           .attr("r", 4.5)
           .style("fill", function (d) {
-            return d._children ? "lightsteelblue" : "#fff";
+            //return d._children ? "lightsteelblue" : "#fff";
+            return d.color;
           });
 
         // Transition nodes to their new position.
@@ -590,8 +591,6 @@ export class SpeciesD3TreeComponent implements OnInit {
           });
       });
     });
-
-    console.log(outerTreeData);
 
   }
 
