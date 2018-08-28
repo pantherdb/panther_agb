@@ -25,9 +25,9 @@
             Extant Species
           </div>
         </div>
-        <div *ngIf="gene?.species;else no_info_content" class="agb-body">
+        <div *ngIf="gene?.species_long;else no_info_content" class="agb-body">
           <p>
-            {{gene.species}}
+            <a href= "/species/{{gene.species_short}}">{{gene.species_long}}</a>
           </p>
         </div>
       </div>
