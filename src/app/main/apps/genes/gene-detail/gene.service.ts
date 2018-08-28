@@ -12,7 +12,7 @@ import { Gene } from './models/gene';
 })
 export class GeneService {
     gene: any[];
-    paint: any[];
+    paint: any;
     onSpeciesChanged: BehaviorSubject<any>;
 
     constructor(private httpClient: HttpClient) {

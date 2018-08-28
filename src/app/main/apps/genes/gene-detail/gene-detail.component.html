@@ -3,25 +3,36 @@
     <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
-            Gene Name
+          <div *ngIf="hasProxyGene" class="agb-title">
+            Inferred Ancestral Protein Name
+          </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Extant Protein Name
           </div>
         </div>
         <div *ngIf="gene?.name;else no_info_content" class="agb-body">
-          <p>
+          <p *ngIf="gene.leaf_seq_id">
+            <a href="http://pantherdb.org/genes/gene.do?acc={{gene.leaf_seq_id}}">
+              {{gene.name}}
+            </a>
+          </p>
+          <p *ngIf="!gene.leaf_seq_id">
             {{gene.name}}
           </p>
         </div>
       </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div *ngIf="hasProxyGene" class="agb-title">
             Ancestral Species
           </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Extant Species
+          </div>
         </div>
-        <div *ngIf="gene?.species;else no_info_content" class="agb-body">
+        <div *ngIf="gene?.species_long;else no_info_content" class="agb-body">
           <p>
-            {{gene.species}}
+            <a href="/species/{{gene.species_short}}">{{gene.species_long}}</a>
           </p>
         </div>
       </div>
@@ -36,13 +47,13 @@
             <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
               {{gene.pthr}}
             </a>
-            <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
-              ({{gene.family_name}})
-            </a>
+            <!-- <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}"> -->
+            ({{gene.family_name}})
+            <!-- </a> -->
           </p>
           <p>
             <a href="http://pantherdb.org/treeViewer/treeViewer.jsp?book={{gene.pthr}}">
-              Gene Tree Viewer
+              PANTHER Gene Tree Viewer
             </a>
           </p>
         </div>
@@ -62,8 +73,11 @@
     </div> -->
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div *ngIf="hasProxyGene" class="agb-title">
             Inferred Ancestral Protein Sequence
+          </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Protein Sequence of Extant Gene
           </div>
         </div>
         <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
@@ -72,7 +86,7 @@
           </textarea>
         </div>
       </div>
-      <div class="agb-card-simple mat-elevation-z1">
+      <div *ngIf="hasProxyGene" class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
             Direct Gene Ontology annotations to this ancestral gene
@@ -99,12 +113,19 @@
             <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
             <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
           </mat-table>
+          <mat-card *ngIf="paintIsLoading" style="display: flex; justify-content: center; align-items: center">
+            <mat-progress-spinner mode="indeterminate">
+            </mat-progress-spinner>
+          </mat-card>
         </div>
       </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div *ngIf="hasProxyGene" class="agb-title">
             Inherited Gene Ontology annotations to this ancestral gene
+          </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Inherited Gene Ontology annotations to this extant gene
           </div>
         </div>
         <div class="agb-body p-0">
@@ -125,12 +146,16 @@
                 </a>
               </mat-cell>
             </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
-            <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns_ia"></mat-header-row>
+            <mat-row *matRowDef="let inherited_anno; columns: displayedColumns_ia;"></mat-row>
           </mat-table>
+          <mat-card *ngIf="paintIsLoading" style="display: flex; justify-content: center; align-items: center">
+            <mat-progress-spinner mode="indeterminate">
+            </mat-progress-spinner>
+          </mat-card>
         </div>
       </div>
-      <div class="agb-card-simple mat-elevation-z1">
+      <div *ngIf="hasProxyGene" class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
             Proxy Genes in Extant Species

@@ -25,13 +25,20 @@
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">Public ID</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+            <div *ngIf="hasProxyGene" mat-sort-header>
+                Public ID (Ancestral Gene)
+            </div>
+          <div *ngIf="!hasProxyGene" mat-sort-header>
+              Public ID (Extant Gene)
+          </div>
+        </mat-header-cell>
         <mat-cell *cdkCellDef="let gene" fxFlex="160px">
           <p class="text-truncate">{{gene.ptn}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="name">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Gene Name</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
         <mat-cell *cdkCellDef="let gene">
           <p class="">{{gene.name}}</p>
         </mat-cell>
@@ -42,9 +49,19 @@
           <p class="text-truncate">{{gene.pthr}}</p>
         </mat-cell>
       </ng-container>
+
+      <!-- <ng-container *ngIf="hasProxyGene==false" cdkColumnDef="proxy_gene">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Gene ID</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene">
+          <p class="text-truncate">{{gene.proxy_gene}}</p>
+        </mat-cell>
+      </ng-container> -->
+    
+
+      
       <ng-container cdkColumnDef="proxy_gene">
         <mat-header-cell *cdkHeaderCellDef>
-          <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center">
+          <div *ngIf="hasProxyGene" class="w-100-p" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button color='primary' matTooltip='Proxy genes are genes in an extant genome, that are proxies for an ancestral gene.  The proxy is defined as the closest (smallest total branch length in the gene tree) descendant of the ancestral gene, in the selected extant proxy species.  Because an ancestral gene is extinct, it has not been studied, and the proxy may share characteristics (like function) that have been inherited from the ancestral gene. This column shows the proxy gene in model organisms if exists by default. Select a specific extant species from the dropdown menu on the right to display the proxy gene in the selected species. Click the row to see the full list of proxy genes for a specific ancestral gene.'
               #tooltip="matTooltip" (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()"
               (click)="tooltip.toggle()" matTooltipPosition='above' [matTooltipClass]="'tooltip'">
@@ -57,12 +74,17 @@
               </mat-option>
             </mat-select>
           </div>
+          <div *ngIf="!hasProxyGene" mat-sort-header>
+            PANTHER Gene ID
+          </div>
         </mat-header-cell>
         <span class="tooltiptext">Tooltip text</span>
         <mat-cell *cdkCellDef="let gene">
           <p class="text-truncate">{{gene.proxy_gene}}</p>
         </mat-cell>
       </ng-container>
+
+      
       <mat-header-row *cdkHeaderRowDef="displayedColumns" class="agb-column-subtoolbar"></mat-header-row>
       <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple (click)="openGenePreview(gene.ptn)" routerLinkActive="active"></mat-row>
     </mat-table>
