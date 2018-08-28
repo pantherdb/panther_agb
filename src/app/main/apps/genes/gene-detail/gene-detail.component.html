@@ -4,14 +4,19 @@
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div *ngIf="hasProxyGene" class="agb-title">
-            Inferred Ancestral Gene Name
+            Inferred Ancestral Protein Name
           </div>
           <div *ngIf="!hasProxyGene" class="agb-title">
-            Extant Gene Name
+            Extant Protein Name
           </div>
         </div>
         <div *ngIf="gene?.name;else no_info_content" class="agb-body">
-          <p>
+          <p *ngIf="gene.leaf_seq_id">
+            <a href="http://pantherdb.org/genes/gene.do?acc={{gene.leaf_seq_id}}">
+              {{gene.name}}
+            </a>
+          </p>
+          <p *ngIf="!gene.leaf_seq_id">
             {{gene.name}}
           </p>
         </div>
@@ -27,7 +32,7 @@
         </div>
         <div *ngIf="gene?.species_long;else no_info_content" class="agb-body">
           <p>
-            <a href= "/species/{{gene.species_short}}">{{gene.species_long}}</a>
+            <a href="/species/{{gene.species_short}}">{{gene.species_long}}</a>
           </p>
         </div>
       </div>
@@ -42,13 +47,13 @@
             <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
               {{gene.pthr}}
             </a>
-            <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
-              ({{gene.family_name}})
-            </a>
+            <!-- <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}"> -->
+            ({{gene.family_name}})
+            <!-- </a> -->
           </p>
           <p>
             <a href="http://pantherdb.org/treeViewer/treeViewer.jsp?book={{gene.pthr}}">
-              Gene Tree Viewer
+              PANTHER Gene Tree Viewer
             </a>
           </p>
         </div>
@@ -120,8 +125,8 @@
             Inherited Gene Ontology annotations to this ancestral gene
           </div>
           <div *ngIf="!hasProxyGene" class="agb-title">
-              Inherited Gene Ontology annotations to this extant gene
-            </div>
+            Inherited Gene Ontology annotations to this extant gene
+          </div>
         </div>
         <div class="agb-body p-0">
           <mat-table [dataSource]="dataSource_ia" class="" matSort>
