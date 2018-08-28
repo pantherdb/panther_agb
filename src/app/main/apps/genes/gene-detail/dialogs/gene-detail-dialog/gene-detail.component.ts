@@ -66,8 +66,8 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
       this.hasProxyGene = (this.gene.proxy_genes.length > 0);   
       this.dataSource = new MatTableDataSource(this.gene.proxy_genes);
       this.dataSource.sort = this.sort;
-      this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
-      this.dataSource_ia = new MatTableDataSource(this.gene.inherited_paint_annotations);
+      //this.dataSource_da = new MatTableDataSource(this.gene.direct_paint_annotations);
+      //this.dataSource_ia = new MatTableDataSource(this.gene.inherited_paint_annotations);
 
       this.breadcrumbsService.setCurrentBreadcrumbs([{
         label: this.gene.ptn,
