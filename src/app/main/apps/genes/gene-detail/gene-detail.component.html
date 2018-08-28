@@ -3,8 +3,11 @@
     <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
-            Gene Name
+          <div *ngIf="hasProxyGene" class="agb-title">
+            Inferred Ancestral Gene Name
+          </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Extant Gene Name
           </div>
         </div>
         <div *ngIf="gene?.name;else no_info_content" class="agb-body">
@@ -15,8 +18,11 @@
       </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div *ngIf="hasProxyGene" class="agb-title">
             Ancestral Species
+          </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Extant Species
           </div>
         </div>
         <div *ngIf="gene?.species;else no_info_content" class="agb-body">
@@ -62,8 +68,11 @@
     </div> -->
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div *ngIf="hasProxyGene" class="agb-title">
             Inferred Ancestral Protein Sequence
+          </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+            Protein Sequence of Extant Gene
           </div>
         </div>
         <div *ngIf="gene?.sequence;else no_info_content" class="agb-body">
@@ -72,7 +81,7 @@
           </textarea>
         </div>
       </div>
-      <div class="agb-card-simple mat-elevation-z1">
+      <div *ngIf="hasProxyGene" class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
             Direct Gene Ontology annotations to this ancestral gene
@@ -107,9 +116,12 @@
       </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div *ngIf="hasProxyGene" class="agb-title">
             Inherited Gene Ontology annotations to this ancestral gene
           </div>
+          <div *ngIf="!hasProxyGene" class="agb-title">
+              Inherited Gene Ontology annotations to this extant gene
+            </div>
         </div>
         <div class="agb-body p-0">
           <mat-table [dataSource]="dataSource_ia" class="" matSort>
