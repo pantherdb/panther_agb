@@ -34,12 +34,12 @@
               Ancestral Species
             </div>
             <div *ngIf="!hasProxyGene" class="agb-title">
-                Extant Species
-              </div>
+              Extant Species
+            </div>
           </div>
-          <div *ngIf="gene?.species;else no_info_content" class="agb-body">
+          <div *ngIf="gene?.species_long;else no_info_content" class="agb-body">
             <p>
-              {{gene.species}}
+              <a href="/species/{{gene.species_short}}">{{gene.species_long}}</a>
             </p>
           </div>
         </div>
@@ -120,8 +120,8 @@
               Inherited Gene Ontology annotations to this ancestral gene
             </div>
             <div *ngIf="!hasProxyGene" class="agb-title">
-                Inherited Gene Ontology annotations to this extant gene
-              </div>
+              Inherited Gene Ontology annotations to this extant gene
+            </div>
           </div>
           <div class="agb-body p-0">
             <mat-table [dataSource]="dataSource_ia" class="" matSort>
