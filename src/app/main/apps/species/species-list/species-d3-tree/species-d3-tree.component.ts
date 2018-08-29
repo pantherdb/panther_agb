@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from "d3";
 import * as $ from "jquery";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-species-d3-tree',
@@ -9,10 +10,11 @@ import * as $ from "jquery";
 })
 export class SpeciesD3TreeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     // Get JSON data
+    var router = this.router;
     const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
       //console.log(treeData);
       // Calculate total nodes, max label length
@@ -174,7 +176,7 @@ export class SpeciesD3TreeComponent implements OnInit {
 
 
       // Define the drag listeners for drag/drop behaviour of nodes.
-      var dragListener = d3.behavior.drag()
+      /* var dragListener = d3.behavior.drag()
         .on("dragstart", function (d) {
           if (d == root) {
             return;
@@ -249,7 +251,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           } else {
             endDrag();
           }
-        });
+        }); */
 
       function endDrag() {
         selectedNode = null;
@@ -348,16 +350,6 @@ export class SpeciesD3TreeComponent implements OnInit {
         return d;
       }
 
-      // Toggle children on click.
-
-      function click(d) {
-        //console.log(d);
-        if ((<any>d3.event).defaultPrevented) return; // click suppressed
-        d = toggleChildren(d);
-        update(d);
-        centerNode(d);
-      }
-
       function update(source) {
         // Compute the new height, function counts total children of root node and sets tree height accordingly.
         // This prevents the layout looking squashed when new nodes are made visible or looking sparse when nodes are removed
@@ -385,10 +377,10 @@ export class SpeciesD3TreeComponent implements OnInit {
         // Set widths between levels based on maxLabelLength.
         nodes.forEach(function (d) {
           //console.log(d);
-          d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
+          //d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
           //alternatively to keep a fixed scale one can set a fixed depth per level
           //Normalize for fixed-depth by commenting out below line
-          //d.y = (d.depth * 500); //500px per level.
+          d.y = (d.depth * 180); //180px per level.
           /* var depthSize = 50;
           if (!d.children) {
             d.depth = treeDepth;
@@ -404,12 +396,19 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         // Enter any new nodes at the parent's previous position.
         var nodeEnter = node.enter().append("g")
-          .call(dragListener)
           .attr("class", "node")
           .attr("transform", function (d) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
-          .on('click', click);
+          .on('click', (d) => {
+            console.log(d.short_name);
+            if ((<any>d3.event).defaultPrevented) return; // click suppressed
+            //d = toggleChildren(d);
+            //update(d);
+            router.navigateByUrl(`/species/${d.short_name}`);
+            //centerNode(d);
+          }
+          );
 
         nodeEnter.append("circle")
           .attr('class', 'nodeCircle')
@@ -591,7 +590,6 @@ export class SpeciesD3TreeComponent implements OnInit {
           });
       });
     });
-
   }
 
 }
