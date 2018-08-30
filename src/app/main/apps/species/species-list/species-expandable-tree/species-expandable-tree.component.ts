@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-species-d3-tree',
-  templateUrl: './species-d3-tree.component.html',
-  styleUrls: ['./species-d3-tree.component.css']
+  templateUrl: './species-expandable-tree.component.html',
+  styleUrls: ['./species-expandable-tree.component.css']
 })
 export class SpeciesD3TreeComponent implements OnInit {
 
@@ -412,18 +412,16 @@ export class SpeciesD3TreeComponent implements OnInit {
           .attr("transform", function (d) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
-          .on('click',
-            (d) => {
-              console.log(d.short_name);
-              d3.event.preventDefault();
-              //if ((<any>d3.event).defaultPrevented) return; // click suppressed
-              //d = toggleChildren(d);
-              //update(d);
-              router.navigateByUrl(`/species/${d.short_name}`);
-              //centerNode(d);
-            }
-          )
-          .on('contextmenu', Click);
+          .on('click', Click)
+          .on('contextmenu', (d) => {
+            console.log(d.short_name);
+            d3.event.preventDefault();
+            //if ((<any>d3.event).defaultPrevented) return; // click suppressed
+            //d = toggleChildren(d);
+            //update(d);
+            router.navigateByUrl(`/species/${d.short_name}`);
+            //centerNode(d);
+          });
 
         nodeEnter.append("circle")
           .attr('class', 'nodeCircle')
@@ -568,8 +566,9 @@ export class SpeciesD3TreeComponent implements OnInit {
       //console.log(treeDepth);
 
       // Layout the tree initially and center on the root node.
+      root.children.forEach(collapse);
       update(root);
-      //centerNode(root);
+      centerNode(root);
 
       var couplingParent1 = tree.nodes(root).filter(function (d) {
         return d['name'] === 'cluster';
