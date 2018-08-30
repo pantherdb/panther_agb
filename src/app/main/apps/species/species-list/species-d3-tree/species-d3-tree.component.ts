@@ -15,6 +15,36 @@ export class SpeciesD3TreeComponent implements OnInit {
   ngOnInit() {
     // Get JSON data
     var router = this.router;
+
+    function collapse(d) {
+      if (d.children) {
+        d._children = d.children;
+        d._children.forEach(collapse);
+        d.children = null;
+      }
+    }
+
+    function expand(d) {
+      if (d._children) {
+        d.children = d._children;
+        d.children.forEach(expand);
+        d._children = null;
+      }
+    }
+
+    // Toggle children function
+
+    function toggleChildren(d) {
+      if (d.children) {
+        d._children = d.children;
+        d.children = null;
+      } else if (d._children) {
+        d.children = d._children;
+        d._children = null;
+      }
+      return d;
+    }
+
     const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
       //console.log(treeData);
       // Calculate total nodes, max label length
@@ -253,7 +283,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           }
         }); */
 
-      function endDrag() {
+      /* function endDrag() {
         selectedNode = null;
         d3.selectAll('.ghostCircle').attr('class', 'ghostCircle');
         d3.select(domNode).attr('class', 'node');
@@ -265,25 +295,10 @@ export class SpeciesD3TreeComponent implements OnInit {
           centerNode(draggingNode);
           draggingNode = null;
         }
-      }
+      } */
 
       // Helper functions for collapsing and expanding nodes.
 
-      function collapse(d) {
-        if (d.children) {
-          d._children = d.children;
-          d._children.forEach(collapse);
-          d.children = null;
-        }
-      }
-
-      function expand(d) {
-        if (d._children) {
-          d.children = d._children;
-          d.children.forEach(expand);
-          d._children = null;
-        }
-      }
 
       var overCircle = function (d) {
         selectedNode = d;
@@ -337,17 +352,14 @@ export class SpeciesD3TreeComponent implements OnInit {
         zoomListener.translate([x, y]);
       }
 
-      // Toggle children function
 
-      function toggleChildren(d) {
-        if (d.children) {
-          d._children = d.children;
-          d.children = null;
-        } else if (d._children) {
-          d.children = d._children;
-          d._children = null;
-        }
-        return d;
+      // Toggle children on click.
+
+      function Click(d) {
+        if (d3.event.defaultPrevented) return; // click suppressed
+        d = toggleChildren(d);
+        update(d);
+        centerNode(d);
       }
 
       function update(source) {
@@ -400,15 +412,18 @@ export class SpeciesD3TreeComponent implements OnInit {
           .attr("transform", function (d) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
-          .on('click', (d) => {
-            console.log(d.short_name);
-            if ((<any>d3.event).defaultPrevented) return; // click suppressed
-            //d = toggleChildren(d);
-            //update(d);
-            router.navigateByUrl(`/species/${d.short_name}`);
-            //centerNode(d);
-          }
-          );
+          .on('click',
+            (d) => {
+              console.log(d.short_name);
+              d3.event.preventDefault();
+              //if ((<any>d3.event).defaultPrevented) return; // click suppressed
+              //d = toggleChildren(d);
+              //update(d);
+              router.navigateByUrl(`/species/${d.short_name}`);
+              //centerNode(d);
+            }
+          )
+          .on('contextmenu', Click);
 
         nodeEnter.append("circle")
           .attr('class', 'nodeCircle')
