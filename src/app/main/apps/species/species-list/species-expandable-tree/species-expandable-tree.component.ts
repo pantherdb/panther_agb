@@ -1,18 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from "d3";
 import * as $ from "jquery";
+import { Router } from '@angular/router';
+
+import { SpeciesDialogService } from './../../dialog.service';
 
 @Component({
   selector: 'app-species-d3-tree',
-  templateUrl: './species-d3-tree.component.html',
-  styleUrls: ['./species-d3-tree.component.css']
+  templateUrl: './species-expandable-tree.component.html',
+  styleUrls: ['./species-expandable-tree.component.css']
 })
 export class SpeciesD3TreeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private speciesDialogService: SpeciesDialogService,) { }
 
   ngOnInit() {
     // Get JSON data
+    var router = this.router;
+    var speciesDialogService = this.speciesDialogService;
+
+    function collapse(d) {
+      if (d.children) {
+        d._children = d.children;
+        d._children.forEach(collapse);
+        d.children = null;
+      }
+    }
+
+    function expand(d) {
+      if (d._children) {
+        d.children = d._children;
+        d.children.forEach(expand);
+        d._children = null;
+      }
+    }
+
+    // Toggle children function
+
+    function toggleChildren(d) {
+      if (d.children) {
+        d._children = d.children;
+        d.children = null;
+      } else if (d._children) {
+        d.children = d._children;
+        d._children = null;
+      }
+      return d;
+    }
+
     const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
       //console.log(treeData);
       // Calculate total nodes, max label length
@@ -174,7 +209,7 @@ export class SpeciesD3TreeComponent implements OnInit {
 
 
       // Define the drag listeners for drag/drop behaviour of nodes.
-      var dragListener = d3.behavior.drag()
+      /* var dragListener = d3.behavior.drag()
         .on("dragstart", function (d) {
           if (d == root) {
             return;
@@ -249,9 +284,9 @@ export class SpeciesD3TreeComponent implements OnInit {
           } else {
             endDrag();
           }
-        });
+        }); */
 
-      function endDrag() {
+      /* function endDrag() {
         selectedNode = null;
         d3.selectAll('.ghostCircle').attr('class', 'ghostCircle');
         d3.select(domNode).attr('class', 'node');
@@ -263,25 +298,10 @@ export class SpeciesD3TreeComponent implements OnInit {
           centerNode(draggingNode);
           draggingNode = null;
         }
-      }
+      } */
 
       // Helper functions for collapsing and expanding nodes.
 
-      function collapse(d) {
-        if (d.children) {
-          d._children = d.children;
-          d._children.forEach(collapse);
-          d.children = null;
-        }
-      }
-
-      function expand(d) {
-        if (d._children) {
-          d.children = d._children;
-          d.children.forEach(expand);
-          d._children = null;
-        }
-      }
 
       var overCircle = function (d) {
         selectedNode = d;
@@ -335,27 +355,14 @@ export class SpeciesD3TreeComponent implements OnInit {
         zoomListener.translate([x, y]);
       }
 
-      // Toggle children function
-
-      function toggleChildren(d) {
-        if (d.children) {
-          d._children = d.children;
-          d.children = null;
-        } else if (d._children) {
-          d.children = d._children;
-          d._children = null;
-        }
-        return d;
-      }
 
       // Toggle children on click.
 
-      function click(d) {
-        //console.log(d);
-        if ((<any>d3.event).defaultPrevented) return; // click suppressed
+      function Click(d) {
+        if (d3.event.defaultPrevented) return; // click suppressed
         d = toggleChildren(d);
         update(d);
-        centerNode(d);
+        //centerNode(d);
       }
 
       function update(source) {
@@ -388,8 +395,8 @@ export class SpeciesD3TreeComponent implements OnInit {
           //d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
           //alternatively to keep a fixed scale one can set a fixed depth per level
           //Normalize for fixed-depth by commenting out below line
-          //d.y = (d.depth * 500); //500px per level.
-          /* var depthSize = 100;
+          d.y = (d.depth * 180); //180px per level.
+          /* var depthSize = 50;
           if (!d.children) {
             d.depth = treeDepth;
           } */
@@ -405,12 +412,21 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         // Enter any new nodes at the parent's previous position.
         var nodeEnter = node.enter().append("g")
-          .call(dragListener)
           .attr("class", "node")
           .attr("transform", function (d) {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
-          .on('click', click);
+          .on('click', Click)
+          .on('contextmenu', (d) => {
+            //console.log(d.short_name);
+            d3.event.preventDefault();
+            //if ((<any>d3.event).defaultPrevented) return; // click suppressed
+            //d = toggleChildren(d);
+            //update(d);
+            //router.navigateByUrl(`/species/${d.short_name}`);
+            speciesDialogService.openSpeciesPreview(d.short_name);
+            //centerNode(d);
+          });
 
         nodeEnter.append("circle")
           .attr('class', 'nodeCircle')
@@ -555,8 +571,9 @@ export class SpeciesD3TreeComponent implements OnInit {
       //console.log(treeDepth);
 
       // Layout the tree initially and center on the root node.
+      root.children.forEach(collapse);
       update(root);
-      //centerNode(root);
+      centerNode(root);
 
       var couplingParent1 = tree.nodes(root).filter(function (d) {
         return d['name'] === 'cluster';
@@ -592,7 +609,6 @@ export class SpeciesD3TreeComponent implements OnInit {
           });
       });
     });
-
   }
 
 }
