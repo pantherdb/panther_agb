@@ -418,7 +418,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           .on('click', Click)
           .on('contextmenu', (d) => {
             //console.log(d.short_name);
-            d3.event.preventDefault();
+            (d3.event as Event).preventDefault();
             //if ((<any>d3.event).defaultPrevented) return; // click suppressed
             //d = toggleChildren(d);
             //update(d);
