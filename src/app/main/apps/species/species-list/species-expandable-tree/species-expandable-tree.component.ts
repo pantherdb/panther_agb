@@ -435,7 +435,7 @@ export class SpeciesD3TreeComponent implements OnInit {
 
         nodeEnter.append("circle")
           .attr('class', 'node')
-          .attr("r", 10)
+          .attr("r", 8)
           .style("fill", function (d) {
             //return d._children ? "lightsteelblue" : "#fff";
             return d.color;
@@ -578,10 +578,20 @@ export class SpeciesD3TreeComponent implements OnInit {
 
       // Layout the tree initially and center on the root node.
       root.children.forEach(
-        (d)=>{d.children.forEach(collapse)}
+        (d)=>{
+          if (d.short_name == 'Eubacteria'){
+            collapse(d);
+          }else{
+            d.children.forEach(
+              (d) => {
+                d.children.forEach(collapse);
+              }
+            )
+          }
+        }
       );
       update(root);
-      centerNode(root.children[1].children[8]);
+      centerNode(root.children[0].children[1]);
 
       var couplingParent1 = tree.nodes(root).filter(function (d) {
         return d['name'] === 'cluster';
