@@ -401,7 +401,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           //d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
           //alternatively to keep a fixed scale one can set a fixed depth per level
           //Normalize for fixed-depth by commenting out below line
-          d.y = (d.depth * 180); //180px per level.
+          d.y = (d.depth * 200); //180px per level.
           /* var depthSize = 50;
           if (!d.children && !d._children) {
             d.depth = treeDepth;
