@@ -359,7 +359,7 @@ export class SpeciesD3TreeComponent implements OnInit {
       // Toggle children on click.
 
       function Click(d) {
-        if (d3.event.defaultPrevented) return; // click suppressed
+        //if (d3.event.defaultPrevented) return; // click suppressed
         d = toggleChildren(d);
         update(d);
         //centerNode(d);
