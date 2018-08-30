@@ -3,6 +3,8 @@ import * as d3 from "d3";
 import * as $ from "jquery";
 import { Router } from '@angular/router';
 
+import { SpeciesDialogService } from './../../dialog.service';
+
 @Component({
   selector: 'app-species-d3-tree',
   templateUrl: './species-expandable-tree.component.html',
@@ -10,11 +12,12 @@ import { Router } from '@angular/router';
 })
 export class SpeciesD3TreeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private speciesDialogService: SpeciesDialogService,) { }
 
   ngOnInit() {
     // Get JSON data
     var router = this.router;
+    var speciesDialogService = this.speciesDialogService;
 
     function collapse(d) {
       if (d.children) {
@@ -359,7 +362,7 @@ export class SpeciesD3TreeComponent implements OnInit {
         if (d3.event.defaultPrevented) return; // click suppressed
         d = toggleChildren(d);
         update(d);
-        centerNode(d);
+        //centerNode(d);
       }
 
       function update(source) {
@@ -414,12 +417,13 @@ export class SpeciesD3TreeComponent implements OnInit {
           })
           .on('click', Click)
           .on('contextmenu', (d) => {
-            console.log(d.short_name);
+            //console.log(d.short_name);
             d3.event.preventDefault();
             //if ((<any>d3.event).defaultPrevented) return; // click suppressed
             //d = toggleChildren(d);
             //update(d);
-            router.navigateByUrl(`/species/${d.short_name}`);
+            //router.navigateByUrl(`/species/${d.short_name}`);
+            speciesDialogService.openSpeciesPreview(d.short_name);
             //centerNode(d);
           });
 
