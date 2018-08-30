@@ -397,11 +397,10 @@ export class SpeciesD3TreeComponent implements OnInit {
           //Normalize for fixed-depth by commenting out below line
           d.y = (d.depth * 180); //180px per level.
           /* var depthSize = 50;
-          if (!d.children) {
+          if (!d.children && !d._children) {
             d.depth = treeDepth;
-          } */
-          //d.y = d.depth * depthSize;
-          d.y = (d.depth * 100);
+          }
+          d.y = d.depth * depthSize; */
         });
 
         // Update the nodes…
