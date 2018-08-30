@@ -1,7 +1,23 @@
-<div id="d3-tree-container">
-    <h2>Help tips</h2>
+<div>
+    <h3>Help tips</h3>
     <ul>
         <li>Left mouse click on a species tree node to expand/collapse the node</li>
         <li>Right mouse clikc on a species tree node to bring up a pop-up window with more information about the species</li>
     </ul>
+    <div class="agb-legend">
+        <div class="agb-legend-header">
+            TIMESCALE (MYA)
+        </div>
+        <div *ngFor="let legend of timescaleLegend">
+            <button [ngStyle]="{'color': legend.color}" mat-icon-button class="agb-legend-button" [attr.aria-label]="Timescale">
+                <mat-icon class="s-12">
+                    brightness_1
+                </mat-icon>
+                <span>{{legend.label}}</span>
+            </button>
+        </div>
+    </div>
+    <div id="d3-tree-container" style="border: 1px solid black; border-radius: 15px; box-shadow: 0px 1px 6px rgba(0, 0, 0, .5)">
+        
+    </div>
 </div>

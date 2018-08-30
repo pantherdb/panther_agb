@@ -1,3 +1,6 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
+:host {
 .node {
   cursor: pointer;
 }
@@ -51,4 +54,31 @@
 
 .example-full-width {
   width: 100%;
+}
+
+.agb-legend {
+  padding: 5px;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  @include deep-height(180px);
+  @include deep-width(94px);
+  background-color: rgba(#DDD, 0.85); // border: 3px solid #BBB;
+  border: #BBB solid 1px;
+  @include mat-elevation(6);
+  .agb-legend-header {
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+  .agb-legend-button {
+    width: 100%;
+    @include deep-height(20px);
+    line-height: 20px;
+    text-align: left;
+    font-size: 10px;
+    mat-icon {
+      margin-right: 5px;
+    }
+  }
+}
 }

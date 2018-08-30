@@ -4,15 +4,21 @@ import * as $ from "jquery";
 import { Router } from '@angular/router';
 
 import { SpeciesDialogService } from './../../dialog.service';
+import { SpeciesService } from './../../species.service';
 
 @Component({
   selector: 'app-species-d3-tree',
   templateUrl: './species-expandable-tree.component.html',
-  styleUrls: ['./species-expandable-tree.component.css']
+  styleUrls: ['./species-expandable-tree.component.scss']
 })
 export class SpeciesD3TreeComponent implements OnInit {
-
-  constructor(private router: Router, private speciesDialogService: SpeciesDialogService,) { }
+  
+  timescaleLegend: any = [];
+  constructor(
+    private router: Router, private speciesDialogService: SpeciesDialogService,
+    private speciesService: SpeciesService) { 
+    this.timescaleLegend = speciesService.timescaleLegend;
+  }
 
   ngOnInit() {
     // Get JSON data
@@ -428,8 +434,8 @@ export class SpeciesD3TreeComponent implements OnInit {
           });
 
         nodeEnter.append("circle")
-          .attr('class', 'nodeCircle')
-          .attr("r", 0)
+          .attr('class', 'node')
+          .attr("r", 10)
           .style("fill", function (d) {
             //return d._children ? "lightsteelblue" : "#fff";
             return d.color;
@@ -447,7 +453,8 @@ export class SpeciesD3TreeComponent implements OnInit {
           .text(function (d) {
             return d.name;
           })
-          .style("fill-opacity", 0);
+          .style("fill-opacity", 0)
+          .style("font-size", 15);
 
         // phantom node to give us mouseover in a radius around it
         nodeEnter.append("circle")
@@ -570,9 +577,11 @@ export class SpeciesD3TreeComponent implements OnInit {
       //console.log(treeDepth);
 
       // Layout the tree initially and center on the root node.
-      root.children.forEach(collapse);
+      root.children.forEach(
+        (d)=>{d.children.forEach(collapse)}
+      );
       update(root);
-      centerNode(root);
+      centerNode(root.children[1].children[8]);
 
       var couplingParent1 = tree.nodes(root).filter(function (d) {
         return d['name'] === 'cluster';
