@@ -17,7 +17,8 @@ import { takeUntil } from 'rxjs/internal/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ExportToCSV } from "@molteni/export-csv";
 
-import { GenesDialogService } from './../dialog.service'
+import { GenesDialogService } from './../dialog.service';
+import { SpeciesDialogService } from './../../species/dialog.service';
 
 @Component({
   selector: 'app-gene-list',
@@ -52,7 +53,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private router: Router, private genesService: GenesService,
     private genesDialogService: GenesDialogService,
-    private speciesService: SpeciesService) {
+    private speciesService: SpeciesService, private speciesDialogService: SpeciesDialogService) {
     this.unsubscribeAll = new Subject();
   }
 
@@ -117,6 +118,10 @@ export class GeneListComponent implements OnInit, OnDestroy {
 
   openSpeciesDetail() {
     this.router.navigateByUrl(`species/${this.speciesDetail.short_name}`);
+  }
+
+  openSpeciesPreview() {
+    this.speciesDialogService.openSpeciesPreview(this.speciesDetail.short_name);
   }
 
   changeProxyGenes(value) {

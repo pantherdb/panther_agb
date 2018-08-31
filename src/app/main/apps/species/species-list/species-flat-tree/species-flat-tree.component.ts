@@ -62,6 +62,11 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
       this.dataSource.data = this.speciesList
       this.tree.treeControl.expandAll();
     });
+    this.router.navigate([`species/genes`, {
+      outlets: {
+        'list': ['genes', 'LUCA', 'default species']
+      }
+    }]);
   }
 
   selectSpecies(node) {

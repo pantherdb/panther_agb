@@ -10,7 +10,10 @@
         genes and reconstruct the repertoire of protein coding genes in extinct ancestral species.
       </h3>
       <div class="noc-action mt-8 mb-8">
-        <button mat-raised-button onclick="location.href='/species/genes/(list:genes/LUCA/default species)'" type="button" class="mat-green-600-bg">
+        <!-- <button mat-raised-button onclick="location.href='/species/genes/(list:genes/LUCA/default species)'" type="button" class="mat-green-600-bg">
+          Browse Via Nested Species List View
+        </button> -->
+        <button mat-raised-button [routerLink]="['/species']" class="mat-green-600-bg">
           Browse Via Nested Species List View
         </button>
       </div>
@@ -47,8 +50,11 @@
         </div>
       </div>
       <div class="noc-action mt-8 mb-8" fxLayout="row" fxLayoutAlign="center center">
-        <button mat-raised-button onclick="location.href='/species/genes/(list:genes/LUCA/default species)'" type="button" class="mat-green-600-bg">
+        <!-- <button mat-raised-button onclick="location.href='/species/genes/(list:genes/LUCA/default species)'" type="button" class="mat-green-600-bg">
           Browse via Nested Species List View
+        </button> -->
+        <button mat-raised-button [routerLink]="['/species']" class="mat-green-600-bg">
+          Browse Via Nested Species List View
         </button>
         <button mat-raised-button [routerLink]="['/species/expandable-tree']" class="mat-grey-100-bg">
           Expandable Species Tree View
