@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, AfterViewChecked, ViewChild, ViewChildren, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, Injectable, ViewChild, ViewChildren, Renderer2, ElementRef } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -16,22 +16,12 @@ import { SpeciesService } from './../../species.service';
   templateUrl: './species-flat-tree.component.html',
   styleUrls: ['./species-flat-tree.component.scss'],
 })
-export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
+export class SpeciesFlatTreeComponent implements OnInit {
   @ViewChild('tree') tree;
   @ViewChildren(MatTreeNode, { read: ElementRef }) treeNodes: ElementRef[];
 
-  hasListener: any[] = [];
-  oldHighlight: ElementRef;
-
-  updateHighlight = (newHighlight: ElementRef) => {
-    this.oldHighlight && this.renderer.removeClass(this.oldHighlight.nativeElement, 'background-highlight');
-
-    this.renderer.addClass(newHighlight.nativeElement, 'background-highlight');
-    this.oldHighlight = newHighlight;
-  }
-  
+  activeSpecies: any;
   speciesList: SpeciesNode[];
-  selectedSpecies = null;
 
   treeControl: FlatTreeControl<SpeciesFlatNode>;
   treeFlattener: MatTreeFlattener<SpeciesNode, SpeciesFlatNode>;
@@ -62,16 +52,27 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
       this.dataSource.data = this.speciesList
       this.tree.treeControl.expandAll();
     });
+
+    this.activeSpecies = this.speciesService.getActiveSpecies();
+    if (this.activeSpecies) {
+      this.router.navigate([`species/genes`, {
+        outlets: {
+          'list': ['genes', `${this.activeSpecies}`, 'default species']
+        }
+      }]);
+    }
   }
 
-  selectSpecies(node) {
-    this.selectedSpecies = node;
+  selectSpecies(species) {
+    this.activeSpecies = species;
 
     this.router.navigate([`species/genes`, {
       outlets: {
-        'list': ['genes', `${this.selectedSpecies.short_name}`, 'default species']
+        'list': ['genes', `${species}`, 'default species']
       }
     }]);
+
+
 
     /*
     this.breadcrumbsService.setCurrentBreadcrumbs(this.tree.getDescendants(node).map(species => (
@@ -81,6 +82,7 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
       })));
       */
   }
+
 
   openSpeciesPreview(species) {
     this.speciesDialogService.openSpeciesPreview(species);
@@ -107,24 +109,4 @@ export class SpeciesFlatTreeComponent implements OnInit, AfterViewChecked {
   private _getChildren = (node: SpeciesNode): Observable<SpeciesNode[]> => observableOf(node.children);
 
   hasChild = (_: number, _nodeData: SpeciesFlatNode) => _nodeData.expandable;
-
-  ngAfterViewChecked() {
-    this.treeNodes.forEach((reference) => {
-      if (!this.hasListener.includes(reference.nativeElement)) {
-        //console.log('* tick');
-        
-        this.renderer.listen(reference.nativeElement, 'click', () => {
-          this.updateHighlight(reference);
-        });
-        this.renderer.listen(reference.nativeElement.children.item(0), 'click', () => {
-          this.updateHighlight(reference);
-        });
-        
-        this.hasListener = this.hasListener.concat([ reference.nativeElement ]);
-      }
-    });
-    
-    this.hasListener = this.hasListener.filter((element) => document.contains(element));
-    //console.log('*', this.hasListener.length);
-  }
 }

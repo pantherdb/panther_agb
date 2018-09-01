@@ -58,6 +58,7 @@ export class SpeciesService {
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
+    activeSpecies: any;
     onSpeciesListChanged: BehaviorSubject<any>;
     onSpeciesDetailChanged: BehaviorSubject<any>;
 
@@ -98,6 +99,14 @@ export class SpeciesService {
                     resolve(response);
                 }, reject);
         });
+    }
+
+    getActiveSpecies() {
+        return this.activeSpecies;
+    }
+
+    setActiveSpecies(species:any) {
+        this.activeSpecies = species;
     }
 
     private _buildTimescaleColor(timescale?: number): string {

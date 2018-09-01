@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy, ViewChild, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatMenuTrigger } from '@angular/material';
 import { Subject } from 'rxjs';
 import { GeneReplacePipe } from '@agb.common/pipes/gene-replace.pipe';
 //import { Gene } from './../../models/gene';
 import * as _ from 'lodash';
 
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpeciesService } from './../../../species.service';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
-//import { Species } from './species';
+import { SpeciesFlatTreeComponent } from './../../../species-list/species-flat-tree/species-flat-tree.component';
 
 @Component({
   selector: 'app-species-detail',
@@ -19,10 +19,12 @@ import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs
 
 export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
-
+  
+  //@Input() speciesGeneList: SpeciesFlatTreeComponent;
   species: string;
   speciesDetail: any = {};
   constructor(
+    private router: Router,
     private _matDialogRef: MatDialogRef<SpeciesDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private _data: any,
     private _matDialog: MatDialog,
@@ -37,6 +39,18 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
       //console.log(this.speciesDetail);
     });
 
+  }
+
+  setActiveSpecies() {
+    //this.speciesGeneList.activeSpecies = this.species;
+    this.speciesService.setActiveSpecies(this.species);
+    /* this.router.navigate([`species/genes`, {
+      outlets: {
+        'list': ['genes', `${this.species}`, 'default species']
+      }
+    }]); */
+    this.router.navigateByUrl('/species');
+    
   }
 
   close() {
