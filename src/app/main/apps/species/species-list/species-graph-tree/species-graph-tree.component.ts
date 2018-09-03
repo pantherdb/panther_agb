@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { colorSets } from './color-sets';
 import chartGroups from './chart-types';
 import { generateSpeciesGraph } from '../../data/species-nodes';
+import { SpeciesDialogService } from './../../dialog.service';
 
 @Component({
   selector: 'app-species-graph-tree',
@@ -78,7 +79,7 @@ export class SpeciesGraphTreeComponent implements OnInit {
   panOffsetX;
   panOffsetY;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private speciesDialogService: SpeciesDialogService,) {
     this.colorSchemes = colorSets;
     this.hierarchialGraph = generateSpeciesGraph();
 
@@ -96,7 +97,8 @@ export class SpeciesGraphTreeComponent implements OnInit {
   }
 
   selectSpecies(speciesLabel) {
-    this.router.navigateByUrl(`/species/${speciesLabel}`);
+    //this.router.navigateByUrl(`/species/${speciesLabel}`);
+    this.speciesDialogService.openSpeciesPreview(speciesLabel);
   }
 
   updateData() {
