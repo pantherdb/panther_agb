@@ -20,7 +20,11 @@ export class SpeciesD3TreeComponent implements OnInit {
     this.timescaleLegend = speciesService.timescaleLegend;
   }
 
-  ngOnInit() {
+  ngOnInit () {
+    this.loadTree();
+  }
+
+  loadTree () {
     // Get JSON data
     var router = this.router;
     var speciesDialogService = this.speciesDialogService;
