@@ -26,10 +26,10 @@ export class GeneDetailComponent implements OnInit {
   hasProxyGene: boolean;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
-  displayedColumns_da: string[] = ['go_accession', 'go_name'];
-  dataSource_da;
-  displayedColumns_ia: string[] = ['go_accession', 'go_name'];
-  dataSource_ia;
+  displayedColumns_a: string[] = ['go_accession', 'go_name'];
+  dataSource_a;
+  /* displayedColumns_ia: string[] = ['go_accession', 'go_name'];
+  dataSource_ia; */
 
   constructor(
     private route: ActivatedRoute,
@@ -57,19 +57,19 @@ export class GeneDetailComponent implements OnInit {
         }]);
       });
       this.geneService.getPaintByPtn(this.ptn).then(response => {
-         this.paint = this.geneService.paint;
-         //console.log(this.paint);
-         this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
-         this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
         this.paint = this.geneService.paint;
+        //console.log(this.paint);
+        //this.paint = this.geneService.paint;
+        //this.dataSource_a = new MatTableDataSource(this.paint.direct_paint_annotations);
+        this.dataSource_a = new MatTableDataSource(this.paint.paint_annotations);
         this.paintIsLoading = false;
         //console.log(this.paint);
-        this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
-        this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
+        //this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
+        //this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
       });
     });
 
-    
+
 
   }
 

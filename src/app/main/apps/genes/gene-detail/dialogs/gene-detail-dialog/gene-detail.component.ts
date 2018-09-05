@@ -34,10 +34,10 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
   hasProxyGene: boolean;
   displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   dataSource;
-  displayedColumns_da: string[] = ['go_accession', 'go_name'];
-  dataSource_da;
-  displayedColumns_ia: string[] = ['go_accession', 'go_name'];
-  dataSource_ia;
+  displayedColumns_a: string[] = ['go_accession', 'go_name'];
+  dataSource_a;
+  //displayedColumns_ia: string[] = ['go_accession', 'go_name'];
+  //dataSource_ia;
 
   constructor(
     private _matDialogRef: MatDialogRef<GeneDetailDialogComponent>,
@@ -77,8 +77,8 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
         this.paint = this.geneService.paint;
         this.paintIsLoading = false;
         //console.log(this.paint);
-        this.dataSource_da = new MatTableDataSource(this.paint.direct_paint_annotations);
-        this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
+        this.dataSource_a = new MatTableDataSource(this.paint.paint_annotations);
+        //this.dataSource_ia = new MatTableDataSource(this.paint.inherited_paint_annotations);
       });
     });
 

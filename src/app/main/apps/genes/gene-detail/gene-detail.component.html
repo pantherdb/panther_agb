@@ -89,65 +89,29 @@
       <div *ngIf="hasProxyGene" class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
-            Direct Gene Ontology annotations to this ancestral gene
+            Gene Ontology annotations to this gene
           </div>
         </div>
         <div class="agb-body p-0">
-          <mat-table [dataSource]="dataSource_da" class="" matSort>
+          <mat-table [dataSource]="dataSource_a" class="" matSort>
             <ng-container matColumnDef="go_accession">
               <mat-header-cell *matHeaderCellDef mat-sort-header> GO Accession </mat-header-cell>
-              <mat-cell *matCellDef="let direct_anno">
-                <a href="http://amigo.geneontology.org/amigo/term/{{direct_anno.go_accession}}">
-                  {{direct_anno.go_accession}}
+              <mat-cell *matCellDef="let paint_anno">
+                <a href="http://amigo.geneontology.org/amigo/term/{{paint_anno.go_accession}}">
+                  {{paint_anno.go_accession}}
                 </a>
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="go_name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> GO Name </mat-header-cell>
-              <mat-cell *matCellDef="let direct_anno">
-                <a href="http://amigo.geneontology.org/amigo/term/{{direct_anno.go_accession}}">
-                  {{direct_anno.go_name}}
+              <mat-cell *matCellDef="let paint_anno">
+                <a href="http://amigo.geneontology.org/amigo/term/{{paint_anno.go_accession}}">
+                  {{paint_anno.go_name}}
                 </a>
               </mat-cell>
             </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns_da"></mat-header-row>
-            <mat-row *matRowDef="let direct_anno; columns: displayedColumns_da;"></mat-row>
-          </mat-table>
-          <mat-card *ngIf="paintIsLoading" style="display: flex; justify-content: center; align-items: center">
-            <mat-progress-spinner mode="indeterminate">
-            </mat-progress-spinner>
-          </mat-card>
-        </div>
-      </div>
-      <div class="agb-card-simple mat-elevation-z1">
-        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div *ngIf="hasProxyGene" class="agb-title">
-            Inherited Gene Ontology annotations to this ancestral gene
-          </div>
-          <div *ngIf="!hasProxyGene" class="agb-title">
-            Inherited Gene Ontology annotations to this extant gene
-          </div>
-        </div>
-        <div class="agb-body p-0">
-          <mat-table [dataSource]="dataSource_ia" class="" matSort>
-            <ng-container matColumnDef="go_accession">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> GO Accession </mat-header-cell>
-              <mat-cell *matCellDef="let inherited_anno">
-                <a href="http://amigo.geneontology.org/amigo/term/{{inherited_anno.go_accession}}">
-                  {{inherited_anno.go_accession}}
-                </a>
-              </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="go_name">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> GO Name </mat-header-cell>
-              <mat-cell *matCellDef="let inherited_anno">
-                <a href="http://amigo.geneontology.org/amigo/term/{{inherited_anno.go_accession}}">
-                  {{inherited_anno.go_name}}
-                </a>
-              </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns_ia"></mat-header-row>
-            <mat-row *matRowDef="let inherited_anno; columns: displayedColumns_ia;"></mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns_a"></mat-header-row>
+            <mat-row *matRowDef="let paint_anno; columns: displayedColumns_a;"></mat-row>
           </mat-table>
           <mat-card *ngIf="paintIsLoading" style="display: flex; justify-content: center; align-items: center">
             <mat-progress-spinner mode="indeterminate">
