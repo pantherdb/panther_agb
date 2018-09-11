@@ -12,7 +12,7 @@
         </div>
         <div *ngIf="gene?.name;else no_info_content" class="agb-body">
           <p *ngIf="gene.leaf_seq_id">
-            <a href="http://pantherdb.org/genes/gene.do?acc={{gene.leaf_seq_id}}">
+            <a href="http://pantherdb.org/genes/gene.do?acc={{gene.leaf_seq_id}}" target="_blank">
               {{gene.name}}
             </a>
           </p>
@@ -44,7 +44,7 @@
         </div>
         <div *ngIf="gene?.pthr;else no_info_content" class="agb-body">
           <p>
-            <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}">
+            <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}" target="_blank">
               {{gene.pthr}}
             </a>
             <!-- <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene.pthr}}"> -->
@@ -52,7 +52,7 @@
             <!-- </a> -->
           </p>
           <p>
-            <a href="http://panthertest5.usc.edu/treeViewer/treeViewer.jsp?book={{gene.pthr}}&seq={{ptn}}">
+            <a href="http://panthertest5.usc.edu/treeViewer/treeViewer.jsp?book={{gene.pthr}}&seq={{ptn}}" target="_blank">
               Gene Tree Viewer
             </a>
           </p>
@@ -97,7 +97,7 @@
             <ng-container matColumnDef="go_accession">
               <mat-header-cell *matHeaderCellDef mat-sort-header> GO Accession </mat-header-cell>
               <mat-cell *matCellDef="let paint_anno">
-                <a href="http://amigo.geneontology.org/amigo/term/{{paint_anno.go_accession}}">
+                <a href="http://amigo.geneontology.org/amigo/term/{{paint_anno.go_accession}}" target="_blank">
                   {{paint_anno.go_accession}}
                 </a>
               </mat-cell>
@@ -105,7 +105,7 @@
             <ng-container matColumnDef="go_name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> GO Name </mat-header-cell>
               <mat-cell *matCellDef="let paint_anno">
-                <a href="http://amigo.geneontology.org/amigo/term/{{paint_anno.go_accession}}">
+                <a href="http://amigo.geneontology.org/amigo/term/{{paint_anno.go_accession}}" target="_blank">
                   {{paint_anno.go_name}}
                 </a>
               </mat-cell>
@@ -138,7 +138,7 @@
             <ng-container matColumnDef="proxy_gene">
               <mat-header-cell *matHeaderCellDef mat-sort-header> PANTHER Identifier of Proxy Gene </mat-header-cell>
               <mat-cell *matCellDef="let proxy">
-                <a href="http://pantherdb.org/genes/gene.do?acc={{proxy.proxy_gene}}">
+                <a href="http://pantherdb.org/genes/gene.do?acc={{proxy.proxy_gene}}" target="_blank">
                   {{proxy.proxy_gene}}
                 </a>
               </mat-cell>

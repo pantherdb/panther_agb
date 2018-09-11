@@ -47,7 +47,7 @@
         <div *ngIf="speciesDetail?.taxon_id;else no_info_content" class="agb-body">
           <p>
             <!-- <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{speciesDetail.taxon_id}}"> -->
-            <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{speciesDetail.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
+            <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{speciesDetail.taxon_id}}&lvl=3&lin=f&keep=1&srchmode=1&unlock" target="_blank">
               {{speciesDetail.taxon_id}}
             </a>
           </p>
@@ -75,7 +75,7 @@
         </div>
         <div *ngIf="speciesDetail?.long_name;else no_info_content" class="agb-body">
           <p>
-            <a *ngFor="let s of speciesDetail.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}">
+            <a *ngFor="let s of speciesDetail.long_name.split('-')" href="https://en.wikipedia.org/wiki/{{ s }}" target="_blank">
               {{ s }}
             </a>
           </p>
