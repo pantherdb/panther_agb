@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { noctuaAnimations } from '@noctua/animations';
 import { NoctuaConfigService } from '@noctua/services/config.service';
+
+import { SpeciesService } from './../../apps/species/species.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +14,9 @@ import { NoctuaConfigService } from '@noctua/services/config.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private noctuaConfigService: NoctuaConfigService) {
+  constructor(private noctuaConfigService: NoctuaConfigService,
+    private router: Router,
+    private speciesService: SpeciesService) {
     this.noctuaConfigService.config = {
       footer: {
         show: true
@@ -22,5 +27,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  goToNestTree() {
+    this.speciesService.setActiveSpecies("LUCA");
+    this.router.navigate([`species/genes`, {
+      outlets: {
+        'list': ['genes', 'LUCA', 'default species']
+      }
+    }])};
 
 }

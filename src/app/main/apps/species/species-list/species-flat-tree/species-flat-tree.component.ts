@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable, ViewChild, ViewChildren, Renderer2, ElementRef } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNode } from '@angular/material/tree';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
@@ -30,6 +30,7 @@ export class SpeciesFlatTreeComponent implements OnInit {
   timescaleLegend: any = [];
 
   constructor(private router: Router,
+    private route: ActivatedRoute,
     private speciesDialogService: SpeciesDialogService,
     private speciesService: SpeciesService,
     private renderer: Renderer2,
@@ -49,20 +50,22 @@ export class SpeciesFlatTreeComponent implements OnInit {
       this.speciesList = response;
       //console.dir(this.speciesList);
 
-      this.dataSource.data = this.speciesList
+      this.dataSource.data = this.speciesList;
+      this.activeSpecies = this.speciesService.getActiveSpecies();
       this.tree.treeControl.expandAll();
     });
     
 
-    this.activeSpecies = this.speciesService.getActiveSpecies();
+    //this.activeSpecies = this.speciesService.getActiveSpecies();
     //console.log(this.activeSpecies);
-    if (this.activeSpecies) {
+    //console.log(this.route.snapshot.queryParams);
+    /* if (this.activeSpecies) {
       this.router.navigate([`species/genes`, {
         outlets: {
           'list': ['genes', `${this.activeSpecies}`, 'default species']
         }
       }]);
-    }
+    } */
   }
 
   selectSpecies(species) {

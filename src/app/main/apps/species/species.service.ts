@@ -58,7 +58,7 @@ export class SpeciesService {
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
-    activeSpecies: any = {};
+    activeSpecies: any;
     onSpeciesListChanged: BehaviorSubject<any>;
     onSpeciesDetailChanged: BehaviorSubject<any>;
 

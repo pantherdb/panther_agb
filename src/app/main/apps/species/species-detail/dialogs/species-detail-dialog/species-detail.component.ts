@@ -33,7 +33,8 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.species = this._data.species
+    this.species = this._data.species;
+    this.speciesService.setActiveSpecies(this.species);
     this.speciesService.getSpeciesDetail(this.species).then(response => {
       this.speciesDetail = this.speciesService.speciesDetail;
       //console.log(this.speciesDetail);
@@ -41,16 +42,14 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
 
   }
 
-  setActiveSpecies() {
-    //this.speciesGeneList.activeSpecies = this.species;
-    this.speciesService.setActiveSpecies(this.species);
-    /* this.router.navigate([`species/genes`, {
+  goToGeneList(){
+    
+    this.router.navigate([`species/genes`, {
       outlets: {
         'list': ['genes', `${this.species}`, 'default species']
       }
-    }]); */
-    this.router.navigateByUrl('/species');
-    
+    }]);
+    this.close();
   }
 
   close() {

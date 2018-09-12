@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpeciesService } from './../species.service';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
@@ -21,6 +21,7 @@ export class SpeciesDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private breadcrumbsService: BreadcrumbsService,
     private speciesService: SpeciesService) { }
 
@@ -29,10 +30,19 @@ export class SpeciesDetailComponent implements OnInit {
       this.species = decodeURIComponent(params['id']);
       this.speciesService.getSpeciesDetail(this.species).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
-        this.speciesService.activeSpecies = this.species;
+        //this.speciesService.activeSpecies = this.species;
         //console.log(this.speciesDetail);
       });
     });
+  }
+
+  goToGeneList(){
+    this.router.navigate([`species/genes`, {
+      outlets: {
+        'list': ['genes', `${this.species}`, 'default species']
+      }
+    }]);
+    this.speciesService.setActiveSpecies(this.species);
   }
 
 }
