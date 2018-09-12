@@ -58,13 +58,14 @@ export class SpeciesService {
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
-    activeSpecies: any;
+    activeSpecies: any = {};
     onSpeciesListChanged: BehaviorSubject<any>;
     onSpeciesDetailChanged: BehaviorSubject<any>;
 
     constructor(private httpClient: HttpClient) {
         this.onSpeciesListChanged = new BehaviorSubject({});
         this.onSpeciesDetailChanged = new BehaviorSubject({});
+        //this.activeSpecies = "LUCA";
     }
 
     getSpeciesList(): Promise<SpeciesNode[]> {

@@ -52,8 +52,10 @@ export class SpeciesFlatTreeComponent implements OnInit {
       this.dataSource.data = this.speciesList
       this.tree.treeControl.expandAll();
     });
+    
 
     this.activeSpecies = this.speciesService.getActiveSpecies();
+    //console.log(this.activeSpecies);
     if (this.activeSpecies) {
       this.router.navigate([`species/genes`, {
         outlets: {

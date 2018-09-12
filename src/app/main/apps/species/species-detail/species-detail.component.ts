@@ -29,6 +29,7 @@ export class SpeciesDetailComponent implements OnInit {
       this.species = decodeURIComponent(params['id']);
       this.speciesService.getSpeciesDetail(this.species).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
+        this.speciesService.activeSpecies = this.species;
         //console.log(this.speciesDetail);
       });
     });
