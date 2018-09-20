@@ -13,6 +13,6 @@ export class DownloadsComponent implements OnInit {
   }
   
   downloadAll():void {
-    window.location.href="https://s3-us-west-1.amazonaws.com/thomaslab-public/allAncestralGenesAndProxyGenes.csv.gz";
+    window.location.href="https://s3-us-west-1.amazonaws.com/thomaslab-public/AllGenes.csv.gz";
   }
 }
