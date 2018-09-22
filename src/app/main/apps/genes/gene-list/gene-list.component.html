@@ -26,10 +26,10 @@
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-            <div *ngIf="hasProxyGene" mat-sort-header>
+            <div *ngIf="hasProxyGene">
                 Public ID (Ancestral Gene)
             </div>
-          <div *ngIf="!hasProxyGene" mat-sort-header>
+          <div *ngIf="!hasProxyGene">
               Public ID (Extant Gene)
           </div>
         </mat-header-cell>

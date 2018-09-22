@@ -34,7 +34,7 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.species = this._data.species;
-    this.speciesService.setActiveSpecies(this.species);
+    //this.speciesService.setActiveSpecies(this.species);
     this.speciesService.getSpeciesDetail(this.species).then(response => {
       this.speciesDetail = this.speciesService.speciesDetail;
       //console.log(this.speciesDetail);
@@ -42,7 +42,7 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
 
   }
 
-  goToGeneList(){
+  /* goToGeneList(){
     
     this.router.navigate([`species/genes`, {
       outlets: {
@@ -50,11 +50,12 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
       }
     }]);
     this.close();
+    
   }
 
   close() {
     this._matDialogRef.close();
-  }
+  } */
 
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
