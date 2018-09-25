@@ -34,10 +34,20 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
   displayedColumns_gain = ['ptn_gain', 'name_gain'];
 
   @ViewChild(MatPaginator)
-  paginator: MatPaginator;
+  paginator1: MatPaginator;
+  
+  @ViewChild(MatPaginator)
+  paginator2: MatPaginator;
 
-  @ViewChild('filter')
-  filter: ElementRef;
+  @ViewChild(MatPaginator)
+  paginator3: MatPaginator;
+
+  @ViewChild('filter1')
+  filter1: ElementRef;
+  @ViewChild('filter2')
+  filter2: ElementRef;
+  @ViewChild('filter3')
+  filter3: ElementRef;
 
   @ViewChild(MatSort)
   sort: MatSort;
@@ -79,8 +89,8 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.total_gene_num = this.genesService.totalGenes;
         this.genes_pass_num = this.genes_pass.length;
         this.genes_lost_num = this.genes_lost.length;
-        this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
-        this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator, this.sort);
+        this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator1, this.sort);
+        this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator2, this.sort);
         
         this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
           //console.log(response);
@@ -90,8 +100,8 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
           this.total_gene_num = this.genesService.totalGenes;
           this.genes_pass_num = this.genes_pass.length;
           this.genes_lost_num = this.genes_lost.length;
-          this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
-          this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator, this.sort);
+          this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator1, this.sort);
+          this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator2, this.sort);
 
           /* this.genesService.getGenesBySpecies(this.ExtSpecies, 'default species').then(response => {
              console.log(response);
@@ -107,12 +117,12 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
         this.genes_gain = this.genesService.gained_genes;
         this.genes_gain_num = this.genes_gain.length;
-        this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+        this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator3, this.sort);
         
         this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {
           this.genes_gain = this.genesService.gained_genes;
           this.genes_gain_num = this.genes_gain.length;
-          this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+          this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator3, this.sort);
         });
 
         
@@ -136,7 +146,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
     });
 
 
-    fromEvent(this.filter.nativeElement, 'keyup')
+    fromEvent(this.filter1.nativeElement, 'keyup')
       .pipe(
         takeUntil(this.unsubscribeAll),
         debounceTime(150),
@@ -146,7 +156,33 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         if (!this.dataSource_pass) {
           return;
         }
-        this.dataSource_pass.filter = this.filter.nativeElement.value;
+        this.dataSource_pass.filter = this.filter1.nativeElement.value;
+      });
+
+      fromEvent(this.filter2.nativeElement, 'keyup')
+      .pipe(
+        takeUntil(this.unsubscribeAll),
+        debounceTime(150),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        if (!this.dataSource_pass) {
+          return;
+        }
+        this.dataSource_lost.filter = this.filter2.nativeElement.value;
+      });
+
+      fromEvent(this.filter3.nativeElement, 'keyup')
+      .pipe(
+        takeUntil(this.unsubscribeAll),
+        debounceTime(150),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        if (!this.dataSource_pass) {
+          return;
+        }
+        this.dataSource_gain.filter = this.filter3.nativeElement.value;
       });
 
   }
@@ -195,92 +231,6 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
     this.unsubscribeAll.complete();
   }
 }
-export class SpeciesDataSourceLost extends DataSource<any> {
-  private filterChange = new BehaviorSubject('');
-  private filteredDataChange = new BehaviorSubject('');
-
-  constructor(
-    private speciesDetailsService: GenesService,
-    private matPaginator: MatPaginator,
-    private matSort: MatSort
-  ) {
-    super();
-    this.filteredData = this.speciesDetailsService.lost_genes;
-  }
-
-  get filteredData(): any {
-    return this.filteredDataChange.value;
-  }
-
-  set filteredData(value: any) {
-    this.filteredDataChange.next(value);
-  }
-
-  get filter(): string {
-    return this.filterChange.value;
-  }
-
-  set filter(filter: string) {
-    this.filterChange.next(filter);
-  }
-
-  connect(): Observable<any[]> {
-    const displayDataChanges = [
-      this.speciesDetailsService.onSpeciesChanged,
-      this.matPaginator.page,
-      this.filterChange,
-      this.matSort.sortChange
-    ];
-
-    return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.lost_genes.slice();
-      data = this.filterData(data);
-      this.filteredData = [...data];
-      data = this.sortData(data);
-      const startIndex = this.matPaginator.pageIndex * this.matPaginator.pageSize;
-      return data.splice(startIndex, this.matPaginator.pageSize);
-    })
-    );
-  }
-
-  filterData(data): any {
-    if (!this.filter) {
-      return data;
-    }
-    return NoctuaUtils.filterArrayByString(data, this.filter);
-  }
-
-  sortData(data): any[] {
-    if (!this.matSort.active || this.matSort.direction === '') {
-      return data;
-    }
-
-    return data.sort((a, b) => {
-      let propertyA: number | string = '';
-      let propertyB: number | string = '';
-
-      switch (this.matSort.active) {
-        case 'ptn':
-          [propertyA, propertyB] = [a.ptn, b.ptn];
-          break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
-          break;
-        case 'pthr':
-          [propertyA, propertyB] = [a.pthr, b.pthr];
-          break;
-      }
-
-      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-      return (valueA < valueB ? -1 : 1) * (this.matSort.direction === 'asc' ? 1 : -1);
-    });
-  }
-
-  disconnect(): void {
-  }
-}
 
 export class SpeciesDataSourcePass extends DataSource<any> {
   private filterChange = new BehaviorSubject('');
@@ -289,7 +239,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
   constructor(
     private speciesDetailsService: GenesService,
     private matPaginator: MatPaginator,
-    private matSort: MatSort
+    private matSort1: MatSort
   ) {
     super();
     this.filteredData = this.speciesDetailsService.pass_genes;
@@ -316,7 +266,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
       this.speciesDetailsService.onSpeciesChanged,
       this.matPaginator.page,
       this.filterChange,
-      this.matSort.sortChange
+      this.matSort1.sortChange
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
@@ -338,7 +288,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
   }
 
   sortData(data): any[] {
-    if (!this.matSort.active || this.matSort.direction === '') {
+    if (!this.matSort1.active || this.matSort1.direction === '') {
       return data;
     }
 
@@ -346,7 +296,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
       let propertyA: number | string = '';
       let propertyB: number | string = '';
 
-      switch (this.matSort.active) {
+      switch (this.matSort1.active) {
         case 'ptn':
           [propertyA, propertyB] = [a.ptn, b.ptn];
           break;
@@ -364,7 +314,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
-      return (valueA < valueB ? -1 : 1) * (this.matSort.direction === 'asc' ? 1 : -1);
+      return (valueA < valueB ? -1 : 1) * (this.matSort1.direction === 'asc' ? 1 : -1);
     });
   }
 
@@ -372,7 +322,92 @@ export class SpeciesDataSourcePass extends DataSource<any> {
   }
 }
 
+export class SpeciesDataSourceLost extends DataSource<any> {
+  private filterChange = new BehaviorSubject('');
+  private filteredDataChange = new BehaviorSubject('');
 
+  constructor(
+    private speciesDetailsService: GenesService,
+    private matPaginator: MatPaginator,
+    private matSort2: MatSort
+  ) {
+    super();
+    this.filteredData = this.speciesDetailsService.lost_genes;
+  }
+
+  get filteredData(): any {
+    return this.filteredDataChange.value;
+  }
+
+  set filteredData(value: any) {
+    this.filteredDataChange.next(value);
+  }
+
+  get filter(): string {
+    return this.filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this.filterChange.next(filter);
+  }
+
+  connect(): Observable<any[]> {
+    const displayDataChanges = [
+      this.speciesDetailsService.onSpeciesChanged,
+      this.matPaginator.page,
+      this.filterChange,
+      this.matSort2.sortChange
+    ];
+
+    return merge(...displayDataChanges).pipe(map(() => {
+      let data = this.speciesDetailsService.lost_genes.slice();
+      data = this.filterData(data);
+      this.filteredData = [...data];
+      data = this.sortData(data);
+      const startIndex = this.matPaginator.pageIndex * this.matPaginator.pageSize;
+      return data.splice(startIndex, this.matPaginator.pageSize);
+    })
+    );
+  }
+
+  filterData(data): any {
+    if (!this.filter) {
+      return data;
+    }
+    return NoctuaUtils.filterArrayByString(data, this.filter);
+  }
+
+  sortData(data): any[] {
+    if (!this.matSort2.active || this.matSort2.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this.matSort2.active) {
+        case 'ptn':
+          [propertyA, propertyB] = [a.ptn, b.ptn];
+          break;
+        case 'name':
+          [propertyA, propertyB] = [a.name, b.name];
+          break;
+        case 'pthr':
+          [propertyA, propertyB] = [a.pthr, b.pthr];
+          break;
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this.matSort2.direction === 'asc' ? 1 : -1);
+    });
+  }
+
+  disconnect(): void {
+  }
+}
 
 export class SpeciesDataSourceGain extends DataSource<any> {
   private filterChange = new BehaviorSubject('');
@@ -381,7 +416,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
   constructor(
     private speciesDetailsService: GenesService,
     private matPaginator: MatPaginator,
-    private matSort: MatSort
+    private matSort3: MatSort
   ) {
     super();
     this.filteredData = this.speciesDetailsService.gained_genes;
@@ -408,7 +443,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
       this.speciesDetailsService.onSpeciesChanged,
       this.matPaginator.page,
       this.filterChange,
-      this.matSort.sortChange
+      this.matSort3.sortChange
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
@@ -430,7 +465,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
   }
 
   sortData(data): any[] {
-    if (!this.matSort.active || this.matSort.direction === '') {
+    if (!this.matSort3.active || this.matSort3.direction === '') {
       return data;
     }
 
@@ -438,7 +473,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
       let propertyA: number | string = '';
       let propertyB: number | string = '';
 
-      switch (this.matSort.active) {
+      switch (this.matSort3.active) {
         case 'ptn':
           [propertyA, propertyB] = [a.ptn, b.ptn];
           break;
@@ -453,7 +488,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
-      return (valueA < valueB ? -1 : 1) * (this.matSort.direction === 'asc' ? 1 : -1);
+      return (valueA < valueB ? -1 : 1) * (this.matSort3.direction === 'asc' ? 1 : -1);
     });
   }
 
