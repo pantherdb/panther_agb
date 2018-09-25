@@ -23,7 +23,8 @@ import { SpeciesDialogService } from './../../species/dialog.service';
 @Component({
   selector: 'app-genomes-comparison',
   templateUrl: './genomes-comparison.component.html',
-  styleUrls: ['./genomes-comparison.component.scss']
+  styleUrls: ['./genomes-comparison.component.scss'],
+  animations: noctuaAnimations
 })
 export class GenomesComparisonComponent implements OnInit, OnDestroy {
   dataSource_pass: SpeciesDataSourcePass | null;
@@ -35,7 +36,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator)
   paginator1: MatPaginator;
-  
+
   @ViewChild(MatPaginator)
   paginator2: MatPaginator;
 
@@ -91,7 +92,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.genes_lost_num = this.genes_lost.length;
         this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator1, this.sort);
         this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator2, this.sort);
-        
+
         this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
           //console.log(response);
           this.genes = this.genesService.ancestral_genes;
@@ -109,7 +110,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
           }); */
         });
 
-        
+
 
       });
 
@@ -118,14 +119,14 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.genes_gain = this.genesService.gained_genes;
         this.genes_gain_num = this.genes_gain.length;
         this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator3, this.sort);
-        
+
         this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {
           this.genes_gain = this.genesService.gained_genes;
           this.genes_gain_num = this.genes_gain.length;
           this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator3, this.sort);
         });
 
-        
+
 
       });
 
@@ -159,7 +160,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.dataSource_pass.filter = this.filter1.nativeElement.value;
       });
 
-      fromEvent(this.filter2.nativeElement, 'keyup')
+    fromEvent(this.filter2.nativeElement, 'keyup')
       .pipe(
         takeUntil(this.unsubscribeAll),
         debounceTime(150),
@@ -172,7 +173,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.dataSource_lost.filter = this.filter2.nativeElement.value;
       });
 
-      fromEvent(this.filter3.nativeElement, 'keyup')
+    fromEvent(this.filter3.nativeElement, 'keyup')
       .pipe(
         takeUntil(this.unsubscribeAll),
         debounceTime(150),
