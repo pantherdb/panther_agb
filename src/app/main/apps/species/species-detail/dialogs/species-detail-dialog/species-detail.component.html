@@ -63,7 +63,7 @@
               <p *ngFor = "let a of speciesDetail.all_ancestors">
                 {{ a[1] }} ({{ a[0] }} mya)
                 <a href = "/genes/genome-comparison/{{ speciesDetail.long_name }}/{{ a[1] }}" target="_blank">
-                  compare with {{ speciesDetail.long_name }}
+                  [compare with {{ speciesDetail.long_name }}]
                 </a>
               </p>
             </div>

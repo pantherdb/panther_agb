@@ -27,11 +27,11 @@ import { SpeciesDialogService } from './../../species/dialog.service';
 })
 export class GenomesComparisonComponent implements OnInit, OnDestroy {
   dataSource_pass: SpeciesDataSourcePass | null;
-  displayedColumns_pass = ['ptn', 'name'];
+  displayedColumns_pass = ['ptn_pass', 'name_pass'];
   dataSource_lost: SpeciesDataSourceLost | null;
-  displayedColumns_lost = ['ptn', 'name'];
+  displayedColumns_lost = ['ptn_lost', 'name_lost'];
   dataSource_gain: SpeciesDataSourceGain | null;
-  displayedColumns_gain = ['ptn', 'name'];
+  displayedColumns_gain = ['ptn_gain', 'name_gain'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -48,6 +48,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
   total_gene_num: any;
   genes_pass_num: any;
   genes_lost_num: any;
+  genes_gain_num: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -103,10 +104,14 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       });
 
 
-      this.genesService.getGenesByExtSpecies(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
+      this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
+        this.genes_gain = this.genesService.gained_genes;
+        this.genes_gain_num = this.genes_gain.length;
         this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
         
-        this.genesService.getGenesByExtSpecies(this.ExtSpecies, this.Ancspecies).then(response => {
+        this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {
+          this.genes_gain = this.genesService.gained_genes;
+          this.genes_gain_num = this.genes_gain.length;
           this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
         });
 
@@ -114,7 +119,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
       });
 
-      this.genesService.getProxySpecies(this.Ancspecies).then(response => {
+      /* this.genesService.getProxySpecies(this.Ancspecies).then(response => {
         this.proxy_species = this.genesService.proxy_species.sort();
         this.proxy_species.unshift('default species');
         this.hasProxyGene = (this.proxy_species.length > 1);
@@ -122,7 +127,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         //console.log(this.hasProxyGene);
         //console.log(this.proxy_species);
         //this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
-      });
+      }); */
       this.speciesService.getSpeciesDetail(this.Ancspecies).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
         //console.log(this.speciesDetail);
@@ -148,17 +153,17 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
   download_pass(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_pass, `${this.Ancspecies}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
+    this.exporter.exportColumnsToCSV(this.genes_pass, `${this.Ancspecies} genes passed to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
   }
 
   download_lost(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_lost, `${this.Ancspecies}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
+    this.exporter.exportColumnsToCSV(this.genes_lost, `${this.Ancspecies} genes lost prior to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
   }
 
   download_gain(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_gain, `${this.Ancspecies}.csv`, ["ptn", "name", "species", "pthr", "proxy_gene"]);
+    this.exporter.exportColumnsToCSV(this.genes_gain, `${this.ExtSpecies} genes gained after ${this.Ancspecies}.csv`, ["ptn", "name"]);
   }
 
   openGenePreview(species) {
@@ -188,6 +193,92 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
+  }
+}
+export class SpeciesDataSourceLost extends DataSource<any> {
+  private filterChange = new BehaviorSubject('');
+  private filteredDataChange = new BehaviorSubject('');
+
+  constructor(
+    private speciesDetailsService: GenesService,
+    private matPaginator: MatPaginator,
+    private matSort: MatSort
+  ) {
+    super();
+    this.filteredData = this.speciesDetailsService.lost_genes;
+  }
+
+  get filteredData(): any {
+    return this.filteredDataChange.value;
+  }
+
+  set filteredData(value: any) {
+    this.filteredDataChange.next(value);
+  }
+
+  get filter(): string {
+    return this.filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this.filterChange.next(filter);
+  }
+
+  connect(): Observable<any[]> {
+    const displayDataChanges = [
+      this.speciesDetailsService.onSpeciesChanged,
+      this.matPaginator.page,
+      this.filterChange,
+      this.matSort.sortChange
+    ];
+
+    return merge(...displayDataChanges).pipe(map(() => {
+      let data = this.speciesDetailsService.lost_genes.slice();
+      data = this.filterData(data);
+      this.filteredData = [...data];
+      data = this.sortData(data);
+      const startIndex = this.matPaginator.pageIndex * this.matPaginator.pageSize;
+      return data.splice(startIndex, this.matPaginator.pageSize);
+    })
+    );
+  }
+
+  filterData(data): any {
+    if (!this.filter) {
+      return data;
+    }
+    return NoctuaUtils.filterArrayByString(data, this.filter);
+  }
+
+  sortData(data): any[] {
+    if (!this.matSort.active || this.matSort.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this.matSort.active) {
+        case 'ptn':
+          [propertyA, propertyB] = [a.ptn, b.ptn];
+          break;
+        case 'name':
+          [propertyA, propertyB] = [a.name, b.name];
+          break;
+        case 'pthr':
+          [propertyA, propertyB] = [a.pthr, b.pthr];
+          break;
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this.matSort.direction === 'asc' ? 1 : -1);
+    });
+  }
+
+  disconnect(): void {
   }
 }
 
@@ -281,92 +372,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
   }
 }
 
-export class SpeciesDataSourceLost extends DataSource<any> {
-  private filterChange = new BehaviorSubject('');
-  private filteredDataChange = new BehaviorSubject('');
 
-  constructor(
-    private speciesDetailsService: GenesService,
-    private matPaginator: MatPaginator,
-    private matSort: MatSort
-  ) {
-    super();
-    this.filteredData = this.speciesDetailsService.lost_genes;
-  }
-
-  get filteredData(): any {
-    return this.filteredDataChange.value;
-  }
-
-  set filteredData(value: any) {
-    this.filteredDataChange.next(value);
-  }
-
-  get filter(): string {
-    return this.filterChange.value;
-  }
-
-  set filter(filter: string) {
-    this.filterChange.next(filter);
-  }
-
-  connect(): Observable<any[]> {
-    const displayDataChanges = [
-      this.speciesDetailsService.onSpeciesChanged,
-      this.matPaginator.page,
-      this.filterChange,
-      this.matSort.sortChange
-    ];
-
-    return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.lost_genes.slice();
-      data = this.filterData(data);
-      this.filteredData = [...data];
-      data = this.sortData(data);
-      const startIndex = this.matPaginator.pageIndex * this.matPaginator.pageSize;
-      return data.splice(startIndex, this.matPaginator.pageSize);
-    })
-    );
-  }
-
-  filterData(data): any {
-    if (!this.filter) {
-      return data;
-    }
-    return NoctuaUtils.filterArrayByString(data, this.filter);
-  }
-
-  sortData(data): any[] {
-    if (!this.matSort.active || this.matSort.direction === '') {
-      return data;
-    }
-
-    return data.sort((a, b) => {
-      let propertyA: number | string = '';
-      let propertyB: number | string = '';
-
-      switch (this.matSort.active) {
-        case 'ptn':
-          [propertyA, propertyB] = [a.ptn, b.ptn];
-          break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
-          break;
-        case 'pthr':
-          [propertyA, propertyB] = [a.pthr, b.pthr];
-          break;
-      }
-
-      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-      return (valueA < valueB ? -1 : 1) * (this.matSort.direction === 'asc' ? 1 : -1);
-    });
-  }
-
-  disconnect(): void {
-  }
-}
 
 export class SpeciesDataSourceGain extends DataSource<any> {
   private filterChange = new BehaviorSubject('');

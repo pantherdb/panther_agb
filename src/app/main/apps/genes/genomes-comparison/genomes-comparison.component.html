@@ -3,49 +3,49 @@
     <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="column" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div class="agb-title" style="font-weight: bold">
             Genes passed from {{Ancspecies}} to {{ExtSpecies}}
           </div>
         </div>
         <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
           noctuaPerfectScrollbar>
           <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-            Filter Ancestral Genes
-            <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{total_passed_gene_num}} genes in {{speciesDetail?.long_name}}"
+            Filter Passed Genes
+            <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{genes_pass_num}} genes passed from {{Ancspecies}} to {{ExtSpecies}}"
               autocomplete="off">
             <div>
               <strong class=""></strong>
             </div>
             <span fxFlex=""></span>
-            <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
+            <!-- <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
               (click)="openSpeciesPreview()">
               <mat-icon class="fa fa-info s-16"> </mat-icon>
-            </button>
+            </button> -->
             <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_pass()">
               Export
             </button>
           </div>
 
-          <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
+          <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch" style="height:500px">
             <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_pass" matSort [@animateStagger]="{value:'50'}"
               noctuaPerfectScrollbar>
-              <ng-container cdkColumnDef="ptn">
+              <ng-container cdkColumnDef="ptn_pass">
                 <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
                   <div>
-                    Public ID (Ancestral Gene)
+                    Public ID
                   </div>
                 </mat-header-cell>
-                <mat-cell *cdkCellDef="let gene" fxFlex="160px">
-                  <p class="text-truncate">{{gene.ptn}}</p>
+                <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
+                  <p class="text-truncate">{{gene_pass.ptn}}</p>
                 </mat-cell>
               </ng-container>
-              <ng-container cdkColumnDef="name">
+              <ng-container cdkColumnDef="name_pass">
                 <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
-                <mat-cell *cdkCellDef="let gene">
-                  <p class="">{{gene.name}}</p>
+                <mat-cell *cdkCellDef="let gene_pass">
+                  <p class="">{{gene_pass.name | replace }}</p>
                 </mat-cell>
               </ng-container>
-              <ng-container cdkColumnDef="proxy_gene_ptn">
+              <!-- <ng-container cdkColumnDef="proxy_gene_ptn">
                   <mat-header-cell *cdkHeaderCellDef>
                     <div mat-sort-header>
                       Public ID of inherited genes in {{ExtSpecies}}
@@ -54,7 +54,7 @@
                   <mat-cell *cdkCellDef="let gene">
                     <p class="text-truncate">{{gene.proxy_gene_ptn}}</p>
                   </mat-cell>
-                </ng-container>
+                </ng-container> -->
               <!-- <ng-container cdkColumnDef="proxy_gene">
                 <mat-header-cell *cdkHeaderCellDef>
                   <div mat-sort-header>
@@ -66,7 +66,7 @@
                 </mat-cell>
               </ng-container> -->
               <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>
-              <mat-row *cdkRowDef="let gene; columns: displayedColumns_pass;" class="gene" matRipple (click)="openGenePreview(gene.ptn)"
+              <mat-row *cdkRowDef="let gene_pass; columns: displayedColumns_pass;" class="gene" matRipple (click)="openGenePreview(gene_pass.ptn)"
                 routerLinkActive="active"></mat-row>
             </mat-table>
             <mat-paginator class="noc-paginator" #paginator [length]="dataSource_pass?.filteredData?.length"
@@ -77,43 +77,43 @@
       </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="column" fxLayoutAlign="start center">
-          <div class="agb-title">
+          <div class="agb-title" style="font-weight: bold">
             Genes in {{Ancspecies}} lost prior to {{ExtSpecies}}
           </div>
         </div>
         <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
           noctuaPerfectScrollbar>
           <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-            Filter Ancestral Genes
-            <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{total_lost_gene_num}} genes in {{speciesDetail?.long_name}}"
+            Filter Lost Genes
+            <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{genes_lost_num}} genes in {{Ancspecies}} lost prior to {{ExtSpecies}}"
               autocomplete="off">
             <div>
               <strong class=""></strong>
             </div>
             <span fxFlex=""></span>
-            <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
+            <!-- <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
               (click)="openSpeciesPreview()">
               <mat-icon class="fa fa-info s-16"> </mat-icon>
-            </button>
+            </button> -->
             <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_lost()">
               Export
             </button>
           </div>
 
-          <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
+          <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch" style="height:500px">
             <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_lost" matSort [@animateStagger]="{value:'50'}"
               noctuaPerfectScrollbar>
-              <ng-container cdkColumnDef="ptn">
+              <ng-container cdkColumnDef="ptn_lost">
                 <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
                   <div>
-                    Public ID (Ancestral Gene)
+                    Public ID
                   </div>
                 </mat-header-cell>
                 <mat-cell *cdkCellDef="let gene_lost" fxFlex="160px">
                   <p class="text-truncate">{{gene_lost.ptn}}</p>
                 </mat-cell>
               </ng-container>
-              <ng-container cdkColumnDef="name">
+              <ng-container cdkColumnDef="name_lost">
                 <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
                 <mat-cell *cdkCellDef="let gene_lost">
                   <p class="">{{gene_lost.name}}</p>
@@ -130,49 +130,55 @@
         </div>
       </div>
       <div class="agb-card-simple mat-elevation-z1">
-          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-              <div class="agb-title">
+          <div class="agb-header" fxLayout="column" fxLayoutAlign="start center">
+              <div class="agb-title" style="font-weight: bold">
                 Genes gaind in {{ExtSpecies}} after {{Ancspecies}}
               </div>
             </div>
         <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
           noctuaPerfectScrollbar>
           <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-            Filter Ancestral Genes
-            <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{total_gained_gene_num}} genes in {{speciesDetail?.long_name}}"
+            Filter Gaind Genes
+            <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{genes_gain_num}} genes gaind in {{ExtSpecies}} after {{Ancspecies}}"
               autocomplete="off">
             <div>
               <strong class=""></strong>
             </div>
             <span fxFlex=""></span>
-            <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
+            <!-- <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
               (click)="openSpeciesPreview()">
               <mat-icon class="fa fa-info s-16"> </mat-icon>
-            </button>
+            </button> -->
             <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_gain()">
               Export
             </button>
           </div>
 
-          <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
+          <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch" style="height:500px">
             <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_gain" matSort [@animateStagger]="{value:'50'}"
               noctuaPerfectScrollbar>
-              <ng-container cdkColumnDef="ptn">
+              <ng-container cdkColumnDef="ptn_gain">
                 <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
                   <div>
-                    Public ID (Extant Gene)
+                    Public ID
                   </div>
                 </mat-header-cell>
                 <mat-cell *cdkCellDef="let gene_gain" fxFlex="160px">
                   <p class="text-truncate">{{gene_gain.ptn}}</p>
                 </mat-cell>
               </ng-container>
-              <ng-container cdkColumnDef="name">
+              <ng-container cdkColumnDef="name_gain">
                 <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
                 <mat-cell *cdkCellDef="let gene_gain">
                   <p class="">{{gene_gain.name}}</p>
                 </mat-cell>
               </ng-container>
+              <!-- <ng-container cdkColumnDef="pthr_gain">
+                  <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Family</mat-header-cell>
+                  <mat-cell *cdkCellDef="let gene_gain">
+                    <p class="">{{gene_gain.pthr}}</p>
+                  </mat-cell>
+                </ng-container> -->
               <mat-header-row *cdkHeaderRowDef="displayedColumns_gain" class="agb-column-subtoolbar"></mat-header-row>
               <mat-row *cdkRowDef="let gene_gain; columns: displayedColumns_gain;" class="gene" matRipple (click)="openGenePreview(gene_gain.ptn)"
                 routerLinkActive="active"></mat-row>

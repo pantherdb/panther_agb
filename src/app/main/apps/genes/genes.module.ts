@@ -12,6 +12,8 @@ import { GeneDetailDialogComponent } from './gene-detail/dialogs/gene-detail-dia
 import { GenesDialogService } from './dialog.service';
 import { SpeciesDialogService } from './../species/dialog.service';
 import { GenomesComparisonComponent } from './genomes-comparison/genomes-comparison.component';
+import { Replace } from './genomes-comparison/replace.pipe';
+
 const routes = [{
   path: ':species/:proxySpecies', component: GeneListComponent
 }, {
@@ -25,7 +27,8 @@ const routes = [{
     GeneListComponent,
     GeneDetailComponent,
     GeneDetailDialogComponent,
-    GenomesComparisonComponent
+    GenomesComparisonComponent,
+    Replace
   ],
   imports: [
     RouterModule.forChild(routes),

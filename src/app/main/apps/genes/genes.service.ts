@@ -51,19 +51,17 @@ export class GenesService {
         });
     }
 
-    getGenesByExtSpecies(ext_species, anc_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+    getGeneGains(ext_species, anc_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
         const url = page ?
-            `${environment.apiUrl}/genelist/species/${ext_species}/default species/?page=${page}&limit=${limit}` :
-            `${environment.apiUrl}/genelist/species/${ext_species}/default species`;
+            `${environment.apiUrl}/genelist/gene-gain/${ext_species}/${anc_species}/?page=${page}&limit=${limit}` :
+            `${environment.apiUrl}/genelist/gene-gain/${ext_species}/${anc_species}`;
 
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
-                    //var ext_genes = response['lists'];
-                    var totalGeneNum = response['total'];
-                    this.gained_genes = response['lists'].filter(gene => gene.ancestor_species.include(anc_species));
-
-                    this.onSpeciesChanged.next(this.ancestral_genes);
+                    //console.log(response);
+                    this.gained_genes = response['lists'];
+                    this.onSpeciesChanged.next(this.gained_genes);
                     resolve(response);
                 }, reject);
         });
