@@ -80,11 +80,15 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.genes_lost_num = this.genes_lost.length;
         this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
         this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator, this.sort);
-
+        
         this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
           //console.log(response);
           this.genes = this.genesService.ancestral_genes;
+          this.genes_pass = this.genesService.pass_genes;
+          this.genes_lost = this.genesService.lost_genes;
           this.total_gene_num = this.genesService.totalGenes;
+          this.genes_pass_num = this.genes_pass.length;
+          this.genes_lost_num = this.genes_lost.length;
           this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
           this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator, this.sort);
 
@@ -93,6 +97,20 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
              //this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
           }); */
         });
+
+        
+
+      });
+
+
+      this.genesService.getGenesByExtSpecies(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
+        this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+        
+        this.genesService.getGenesByExtSpecies(this.ExtSpecies, this.Ancspecies).then(response => {
+          this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+        });
+
+        
 
       });
 

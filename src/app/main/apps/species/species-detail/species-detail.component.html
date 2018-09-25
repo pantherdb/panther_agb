@@ -33,8 +33,8 @@
           </div>
           <div class="agb-body">
             <p *ngFor = "let a of speciesDetail.all_ancestors">
-              {{ a[0] }} ({{ a[1] }} mya)
-              <a href = "/genes/genome-comparison/{{ speciesDetail.long_name }}/{{ a }}">
+              {{ a[1] }} ({{ a[0] }} mya)
+              <a href = "/genes/genome-comparison/{{ speciesDetail.long_name }}/{{ a[1] }}">
                 compare with {{ speciesDetail.long_name }}
               </a>
             </p>
