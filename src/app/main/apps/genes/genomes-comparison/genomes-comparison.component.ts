@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MatOptionSelectionChange } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
 import { SpeciesService } from '../../species/species.service';
 import { GenesService } from '../genes.service';
+import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
 import { noctuaAnimations } from '@noctua/animations';
 import { NoctuaUtils } from '@noctua/utils/noctua-utils';
@@ -26,11 +27,11 @@ import { SpeciesDialogService } from './../../species/dialog.service';
 })
 export class GenomesComparisonComponent implements OnInit, OnDestroy {
   dataSource_pass: SpeciesDataSourcePass | null;
-  displayedColumns_pass = ['ptn', 'name', 'pthr', 'proxy_gene'];
+  displayedColumns_pass = ['ptn', 'name'];
   dataSource_lost: SpeciesDataSourceLost | null;
-  displayedColumns_lost = ['ptn', 'name', 'pthr'];
+  displayedColumns_lost = ['ptn', 'name'];
   dataSource_gain: SpeciesDataSourceGain | null;
-  displayedColumns_gain = ['ptn', 'name', 'pthr'];
+  displayedColumns_gain = ['ptn', 'name'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -81,16 +82,16 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
+          //console.log(response);
           this.genes = this.genesService.ancestral_genes;
           this.total_gene_num = this.genesService.totalGenes;
           this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
           this.dataSource_lost = new SpeciesDataSourceLost(this.genesService, this.paginator, this.sort);
 
-          this.genesService.getGenesBySpecies(this.ExtSpecies, 'default species').then(response => {
-             this.genes_gain = this.genesService.gained_genes;
-             console.log(this.genes_gain);
-             this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
-          });
+          /* this.genesService.getGenesBySpecies(this.ExtSpecies, 'default species').then(response => {
+             console.log(response);
+             //this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+          }); */
         });
 
       });

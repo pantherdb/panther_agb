@@ -25,6 +25,21 @@
           </p>
         </div>
       </div>
+      <div *ngIf="speciesDetail?.timescale==0" class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Ancestral Genomes of {{speciesDetail.long_name}}
+            </div>
+          </div>
+          <div class="agb-body">
+            <p *ngFor = "let a of speciesDetail.all_ancestors">
+              {{ a[0] }} ({{ a[1] }} mya)
+              <a href = "/genes/genome-comparison/{{ speciesDetail.long_name }}/{{ a }}">
+                compare with {{ speciesDetail.long_name }}
+              </a>
+            </p>
+          </div>
+        </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">

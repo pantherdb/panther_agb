@@ -21,7 +21,10 @@ export class GenesService {
     //proxy_genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        private httpClient: HttpClient,
+        //private httpClient2: HttpClient
+        ) {
         this.onSpeciesChanged = new BehaviorSubject({});
     }
 
@@ -30,7 +33,7 @@ export class GenesService {
         const url = page ?
             `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}`;
-        const url2 = `${environment.apiUrl}/genelist/species/${proxySpecies}/default species`;
+        //const url2 = `${environment.apiUrl}/genelist/species/${proxySpecies}/default species`;
 
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
@@ -42,7 +45,7 @@ export class GenesService {
                     //console.log(this.ancestral_genes);
                     this.totalGenes = response['total'];
                     //this.proxy_genes = response.proxy_genes;
-                    this.httpClient.get<SpeciesGeneList[]>(url2)
+                    /* this.httpClient2.get<SpeciesGeneList[]>(url2)
                     .subscribe((response: any) => {
                         console.log(response);
                         this.total_extant_genes = response['lists'];
@@ -52,7 +55,7 @@ export class GenesService {
                             return (!(anc_prox_ptns.includes(gene.ptn))) && (gene.pthr != 'NOT_AVAILABLE');
                         } );
                         console.log(this.gained_genes);
-                    });
+                    }); */
 
                     this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);

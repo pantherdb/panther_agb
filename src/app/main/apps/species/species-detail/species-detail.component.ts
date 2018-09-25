@@ -4,6 +4,7 @@ import { SpeciesService } from './../species.service';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Species } from './species';
+import {OrderByPipe} from "./orderby.pipe"
 
 @Component({
   selector: 'app-species-detail',

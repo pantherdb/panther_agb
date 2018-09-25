@@ -51,11 +51,11 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
     }]);
     this.close();
     
-  }
+  }*/
 
   close() {
     this._matDialogRef.close();
-  } */
+  }
 
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions

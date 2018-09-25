@@ -2,7 +2,7 @@
   <div class="noc-container">
     <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="agb-card-simple mat-elevation-z1">
-        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+        <div class="agb-header" fxLayout="column" fxLayoutAlign="start center">
           <div class="agb-title">
             Genes passed from {{Ancspecies}} to {{ExtSpecies}}
           </div>
@@ -45,7 +45,7 @@
                   <p class="">{{gene.name}}</p>
                 </mat-cell>
               </ng-container>
-              <ng-container cdkColumnDef="proxy_gene">
+              <ng-container cdkColumnDef="proxy_gene_ptn">
                   <mat-header-cell *cdkHeaderCellDef>
                     <div mat-sort-header>
                       Public ID of inherited genes in {{ExtSpecies}}
@@ -55,7 +55,7 @@
                     <p class="text-truncate">{{gene.proxy_gene_ptn}}</p>
                   </mat-cell>
                 </ng-container>
-              <ng-container cdkColumnDef="proxy_gene">
+              <!-- <ng-container cdkColumnDef="proxy_gene">
                 <mat-header-cell *cdkHeaderCellDef>
                   <div mat-sort-header>
                     PANTHER Gene ID of inherited genes in {{ExtSpecies}}
@@ -64,7 +64,7 @@
                 <mat-cell *cdkCellDef="let gene">
                   <p class="text-truncate">{{gene.proxy_gene}}</p>
                 </mat-cell>
-              </ng-container>
+              </ng-container> -->
               <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>
               <mat-row *cdkRowDef="let gene; columns: displayedColumns_pass;" class="gene" matRipple (click)="openGenePreview(gene.ptn)"
                 routerLinkActive="active"></mat-row>
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="agb-card-simple mat-elevation-z1">
-        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+        <div class="agb-header" fxLayout="column" fxLayoutAlign="start center">
           <div class="agb-title">
             Genes in {{Ancspecies}} lost prior to {{ExtSpecies}}
           </div>
@@ -129,7 +129,7 @@
           </div>
         </div>
       </div>
-      <div class="agb-card-simple mat-elevation-z1">
+<!--       <div class="agb-card-simple mat-elevation-z1">
           <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
               <div class="agb-title">
                 Genes gaind in {{ExtSpecies}} after {{Ancspecies}}
@@ -182,7 +182,7 @@
             </mat-paginator>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
