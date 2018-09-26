@@ -9,7 +9,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Genes passed from
+              {{genes_pass_num}} Genes passed from
             </mat-panel-title>
             <mat-panel-description>
               {{Ancspecies}} to {{ExtSpecies}}
@@ -89,7 +89,7 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Genes in
+              {{genes_lost_num}} Genes in
             </mat-panel-title>
             <mat-panel-description>
               {{Ancspecies}} lost prior to {{ExtSpecies}}
@@ -149,7 +149,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Genes gaind in
+              {{genes_gain_num}} Genes gained in
             </mat-panel-title>
             <mat-panel-description>
               {{ExtSpecies}} after {{Ancspecies}}
@@ -160,8 +160,8 @@
             <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
               noctuaPerfectScrollbar>
               <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Gaind Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_gain_num}} genes gaind in {{ExtSpecies}} after {{Ancspecies}}"
+                Filter Gained Genes
+                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_gain_num}} genes gained in {{ExtSpecies}} after {{Ancspecies}}"
                   autocomplete="off">
                 <div>
                   <strong class=""></strong>
@@ -348,8 +348,8 @@
             <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
               noctuaPerfectScrollbar>
               <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Gaind Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_gain_num}} genes gaind in {{ExtSpecies}} after {{Ancspecies}}"
+                Filter Gained Genes
+                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_gain_num}} genes gained in {{ExtSpecies}} after {{Ancspecies}}"
                   autocomplete="off">
                 <div>
                   <strong class=""></strong>

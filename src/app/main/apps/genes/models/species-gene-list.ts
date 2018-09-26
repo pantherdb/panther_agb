@@ -15,7 +15,8 @@ export interface SpeciesGeneList {
     ptn: string;
     name: string;
     pthr:string
-    proxy_gene:string;
+    proxy_gene?:string;
     proxy_gene_ptn?: string;
     ancestor_species?:any[];
+    all_desendant_gene_ptn_in_proxy_species?: string;
 }

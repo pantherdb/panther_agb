@@ -14,17 +14,14 @@ export class GenesService {
     ancestral_genes: SpeciesGeneList[];
     pass_genes: SpeciesGeneList[];
     lost_genes: SpeciesGeneList[];
-    total_extant_genes: SpeciesGeneList[];
     gained_genes: SpeciesGeneList[];
+    not_modeled_genes: SpeciesGeneList[];
     totalGenes: any;
-    gained_totalGenes: any;
     proxy_species: any[];
-    //proxy_genes: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
     constructor(
         private httpClient: HttpClient,
-        //private httpClient2: HttpClient
         ) {
         this.onSpeciesChanged = new BehaviorSubject({});
     }
@@ -38,11 +35,10 @@ export class GenesService {
 
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
-                //.map(res => res['lists'])
                 .subscribe((response: any) => {
                     this.ancestral_genes = response['lists'];
-                    this.pass_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene != 'NOT_AVAILABLE');
-                    this.lost_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene == 'NOT_AVAILABLE');
+                    //this.pass_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene != 'NOT_AVAILABLE');
+                    //this.lost_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene == 'NOT_AVAILABLE');
                     this.totalGenes = response['total'];
 
                     this.onSpeciesChanged.next(this.ancestral_genes);
@@ -67,6 +63,54 @@ export class GenesService {
         });
     }
 
+    getGeneLoss(anc_species, ext_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        const url = page ?
+            `${environment.apiUrl}/genelist/gene-loss/${anc_species}/${ext_species}/?page=${page}&limit=${limit}` :
+            `${environment.apiUrl}/genelist/gene-loss/${anc_species}/${ext_species}`;
+
+        return new Promise<SpeciesGeneList[]>((resolve, reject) => {
+            this.httpClient.get<SpeciesGeneList[]>(url)
+                .subscribe((response: any) => {
+                    //console.log(response);
+                    this.lost_genes = response['lists'];
+                    this.onSpeciesChanged.next(this.lost_genes);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    getGenePassed(anc_species, ext_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        const url = page ?
+            `${environment.apiUrl}/genelist/gene-pass/${anc_species}/${ext_species}/?page=${page}&limit=${limit}` :
+            `${environment.apiUrl}/genelist/gene-pass/${anc_species}/${ext_species}`;
+
+        return new Promise<SpeciesGeneList[]>((resolve, reject) => {
+            this.httpClient.get<SpeciesGeneList[]>(url)
+                .subscribe((response: any) => {
+                    //console.log(response);
+                    this.pass_genes = response['lists'];
+                    this.onSpeciesChanged.next(this.lost_genes);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    getGeneNotModeled(ext_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        const url = page ?
+            `${environment.apiUrl}/genelist/gene-no-model/${ext_species}/?page=${page}&limit=${limit}` :
+            `${environment.apiUrl}/genelist/gene-no-model/${ext_species}`;
+
+        return new Promise<SpeciesGeneList[]>((resolve, reject) => {
+            this.httpClient.get<SpeciesGeneList[]>(url)
+                .subscribe((response: any) => {
+                    //console.log(response);
+                    this.not_modeled_genes = response['lists'];
+                    this.onSpeciesChanged.next(this.lost_genes);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
     getProxySpecies(species): Promise<any[]> {
 
         const url = `${environment.apiUrl}/genelist/proxy_species/${species}`;
@@ -76,10 +120,6 @@ export class GenesService {
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
                     this.proxy_species = response;
-                    //this.proxy_species.push('default');
-                    //console.log(this.proxy_species);
-                    //this.proxy_genes = response.proxy_genes;
-                    //this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);
                 }, reject);
         });
