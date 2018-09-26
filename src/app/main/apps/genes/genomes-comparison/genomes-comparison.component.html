@@ -89,7 +89,7 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{genes_lost_num}} Genes in
+              {{genes_loss_num}} Genes in
             </mat-panel-title>
             <mat-panel-description>
               {{Ancspecies}} lost prior to {{ExtSpecies}}
@@ -110,15 +110,15 @@
               (click)="openSpeciesPreview()">
               <mat-icon class="fa fa-info s-16"> </mat-icon>
             </button> -->
-                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_lost()">
+                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_loss()">
                   Export
                 </button>
               </div>
 
               <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch" style="height:500px">
-                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_lost" matSort [@animateStagger]="{value:'50'}"
+                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_loss" matSort [@animateStagger]="{value:'50'}"
                   noctuaPerfectScrollbar>
-                  <ng-container cdkColumnDef="ptn_lost">
+                  <ng-container cdkColumnDef="ptn_loss">
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
                       <div>
                         Public ID
@@ -128,17 +128,17 @@
                       <p class="text-truncate">{{gene_lost.ptn}}</p>
                     </mat-cell>
                   </ng-container>
-                  <ng-container cdkColumnDef="name_lost">
+                  <ng-container cdkColumnDef="name_loss">
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
                     <mat-cell *cdkCellDef="let gene_lost">
                       <p class="">{{gene_lost.name}}</p>
                     </mat-cell>
                   </ng-container>
-                  <mat-header-row *cdkHeaderRowDef="displayedColumns_lost" class="agb-column-subtoolbar"></mat-header-row>
-                  <mat-row *cdkRowDef="let gene_lost; columns: displayedColumns_lost;" class="gene" matRipple (click)="openGenePreview(gene_lost.ptn)"
+                  <mat-header-row *cdkHeaderRowDef="displayedColumns_loss" class="agb-column-subtoolbar"></mat-header-row>
+                  <mat-row *cdkRowDef="let gene_lost; columns: displayedColumns_loss;" class="gene" matRipple (click)="openGenePreview(gene_lost.ptn)"
                     routerLinkActive="active"></mat-row>
                 </mat-table>
-                <mat-paginator class="noc-paginator" #paginator2 [length]="dataSource_lost?.filteredData?.length"
+                <mat-paginator class="noc-paginator" #paginator2 [length]="dataSource_loss?.filteredData?.length"
                   [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
                 </mat-paginator>
               </div>
@@ -297,7 +297,7 @@
               noctuaPerfectScrollbar>
               <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
                 Filter Lost Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter2 placeholder="{{genes_lost_num}} genes in {{Ancspecies}} lost prior to {{ExtSpecies}}"
+                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter2 placeholder="{{genes_loss_num}} genes in {{Ancspecies}} lost prior to {{ExtSpecies}}"
                   autocomplete="off">
                 <div>
                   <strong class=""></strong>
@@ -307,15 +307,15 @@
                   (click)="openSpeciesPreview()">
                   <mat-icon class="fa fa-info s-16"> </mat-icon>
                 </button> -->
-                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_lost()">
+                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_loss()">
                   Export
                 </button>
               </div>
 
               <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch" style="height:500px">
-                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_lost" matSort [@animateStagger]="{value:'50'}"
+                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_loss" matSort [@animateStagger]="{value:'50'}"
                   noctuaPerfectScrollbar>
-                  <ng-container cdkColumnDef="ptn_lost">
+                  <ng-container cdkColumnDef="ptn_loss">
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
                       <div>
                         Public ID
@@ -325,17 +325,17 @@
                       <p class="text-truncate">{{gene_lost.ptn}}</p>
                     </mat-cell>
                   </ng-container>
-                  <ng-container cdkColumnDef="name_lost">
+                  <ng-container cdkColumnDef="name_loss">
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
                     <mat-cell *cdkCellDef="let gene_lost">
                       <p class="">{{gene_lost.name}}</p>
                     </mat-cell>
                   </ng-container>
-                  <mat-header-row *cdkHeaderRowDef="displayedColumns_lost" class="agb-column-subtoolbar"></mat-header-row>
-                  <mat-row *cdkRowDef="let gene_lost; columns: displayedColumns_lost;" class="gene" matRipple (click)="openGenePreview(gene_lost.ptn)"
+                  <mat-header-row *cdkHeaderRowDef="displayedColumns_loss" class="agb-column-subtoolbar"></mat-header-row>
+                  <mat-row *cdkRowDef="let gene_lost; columns: displayedColumns_loss;" class="gene" matRipple (click)="openGenePreview(gene_lost.ptn)"
                     routerLinkActive="active"></mat-row>
                 </mat-table>
-                <mat-paginator class="noc-paginator" #paginator2 [length]="dataSource_lost?.filteredData?.length"
+                <mat-paginator class="noc-paginator" #paginator2 [length]="dataSource_loss?.filteredData?.length"
                   [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
                 </mat-paginator>
               </div>

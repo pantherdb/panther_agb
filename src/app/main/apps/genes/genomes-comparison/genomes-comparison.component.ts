@@ -30,7 +30,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
   dataSource_pass: SpeciesDataSourcePass | null;
   displayedColumns_pass = ['ptn_pass', 'name_pass'];
   dataSource_loss: SpeciesDataSourceLoss | null;
-  displayedColumns_lost = ['ptn_lost', 'name_lost'];
+  displayedColumns_loss = ['ptn_loss', 'name_loss'];
   dataSource_gain: SpeciesDataSourceGain | null;
   displayedColumns_gain = ['ptn_gain', 'name_gain'];
   dataSource_not_modeled: SpeciesDataSourceNotModeled | null;
@@ -121,11 +121,13 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       
       this.genesService.getGeneLoss(this.Ancspecies, this.ExtSpecies,  1, 50).then(response => {
         this.genes_loss = this.genesService.lost_genes;
+        //console.log(this.genes_loss);
         this.genes_loss_num = this.genes_loss.length;
         this.dataSource_loss = new SpeciesDataSourceLoss(this.genesService, this.paginator2, this.sort);
 
         this.genesService.getGeneLoss(this.Ancspecies, this.ExtSpecies).then(response => {
           this.genes_loss = this.genesService.lost_genes;
+          //console.log(this.genes_loss);
           this.genes_loss_num = this.genes_loss.length;
           this.dataSource_loss = new SpeciesDataSourceLoss(this.genesService, this.paginator2, this.sort);
         });
@@ -211,7 +213,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
     this.exporter.exportColumnsToCSV(this.genes_pass, `${this.Ancspecies} genes passed to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
   }
 
-  download_lost(): void {
+  download_loss(): void {
     this.exporter = new ExportToCSV();
     this.exporter.exportColumnsToCSV(this.genes_loss, `${this.Ancspecies} genes lost prior to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
   }
