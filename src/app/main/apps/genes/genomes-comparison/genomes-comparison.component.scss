@@ -2,11 +2,92 @@
 @import "src/@agb.common/scss/agb.common";
 
 :host {
-  mat-table-group {
-    margin-top: 300px;
+
+  .agb-gene-count {
+    color: #999;
+    font-style: italic;
   }
 
-  width: 100%;
+  .agb-gene-conmparison-container {
+    padding: 20px 2px 300px 2px;
+
+    .agb-comparison-summary {
+      padding: 20px 2px 20px 2px;
+
+      .agb-title {
+        padding: 0 5px 0 10px;
+        @include deep-height(50px);
+        border-bottom: #999 solid 1px;
+        background-color: #FFF;
+        margin-bottom: 5px;
+        font-size: 18px;
+        margin-bottom: 5px;
+
+        .agb-subtitle {
+          padding-left: 5px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .agb-comparison-expansion {
+    width: 100%;
+
+    mat-expansion-panel-header {
+      padding: 0 5px 0 10px;
+      @include deep-height(50px);
+      border-bottom: #999 solid 1px;
+      margin-bottom: 5px;
+
+      .agb-comparison-toggle {
+        @include deep-width(30px);
+        @include deep-height(50px);
+      }
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0 !important;
+    }
+
+    .agb-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .agb-description {
+      font-size: 12px
+    }
+
+    .agb-expansion-panel-body {
+      //padding: 10px 0;
+      @include deep-width(100%);
+    }
+
+    &.agb-passed {
+      border-left: #4cc0e4 solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: #4cc0e4 solid 5px;
+      }
+    }
+
+    &.agb-gained {
+      border-left: #4c9b73 solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: #4c9b73 solid 5px;
+      }
+    }
+
+    &.agb-loss {
+      border-left: rgb(230, 83, 83) solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: rgb(230, 83, 83) solid 5px;
+      }
+    }
+  }
 
   .agb-species-panel {
     width: 100%;
@@ -16,13 +97,6 @@
     .search-input-wrapper {
       //max-width: 480px;
     }
-  }
-
-  .mat-tab-group,
-  .mat-tab-body-wrapper,
-  .tab-content {
-    flex: 1 1 auto;
-    max-width: 100%;
   }
 
   .agb-select-legacy {
