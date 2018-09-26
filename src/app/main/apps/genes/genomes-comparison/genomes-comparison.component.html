@@ -198,7 +198,7 @@
             </div>
           </div>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <!-- <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{genes_not_modeled_num}} Genes in
@@ -219,10 +219,6 @@
                   <strong class=""></strong>
                 </div>
                 <span fxFlex=""></span>
-                <!-- <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000"
-              (click)="openSpeciesPreview()">
-              <mat-icon class="fa fa-info s-16"> </mat-icon>
-            </button> -->
                 <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_not_modeled()">
                   Export
                 </button>
@@ -247,12 +243,6 @@
                       <p class="">{{gene_not_modeled.name}}</p>
                     </mat-cell>
                   </ng-container>
-                  <!-- <ng-container cdkColumnDef="pthr_gain">
-                  <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Family</mat-header-cell>
-                  <mat-cell *cdkCellDef="let gene_gain">
-                    <p class="">{{gene_gain.pthr}}</p>
-                  </mat-cell>
-                </ng-container> -->
                   <mat-header-row *cdkHeaderRowDef="displayedColumns_not_modeled" class="agb-column-subtoolbar"></mat-header-row>
                   <mat-row *cdkRowDef="let gene_not_modeled; columns: displayedColumns_not_modeled;" class="gene" matRipple (click)="openGenePreview(gene_not_modeled.ptn)"
                     routerLinkActive="active"></mat-row>
@@ -263,7 +253,7 @@
               </div>
             </div>
           </div>
-        </mat-expansion-panel>
+        </mat-expansion-panel> -->
       </mat-accordion>
     </div>
   </div>
