@@ -108,7 +108,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
         this.genes_pass = this.genesService.pass_genes;
         //console.log(this.genes_pass);
-        this.genes_pass_num = this.genes_pass.length;
+        //this.genes_pass_num = this.genes_pass.length;
         this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator1, this.sort);
 
         this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies).then(response => {
@@ -122,7 +122,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       this.genesService.getGeneLoss(this.Ancspecies, this.ExtSpecies,  1, 50).then(response => {
         this.genes_loss = this.genesService.lost_genes;
         //console.log(this.genes_loss);
-        this.genes_loss_num = this.genes_loss.length;
+        //this.genes_loss_num = this.genes_loss.length;
         this.dataSource_loss = new SpeciesDataSourceLoss(this.genesService, this.paginator2, this.sort);
 
         this.genesService.getGeneLoss(this.Ancspecies, this.ExtSpecies).then(response => {
@@ -135,7 +135,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
       this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
         this.genes_gain = this.genesService.gained_genes;
-        this.genes_gain_num = this.genes_gain.length;
+        //this.genes_gain_num = this.genes_gain.length;
         this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator3, this.sort);
 
         this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {
@@ -147,7 +147,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
       this.genesService.getGeneNotModeled(this.ExtSpecies, 1, 50).then(response => {
         this.genes_not_modeled= this.genesService.not_modeled_genes;
-        this.genes_not_modeled_num = this.genes_not_modeled.length;
+        //this.genes_not_modeled_num = this.genes_not_modeled.length;
         this.dataSource_not_modeled = new SpeciesDataSourceNotModeled(this.genesService, this.paginator4, this.sort);
 
         this.genesService.getGeneNotModeled(this.ExtSpecies).then(response => {
