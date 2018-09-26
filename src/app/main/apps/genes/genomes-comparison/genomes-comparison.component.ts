@@ -223,6 +223,11 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
     this.exporter.exportColumnsToCSV(this.genes_gain, `${this.ExtSpecies} genes gained after ${this.Ancspecies}.csv`, ["ptn", "name"]);
   }
 
+  download_not_modeled(): void {
+    this.exporter = new ExportToCSV();
+    this.exporter.exportColumnsToCSV(this.genes_not_modeled, `${this.ExtSpecies} genes not modeled.csv`, ["ptn", "name"]);
+  }
+
   openGenePreview(species) {
     this.genesDialogService.openGenePreview(species);
   }
