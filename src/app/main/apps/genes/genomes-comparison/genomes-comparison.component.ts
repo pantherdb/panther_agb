@@ -107,11 +107,13 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       
       this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
         this.genes_pass = this.genesService.pass_genes;
+        //console.log(this.genes_pass);
         this.genes_pass_num = this.genes_pass.length;
         this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator1, this.sort);
 
-        this.genesService.getGenePassed(this.ExtSpecies, this.Ancspecies).then(response => {
+        this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies).then(response => {
           this.genes_pass = this.genesService.pass_genes;
+          //console.log(this.genes_pass);
           this.genes_pass_num = this.genes_pass.length;
           this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator1, this.sort);
         });
