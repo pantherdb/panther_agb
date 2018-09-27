@@ -29,7 +29,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
   animations: noctuaAnimations
 })
 export class GeneInheritedTableComponent implements OnInit, OnDestroy {
-  dataSource_pass: SpeciesDataSourcePass | null;
+  dataSource: SpeciesDataSourcePass | null;
   displayedColumns_pass = ['ptn_pass', 'name_pass', 'ext_ptn', 'ext_name'];
 
   @ViewChild(MatPaginator)
@@ -41,8 +41,8 @@ export class GeneInheritedTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  genes_pass: any[] = [];
-  genes_pass_num: any;
+  genesInherited: any[] = [];
+  genesInheritedCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -67,16 +67,16 @@ export class GeneInheritedTableComponent implements OnInit, OnDestroy {
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
       this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
-        this.genes_pass = this.genesService.pass_genes;
-        //console.log(this.genes_pass);
-        //this.genes_pass_num = this.genes_pass.length;
-        this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
+        this.genesInherited = this.genesService.genesInherited;
+        //console.log(this.genesInherited);
+        //this.genesInheritedCount = this.genesInherited.length;
+        this.dataSource = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies).then(response => {
-          this.genes_pass = this.genesService.pass_genes;
-          //console.log(this.genes_pass);
-          this.genes_pass_num = this.genes_pass.length;
-          this.dataSource_pass = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
+          this.genesInherited = this.genesService.genesInherited;
+          //console.log(this.genesInherited);
+          this.genesInheritedCount = this.genesInherited.length;
+          this.dataSource = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);
         });
       });
 
@@ -95,17 +95,17 @@ export class GeneInheritedTableComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe(() => {
-        if (!this.dataSource_pass) {
+        if (!this.dataSource) {
           return;
         }
-        this.dataSource_pass.filter = this.filter.nativeElement.value;
+        this.dataSource.filter = this.filter.nativeElement.value;
       });
 
   }
 
   download_pass(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_pass, `${this.Ancspecies} genes passed to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
+    this.exporter.exportColumnsToCSV(this.genesInherited, `${this.Ancspecies} genes passed to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
   }
 
   openGenePreview(species) {
@@ -148,7 +148,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
     private matSort1: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.pass_genes;
+    this.filteredData = this.speciesDetailsService.genesInherited;
   }
 
   get filteredData(): any {
@@ -176,7 +176,7 @@ export class SpeciesDataSourcePass extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.pass_genes.slice();
+      let data = this.speciesDetailsService.genesInherited.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);

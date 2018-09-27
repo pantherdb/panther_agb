@@ -29,7 +29,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
   animations: noctuaAnimations
 })
 export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {
-  dataSource_not_modeled: SpeciesDataSourceNotModeled | null;
+  dataSource: SpeciesDataSourceNotModeled | null;
   displayedColumns_not_modeled = ['ptn_not_modeled', 'name_not_modeled'];
 
   @ViewChild(MatPaginator)
@@ -69,12 +69,12 @@ export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {
       this.genesService.getGeneNotModeled(this.ExtSpecies, 1, 50).then(response => {
         this.genes_not_modeled = this.genesService.not_modeled_genes;
         //this.genes_not_modeled_num = this.genes_not_modeled.length;
-        this.dataSource_not_modeled = new SpeciesDataSourceNotModeled(this.genesService, this.paginator, this.sort);
+        this.dataSource = new SpeciesDataSourceNotModeled(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGeneNotModeled(this.ExtSpecies).then(response => {
           this.genes_not_modeled = this.genesService.not_modeled_genes;
           this.genes_not_modeled_num = this.genes_not_modeled.length;
-          this.dataSource_not_modeled = new SpeciesDataSourceNotModeled(this.genesService, this.paginator, this.sort);
+          this.dataSource = new SpeciesDataSourceNotModeled(this.genesService, this.paginator, this.sort);
         });
       });
 
@@ -95,10 +95,10 @@ export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe(() => {
-        if (!this.dataSource_not_modeled) {
+        if (!this.dataSource) {
           return;
         }
-        this.dataSource_not_modeled.filter = this.filter.nativeElement.value;
+        this.dataSource.filter = this.filter.nativeElement.value;
       });
   }
 

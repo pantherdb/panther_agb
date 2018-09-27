@@ -16,9 +16,9 @@ import { SpeciesDialogService } from './../../species/dialog.service';
 export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
   genes: any[] = [];
-  total_gene_num: any;
+  totalGenesCount: any;
   gainedGenesCount: number
-  inheritedGenesCount: number;
+  genesInheritedCount: number;
   lostGenesCount: number;
   notModeledGenesCount: number;
 
@@ -30,7 +30,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
   Ancspecies: string;
   speciesDetail: any;
   exporter: any;
-  genes_gain
+  genesGained
   private unsubscribeAll: Subject<any>;
 
 
@@ -39,7 +39,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
     private speciesService: SpeciesService, private speciesDialogService: SpeciesDialogService) {
     this.unsubscribeAll = new Subject();
 
-    this.genes_gain = 0;//this.genesService.gained_genes;
+    this.genesGained = 0;//this.genesService.gained_genes;
   }
 
   ngOnInit(): void {
@@ -64,7 +64,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       this.genesService.onSpeciesChanged.subscribe(response => {
         this.totalGenesCount = this.genesService.totalGenesCount;
         this.gainedGenesCount = this.genesService.gainedGenesCount;
-        this.inheritedGenesCount = this.genesService.inheritedGenesCount;
+        this.genesInheritedCount = this.genesService.genesInheritedCount;
         this.lostGenesCount = this.genesService.lostGenesCount;
         this.notModeledGenesCount = this.genesService.notModeledGenesCount;
       })

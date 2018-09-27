@@ -29,7 +29,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
   animations: noctuaAnimations
 })
 export class GeneGainedTableComponent implements OnInit, OnDestroy {
-  dataSource_gain: SpeciesDataSourceGain | null;
+  dataSource: SpeciesDataSourceGain | null;
   displayedColumns_gain = ['ptn_gain', 'name_gain'];
 
   @ViewChild(MatPaginator)
@@ -41,8 +41,8 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  genes_gain: any[] = [];
-  genes_gain_num: any;
+  genesGained: any[] = [];
+  genesGainedCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -67,13 +67,13 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
       this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
-        this.genes_gain = this.genesService.gained_genes;
-        this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+        this.genesGained = this.genesService.gained_genes;
+        this.dataSource = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {
-          this.genes_gain = this.genesService.gained_genes;
-          this.genes_gain_num = this.genes_gain.length;
-          this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
+          this.genesGained = this.genesService.gained_genes;
+          this.genesGainedCount = this.genesGained.length;
+          this.dataSource = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
         });
       });
 
@@ -92,17 +92,17 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe(() => {
-        if (!this.dataSource_gain) {
+        if (!this.dataSource) {
           return;
         }
-        this.dataSource_gain.filter = this.filter.nativeElement.value;
+        this.dataSource.filter = this.filter.nativeElement.value;
       });
   }
 
 
   download_gain(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_gain, `${this.ExtSpecies} genes gained after ${this.Ancspecies}.csv`, ["ptn", "name"]);
+    this.exporter.exportColumnsToCSV(this.genesGained, `${this.ExtSpecies} genes gained after ${this.Ancspecies}.csv`, ["ptn", "name"]);
   }
 
   openGenePreview(species) {

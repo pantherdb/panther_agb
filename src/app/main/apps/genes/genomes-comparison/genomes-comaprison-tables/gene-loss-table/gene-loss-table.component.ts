@@ -30,7 +30,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
   animations: noctuaAnimations
 })
 export class GeneLossTableComponent implements OnInit, OnDestroy {
-  dataSource_loss: SpeciesDataSourceLoss | null;
+  dataSource: SpeciesDataSourceLoss | null;
   displayedColumns_loss = ['ptn_loss', 'name_loss'];
 
   @ViewChild(MatPaginator)
@@ -44,8 +44,8 @@ export class GeneLossTableComponent implements OnInit, OnDestroy {
 
 
   genes: any[] = [];
-  genes_loss: any[] = [];
-  genes_loss_num: any;
+  genesLost: any[] = [];
+  genesLostCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -70,16 +70,16 @@ export class GeneLossTableComponent implements OnInit, OnDestroy {
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
       this.genesService.getGeneLoss(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
-        this.genes_loss = this.genesService.lost_genes;
-        //console.log(this.genes_loss);
-        //this.genes_loss_num = this.genes_loss.length;
-        this.dataSource_loss = new SpeciesDataSourceLoss(this.genesService, this.paginator, this.sort);
+        this.genesLost = this.genesService.genesLost;
+        //console.log(this.genesLost);
+        //this.genesLostCount = this.genesLost.length;
+        this.dataSource = new SpeciesDataSourceLoss(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGeneLoss(this.Ancspecies, this.ExtSpecies).then(response => {
-          this.genes_loss = this.genesService.lost_genes;
-          //console.log(this.genes_loss);
-          this.genes_loss_num = this.genes_loss.length;
-          this.dataSource_loss = new SpeciesDataSourceLoss(this.genesService, this.paginator, this.sort);
+          this.genesLost = this.genesService.genesLost;
+          //console.log(this.genesLost);
+          this.genesLostCount = this.genesLost.length;
+          this.dataSource = new SpeciesDataSourceLoss(this.genesService, this.paginator, this.sort);
         });
       });
 
@@ -99,10 +99,10 @@ export class GeneLossTableComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe(() => {
-        if (!this.dataSource_loss) {
+        if (!this.dataSource) {
           return;
         }
-        this.dataSource_loss.filter = this.filter.nativeElement.value;
+        this.dataSource.filter = this.filter.nativeElement.value;
       });
 
   }
@@ -110,7 +110,7 @@ export class GeneLossTableComponent implements OnInit, OnDestroy {
 
   download_loss(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_loss, `${this.Ancspecies} genes lost prior to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
+    this.exporter.exportColumnsToCSV(this.genesLost, `${this.Ancspecies} genes lost prior to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
   }
 
   openGenePreview(species) {
@@ -153,7 +153,7 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
     private matSort2: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.lost_genes;
+    this.filteredData = this.speciesDetailsService.genesLost;
   }
 
   get filteredData(): any {
@@ -181,7 +181,7 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.lost_genes.slice();
+      let data = this.speciesDetailsService.genesLost.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);

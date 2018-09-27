@@ -12,15 +12,15 @@ import { SpeciesGeneList } from './models/species-gene-list';
 })
 export class GenesService {
     ancestral_genes: SpeciesGeneList[];
-    pass_genes: SpeciesGeneList[];
-    lost_genes: SpeciesGeneList[];
+    genesInherited: SpeciesGeneList[];
+    genesLost: SpeciesGeneList[];
     gained_genes: SpeciesGeneList[];
     not_modeled_genes: SpeciesGeneList[];
     totalGenes: any;
 
     totalGenesCount: number;
     gainedGenesCount: number
-    inheritedGenesCount: number;
+    genesInheritedCount: number;
     lostGenesCount: number;
     notModeledGenesCount: number;
 
@@ -43,8 +43,8 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
                     this.ancestral_genes = response['lists'];
-                    //this.pass_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene != 'NOT_AVAILABLE');
-                    //this.lost_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene == 'NOT_AVAILABLE');
+                    //this.genesInherited = this.ancestral_genes.filter(gene=>gene.proxy_gene != 'NOT_AVAILABLE');
+                    //this.genesLost = this.ancestral_genes.filter(gene=>gene.proxy_gene == 'NOT_AVAILABLE');
                     this.totalGenes = response['total'];
                     this.totalGenesCount = this.totalGenes.length;
 
@@ -80,9 +80,9 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
                     //console.log(response);
-                    this.lost_genes = response['lists'];
-                    this.lostGenesCount = this.lost_genes.length;
-                    this.onSpeciesChanged.next(this.lost_genes);
+                    this.genesLost = response['lists'];
+                    this.lostGenesCount = this.genesLost.length;
+                    this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
                 }, reject);
         });
@@ -97,9 +97,9 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
                     //console.log(response);
-                    this.pass_genes = response['lists'];
-                    this.inheritedGenesCount = this.pass_genes.length
-                    this.onSpeciesChanged.next(this.lost_genes);
+                    this.genesInherited = response['lists'];
+                    this.genesInheritedCount = this.genesInherited.length
+                    this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
                 }, reject);
         });
@@ -116,7 +116,7 @@ export class GenesService {
                     //console.log(response);
                     this.not_modeled_genes = response['lists'];
                     this.notModeledGenesCount = this.not_modeled_genes.length;
-                    this.onSpeciesChanged.next(this.lost_genes);
+                    this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
                 }, reject);
         });
