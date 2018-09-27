@@ -50,11 +50,9 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
       this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
         this.genes = this.genesService.ancestral_genes;
-        this.total_gene_num = this.genesService.totalGenes;
 
         this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
           this.genes = this.genesService.ancestral_genes;
-          this.total_gene_num = this.genesService.totalGenes;
         });
       });
 
@@ -64,6 +62,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       });
 
       this.genesService.onSpeciesChanged.subscribe(response => {
+        this.totalGenesCount = this.genesService.totalGenesCount;
         this.gainedGenesCount = this.genesService.gainedGenesCount;
         this.inheritedGenesCount = this.genesService.inheritedGenesCount;
         this.lostGenesCount = this.genesService.lostGenesCount;

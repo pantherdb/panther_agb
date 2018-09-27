@@ -42,7 +42,6 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
   sort: MatSort;
   genes: any[] = [];
   genes_gain: any[] = [];
-  total_gene_num: any;
   genes_gain_num: any;
   proxy_species: any[];
   hasProxyGene: boolean;
@@ -66,19 +65,6 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.Ancspecies = decodeURIComponent(params['ancestral']);
       this.ExtSpecies = decodeURIComponent(params['extant']);
-
-      this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
-        this.genes = this.genesService.ancestral_genes;
-        this.total_gene_num = this.genesService.totalGenes;
-
-        this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
-          this.genes = this.genesService.ancestral_genes;
-          this.total_gene_num = this.genesService.totalGenes;
-        });
-
-
-
-      });
 
       this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
         this.genes_gain = this.genesService.gained_genes;

@@ -39,7 +39,6 @@ export class GeneListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  total_gene_num: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -62,18 +61,6 @@ export class GeneListComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['species']);
       this.proxySpecies = decodeURIComponent(params['proxySpecies']);
-
-      this.genesService.getGenesBySpecies(this.species, this.proxySpecies, 1, 50).then(response => {
-        this.genes = this.genesService.ancestral_genes;
-        this.total_gene_num = this.genesService.totalGenes;
-        this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
-
-        this.genesService.getGenesBySpecies(this.species, this.proxySpecies).then(response => {
-          this.genes = this.genesService.ancestral_genes;
-          this.total_gene_num = this.genesService.totalGenes;
-          this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
-        });
-      });
 
       this.genesService.getProxySpecies(this.species).then(response => {
         this.proxy_species = this.genesService.proxy_species.sort();

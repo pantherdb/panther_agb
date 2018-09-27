@@ -18,6 +18,7 @@ export class GenesService {
     not_modeled_genes: SpeciesGeneList[];
     totalGenes: any;
 
+    totalGenesCount: number;
     gainedGenesCount: number
     inheritedGenesCount: number;
     lostGenesCount: number;
@@ -32,7 +33,6 @@ export class GenesService {
         this.onSpeciesChanged = new BehaviorSubject({});
     }
 
-
     getGenesBySpecies(species, proxySpecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
         const url = page ?
             `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}/?page=${page}&limit=${limit}` :
@@ -46,6 +46,7 @@ export class GenesService {
                     //this.pass_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene != 'NOT_AVAILABLE');
                     //this.lost_genes = this.ancestral_genes.filter(gene=>gene.proxy_gene == 'NOT_AVAILABLE');
                     this.totalGenes = response['total'];
+                    this.totalGenesCount = this.totalGenes.length;
 
                     this.onSpeciesChanged.next(this.ancestral_genes);
                     resolve(response);
