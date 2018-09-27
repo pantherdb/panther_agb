@@ -81,7 +81,6 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
 
       this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
         this.genes_gain = this.genesService.gained_genes;
-        //this.genes_gain_num = this.genes_gain.length;
         this.dataSource_gain = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {

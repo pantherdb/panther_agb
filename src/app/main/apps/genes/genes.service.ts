@@ -17,12 +17,18 @@ export class GenesService {
     gained_genes: SpeciesGeneList[];
     not_modeled_genes: SpeciesGeneList[];
     totalGenes: any;
+
+    gainedGenesCount: number
+    inheritedGenesCount: number;
+    lostGenesCount: number;
+    notModeledGenesCount: number;
+
     proxy_species: any[];
     onSpeciesChanged: BehaviorSubject<any>;
 
     constructor(
         private httpClient: HttpClient,
-        ) {
+    ) {
         this.onSpeciesChanged = new BehaviorSubject({});
     }
 
@@ -57,6 +63,7 @@ export class GenesService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.gained_genes = response['lists'];
+                    this.gainedGenesCount = this.gained_genes.length;
                     this.onSpeciesChanged.next(this.gained_genes);
                     resolve(response);
                 }, reject);
@@ -73,6 +80,7 @@ export class GenesService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.lost_genes = response['lists'];
+                    this.lostGenesCount = this.lost_genes.length;
                     this.onSpeciesChanged.next(this.lost_genes);
                     resolve(response);
                 }, reject);
@@ -89,6 +97,7 @@ export class GenesService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.pass_genes = response['lists'];
+                    this.inheritedGenesCount = this.pass_genes.length
                     this.onSpeciesChanged.next(this.lost_genes);
                     resolve(response);
                 }, reject);
@@ -105,6 +114,7 @@ export class GenesService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.not_modeled_genes = response['lists'];
+                    this.notModeledGenesCount = this.not_modeled_genes.length;
                     this.onSpeciesChanged.next(this.lost_genes);
                     resolve(response);
                 }, reject);
