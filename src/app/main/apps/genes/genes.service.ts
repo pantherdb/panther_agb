@@ -16,6 +16,7 @@ export class GenesService {
     genesLost: SpeciesGeneList[];
     gained_genes: SpeciesGeneList[];
     not_modeled_genes: SpeciesGeneList[];
+    totalDescPtns: String[];
     totalGenes: any;
 
     totalGenesCount: number;
@@ -23,6 +24,7 @@ export class GenesService {
     genesInheritedCount: number;
     lostGenesCount: number;
     notModeledGenesCount: number;
+    totalDescGenesCount: number;
 
     proxy_species: any[];
     onSpeciesChanged: BehaviorSubject<any>;
@@ -98,7 +100,9 @@ export class GenesService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesInherited = response['lists'];
-                    this.genesInheritedCount = this.genesInherited.length
+                    this.genesInheritedCount = this.genesInherited.length;
+                    this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).flat().length;
+                    console.log(this.totalDescGenesCount);
                     this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
                 }, reject);

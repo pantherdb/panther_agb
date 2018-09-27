@@ -21,6 +21,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
   genesInheritedCount: number;
   lostGenesCount: number;
   notModeledGenesCount: number;
+  totalDescGenesCount: number;
 
   proxy_species: any[];
   hasProxyGene: boolean;
@@ -67,6 +68,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
         this.genesInheritedCount = this.genesService.genesInheritedCount;
         this.lostGenesCount = this.genesService.lostGenesCount;
         this.notModeledGenesCount = this.genesService.notModeledGenesCount;
+        this.totalDescGenesCount = this.genesService.totalDescGenesCount;
       })
     });
   }

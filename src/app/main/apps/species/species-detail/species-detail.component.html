@@ -13,7 +13,7 @@
           </p>
         </div>
       </div>
-      <div class="agb-card-simple mat-elevation-z1">
+      <div *ngIf="speciesDetail?.timescale != 0" class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
             Estimated Speciation Time
@@ -33,8 +33,8 @@
           </div>
           <div class="agb-body">
             <p *ngFor = "let a of speciesDetail.all_ancestors">
-              {{ a[1] }} ({{ a[0] }} mya)
-              <a href = "/genes/genome-comparison/{{ speciesDetail.long_name }}/{{ a[1] }}">
+              <a href = "/species/{{ a[1] }}" target="_blank">{{ a[1] }}</a> ({{ a[0] }} mya)
+              <a href = "/genes/genome-comparison/{{ speciesDetail.long_name }}/{{ a[1] }}" target="_blank">
                 compare with {{ speciesDetail.long_name }}
               </a>
             </p>
