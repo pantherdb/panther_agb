@@ -56,8 +56,8 @@ export class GenesService {
 
     getGeneGains(ext_species, anc_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
         const url = page ?
-            `${environment.apiUrl}/genelist/gene-gain/${ext_species}/${anc_species}/?page=${page}&limit=${limit}` :
-            `${environment.apiUrl}/genelist/gene-gain/${ext_species}/${anc_species}`;
+            `${environment.apiUrl}/genelist/gene-gain/${anc_species}/${ext_species}/?page=${page}&limit=${limit}` :
+            `${environment.apiUrl}/genelist/gene-gain/${anc_species}/${ext_species}`;
 
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
