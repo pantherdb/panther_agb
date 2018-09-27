@@ -101,7 +101,8 @@ export class GenesService {
                     //console.log(response);
                     this.genesInherited = response['lists'];
                     this.genesInheritedCount = this.genesInherited.length;
-                    this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).flat().length;
+                    //this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).flat().length;
+                    this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).reduce((acc, val) => acc.concat(val)).length;
                     console.log(this.totalDescGenesCount);
                     this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
