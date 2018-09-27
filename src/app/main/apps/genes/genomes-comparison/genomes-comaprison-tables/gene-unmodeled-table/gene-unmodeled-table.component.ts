@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MatOptionSelectionChange } from '@angular/material';
@@ -25,6 +25,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
   selector: 'app-gene-unmodeled-table',
   templateUrl: './gene-unmodeled-table.component.html',
   styleUrls: ['./gene-unmodeled-table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: noctuaAnimations
 })
 export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {

@@ -1,6 +1,6 @@
 
 
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MatOptionSelectionChange } from '@angular/material';
@@ -26,6 +26,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
   selector: 'app-gene-loss-table',
   templateUrl: './gene-loss-table.component.html',
   styleUrls: ['./gene-loss-table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: noctuaAnimations
 })
 export class GeneLossTableComponent implements OnInit, OnDestroy {
