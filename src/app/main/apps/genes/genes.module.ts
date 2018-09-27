@@ -13,6 +13,10 @@ import { GenesDialogService } from './dialog.service';
 import { SpeciesDialogService } from './../species/dialog.service';
 import { GenomesComparisonComponent } from './genomes-comparison/genomes-comparison.component';
 import { Replace } from './genomes-comparison/replace.pipe';
+import { GeneLossTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-loss-table/gene-loss-table.component';
+import { GeneGainedTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-gained-table/gene-gained-table.component';
+import { GeneInheritedTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-inherited-table/gene-inherited-table.component';
+import { GeneUnmodeledTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-unmodeled-table/gene-unmodeled-table.component';
 
 const routes = [{
   path: ':species/:proxySpecies', component: GeneListComponent
@@ -28,7 +32,11 @@ const routes = [{
     GeneDetailComponent,
     GeneDetailDialogComponent,
     GenomesComparisonComponent,
-    Replace
+    Replace,
+    GeneLossTableComponent,
+    GeneGainedTableComponent,
+    GeneInheritedTableComponent,
+    GeneUnmodeledTableComponent
   ],
   imports: [
     RouterModule.forChild(routes),

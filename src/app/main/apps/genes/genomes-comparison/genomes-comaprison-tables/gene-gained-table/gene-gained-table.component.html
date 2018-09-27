@@ -1,0 +1,42 @@
+<div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
+  <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
+    Filter Gained Genes
+    <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{genes_gain_num}} genes gained in {{ExtSpecies}} after {{Ancspecies}}"
+      autocomplete="off">
+    <div>
+      <strong class=""></strong>
+    </div>
+    <span fxFlex=""></span>
+    <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_gain()">
+      Export
+    </button>
+  </div>
+
+  <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_gain" matSort [@animateStagger]="{value:'50'}"
+      noctuaPerfectScrollbar>
+      <ng-container cdkColumnDef="ptn_gain">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Public ID
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_gain" fxFlex="160px">
+          <p class="text-truncate">{{gene_gain.ptn}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="name_gain">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_gain">
+          <p class="">{{gene_gain.name}}</p>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *cdkHeaderRowDef="displayedColumns_gain" class="agb-column-subtoolbar"></mat-header-row>
+      <mat-row *cdkRowDef="let gene_gain; columns: displayedColumns_gain;" class="gene" matRipple (click)="openGenePreview(gene_gain.ptn)"
+        routerLinkActive="active"></mat-row>
+    </mat-table>
+    <mat-paginator class="noc-paginator" #paginator [length]="dataSource_gain?.filteredData?.length" [pageIndex]="0"
+      [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
+  <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
+    Filter Genes History Not Reconstructed
+    <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{genes_not_modeled_num}} genes for which history not reconstructed in {{ExtSpecies}}"
+      autocomplete="off">
+    <div>
+      <strong class=""></strong>
+    </div>
+    <span fxFlex=""></span>
+    <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_not_modeled()">
+      Export
+    </button>
+  </div>
+
+  <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_not_modeled" matSort [@animateStagger]="{value:'50'}"
+      noctuaPerfectScrollbar>
+      <ng-container cdkColumnDef="ptn_not_modeled">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Public ID
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_not_modeled" fxFlex="160px">
+          <p class="text-truncate">{{gene_not_modeled.ptn}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="name_not_modeled">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_not_modeled">
+          <p class="">{{gene_not_modeled.name}}</p>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *cdkHeaderRowDef="displayedColumns_not_modeled" class="agb-column-subtoolbar"></mat-header-row>
+      <mat-row *cdkRowDef="let gene_not_modeled; columns: displayedColumns_not_modeled;" class="gene" matRipple (click)="openGenePreview(gene_not_modeled.ptn)"
+        routerLinkActive="active"></mat-row>
+    </mat-table>
+    <mat-paginator class="noc-paginator" #paginator [length]="dataSource_not_modeled?.filteredData?.length" [pageIndex]="0"
+      [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+</div>

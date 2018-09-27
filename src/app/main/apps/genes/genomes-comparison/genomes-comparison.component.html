@@ -29,68 +29,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
-              noctuaPerfectScrollbar>
-              <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Passed Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter1 placeholder="{{genes_pass_num}} genes passed from {{Ancspecies}} to {{ExtSpecies}}"
-                  autocomplete="off">
-                <div>
-                  <strong class=""></strong>
-                </div>
-                <span fxFlex=""></span>
-                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_pass()">
-                  Export
-                </button>
-              </div>
-              <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_pass" matSort [@animateStagger]="{value:'50'}"
-                  noctuaPerfectScrollbar>
-                  <ng-container cdkColumnDef="ptn_pass">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-                      <div>
-                        Ancestral gene ID
-                      </div>
-                    </mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
-                      <p class="text-truncate">{{gene_pass.ptn}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container cdkColumnDef="name_pass">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Ancestral protein Name</mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_pass">
-                      <p class="">{{gene_pass.name | replace }}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container cdkColumnDef="ext_ptn">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-                      <div>
-                        Extant gene ID
-                      </div>
-                    </mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
-                      <p class="text-truncate">{{gene_pass.all_desendant_gene_ptn_in_proxy_species}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container cdkColumnDef="ext_name">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-                      <div>
-                        Extant protein name
-                      </div>
-                    </mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
-                      <p class="text-truncate">{{gene_pass.all_desendant_gene_name_in_proxy_species}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>
-                  <mat-row *cdkRowDef="let gene_pass; columns: displayedColumns_pass;" class="gene" matRipple (click)="openGenePreview(gene_pass.ptn)"
-                    routerLinkActive="active"></mat-row>
-                </mat-table>
-                <mat-paginator class="noc-paginator" #paginator1 [length]="dataSource_pass?.filteredData?.length"
-                  [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
-                </mat-paginator>
-              </div>
-            </div>
+            <app-gene-inherited-table></app-gene-inherited-table>
           </div>
         </mat-expansion-panel>
         <mat-expansion-panel class="agb-comparison-expansion agb-loss" hideToggle="true">
@@ -111,48 +50,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
-              noctuaPerfectScrollbar>
-              <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Lost Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter2 placeholder="{{genes_lost_num}} genes in {{Ancspecies}} lost prior to {{ExtSpecies}}"
-                  autocomplete="off">
-                <div>
-                  <strong class=""></strong>
-                </div>
-                <span fxFlex=""></span>
-                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_loss()">
-                  Export
-                </button>
-              </div>
-              <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_loss" matSort [@animateStagger]="{value:'50'}"
-                  noctuaPerfectScrollbar>
-                  <ng-container cdkColumnDef="ptn_loss">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-                      <div>
-                        Public ID
-                      </div>
-                    </mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_lost" fxFlex="160px">
-                      <p class="text-truncate">{{gene_lost.ptn}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container cdkColumnDef="name_loss">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_lost">
-                      <p class="">{{gene_lost.name}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <mat-header-row *cdkHeaderRowDef="displayedColumns_loss" class="agb-column-subtoolbar"></mat-header-row>
-                  <mat-row *cdkRowDef="let gene_lost; columns: displayedColumns_loss;" class="gene" matRipple (click)="openGenePreview(gene_lost.ptn)"
-                    routerLinkActive="active"></mat-row>
-                </mat-table>
-                <mat-paginator class="noc-paginator" #paginator2 [length]="dataSource_loss?.filteredData?.length"
-                  [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
-                </mat-paginator>
-              </div>
-            </div>
+            <app-gene-loss-table></app-gene-loss-table>
           </div>
         </mat-expansion-panel>
         <mat-expansion-panel class="agb-comparison-expansion agb-gained" hideToggle="true">
@@ -173,49 +71,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
-              noctuaPerfectScrollbar>
-              <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Gained Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_gain_num}} genes gained in {{ExtSpecies}} after {{Ancspecies}}"
-                  autocomplete="off">
-                <div>
-                  <strong class=""></strong>
-                </div>
-                <span fxFlex=""></span>
-                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_gain()">
-                  Export
-                </button>
-              </div>
-
-              <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_gain" matSort [@animateStagger]="{value:'50'}"
-                  noctuaPerfectScrollbar>
-                  <ng-container cdkColumnDef="ptn_gain">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-                      <div>
-                        Public ID
-                      </div>
-                    </mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_gain" fxFlex="160px">
-                      <p class="text-truncate">{{gene_gain.ptn}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container cdkColumnDef="name_gain">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_gain">
-                      <p class="">{{gene_gain.name}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <mat-header-row *cdkHeaderRowDef="displayedColumns_gain" class="agb-column-subtoolbar"></mat-header-row>
-                  <mat-row *cdkRowDef="let gene_gain; columns: displayedColumns_gain;" class="gene" matRipple (click)="openGenePreview(gene_gain.ptn)"
-                    routerLinkActive="active"></mat-row>
-                </mat-table>
-                <mat-paginator class="noc-paginator" #paginator3 [length]="dataSource_gain?.filteredData?.length"
-                  [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
-                </mat-paginator>
-              </div>
-            </div>
+            <app-gene-gained-table></app-gene-gained-table>
           </div>
         </mat-expansion-panel>
         <mat-expansion-panel class="agb-comparison-expansion agb-not-modeled" hideToggle="true">
@@ -236,49 +92,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
-              noctuaPerfectScrollbar>
-              <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Genes History Not Reconstructed
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_not_modeled_num}} genes for which history not reconstructed in {{ExtSpecies}}"
-                  autocomplete="off">
-                <div>
-                  <strong class=""></strong>
-                </div>
-                <span fxFlex=""></span>
-                <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download_not_modeled()">
-                  Export
-                </button>
-              </div>
-
-              <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-                <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_not_modeled" matSort [@animateStagger]="{value:'50'}"
-                  noctuaPerfectScrollbar>
-                  <ng-container cdkColumnDef="ptn_not_modeled">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-                      <div>
-                        Public ID
-                      </div>
-                    </mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_not_modeled" fxFlex="160px">
-                      <p class="text-truncate">{{gene_not_modeled.ptn}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container cdkColumnDef="name_not_modeled">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
-                    <mat-cell *cdkCellDef="let gene_not_modeled">
-                      <p class="">{{gene_not_modeled.name}}</p>
-                    </mat-cell>
-                  </ng-container>
-                  <mat-header-row *cdkHeaderRowDef="displayedColumns_not_modeled" class="agb-column-subtoolbar"></mat-header-row>
-                  <mat-row *cdkRowDef="let gene_not_modeled; columns: displayedColumns_not_modeled;" class="gene" matRipple (click)="openGenePreview(gene_not_modeled.ptn)"
-                    routerLinkActive="active"></mat-row>
-                </mat-table>
-                <mat-paginator class="noc-paginator" #paginator3 [length]="dataSource_not_modeled?.filteredData?.length"
-                  [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
-                </mat-paginator>
-              </div>
-            </div>
+            <app-gene-unmodeled-table></app-gene-unmodeled-table>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
