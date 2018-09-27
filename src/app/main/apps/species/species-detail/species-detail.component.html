@@ -25,6 +25,20 @@
           </p>
         </div>
       </div>
+      <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+            <div class="agb-title">
+              Total Number of protein coding genes (click the number to show the gene list)
+            </div>
+          </div>
+          <div *ngIf="speciesDetail?.gene_count;else no_info_content" class="agb-body">
+            <p>
+              <!-- <a href= "/species/genes/(list:genes/{{speciesDetail.short_name}}/default species)">{{ speciesDetail.gene_count }}</a> -->
+              <a href= "#" (click)="!!goToGeneList()" target="_blank">{{ speciesDetail.gene_count }}</a>
+  
+            </p>
+          </div>
+        </div>
       <div *ngIf="speciesDetail?.timescale==0" class="agb-card-simple mat-elevation-z1">
           <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
             <div class="agb-title">
@@ -40,20 +54,7 @@
             </p>
           </div>
         </div>
-      <div class="agb-card-simple mat-elevation-z1">
-        <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
-          <div class="agb-title">
-            Total Number of protein coding genes (click the number to show the gene list)
-          </div>
-        </div>
-        <div *ngIf="speciesDetail?.gene_count;else no_info_content" class="agb-body">
-          <p>
-            <!-- <a href= "/species/genes/(list:genes/{{speciesDetail.short_name}}/default species)">{{ speciesDetail.gene_count }}</a> -->
-            <a href= "#" (click)="!!goToGeneList()" target="_blank">{{ speciesDetail.gene_count }}</a>
-
-          </p>
-        </div>
-      </div>
+      
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">

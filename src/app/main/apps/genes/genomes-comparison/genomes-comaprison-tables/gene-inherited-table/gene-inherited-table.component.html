@@ -15,39 +15,39 @@
     <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
       noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn_pass">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">
           <div>
             Ancestral gene ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_pass" fxFlex="200px">
           <p class="text-truncate">{{gene_pass.ptn}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="name_pass">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Ancestral protein Name</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">Ancestral protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_pass" fxFlex="200px">
           <p class="">{{gene_pass.name | replace }}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="ext_ptn">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="300px">
           <div>
             Extant gene ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
-          <p class="text-truncate">{{gene_pass.all_desendant_gene_ptn_in_proxy_species}}</p>
+        <mat-cell *cdkCellDef="let gene_pass" fxFlex="300px">
+          <p class="">{{gene_pass.all_desendant_gene_ptn_in_proxy_species}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="ext_name">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">
           <div>
             Extant protein name
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
-          <p class="text-truncate">{{gene_pass.all_desendant_gene_name_in_proxy_species}}</p>
+        <mat-cell *cdkCellDef="let gene_pass" fxFlex="200px">
+          <p class="">{{gene_pass.all_desendant_gene_name_in_proxy_species}}</p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>

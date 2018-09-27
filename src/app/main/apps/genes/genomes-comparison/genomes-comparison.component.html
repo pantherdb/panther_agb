@@ -4,10 +4,16 @@
       <h1>Compare</h1>
       <div class="agb-comparison-summary">
         <div class="agb-title" fxLayout="row" fxLayoutAlign="start center">
-          Ancestral Species <span class="agb-subtitle"> {{Ancspecies}} </span>
+          Ancestral Species 
+          <span class="agb-subtitle">  
+            <a href = "/species/{{Ancspecies}}" target="_blank">{{Ancspecies}}</a>
+          </span>
         </div>
         <div class="agb-title" fxLayout="row" fxLayoutAlign="start center">
-          Extant Species <span class="agb-subtitle"> {{ExtSpecies}} </span>
+          Extant Species 
+          <span class="agb-subtitle">  
+              <a href = "/species/{{ExtSpecies}}" target="_blank">{{ExtSpecies}}</a>
+          </span>
         </div>
       </div>
       <mat-accordion>
@@ -45,7 +51,7 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Genes lost <span class="agb-gene-count"> {{lostGenesCount}} </span>
+                  Ancestral genes lost <span class="agb-gene-count"> {{lostGenesCount}} </span>
                 </div>
               </div>
             </mat-panel-title>
@@ -66,7 +72,7 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Genes gained <span class="agb-gene-count"> {{gainedGenesCount}} </span>
+                  Genes gained other than by duplication <span class="agb-gene-count"> {{gainedGenesCount}} </span>
                 </div>
               </div>
             </mat-panel-title>
@@ -87,7 +93,7 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Genes history not reconstructed <span class="agb-gene-count"> {{notModeledGenesCount}} </span>
+                  Genes with no ancestral reconstruction <span class="agb-gene-count"> {{notModeledGenesCount}} </span>
                 </div>
               </div>
             </mat-panel-title>
