@@ -1,7 +1,7 @@
 <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
     Filter
-    <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{total_gene_num}} genes in {{speciesDetail?.long_name}}"
+    <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{ totalGenesCount}} genes in {{speciesDetail?.long_name}}"
       autocomplete="off">
     <div>
       <strong class=""></strong>
@@ -23,14 +23,15 @@
   </div>
 
   <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
-    <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}" noctuaPerfectScrollbar>
+    <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
+      noctuaPerfectScrollbar>
       <ng-container cdkColumnDef="ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
-            <div *ngIf="hasProxyGene">
-                Public ID (Ancestral Gene)
-            </div>
+          <div *ngIf="hasProxyGene">
+            Public ID (Ancestral Gene)
+          </div>
           <div *ngIf="!hasProxyGene">
-              Public ID (Extant Gene)
+            Public ID (Extant Gene)
           </div>
         </mat-header-cell>
         <mat-cell *cdkCellDef="let gene" fxFlex="160px">
@@ -56,9 +57,9 @@
           <p class="text-truncate">{{gene.proxy_gene}}</p>
         </mat-cell>
       </ng-container> -->
-    
 
-      
+
+
       <ng-container cdkColumnDef="proxy_gene">
         <mat-header-cell *cdkHeaderCellDef>
           <div *ngIf="hasProxyGene" class="w-100-p" fxLayout="row" fxLayoutAlign="start center">
@@ -67,8 +68,8 @@
               (click)="tooltip.toggle()" matTooltipPosition='above' [matTooltipClass]="'tooltip'">
               <mat-icon>help</mat-icon>
             </button>
-            <mat-select class="agb-select-legacy" placeholder="Proxy Gene in" [(value)]="selected_proxy_species" (selectionChange)="changeProxyGenes($event.value)"
-              fxFlex="0" fxFlexOffset="2">
+            <mat-select class="agb-select-legacy" placeholder="Proxy Gene in" [(value)]="selected_proxy_species"
+              (selectionChange)="changeProxyGenes($event.value)" fxFlex="0" fxFlexOffset="2">
               <mat-option *ngFor="let ps of proxy_species" value="{{ps}}">
                 Proxy Genes in {{ps}}
               </mat-option>
@@ -84,12 +85,13 @@
         </mat-cell>
       </ng-container>
 
-      
+
       <mat-header-row *cdkHeaderRowDef="displayedColumns" class="agb-column-subtoolbar"></mat-header-row>
-      <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple (click)="openGenePreview(gene.ptn)" routerLinkActive="active"></mat-row>
+      <mat-row *cdkRowDef="let gene; columns: displayedColumns;" class="gene" matRipple (click)="openGenePreview(gene.ptn)"
+        routerLinkActive="active"></mat-row>
     </mat-table>
-    <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0" [pageSize]="50"
-      [pageSizeOptions]="[5, 10, 25, 100]">
+    <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"
+      [pageSize]="50" [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
 
