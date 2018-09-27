@@ -28,7 +28,7 @@ import { SpeciesDialogService } from './../../species/dialog.service';
 })
 export class GenomesComparisonComponent implements OnInit, OnDestroy {
   dataSource_pass: SpeciesDataSourcePass | null;
-  displayedColumns_pass = ['ptn_pass', 'name_pass'];
+  displayedColumns_pass = ['ptn_pass', 'name_pass', 'ext_ptn', 'ext_name'];
   dataSource_loss: SpeciesDataSourceLoss | null;
   displayedColumns_loss = ['ptn_loss', 'name_loss'];
   dataSource_gain: SpeciesDataSourceGain | null;

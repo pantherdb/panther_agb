@@ -87,6 +87,14 @@
         border-left: rgb(230, 83, 83) solid 5px;
       }
     }
+    
+    &.agb-not-modeled {
+      border-left: rgb(10, 6, 233) solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: rgb(10, 6, 233) solid 5px;
+      }
+    }
   }
 
   .agb-species-panel {

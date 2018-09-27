@@ -7,7 +7,7 @@
           Ancestral Species <span class="agb-subtitle"> {{Ancspecies}} </span>
         </div>
         <div class="agb-title" fxLayout="row" fxLayoutAlign="start center">
-          Extent Species <span class="agb-subtitle"> {{ExtSpecies}} </span>
+          Extant Species <span class="agb-subtitle"> {{ExtSpecies}} </span>
         </div>
       </div>
       <mat-accordion>
@@ -49,7 +49,7 @@
                   <ng-container cdkColumnDef="ptn_pass">
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
                       <div>
-                        Public ID
+                        Ancestral gene ID
                       </div>
                     </mat-header-cell>
                     <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
@@ -57,9 +57,29 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container cdkColumnDef="name_pass">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Ancestral protein Name</mat-header-cell>
                     <mat-cell *cdkCellDef="let gene_pass">
                       <p class="">{{gene_pass.name | replace }}</p>
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container cdkColumnDef="ext_ptn">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+                      <div>
+                        Extant gene ID
+                      </div>
+                    </mat-header-cell>
+                    <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
+                      <p class="text-truncate">{{gene_pass.all_desendant_gene_ptn_in_proxy_species}}</p>
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container cdkColumnDef="ext_name">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+                      <div>
+                        Extant protein name
+                      </div>
+                    </mat-header-cell>
+                    <mat-cell *cdkCellDef="let gene_pass" fxFlex="160px">
+                      <p class="text-truncate">{{gene_pass.all_desendant_gene_name_in_proxy_species}}</p>
                     </mat-cell>
                   </ng-container>
                   <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>
@@ -198,22 +218,29 @@
             </div>
           </div>
         </mat-expansion-panel>
-        <!-- <mat-expansion-panel>
+        <mat-expansion-panel class="agb-comparison-expansion agb-not-modeled" hideToggle="true">
           <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{genes_not_modeled_num}} Genes in
+            <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+              <div class="agb-comparison-toggle" fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon *ngIf="true" class="mat-icon-rtl-mirror s-18 fa fa-caret-right">
+                </mat-icon>
+                <mat-icon *ngIf="false" class="mat-icon-rtl-mirror s-24">
+                  signal_cellular_4_bar
+                </mat-icon>
+              </div>
+              <div class="" fxLayout="column" fxLayoutAlign="start stretch">
+                <div class="agb-title">
+                  Genes history not reconstructed <span class="agb-gene-count"> {{genes_not_modeled_num}} </span>
+                </div>
+              </div>
             </mat-panel-title>
-            <mat-panel-description>
-              {{ExtSpecies}} not modeled in PANTHER library 
-            </mat-panel-description>
           </mat-expansion-panel-header>
-
-          <div class="agb-card-simple mat-elevation-z1">
+          <div class="agb-expansion-panel-body">
             <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch"
               noctuaPerfectScrollbar>
               <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
-                Filter Gained Genes
-                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_not_modeled_num}} genes {{ExtSpecies}} not modeled in PANTHER library"
+                Filter Genes History Not Reconstructed
+                <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter3 placeholder="{{genes_not_modeled_num}} genes for which history not reconstructed in {{ExtSpecies}}"
                   autocomplete="off">
                 <div>
                   <strong class=""></strong>
@@ -224,7 +251,7 @@
                 </button>
               </div>
 
-              <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch" style="height:500px">
+              <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
                 <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource_not_modeled" matSort [@animateStagger]="{value:'50'}"
                   noctuaPerfectScrollbar>
                   <ng-container cdkColumnDef="ptn_not_modeled">
@@ -253,7 +280,7 @@
               </div>
             </div>
           </div>
-        </mat-expansion-panel> -->
+        </mat-expansion-panel>
       </mat-accordion>
     </div>
   </div>
