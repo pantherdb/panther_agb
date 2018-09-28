@@ -105,9 +105,10 @@ export class GenesService {
                     //this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).flat().length;
                     this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).reduce((acc, val) => acc.concat(val)).length;
                     //this.descGenePtns = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].replace(/\,/g,'<br>'));
-                    /* this.genesInherited.forEach((gene, idx, arr)=>{
-                        arr[idx]['all_desendant_gene_ptn_in_proxy_species'] = gene['all_desendant_gene_ptn_in_proxy_species'].replace(/\,/g,'\n')
-                    }); */
+                    this.genesInherited.forEach((gene, idx, arr)=>{
+                        arr[idx]['all_desendant_gene_ptn_in_proxy_species'] = gene['all_desendant_gene_ptn_in_proxy_species'].replace(/\,/g,'<br>');
+                        arr[idx]['all_desendant_gene_name_in_proxy_species'] = gene['all_desendant_gene_name_in_proxy_species'].replace(/\,/g,'<br>');
+                    });
                     //console.log(this.genesInherited);
                     //console.log(this.totalDescGenesCount);
                     this.onSpeciesChanged.next(this.genesLost);

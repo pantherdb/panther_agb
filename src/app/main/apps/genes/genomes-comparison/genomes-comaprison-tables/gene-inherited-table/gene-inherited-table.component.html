@@ -36,8 +36,9 @@
             Extant gene ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let passedGene" fxFlex="300px">
-          <p class="">{{passedGene.all_desendant_gene_ptn_in_proxy_species}}</p>
+        <mat-cell *cdkCellDef="let passedGene">
+          <!-- <p class="">{{passedGene.all_desendant_gene_ptn_in_proxy_species}}</p> -->
+          <p class="" [innerHtml]="passedGene.all_desendant_gene_ptn_in_proxy_species"></p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="ext_name">
@@ -46,8 +47,8 @@
             Extant protein name
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let passedGene" fxFlex="200px">
-          <p class="">{{passedGene.all_desendant_gene_name_in_proxy_species}}</p>
+        <mat-cell *cdkCellDef="let passedGene">
+          <p class="" [innerHtml]="passedGene.all_desendant_gene_name_in_proxy_species"></p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>
