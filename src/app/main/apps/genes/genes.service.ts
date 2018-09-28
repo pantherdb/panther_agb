@@ -11,11 +11,12 @@ import { SpeciesGeneList } from './models/species-gene-list';
     providedIn: 'root',
 })
 export class GenesService {
-    ancestral_genes: SpeciesGeneList[];
+    ancestralGenes: SpeciesGeneList[];
     genesInherited: SpeciesGeneList[];
+    descGenePtns: String[];
     genesLost: SpeciesGeneList[];
-    gained_genes: SpeciesGeneList[];
-    not_modeled_genes: SpeciesGeneList[];
+    genesGained: SpeciesGeneList[];
+    genesNotReconstructed: SpeciesGeneList[];
     totalDescPtns: String[];
     totalGenes: any;
 
@@ -44,13 +45,13 @@ export class GenesService {
         return new Promise<SpeciesGeneList[]>((resolve, reject) => {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
-                    this.ancestral_genes = response['lists'];
+                    this.ancestralGenes = response['lists'];
                     //this.genesInherited = this.ancestral_genes.filter(gene=>gene.proxy_gene != 'NOT_AVAILABLE');
                     //this.genesLost = this.ancestral_genes.filter(gene=>gene.proxy_gene == 'NOT_AVAILABLE');
                     this.totalGenes = response['total'];
                     this.totalGenesCount = this.totalGenes.length;
 
-                    this.onSpeciesChanged.next(this.ancestral_genes);
+                    this.onSpeciesChanged.next(this.ancestralGenes);
                     resolve(response);
                 }, reject);
         });
@@ -65,9 +66,9 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
                     //console.log(response);
-                    this.gained_genes = response['lists'];
-                    this.gainedGenesCount = this.gained_genes.length;
-                    this.onSpeciesChanged.next(this.gained_genes);
+                    this.genesGained = response['lists'];
+                    this.gainedGenesCount = this.genesGained.length;
+                    this.onSpeciesChanged.next(this.genesGained);
                     resolve(response);
                 }, reject);
         });
@@ -103,7 +104,12 @@ export class GenesService {
                     this.genesInheritedCount = this.genesInherited.length;
                     //this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).flat().length;
                     this.totalDescGenesCount = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].split(',')).reduce((acc, val) => acc.concat(val)).length;
-                    console.log(this.totalDescGenesCount);
+                    //this.descGenePtns = this.genesInherited.map(gene=>gene['all_desendant_gene_ptn_in_proxy_species'].replace(/\,/g,'<br>'));
+                    /* this.genesInherited.forEach((gene, idx, arr)=>{
+                        arr[idx]['all_desendant_gene_ptn_in_proxy_species'] = gene['all_desendant_gene_ptn_in_proxy_species'].replace(/\,/g,'\n')
+                    }); */
+                    //console.log(this.genesInherited);
+                    //console.log(this.totalDescGenesCount);
                     this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
                 }, reject);
@@ -119,8 +125,8 @@ export class GenesService {
             this.httpClient.get<SpeciesGeneList[]>(url)
                 .subscribe((response: any) => {
                     //console.log(response);
-                    this.not_modeled_genes = response['lists'];
-                    this.notModeledGenesCount = this.not_modeled_genes.length;
+                    this.genesNotReconstructed = response['lists'];
+                    this.notModeledGenesCount = this.genesNotReconstructed.length;
                     this.onSpeciesChanged.next(this.genesLost);
                     resolve(response);
                 }, reject);

@@ -64,12 +64,12 @@ export class GeneListComponent implements OnInit, OnDestroy {
       this.proxySpecies = decodeURIComponent(params['proxySpecies']);
 
       this.genesService.getGenesBySpecies(this.species, this.proxySpecies, 1, 50).then(response => {
-        this.genes = this.genesService.ancestral_genes;
+        this.genes = this.genesService.ancestralGenes;
         this.totalGenesCount = this.genesService.totalGenes;
         this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGenesBySpecies(this.species, this.proxySpecies).then(response => {
-          this.genes = this.genesService.ancestral_genes;
+          this.genes = this.genesService.ancestralGenes;
           this.totalGenesCount = this.genesService.totalGenes;
           this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
         });
@@ -152,7 +152,7 @@ export class SpeciesDataSource extends DataSource<any> {
     private matSort: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.ancestral_genes;
+    this.filteredData = this.speciesDetailsService.ancestralGenes;
   }
 
   get filteredData(): any {
@@ -180,7 +180,7 @@ export class SpeciesDataSource extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.ancestral_genes.slice();
+      let data = this.speciesDetailsService.ancestralGenes.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);

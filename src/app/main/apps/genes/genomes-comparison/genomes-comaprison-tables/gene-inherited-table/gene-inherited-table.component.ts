@@ -42,6 +42,7 @@ export class GeneInheritedTableComponent implements OnInit, OnDestroy {
   sort: MatSort;
   genes: any[] = [];
   genesInherited: any[] = [];
+  descGenePtns: any[] = [];
   genesInheritedCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
@@ -74,6 +75,7 @@ export class GeneInheritedTableComponent implements OnInit, OnDestroy {
 
         this.genesService.getGenePassed(this.Ancspecies, this.ExtSpecies).then(response => {
           this.genesInherited = this.genesService.genesInherited;
+          this.descGenePtns = this.genesService.descGenePtns;
           //console.log(this.genesInherited);
           this.genesInheritedCount = this.genesInherited.length;
           this.dataSource = new SpeciesDataSourcePass(this.genesService, this.paginator, this.sort);

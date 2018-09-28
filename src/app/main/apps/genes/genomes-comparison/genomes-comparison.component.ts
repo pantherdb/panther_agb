@@ -49,18 +49,18 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
       this.Ancspecies = decodeURIComponent(params['ancestral']);
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
-      this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
+      /* this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {
         this.genes = this.genesService.ancestral_genes;
 
         this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies).then(response => {
           this.genes = this.genesService.ancestral_genes;
         });
-      });
+      }); */
 
-      this.speciesService.getSpeciesDetail(this.Ancspecies).then(response => {
+      /* this.speciesService.getSpeciesDetail(this.Ancspecies).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
         //console.log(this.speciesDetail);
-      });
+      }); */
 
       this.genesService.onSpeciesChanged.subscribe(response => {
         this.totalGenesCount = this.genesService.totalGenesCount;

@@ -20,14 +20,14 @@
             Ancestral gene ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="200px">
-          <p class="text-truncate">{{gene_pass.ptn}}</p>
+        <mat-cell *cdkCellDef="let passedGene" fxFlex="200px">
+          <p class="text-truncate">{{passedGene.ptn}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="name_pass">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">Ancestral protein Name</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="200px">
-          <p class="">{{gene_pass.name | replace }}</p>
+        <mat-cell *cdkCellDef="let passedGene" fxFlex="200px">
+          <p class="">{{passedGene.name | replace }}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="ext_ptn">
@@ -36,8 +36,8 @@
             Extant gene ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="300px">
-          <p class="">{{gene_pass.all_desendant_gene_ptn_in_proxy_species}}</p>
+        <mat-cell *cdkCellDef="let passedGene" fxFlex="300px">
+          <p class="">{{passedGene.all_desendant_gene_ptn_in_proxy_species}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="ext_name">
@@ -46,12 +46,12 @@
             Extant protein name
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_pass" fxFlex="200px">
-          <p class="">{{gene_pass.all_desendant_gene_name_in_proxy_species}}</p>
+        <mat-cell *cdkCellDef="let passedGene" fxFlex="200px">
+          <p class="">{{passedGene.all_desendant_gene_name_in_proxy_species}}</p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>
-      <mat-row *cdkRowDef="let gene_pass; columns: displayedColumns_pass;" class="gene" matRipple (click)="openGenePreview(gene_pass.ptn)"
+      <mat-row *cdkRowDef="let passedGene; columns: displayedColumns_pass;" class="gene" matRipple (click)="openGenePreview(passedGene.ptn)"
         routerLinkActive="active"></mat-row>
     </mat-table>
     <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"

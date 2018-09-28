@@ -67,12 +67,12 @@ export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
       this.genesService.getGeneNotModeled(this.ExtSpecies, 1, 50).then(response => {
-        this.genes_not_modeled = this.genesService.not_modeled_genes;
+        this.genes_not_modeled = this.genesService.genesNotReconstructed;
         //this.genes_not_modeled_num = this.genes_not_modeled.length;
         this.dataSource = new SpeciesDataSourceNotModeled(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGeneNotModeled(this.ExtSpecies).then(response => {
-          this.genes_not_modeled = this.genesService.not_modeled_genes;
+          this.genes_not_modeled = this.genesService.genesNotReconstructed;
           this.genes_not_modeled_num = this.genes_not_modeled.length;
           this.dataSource = new SpeciesDataSourceNotModeled(this.genesService, this.paginator, this.sort);
         });
@@ -148,7 +148,7 @@ export class SpeciesDataSourceNotModeled extends DataSource<any> {
     private matSort3: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.not_modeled_genes;
+    this.filteredData = this.speciesDetailsService.genesNotReconstructed;
   }
 
   get filteredData(): any {
@@ -176,7 +176,7 @@ export class SpeciesDataSourceNotModeled extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.not_modeled_genes.slice();
+      let data = this.speciesDetailsService.genesNotReconstructed.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);

@@ -67,11 +67,11 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
       this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies, 1, 50).then(response => {
-        this.genesGained = this.genesService.gained_genes;
+        this.genesGained = this.genesService.genesGained;
         this.dataSource = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
 
         this.genesService.getGeneGains(this.ExtSpecies, this.Ancspecies).then(response => {
-          this.genesGained = this.genesService.gained_genes;
+          this.genesGained = this.genesService.genesGained;
           this.genesGainedCount = this.genesGained.length;
           this.dataSource = new SpeciesDataSourceGain(this.genesService, this.paginator, this.sort);
         });
@@ -145,7 +145,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
     private matSort3: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.gained_genes;
+    this.filteredData = this.speciesDetailsService.genesGained;
   }
 
   get filteredData(): any {
@@ -173,7 +173,7 @@ export class SpeciesDataSourceGain extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.gained_genes.slice();
+      let data = this.speciesDetailsService.genesGained.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);
