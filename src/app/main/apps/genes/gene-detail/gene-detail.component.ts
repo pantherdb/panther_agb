@@ -20,7 +20,7 @@ export class GeneDetailComponent implements OnInit {
   sort: MatSort;
 
   ptn: string;
-  gene; Gene;
+  gene: Gene;
   paint;
   paintIsLoading = true;
   hasProxyGene: boolean;

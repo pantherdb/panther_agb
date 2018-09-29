@@ -1,11 +1,14 @@
 export interface Gene {
     ptn: string;
     name: string;
-    species: string;
+    species_short: string;
+    species_long: string;
     sequence: string;
     event: string;
+    pthr: string;
+    family_name: string;
+    leaf_seq_id: string;
     proxy_genes:any[];
-    direct_paint_annotations:any[];
-    inherited_paint_annotations:any[];
+    paint_annotations:any[];
 
 }

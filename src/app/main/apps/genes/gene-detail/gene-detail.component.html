@@ -1,6 +1,21 @@
 <div class="agb-gene-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start center" noctuaPerfectScrollbar>
   <div class="noc-container">
     <div class="agb-gene-detail" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="agb-card-simple mat-elevation-z1">
+            <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
+              <div class="agb-title">
+                Publice ID
+              </div>
+            </div>
+            <div *ngIf="gene?.ptn;else no_info_content" class="agb-body">
+              <p *ngIf="hasProxyGene">
+                  {{gene.ptn}}
+              </p>
+              <p *ngIf="!hasProxyGene">
+                {{gene.ptn}}
+              </p>
+            </div>
+          </div>
       <div class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div *ngIf="hasProxyGene" class="agb-title">

@@ -28,7 +28,7 @@ export class GeneDetailDialogComponent implements OnInit, OnDestroy {
   //dataSource;
 
   ptn: string;
-  gene; Gene;
+  gene: Gene;
   paint;
   paintIsLoading = true;
   hasProxyGene: boolean;

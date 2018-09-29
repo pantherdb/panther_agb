@@ -11,7 +11,7 @@ import { Gene } from './models/gene';
     providedIn: 'root',
 })
 export class GeneService {
-    gene: any[];
+    gene: Gene;
     paint: any;
     onSpeciesChanged: BehaviorSubject<any>;
 
