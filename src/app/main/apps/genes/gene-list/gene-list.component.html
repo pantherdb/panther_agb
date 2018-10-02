@@ -1,15 +1,23 @@
 <div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
+    <!-- <button mat-raised-button (click)="openSpeciesPreview()">
+      More information about this species
+    </button> -->
+    Selected species: 
+    <a (click)="openSpeciesPreview()">&nbsp;{{speciesDetail?.long_name}}</a>
+    <span fxFlex=""></span>
     Filter
     <input class="agb-select-legacy ml-12" fxFlex="300px" matInput #filter placeholder="{{ totalGenesCount}} genes in {{speciesDetail?.long_name}}"
       autocomplete="off">
     <div>
       <strong class=""></strong>
     </div>
-    <span fxFlex=""></span>
-    <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000" (click)="openSpeciesPreview()">
+    <!-- <span fxFlex=""></span> -->
+    <!-- <button mat-icon-button matTooltip="{{speciesDetail?.long_name}} details" [matTooltipShowDelay]="1000" (click)="openSpeciesPreview()">
       <mat-icon class="fa fa-info s-16"> </mat-icon>
-    </button>
+    </button> -->
+    
+    <span fxFlex=""></span>
     <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download()">
       Export
     </button>
