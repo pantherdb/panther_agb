@@ -3,6 +3,16 @@
 
 <head>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127051439-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127051439-1');
+  </script>
+
   <title>Ancestral Genomes</title>
   <base href="/">
 
@@ -126,26 +136,31 @@
       0% {
         transform: rotate(0deg) scale(0.5);
       }
+
       100% {
         transform: rotate(360deg) scale(0.5);
       }
     }
 
     @keyframes left-wobble {
+
       0%,
       100% {
         transform: rotate(130deg);
       }
+
       50% {
         transform: rotate(-5deg);
       }
     }
 
     @keyframes right-wobble {
+
       0%,
       100% {
         transform: rotate(-130deg);
       }
+
       50% {
         transform: rotate(5deg);
       }
@@ -155,29 +170,35 @@
       12.5% {
         transform: rotate(135deg);
       }
+
       25% {
         transform: rotate(270deg);
       }
+
       37.5% {
         transform: rotate(405deg);
       }
+
       50% {
         transform: rotate(540deg);
       }
+
       62.5% {
         transform: rotate(675deg);
       }
+
       75% {
         transform: rotate(810deg);
       }
+
       87.5% {
         transform: rotate(945deg);
       }
+
       100% {
         transform: rotate(1080deg);
       }
     }
-
   </style>
 </head>
 
