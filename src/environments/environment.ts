@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://agbitics.biodb.sehir.edu.tr/api'
   apiUrl: 'http://68.181.125.145:3000'
 };
 
