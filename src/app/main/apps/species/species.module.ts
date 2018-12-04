@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoctuaSharedModule } from '@noctua/shared.module';
 
-import { AngularSplitModule } from 'angular-split';
+import { AngularSplitModule } from 'angular-split-ng6';
 import { TreeModule as NgxTreeModule } from 'angular-tree-component';
 import { TreeModule as PgTreeModule } from 'primeng/primeng';
 import { MatTreeModule } from '@angular/material/tree';
