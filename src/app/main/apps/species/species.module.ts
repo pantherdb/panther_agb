@@ -17,7 +17,7 @@ import { SpeciesListComponent } from './species-list/species-list.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 import { SpeciesHorizontalTreeComponent } from './species-list/species-horizontal-tree/species-horizontal-tree.component';
 import { SpeciesVerticalTreeComponent } from './species-list/species-vertical-tree/species-vertical-tree.component';
-import { SpeciesGraphTreeComponent } from './species-list/species-graph-tree/species-graph-tree.component';
+//import { SpeciesGraphTreeComponent } from './species-list/species-graph-tree/species-graph-tree.component';
 import { SpeciesFlatTreeComponent } from './species-list/species-flat-tree/species-flat-tree.component';
 import { SpeciesD3TreeComponent } from './species-list/species-expandable-tree/species-expandable-tree.component';
 
@@ -39,8 +39,6 @@ const routes = [
   }, {
     path: 'horizontal-tree', component: SpeciesHorizontalTreeComponent
   }, {
-    path: 'treeview', component: SpeciesGraphTreeComponent
-  }, {
     path: 'expandable-tree', component: SpeciesD3TreeComponent
   }, {
     path: ':id', component: SpeciesDetailComponent
@@ -53,7 +51,7 @@ const routes = [
     SpeciesDetailDialogComponent,
     SpeciesHorizontalTreeComponent,
     SpeciesVerticalTreeComponent,
-    SpeciesGraphTreeComponent,
+    //SpeciesGraphTreeComponent,
     SpeciesFlatTreeComponent,
     SpeciesD3TreeComponent,
   ],
