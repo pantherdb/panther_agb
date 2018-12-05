@@ -1,5 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ElementRef, PipeTransform, Pipe, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from "@angular/platform-browser";
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) { }
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   selector: 'app-gene-tree',
@@ -10,6 +19,8 @@ export class GeneTreeComponent implements OnInit {
   
   pthr: string;
   ptn: string;
+  tree: string;
+
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -17,6 +28,7 @@ export class GeneTreeComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.pthr = decodeURIComponent(params['pthr']);
       this.ptn = decodeURIComponent(params['ptn']);
+      this.tree = `http://panthertest5.usc.edu/treeViewer/treeViewer.jsp?book=${this.pthr}&seq=${this.ptn}`
     });
   }
 

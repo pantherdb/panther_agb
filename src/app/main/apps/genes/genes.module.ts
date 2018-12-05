@@ -17,7 +17,7 @@ import { GeneLossTableComponent } from './genomes-comparison/genomes-comaprison-
 import { GeneGainedTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-gained-table/gene-gained-table.component';
 import { GeneInheritedTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-inherited-table/gene-inherited-table.component';
 import { GeneUnmodeledTableComponent } from './genomes-comparison/genomes-comaprison-tables/gene-unmodeled-table/gene-unmodeled-table.component';
-import { GeneTreeComponent } from './gene-tree/gene-tree.component';
+import { GeneTreeComponent, SafePipe } from './gene-tree/gene-tree.component';
 
 const routes = [{
   path: ':species/:proxySpecies', component: GeneListComponent
@@ -40,7 +40,8 @@ const routes = [{
     GeneGainedTableComponent,
     GeneInheritedTableComponent,
     GeneUnmodeledTableComponent,
-    GeneTreeComponent
+    GeneTreeComponent,
+    SafePipe
   ],
   imports: [
     RouterModule.forChild(routes),
