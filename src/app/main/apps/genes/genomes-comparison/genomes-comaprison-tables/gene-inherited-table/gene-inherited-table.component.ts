@@ -30,7 +30,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
 })
 export class GeneInheritedTableComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSourcePass | null;
-  displayedColumns_pass = ['ptn_pass', 'name_pass', 'ext_ptn', 'ext_name'];
+  displayedColumns_pass = ['ptn_pass', 'name_pass', 'ext_pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -107,7 +107,7 @@ export class GeneInheritedTableComponent implements OnInit, OnDestroy {
 
   download_pass(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesInherited, `${this.Ancspecies} genes passed to ${this.ExtSpecies}.csv`, ["ptn", "name"]);
+    this.exporter.exportColumnsToCSV(this.genesInherited, `${this.Ancspecies} genes passed to ${this.ExtSpecies}.csv`, ["ptn", "name", "descent_gnames", "descent_longIds"]);
   }
 
   openGenePreview(species) {

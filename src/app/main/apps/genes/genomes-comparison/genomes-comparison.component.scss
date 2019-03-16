@@ -143,6 +143,8 @@
     .mat-header-cell,
     .mat-cell {
       padding: 0 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /*

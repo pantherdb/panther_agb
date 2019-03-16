@@ -108,6 +108,7 @@ export class GenesService {
                     this.genesInherited.forEach((gene, idx, arr)=>{
                         arr[idx]['descent_ptns'] = gene['descent_ptns'].replace(/\,/g,'<br>');
                         arr[idx]['descent_gnames'] = gene['descent_gnames'].replace(/\,/g,'<br>');
+                        arr[idx]['descent_longIds'] = gene['descent_longIds'].replace(/\,/g,'<br>');
                     });
                     //console.log(this.genesInherited);
                     //console.log(this.totalDescGenesCount);

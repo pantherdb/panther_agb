@@ -30,25 +30,35 @@
           <p class="">{{passedGene.name | replace }}</p>
         </mat-cell>
       </ng-container>
-      <ng-container cdkColumnDef="ext_ptn">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="300px">
+      <!-- <ng-container cdkColumnDef="ext_ptn">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">
           <div>
             Extant gene ID
           </div>
         </mat-header-cell>
         <mat-cell *cdkCellDef="let passedGene">
-          <!-- <p class="">{{passedGene.all_desendant_gene_ptn_in_proxy_species}}</p> -->
           <p class="" [innerHtml]="passedGene.descent_ptns"></p>
         </mat-cell>
-      </ng-container>
-      <ng-container cdkColumnDef="ext_name">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">
+      </ng-container> -->
+      
+      <!-- <ng-container cdkColumnDef="ext_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header arrowPosition='before' fxFlex="200px">
           <div>
             Extant protein name
           </div>
         </mat-header-cell>
         <mat-cell *cdkCellDef="let passedGene">
           <p class="" [innerHtml]="passedGene.descent_gnames"></p>
+        </mat-cell>
+      </ng-container> -->
+      <ng-container cdkColumnDef="ext_pthr">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="200px">
+          <div>
+            Extant protein PANTHER identifier
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let passedGene">
+          <p class="" [innerHtml]="passedGene.descent_longIds"></p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_pass" class="agb-column-subtoolbar"></mat-header-row>

@@ -30,7 +30,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
 })
 export class GeneGainedTableComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSourceGain | null;
-  displayedColumns_gain = ['ptn_gain', 'name_gain'];
+  displayedColumns_gain = ['ptn_gain', 'name_gain', 'panther_gene_id_gain'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -102,7 +102,7 @@ export class GeneGainedTableComponent implements OnInit, OnDestroy {
 
   download_gain(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesGained, `${this.ExtSpecies} genes gained after ${this.Ancspecies}.csv`, ["ptn", "name"]);
+    this.exporter.exportColumnsToCSV(this.genesGained, `${this.ExtSpecies} genes gained after ${this.Ancspecies}.csv`, ["ptn", "name", "proxy_gene"]);
   }
 
   openGenePreview(species) {

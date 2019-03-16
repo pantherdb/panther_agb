@@ -30,7 +30,7 @@ import { SpeciesDialogService } from './../../../../species/dialog.service';
 })
 export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSourceNotModeled | null;
-  displayedColumns_not_modeled = ['ptn_not_modeled', 'name_not_modeled'];
+  displayedColumns_not_modeled = ['ptn_not_modeled', 'name_not_modeled', 'panther_id_not_modeled'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -105,7 +105,7 @@ export class GeneUnmodeledTableComponent implements OnInit, OnDestroy {
 
   download_not_modeled(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genes_not_modeled, `${this.ExtSpecies} genes not modeled.csv`, ["ptn", "name"]);
+    this.exporter.exportColumnsToCSV(this.genes_not_modeled, `${this.ExtSpecies} genes not modeled.csv`, ["ptn", "name", "proxy_gene"]);
   }
 
   openGenePreview(species) {

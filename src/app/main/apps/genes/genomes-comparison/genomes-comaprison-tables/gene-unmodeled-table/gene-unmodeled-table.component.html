@@ -31,6 +31,12 @@
           <p class="">{{gene_not_modeled.name}}</p>
         </mat-cell>
       </ng-container>
+      <ng-container cdkColumnDef="panther_id_not_modeled">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_not_modeled">
+          <p class="">{{gene_not_modeled.proxy_gene}}</p>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_not_modeled" class="agb-column-subtoolbar"></mat-header-row>
       <mat-row *cdkRowDef="let gene_not_modeled; columns: displayedColumns_not_modeled;" class="gene" matRipple (click)="openGenePreview(gene_not_modeled.ptn)"
         routerLinkActive="active"></mat-row>
