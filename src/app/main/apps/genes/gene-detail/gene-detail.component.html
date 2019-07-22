@@ -151,7 +151,7 @@
           <mat-table [dataSource]="dataSource" class="" matSort>
             <ng-container matColumnDef="proxy_org_long">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Extant Species </mat-header-cell>
-              <mat-cell *matCellDef="let proxy"> {{proxy.proxy_org_long}} </mat-cell>
+              <mat-cell *matCellDef="let proxy"> {{proxy.proxy_spe_long}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="proxy_gene">
               <mat-header-cell *matHeaderCellDef mat-sort-header> PANTHER Identifier of Proxy Gene </mat-header-cell>

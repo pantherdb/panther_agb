@@ -67,6 +67,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
         this.genes = this.genesService.ancestralGenes;
         this.totalGenesCount = this.genesService.totalGenes;
         this.dataSource = new SpeciesDataSource(this.genesService, this.paginator, this.sort);
+        console.log(this.genes);
 
         this.genesService.getGenesBySpecies(this.species, this.proxySpecies).then(response => {
           this.genes = this.genesService.ancestralGenes;
