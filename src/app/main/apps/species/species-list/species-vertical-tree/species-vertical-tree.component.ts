@@ -91,7 +91,7 @@ export class SpeciesVerticalTreeComponent {
 
     this.router.navigate([`species/genes`, {
       outlets: {
-        'list': ['genes', `${this.species}`]
+        'list': ['genes', `${this.species}`, 'default species']
       }
     }]);
     //  { relativeTo: this.route }););
