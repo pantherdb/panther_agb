@@ -62,6 +62,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['species']);
       this.proxySpecies = decodeURIComponent(params['proxySpecies']);
+      this.selected_proxy_species = this.proxySpecies;
 
       this.genesService.getGenesBySpecies(this.species, this.proxySpecies, 1, 50).then(response => {
         this.genes = this.genesService.ancestralGenes;
