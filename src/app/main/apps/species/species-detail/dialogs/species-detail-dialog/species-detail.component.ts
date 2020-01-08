@@ -34,6 +34,7 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.species = this._data.species;
+    this.species.replace("/", "%2F");
     //this.speciesService.setActiveSpecies(this.species);
     this.speciesService.getSpeciesDetail(this.species).then(response => {
       this.speciesDetail = this.speciesService.speciesDetail;

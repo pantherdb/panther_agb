@@ -36,6 +36,7 @@ export class SpeciesHorizontalTreeComponent implements OnInit {
 
   nodeSelect(event) {
     this.species = event.node.data;
+    //this.species.replace("/", "%2F");
     //console.log(this.species, '--path ', node.path);
     //this.router.navigateByUrl(`/species/${this.species}`);
     this.router.navigate([`species/genes`, {

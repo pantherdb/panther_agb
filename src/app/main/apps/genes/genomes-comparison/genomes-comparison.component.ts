@@ -47,6 +47,7 @@ export class GenomesComparisonComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe((params) => {
       this.Ancspecies = decodeURIComponent(params['ancestral']);
+      this.Ancspecies.replace("/", "%2F");
       this.ExtSpecies = decodeURIComponent(params['extant']);
 
       /* this.genesService.getGenesBySpecies(this.Ancspecies, this.ExtSpecies, 1, 50).then(response => {

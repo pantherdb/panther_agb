@@ -88,7 +88,7 @@ export class SpeciesService {
 
 
     getSpeciesDetail(species): Promise<Species> {
-
+        species = species.replace('/', '%2F');
         const url = `${environment.apiUrl}/genelist/species-info/${species}`;
 
         return new Promise<Species>((resolve, reject) => {

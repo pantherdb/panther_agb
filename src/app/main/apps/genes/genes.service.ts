@@ -36,7 +36,10 @@ export class GenesService {
         this.onSpeciesChanged = new BehaviorSubject({});
     }
 
-    getGenesBySpecies(species, proxySpecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+    getGenesBySpecies(species: string, proxySpecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        species = species.replace('/', '%2F');
+        //species = 'SAR%2FHA_supergroup';
+        //console.log(species);
         const url = page ?
             `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/species/${species}/${proxySpecies}`;
@@ -58,6 +61,7 @@ export class GenesService {
     }
 
     getGeneGains(ext_species, anc_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        anc_species.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/gene-gain/${anc_species}/${ext_species}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/gene-gain/${anc_species}/${ext_species}`;
@@ -75,6 +79,7 @@ export class GenesService {
     }
 
     getGeneLoss(anc_species, ext_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        anc_species.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/gene-loss/${anc_species}/${ext_species}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/gene-loss/${anc_species}/${ext_species}`;
@@ -92,6 +97,7 @@ export class GenesService {
     }
 
     getGenePassed(anc_species, ext_species, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        anc_species.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/gene-pass/${anc_species}/${ext_species}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/gene-pass/${anc_species}/${ext_species}`;
@@ -137,6 +143,7 @@ export class GenesService {
 
     getProxySpecies(species): Promise<any[]> {
 
+        species = species.replace('/', '%2F');
         const url = `${environment.apiUrl}/genelist/proxy_species/${species}`;
 
         return new Promise<any[]>((resolve, reject) => {

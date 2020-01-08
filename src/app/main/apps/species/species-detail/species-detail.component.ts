@@ -28,6 +28,7 @@ export class SpeciesDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.species = decodeURIComponent(params['id']);
+      this.species.replace("/", "%2F");
       this.speciesService.getSpeciesDetail(this.species).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
         //this.speciesService.activeSpecies = this.species;
