@@ -58,7 +58,7 @@ export class SpeciesD3TreeComponent implements OnInit {
       return d;
     }
 
-    const treeJSON = d3.json("assets/data/species-nodes.json", function (error, treeData) {
+    const treeJSON = d3.json("assets/data/species-nodes-15.json", function (error, treeData) {
       //console.log(treeData);
       // Calculate total nodes, max label length
       var totalNodes = 0;
