@@ -28,8 +28,8 @@ export class GeneTreeComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.pthr = decodeURIComponent(params['pthr']);
       this.ptn = decodeURIComponent(params['ptn']);
-      //this.tree = `http://panthertest5.usc.edu/treeViewer/treeViewer.jsp?book=${this.pthr}&seq=${this.ptn}`
-      this.tree = `http://panthertest6.med.usc.edu:8086/treeViewer/treeViewer.jsp?book=${this.pthr}&seq=${this.ptn}`
+      this.tree = `http://panthertest5.med.usc.edu:8085/treeViewer.jsp?book=${this.pthr}&seq=${this.ptn}`
+      //this.tree = `http://panthertest6.med.usc.edu:8086/treeViewer/treeViewer.jsp?book=${this.pthr}&seq=${this.ptn}`
     });
   }
 
