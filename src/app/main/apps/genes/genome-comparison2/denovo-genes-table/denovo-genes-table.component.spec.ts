@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenomeComparison2Component } from './genome-comparison2.component';
+import { DenovoGenesTableComponent } from './denovo-genes-table.component';
 
-describe('GenomeComparison2Component', () => {
-  let component: GenomeComparison2Component;
-  let fixture: ComponentFixture<GenomeComparison2Component>;
+describe('DenovoGenesTableComponent', () => {
+  let component: DenovoGenesTableComponent;
+  let fixture: ComponentFixture<DenovoGenesTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GenomeComparison2Component ]
+      declarations: [ DenovoGenesTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GenomeComparison2Component);
+    fixture = TestBed.createComponent(DenovoGenesTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,15 +4,15 @@
       <h1>Compare</h1>
       <div class="agb-comparison-summary">
         <div class="agb-title" fxLayout="row" fxLayoutAlign="start center">
-          Ancestral Species 
+          Parent Species 
           <span class="agb-subtitle">  
-            <a href = "/species/{{Ancspecies}}" target="_blank">{{Ancspecies}}</a>
+            <a href = "/species/{{ParentSpecies}}" target="_blank">{{ParentSpecies}}</a>
           </span>
         </div>
         <div class="agb-title" fxLayout="row" fxLayoutAlign="start center">
-          Extant Species 
+          Child Species 
           <span class="agb-subtitle">  
-              <a href = "/species/{{ExtSpecies}}" target="_blank">{{ExtSpecies}}</a>
+              <a href = "/species/{{ChildSpecies}}" target="_blank">{{ChildSpecies}}</a>
           </span>
         </div>
       </div>
@@ -30,15 +30,62 @@
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
                   <!-- Genes inherited <span class="agb-gene-count"> {{genesInheritedCount}}  -->
-                    <span class="agb-gene-count">{{totalDescGenesCount}}</span> genes inherited from <span class="agb-gene-count">{{genesInheritedCount}}</span> ancestral genes
+                    <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> genes directly inherited from <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> ancestral genes
                 </div>
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <app-gene-inherited-table></app-gene-inherited-table>
+            <app-direct-inherited-genes-table></app-direct-inherited-genes-table>
           </div>
         </mat-expansion-panel>
+        
+        <mat-expansion-panel class="agb-comparison-expansion agb-passed" [expanded]="true" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+              <div class="agb-comparison-toggle" fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon *ngIf="true" class="mat-icon-rtl-mirror s-18 fa fa-caret-right">
+                </mat-icon>
+                <mat-icon *ngIf="false" class="mat-icon-rtl-mirror s-24">
+                  signal_cellular_4_bar
+                </mat-icon>
+              </div>
+              <div class="" fxLayout="column" fxLayoutAlign="start stretch">
+                <div class="agb-title">
+                  <!-- Genes inherited <span class="agb-gene-count"> {{genesInheritedCount}}  -->
+                    <span class="agb-gene-count">{{DenovoGenesCount}}</span> genes denovo gained
+                </div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="agb-expansion-panel-body">
+            <app-denovo-genes-table></app-denovo-genes-table>
+          </div>
+        </mat-expansion-panel>
+        
+        <mat-expansion-panel class="agb-comparison-expansion agb-passed" [expanded]="true" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+              <div class="agb-comparison-toggle" fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon *ngIf="true" class="mat-icon-rtl-mirror s-18 fa fa-caret-right">
+                </mat-icon>
+                <mat-icon *ngIf="false" class="mat-icon-rtl-mirror s-24">
+                  signal_cellular_4_bar
+                </mat-icon>
+              </div>
+              <div class="" fxLayout="column" fxLayoutAlign="start stretch">
+                <div class="agb-title">
+                  <!-- Genes inherited <span class="agb-gene-count"> {{genesInheritedCount}}  -->
+                    <span class="agb-gene-count">{{HorizTransGenesCount}}</span> genes horizontal transfered
+                </div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="agb-expansion-panel-body">
+            <app-horiz-transfered-genes-table></app-horiz-transfered-genes-table>
+          </div>
+        </mat-expansion-panel>
+        
         <mat-expansion-panel class="agb-comparison-expansion agb-loss" hideToggle="true">
           <mat-expansion-panel-header>
             <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
@@ -51,15 +98,16 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Ancestral genes lost <span class="agb-gene-count"> {{lostGenesCount}} </span>
+                  Ancestral genes lost <span class="agb-gene-count"> {{LossGenesCount}} </span>
                 </div>
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <app-gene-loss-table></app-gene-loss-table>
+            <app-loss-genes-table></app-loss-genes-table>
           </div>
         </mat-expansion-panel>
+        
         <mat-expansion-panel class="agb-comparison-expansion agb-gained" hideToggle="true">
           <mat-expansion-panel-header>
             <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
@@ -72,36 +120,16 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Genes gained other than by duplication <span class="agb-gene-count"> {{gainedGenesCount}} </span>
+                  Genes inherited by duplication <span class="agb-gene-count"> {{DuplicatedGenesCount}} </span>
                 </div>
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="agb-expansion-panel-body">
-            <app-gene-gained-table></app-gene-gained-table>
+            <app-duplicated-genes-table></app-duplicated-genes-table>
           </div>
         </mat-expansion-panel>
-        <mat-expansion-panel class="agb-comparison-expansion agb-not-modeled" hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
-              <div class="agb-comparison-toggle" fxLayout="column" fxLayoutAlign="center center">
-                <mat-icon *ngIf="true" class="mat-icon-rtl-mirror s-18 fa fa-caret-right">
-                </mat-icon>
-                <mat-icon *ngIf="false" class="mat-icon-rtl-mirror s-24">
-                  signal_cellular_4_bar
-                </mat-icon>
-              </div>
-              <div class="" fxLayout="column" fxLayoutAlign="start stretch">
-                <div class="agb-title">
-                  Genes with no ancestral reconstruction <span class="agb-gene-count"> {{notModeledGenesCount}} </span>
-                </div>
-              </div>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div class="agb-expansion-panel-body">
-            <app-gene-unmodeled-table></app-gene-unmodeled-table>
-          </div>
-        </mat-expansion-panel>
+        
       </mat-accordion>
     </div>
   </div>

@@ -1,0 +1,179 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@agb.common/scss/agb.common";
+
+:host {
+
+  .agb-gene-count {
+    color: #999;
+    font-style: italic;
+  }
+
+  .agb-gene-conmparison-container {
+    padding: 20px 2px 300px 2px;
+
+    .agb-comparison-summary {
+      padding: 20px 2px 20px 2px;
+
+      .agb-title {
+        padding: 0 5px 0 10px;
+        @include deep-height(50px);
+        border-bottom: #999 solid 1px;
+        background-color: #FFF;
+        margin-bottom: 5px;
+        font-size: 18px;
+        margin-bottom: 5px;
+
+        .agb-subtitle {
+          padding-left: 5px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .agb-comparison-expansion {
+    width: 100%;
+
+    mat-expansion-panel-header {
+      padding: 0 5px 0 10px;
+      @include deep-height(50px);
+      border-bottom: #999 solid 1px;
+      margin-bottom: 5px;
+
+      .agb-comparison-toggle {
+        @include deep-width(30px);
+        @include deep-height(50px);
+      }
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0 !important;
+    }
+
+    .agb-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .agb-description {
+      font-size: 12px
+    }
+
+    .agb-expansion-panel-body {
+      //padding: 10px 0;
+      @include deep-width(100%);
+    }
+
+    &.agb-passed {
+      border-left: #4cc0e4 solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: #4cc0e4 solid 5px;
+      }
+    }
+
+    &.agb-gained {
+      border-left: #4c9b73 solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: #4c9b73 solid 5px;
+      }
+    }
+
+    &.agb-loss {
+      border-left: rgb(230, 83, 83) solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: rgb(230, 83, 83) solid 5px;
+      }
+    }
+    
+    &.agb-not-modeled {
+      border-left: rgb(10, 6, 233) solid 1px;
+
+      mat-expansion-panel-header {
+        border-left: rgb(10, 6, 233) solid 5px;
+      }
+    }
+  }
+
+  .agb-species-panel {
+    width: 100%;
+  }
+
+  .agb-column-toolbar {
+    .search-input-wrapper {
+      //max-width: 480px;
+    }
+  }
+
+  .agb-select-legacy {
+    //  margin-top: 10px;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #bbb;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+  }
+
+  .genes-table {
+    position: relative;
+    flex: 1 1 auto;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    overflow: auto;
+
+    .mat-header-row {
+      padding: 0;
+      min-height: 40px;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      background-color: inherit;
+    }
+
+    .mat-header-cell,
+    .mat-cell {
+      padding: 0 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /*
+    .noc-paginator {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .gene {
+      position: relative;
+      cursor: pointer;
+      min-height: 40px;
+      font-size: 12px;
+    }
+    .mat-cell {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+    .mat-column-id {
+      flex: 0 1 84px;
+    }
+    .mat-column-buttons {
+      flex: 0 1 80px;
+    }
+    /* .mat-header-cell {
+      display:flex;
+      justify-content:flex-end;
+     } */
+  }
+}
