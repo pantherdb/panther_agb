@@ -52,10 +52,12 @@ export class GenomeComparison2Component implements OnInit {
       this.genesHistoryService.onSpeciesChanged.subscribe(response => {
         //this.totalGenesCount = this.genesHistoryService.totalGenesCount;
         this.DirectInheritedGenesCount = this.genesHistoryService.genesDirectInheritedCount;
+        //console.log(this.genesHistoryService.genesDirectInheritedCount);
         this.DuplicatedGenesCount = this.genesHistoryService.genesInheritedByDupCount;
         this.LossGenesCount = this.genesHistoryService.genesLossCount;
         this.HorizTransGenesCount = this.genesHistoryService.genesGainbyHTCount;
         this.DenovoGenesCount = this.genesHistoryService.genesDenovoCount;
+        //console.log(this.DenovoGenesCount);
         //this.totalDescGenesCount = this.genesHistoryService.totalDescGenesCount;
       })
     })

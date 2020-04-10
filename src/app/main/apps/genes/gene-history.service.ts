@@ -44,7 +44,7 @@ export class GenesHistoryService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesDirectInherited = response['lists'];
-                    this.genesDirectInheritedCount = this.genesDirectInherited.length;
+                    this.genesDirectInheritedCount = response['count'];
                     this.onSpeciesChanged.next(this.genesDirectInherited);
                     resolve(response);
                 }, reject);
@@ -63,7 +63,7 @@ export class GenesHistoryService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesLoss = response['lists'];
-                    this.genesLossCount = this.genesLoss.length;
+                    this.genesLossCount = response['count'];
                     this.onSpeciesChanged.next(this.genesLoss);
                     resolve(response);
                 }, reject);
@@ -82,7 +82,7 @@ export class GenesHistoryService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesInheritedByDup = response['lists'];
-                    this.genesInheritedByDupCount = this.genesInheritedByDup.length;
+                    this.genesInheritedByDupCount = response['count'];
                     this.onSpeciesChanged.next(this.genesInheritedByDup);
                     resolve(response);
                 }, reject);
@@ -101,7 +101,7 @@ export class GenesHistoryService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesGainbyHT = response['lists'];
-                    this.genesGainbyHTCount = this.genesGainbyHT.length;
+                    this.genesGainbyHTCount = response['count'];
                     this.onSpeciesChanged.next(this.genesGainbyHT);
                     resolve(response);
                 }, reject);
@@ -120,7 +120,8 @@ export class GenesHistoryService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesDenovo = response['lists'];
-                    this.genesDenovoCount = this.genesDenovo.length;
+                    //this.genesDenovoCount = this.genesDenovo.length;
+                    this.genesDenovoCount = response['count'];
                     this.onSpeciesChanged.next(this.genesDenovo);
                     resolve(response);
                 }, reject);

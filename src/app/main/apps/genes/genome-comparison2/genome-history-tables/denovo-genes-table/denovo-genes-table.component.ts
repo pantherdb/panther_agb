@@ -6,8 +6,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ListService } from '@agb.common/services/data-loader/list.service';
-import { SpeciesService } from '../../../species/species.service';
-import { GenesHistoryService } from './../../gene-history.service';
+import { SpeciesService } from '../../../../species/species.service';
+import { GenesHistoryService } from '../../../gene-history.service';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 
 import { noctuaAnimations } from '@noctua/animations';
@@ -17,8 +17,8 @@ import { takeUntil } from 'rxjs/internal/operators';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ExportToCSV } from "@molteni/export-csv";
 
-import { GenesDialogService } from './../../dialog.service';
-import { SpeciesDialogService } from './../../../species/dialog.service';
+import { GenesDialogService } from '../../../dialog.service';
+import { SpeciesDialogService } from '../../../../species/dialog.service';
 
 @Component({
   selector: 'app-denovo-genes-table',
