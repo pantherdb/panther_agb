@@ -22,7 +22,8 @@ export class GenesHistoryService {
     genesLossCount: number;
     genesDenovoCount: number;
     genesGainbyHTCount: number;
-    genesInheritedByDupCount: number;
+    genesInheritedByDupParentCount: number;
+    genesInheritedByDupChildCount: number;
     
     onSpeciesChanged: BehaviorSubject<any>;
 
@@ -82,7 +83,8 @@ export class GenesHistoryService {
                 .subscribe((response: any) => {
                     //console.log(response);
                     this.genesInheritedByDup = response['lists'];
-                    this.genesInheritedByDupCount = response['count'];
+                    this.genesInheritedByDupParentCount = response['parent_gene_count'];
+                    this.genesInheritedByDupChildCount = response['child_gene_count'];
                     this.onSpeciesChanged.next(this.genesInheritedByDup);
                     resolve(response);
                 }, reject);

@@ -30,7 +30,7 @@
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
                   <!-- Genes inherited <span class="agb-gene-count"> {{genesInheritedCount}}  -->
-                    <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> genes directly inherited from <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> ancestral genes
+                    <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> {{ChildSpecies}} genes directly inherited from <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> {{ParentSpecies}} genes
                 </div>
               </div>
             </mat-panel-title>
@@ -120,7 +120,7 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Genes inherited by duplication <span class="agb-gene-count"> {{DuplicatedGenesCount}} </span>
+                  <span class="agb-gene-count"> {{DuplicatedGenesChildCount}} </span> {{ChildSpecies}} Genes inherited by duplication from <span class="agb-gene-count"> {{DuplicatedGenesParentCount}}</span>{{ParentSpecies}} genes
                 </div>
               </div>
             </mat-panel-title>

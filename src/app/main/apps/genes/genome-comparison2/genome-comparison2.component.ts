@@ -19,7 +19,8 @@ export class GenomeComparison2Component implements OnInit {
   totalGenesCount: any;
   LossGenesCount: number
   DirectInheritedGenesCount: number;
-  DuplicatedGenesCount: number;
+  DuplicatedGenesParentCount: number;
+  DuplicatedGenesChildCount: number;
   HorizTransGenesCount: number;
   DenovoGenesCount: number;
   totalDescGenesCount: number;
@@ -53,7 +54,8 @@ export class GenomeComparison2Component implements OnInit {
         //this.totalGenesCount = this.genesHistoryService.totalGenesCount;
         this.DirectInheritedGenesCount = this.genesHistoryService.genesDirectInheritedCount;
         //console.log(this.genesHistoryService.genesDirectInheritedCount);
-        this.DuplicatedGenesCount = this.genesHistoryService.genesInheritedByDupCount;
+        this.DuplicatedGenesParentCount = this.genesHistoryService.genesInheritedByDupParentCount;
+        this.DuplicatedGenesChildCount = this.genesHistoryService.genesInheritedByDupChildCount;
         this.LossGenesCount = this.genesHistoryService.genesLossCount;
         this.HorizTransGenesCount = this.genesHistoryService.genesGainbyHTCount;
         this.DenovoGenesCount = this.genesHistoryService.genesDenovoCount;
