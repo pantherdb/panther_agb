@@ -30,7 +30,7 @@
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
                   <!-- Genes inherited <span class="agb-gene-count"> {{genesInheritedCount}}  -->
-                    <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> {{ChildSpecies}} genes directly inherited from <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> {{ParentSpecies}} genes
+                    <span class="agb-gene-count">{{DirectInheritedGenesCount}}</span> {{ChildSpecies}} genes directly inherited from {{ParentSpecies}} genes
                 </div>
               </div>
             </mat-panel-title>
@@ -40,7 +40,7 @@
           </div>
         </mat-expansion-panel>
         
-        <mat-expansion-panel class="agb-comparison-expansion agb-passed" [expanded]="true" hideToggle="true">
+        <mat-expansion-panel class="agb-comparison-expansion agb-passed" hideToggle="true">
           <mat-expansion-panel-header>
             <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
               <div class="agb-comparison-toggle" fxLayout="column" fxLayoutAlign="center center">
@@ -63,7 +63,7 @@
           </div>
         </mat-expansion-panel>
         
-        <mat-expansion-panel class="agb-comparison-expansion agb-passed" [expanded]="true" hideToggle="true">
+        <mat-expansion-panel class="agb-comparison-expansion agb-passed" hideToggle="true">
           <mat-expansion-panel-header>
             <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
               <div class="agb-comparison-toggle" fxLayout="column" fxLayoutAlign="center center">
@@ -76,7 +76,7 @@
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
                   <!-- Genes inherited <span class="agb-gene-count"> {{genesInheritedCount}}  -->
-                    <span class="agb-gene-count">{{HorizTransGenesCount}}</span> genes horizontal transfered
+                    <span class="agb-gene-count">{{HorizTransGenesCount}}</span> genes horizontal transfered to {{ChildSpecies}}
                 </div>
               </div>
             </mat-panel-title>
@@ -98,7 +98,7 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  Ancestral genes lost <span class="agb-gene-count"> {{LossGenesCount}} </span>
+                  <span class="agb-gene-count"> {{LossGenesCount}} </span> {{ParentSpecies}} genes lost in {{ChildSpecies}}
                 </div>
               </div>
             </mat-panel-title>
@@ -120,7 +120,7 @@
               </div>
               <div class="" fxLayout="column" fxLayoutAlign="start stretch">
                 <div class="agb-title">
-                  <span class="agb-gene-count"> {{DuplicatedGenesChildCount}} </span> {{ChildSpecies}} Genes inherited by duplication from <span class="agb-gene-count"> {{DuplicatedGenesParentCount}}</span>{{ParentSpecies}} genes
+                  <span class="agb-gene-count"> {{DuplicatedGenesChildCount}} </span> {{ChildSpecies}} Genes inherited by duplication from <span class="agb-gene-count"> {{DuplicatedGenesParentCount}}</span> {{ParentSpecies}} genes
                 </div>
               </div>
             </mat-panel-title>

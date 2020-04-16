@@ -1,3 +1,72 @@
-<p>
-  horiz-transfered-genes-table works!
-</p>
+<div class="agb-species-panel w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
+  <div class="agb-column-toolbar" fxLayout="row" fxLayoutAlign="start center">
+    Filter Horizontal Transfered Genes
+    <input class="agb-select-legacy ml-12" fxFlex="600px" matInput #filter placeholder="{{geneshorizTransferedChildCount}} {{ChildSpecies}} genes gained by horizontal transfer"
+      autocomplete="off">
+    <div>
+      <strong class=""></strong>
+    </div>
+    <span fxFlex=""></span>
+    <button mat-button matTooltip="Export To CSV" [matTooltipShowDelay]="1000" (click)="download()">
+      Export
+    </button>
+  </div>
+
+  <div class="genes-table" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-table fxFlex="1 1 auto" class="" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
+      noctuaPerfectScrollbar>
+      <ng-container cdkColumnDef="parent_gene_ptn">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Parent Gene Public ID
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans" fxFlex="160px">
+          <p class="text-truncate">{{gene_horizTrans.parent_gene_ptn}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="child_gene_ptn">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Child Gene Public ID
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans" fxFlex="160px">
+          <p class="text-truncate">{{gene_horizTrans.child_gene_ptn}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="horizTrans_node_ptn">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Horizontal Transfer Node Public ID
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans">
+          <p class="">{{gene_horizTrans.event_ptn}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="transfered_from_species">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Horizontal Transferred from Species
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans">
+          <p class="">{{gene_horizTrans.parent_species_long}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="pthr">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans">
+          <p class="">{{gene_horizTrans.pthr}}</p>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *cdkHeaderRowDef="displayedColumns_horizTransfered" class="agb-column-subtoolbar"></mat-header-row>
+      <mat-row *cdkRowDef="let gene_horizTrans; columns: displayedColumns_horizTransfered;" class="gene" matRipple (click)="openGenePreview(gene_horizTrans.child_gene_ptn)"
+        routerLinkActive="active"></mat-row>
+    </mat-table>
+    <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"
+      [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+</div>
