@@ -29,8 +29,10 @@ export class GenomeHistoryComponent implements OnInit {
   hasProxyGene: boolean;
   noProxyGene: boolean;
   ChildSpecies: string;
+  ChildSpeciesRep: string;
   selected_proxy_species: any;
   ParentSpecies: string;
+  ParentSpeciesRep: string;
   speciesDetail: any;
   exporter: any;
   genesGained
@@ -48,7 +50,9 @@ export class GenomeHistoryComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.ParentSpecies = decodeURIComponent(params['parent']);
+      this.ParentSpeciesRep = this.ParentSpecies.replace('/', '%2F')
       this.ChildSpecies = decodeURIComponent(params['child']);
+      this.ChildSpeciesRep = this.ChildSpecies.replace('/', '%2F');
       this.genesHistoryService.onSpeciesChanged.subscribe(response => {
         //this.totalGenesCount = this.genesHistoryService.totalGenesCount;
         this.DirectInheritedGenesCount = this.genesHistoryService.genesDirectInheritedCount;
@@ -69,11 +73,11 @@ export class GenomeHistoryComponent implements OnInit {
   }
 
   openSpeciesDetail() {
-    this.router.navigateByUrl(`species/${this.speciesDetail.short_name}`);
+    this.router.navigateByUrl(`species/${this.speciesDetail.short_name.replace('/', '%2F')}`);
   }
 
   openSpeciesPreview() {
-    this.speciesDialogService.openSpeciesPreview(this.speciesDetail.short_name);
+    this.speciesDialogService.openSpeciesPreview(this.speciesDetail.short_name.replace('/', '%2F'));
   }
 
   changeProxyGenes(value) {
