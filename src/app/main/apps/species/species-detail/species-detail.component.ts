@@ -16,6 +16,8 @@ export class SpeciesDetailComponent implements OnInit {
 
   species: string;
   speciesDetail: any;
+  ParentSpeciesDetail: any;
+  ParentSpeciesId: any;
   //displayedColumns: string[] = ['proxy_org_long', 'proxy_gene'];
   //dataSource;
 
@@ -31,9 +33,15 @@ export class SpeciesDetailComponent implements OnInit {
       this.species.replace("/", "%2F");
       this.speciesService.getSpeciesDetail(this.species).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
-        //this.speciesService.activeSpecies = this.species;
-        //console.log(this.speciesDetail);
+        console.log(this.speciesService.speciesDetail);
+        this.ParentSpeciesId = this.speciesService.speciesDetail.parent_id;
+        console.log(this.ParentSpeciesId);
+        this.speciesService.getSpeciesDetailById(this.ParentSpeciesId).then(response => {
+          this.ParentSpeciesDetail = this.speciesService.speciesDetailById;
+          console.log(this.ParentSpeciesDetail);
+        });
       });
+      //console.log(this.ParentSpeciesId);
     });
   }
 

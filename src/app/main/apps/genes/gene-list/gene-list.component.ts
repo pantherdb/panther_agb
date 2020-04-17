@@ -1,4 +1,3 @@
-
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort } from '@angular/material';
@@ -89,6 +88,7 @@ export class GeneListComponent implements OnInit, OnDestroy {
       });
       this.speciesService.getSpeciesDetail(this.species).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
+        //console.log(this.species);
         //console.log(this.speciesDetail);
       });
 

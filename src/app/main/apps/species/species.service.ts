@@ -58,6 +58,7 @@ export class SpeciesService {
     species: Species[];
     speciesNodes: SpeciesNode[];
     speciesDetail: any;
+    speciesDetailById: any;
     activeSpecies: any;
     onSpeciesListChanged: BehaviorSubject<any>;
     onSpeciesDetailChanged: BehaviorSubject<any>;
@@ -96,6 +97,20 @@ export class SpeciesService {
                 .map(res => res['lists'])
                 .subscribe((response: any) => {
                     this.speciesDetail = response[0];
+                    // this.onSpeciesDetailChanged.next(this.species);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    getSpeciesDetailById(id): Promise<Species> {
+        const url = `${environment.apiUrl}/genelist/species-info-id/${id}`;
+
+        return new Promise<Species>((resolve, reject) => {
+            this.httpClient.get<Species>(url)
+                .map(res => res['lists'])
+                .subscribe((response: any) => {
+                    this.speciesDetailById = response[0];
                     // this.onSpeciesDetailChanged.next(this.species);
                     resolve(response);
                 }, reject);
