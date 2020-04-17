@@ -23,6 +23,8 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
   //@Input() speciesGeneList: SpeciesFlatTreeComponent;
   species: string;
   speciesDetail: any = {};
+  ParentSpeciesDetail: any;
+  ParentSpeciesId: any;
   constructor(
     private router: Router,
     private _matDialogRef: MatDialogRef<SpeciesDetailDialogComponent>,
@@ -39,6 +41,11 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
     this.speciesService.getSpeciesDetail(this.species).then(response => {
       this.speciesDetail = this.speciesService.speciesDetail;
       //console.log(this.speciesDetail);
+      this.ParentSpeciesId = this.speciesService.speciesDetail.parent_id;
+      this.speciesService.getSpeciesDetailById(this.ParentSpeciesId).then(response => {
+        this.ParentSpeciesDetail = this.speciesService.speciesDetailById;
+        //console.log(this.ParentSpeciesDetail);
+      });
     });
 
   }

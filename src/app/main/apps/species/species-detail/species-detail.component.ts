@@ -33,12 +33,12 @@ export class SpeciesDetailComponent implements OnInit {
       this.species.replace("/", "%2F");
       this.speciesService.getSpeciesDetail(this.species).then(response => {
         this.speciesDetail = this.speciesService.speciesDetail;
-        console.log(this.speciesService.speciesDetail);
+        //console.log(this.speciesService.speciesDetail);
         this.ParentSpeciesId = this.speciesService.speciesDetail.parent_id;
-        console.log(this.ParentSpeciesId);
+        //console.log(this.ParentSpeciesId);
         this.speciesService.getSpeciesDetailById(this.ParentSpeciesId).then(response => {
           this.ParentSpeciesDetail = this.speciesService.speciesDetailById;
-          console.log(this.ParentSpeciesDetail);
+          //console.log(this.ParentSpeciesDetail);
         });
       });
       //console.log(this.ParentSpeciesId);
