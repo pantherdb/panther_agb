@@ -33,9 +33,9 @@ export class GenesHistoryService {
         this.onSpeciesChanged = new BehaviorSubject({});
     }
 
-    getDirectInheritedGenes(pspecies, cspecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
-        pspecies.replace("/", "%2F");
-        cspecies.replace("/", "%2F");
+    getDirectInheritedGenes(pspecies:string, cspecies:string, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
+        pspecies = pspecies.replace("/", "%2F");
+        cspecies = cspecies.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/direct-inherited/${pspecies}/${cspecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/direct-inherited/${pspecies}/${cspecies}`;
@@ -53,8 +53,8 @@ export class GenesHistoryService {
     }
 
     getLossGenes(cspecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
-        //pspecies.replace("/", "%2F");
-        cspecies.replace("/", "%2F");
+        //pspecies = pspecies.replace("/", "%2F");
+        cspecies = cspecies.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/loss/${cspecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/loss/${cspecies}`;
@@ -72,8 +72,8 @@ export class GenesHistoryService {
     }
 
     getDuplicatedGenes(pspecies, cspecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
-        pspecies.replace("/", "%2F");
-        cspecies.replace("/", "%2F");
+        pspecies = pspecies.replace("/", "%2F");
+        cspecies = cspecies.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/duplication-inherited/${pspecies}/${cspecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/duplication-inherited/${pspecies}/${cspecies}`;
@@ -92,8 +92,8 @@ export class GenesHistoryService {
     }
 
     getHorizTransGenes(cspecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
-        //pspecies.replace("/", "%2F");
-        cspecies.replace("/", "%2F");
+        //pspecies = pspecies.replace("/", "%2F");
+        cspecies = cspecies.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/horizontal-transfer/${cspecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/horizontal-transfer/${cspecies}`;
@@ -111,8 +111,8 @@ export class GenesHistoryService {
     }
 
     getDenovoGenes(cspecies, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
-        //pspecies.replace("/", "%2F");
-        cspecies.replace("/", "%2F");
+        //pspecies = pspecies.replace("/", "%2F");
+        cspecies = cspecies.replace("/", "%2F");
         const url = page ?
             `${environment.apiUrl}/genelist/denovo/${cspecies}/?page=${page}&limit=${limit}` :
             `${environment.apiUrl}/genelist/denovo/${cspecies}`;

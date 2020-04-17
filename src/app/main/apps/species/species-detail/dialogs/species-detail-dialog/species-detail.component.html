@@ -69,7 +69,7 @@
             </div>
           </div> -->
 
-          <div *ngIf="speciesDetail?.timescale" class="agb-card-simple mat-elevation-z1">
+          <div *ngIf="speciesDetail?.long_name != 'LUCA'" class="agb-card-simple mat-elevation-z1">
             <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
               <div class="agb-title">
                 Genome History of {{speciesDetail.long_name}}

@@ -23,7 +23,9 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
   //@Input() speciesGeneList: SpeciesFlatTreeComponent;
   species: string;
   speciesDetail: any = {};
+  speciesLongName: String;
   ParentSpeciesDetail: any;
+  parentSpeciesLongName: String;
   ParentSpeciesId: any;
   constructor(
     private router: Router,
@@ -41,10 +43,14 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
     this.speciesService.getSpeciesDetail(this.species).then(response => {
       this.speciesDetail = this.speciesService.speciesDetail;
       //console.log(this.speciesDetail);
+      this.speciesLongName = this.speciesDetail.long_name;
+      this.speciesLongName.replace("/", "_");
       this.ParentSpeciesId = this.speciesService.speciesDetail.parent_id;
       this.speciesService.getSpeciesDetailById(this.ParentSpeciesId).then(response => {
         this.ParentSpeciesDetail = this.speciesService.speciesDetailById;
-        //console.log(this.ParentSpeciesDetail);
+        this.parentSpeciesLongName = this.ParentSpeciesDetail.long_name;
+        this.parentSpeciesLongName.replace("/", "_");
+        console.log(this.ParentSpeciesDetail);
       });
     });
 

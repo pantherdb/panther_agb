@@ -5,16 +5,16 @@ import { SpeciesService } from '../../species/species.service';
 import { GenesService } from '../genes.service';
 import { GenesHistoryService } from '../gene-history.service';
 import { noctuaAnimations } from '@noctua/animations';
-import { GenesDialogService } from './../dialog.service';
-import { SpeciesDialogService } from './../../species/dialog.service';
+import { GenesDialogService } from '../dialog.service';
+import { SpeciesDialogService } from '../../species/dialog.service';
 
 @Component({
-  selector: 'app-genome-comparison2',
-  templateUrl: './genome-comparison2.component.html',
-  styleUrls: ['./genome-comparison2.component.scss'],
+  selector: 'app-genome-history',
+  templateUrl: './genome-history.component.html',
+  styleUrls: ['./genome-history.component.scss'],
   animations: noctuaAnimations
 })
-export class GenomeComparison2Component implements OnInit {
+export class GenomeHistoryComponent implements OnInit {
   genes: any[] = [];
   totalGenesCount: any;
   LossGenesCount: number
@@ -48,7 +48,6 @@ export class GenomeComparison2Component implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.ParentSpecies = decodeURIComponent(params['parent']);
-      this.ParentSpecies.replace("/", "%2F");
       this.ChildSpecies = decodeURIComponent(params['child']);
       this.genesHistoryService.onSpeciesChanged.subscribe(response => {
         //this.totalGenesCount = this.genesHistoryService.totalGenesCount;

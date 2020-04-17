@@ -21,15 +21,16 @@ import { GenesDialogService } from '../../../dialog.service';
 import { SpeciesDialogService } from '../../../../species/dialog.service';
 
 @Component({
-  selector: 'app-direct-inherited-genes-table',
-  templateUrl: './direct-inherited-genes-table.component.html',
-  styleUrls: ['./direct-inherited-genes-table.component.scss'],
+  selector: 'app-loss-genes-table',
+  templateUrl: './loss-genes-table.component.html',
+  styleUrls: ['./loss-genes-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: noctuaAnimations
 })
-export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
-  dataSource: SpeciesDataSourceDirect | null;
-  displayedColumns_direct = ['parent_ptn', 'child_ptn','pthr'];
+export class LossGenesTableComponent implements OnInit, OnDestroy {
+
+  dataSource: SpeciesDataSourceLoss | null;
+  displayedColumns_Loss = ['parent_gene_ptn', 'loss_node_ptn', 'pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -40,8 +41,8 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  genesDirect: any[] = [];
-  genesDirectCount: any;
+  genesLoss: any[] = [];
+  genesLossCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -61,15 +62,18 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.ParentSpecies = decodeURIComponent(params['parent']);
+      this.ParentSpecies.replace("/", "%2F");
       this.ChildSpecies = decodeURIComponent(params['child']);
+      this.ChildSpecies.replace("/", "%2F");
+      //console.log(this.ChildSpecies);
+      this.genesHistoryService.getLossGenes(this.ChildSpecies, 1, 50).then(response => {
+        
+        this.genesLossCount = this.genesHistoryService.genesLossCount;
+        this.dataSource = new SpeciesDataSourceLoss(this.genesHistoryService, this.paginator, this.sort);
 
-      this.genesHistoryService.getDirectInheritedGenes(this.ParentSpecies, this.ChildSpecies, 1, 50).then(response => {
-        this.genesDirectCount = this.genesHistoryService.genesDirectInheritedCount;
-        this.dataSource = new SpeciesDataSourceDirect(this.genesHistoryService, this.paginator, this.sort);
-
-        this.genesHistoryService.getDirectInheritedGenes(this.ParentSpecies,this.ChildSpecies).then(response => {
-          this.genesDirectCount = this.genesHistoryService.genesDirectInheritedCount;
-          this.dataSource = new SpeciesDataSourceDirect(this.genesHistoryService, this.paginator, this.sort);
+        this.genesHistoryService.getLossGenes(this.ChildSpecies).then(response => {
+          this.genesLossCount = this.genesHistoryService.genesLossCount;
+          this.dataSource = new SpeciesDataSourceLoss(this.genesHistoryService, this.paginator, this.sort);
         });
       });
 
@@ -100,23 +104,17 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesDirect, `${this.ChildSpecies} genes directly inherited from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesLoss, `${this.ParentSpecies} genes lost in ${this.ChildSpecies}.csv`, ["parent_gene_ptn", "loss_node_ptn", "pthr"]);
   }
 
   openGenePreview(species) {
     this.genesDialogService.openGenePreview(species);
   }
 
-  openParentSpeciesDetail() {
-    this.router.navigateByUrl(`species/${this.ParentspeciesDetail.short_name}`);
-  }
   openChildSpeciesDetail() {
     this.router.navigateByUrl(`species/${this.ChildspeciesDetail.short_name}`);
   }
 
-  openParentSpeciesPreview() {
-    this.speciesDialogService.openSpeciesPreview(this.ParentspeciesDetail.short_name);
-  }
   openChildSpeciesPreview() {
     this.speciesDialogService.openSpeciesPreview(this.ChildspeciesDetail.short_name);
   }
@@ -140,7 +138,7 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
 
 }
 
-export class SpeciesDataSourceDirect extends DataSource<any> {
+export class SpeciesDataSourceLoss extends DataSource<any> {
   private filterChange = new BehaviorSubject('');
   private filteredDataChange = new BehaviorSubject('');
 
@@ -150,7 +148,7 @@ export class SpeciesDataSourceDirect extends DataSource<any> {
     private matSort3: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.genesDirectInherited;
+    this.filteredData = this.speciesDetailsService.genesLoss;
   }
 
   get filteredData(): any {
@@ -178,7 +176,7 @@ export class SpeciesDataSourceDirect extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.genesDirectInherited.slice();
+      let data = this.speciesDetailsService.genesLoss.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);
@@ -205,12 +203,14 @@ export class SpeciesDataSourceDirect extends DataSource<any> {
       let propertyB: number | string = '';
 
       switch (this.matSort3.active) {
-        case 'child_gene_ptn':
-          [propertyA, propertyB] = [a.child_gene_ptn, b.child_gene_ptn];
-          break;
         case 'parent_gene_ptn':
           [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
           break;
+        
+        case 'event_ptn':
+          [propertyA, propertyB] = [a.event_ptn, b.event_ptn];
+          break;
+        
         /* case 'name':
           [propertyA, propertyB] = [a.name, b.name];
           break; */
@@ -230,3 +230,6 @@ export class SpeciesDataSourceDirect extends DataSource<any> {
   }
 
 }
+
+
+

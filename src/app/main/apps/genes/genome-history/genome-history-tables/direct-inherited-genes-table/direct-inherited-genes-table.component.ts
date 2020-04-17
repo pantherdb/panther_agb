@@ -21,16 +21,15 @@ import { GenesDialogService } from '../../../dialog.service';
 import { SpeciesDialogService } from '../../../../species/dialog.service';
 
 @Component({
-  selector: 'app-horiz-transfered-genes-table',
-  templateUrl: './horiz-transfered-genes-table.component.html',
-  styleUrls: ['./horiz-transfered-genes-table.component.scss'],
+  selector: 'app-direct-inherited-genes-table',
+  templateUrl: './direct-inherited-genes-table.component.html',
+  styleUrls: ['./direct-inherited-genes-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: noctuaAnimations
 })
-export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
-
-  dataSource: SpeciesDataSourcehorizTransfered | null;
-  displayedColumns_horizTransfered = ['parent_gene_ptn', 'child_gene_ptn','horizTrans_node_ptn', 'transfered_from_species', 'pthr'];
+export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
+  dataSource: SpeciesDataSourceDirect | null;
+  displayedColumns_direct = ['parent_ptn', 'child_ptn','pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -41,15 +40,15 @@ export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  geneshorizTransfered: any[] = [];
-  geneshorizTransferedChildCount: any;
+  genesDirect: any[] = [];
+  genesDirectCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
   ChildSpecies: any;
   selected_proxy_species: any;
-  //ParentSpecies: string;
-  //ParentspeciesDetail: any;
+  ParentSpecies: string;
+  ParentspeciesDetail: any;
   ChildspeciesDetail: any;
   exporter: any;
   private unsubscribeAll: Subject<any>;
@@ -61,23 +60,24 @@ export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      //this.ParentSpecies = decodeURIComponent(params['parent']);
+      this.ParentSpecies = decodeURIComponent(params['parent']);
+      this.ParentSpecies.replace("/", "%2F");
       this.ChildSpecies = decodeURIComponent(params['child']);
+      this.ChildSpecies.replace("/", "%2F");
+      this.genesHistoryService.getDirectInheritedGenes(this.ParentSpecies, this.ChildSpecies, 1, 50).then(response => {
+        this.genesDirectCount = this.genesHistoryService.genesDirectInheritedCount;
+        this.dataSource = new SpeciesDataSourceDirect(this.genesHistoryService, this.paginator, this.sort);
 
-      this.genesHistoryService.getHorizTransGenes(this.ChildSpecies, 1, 50).then(response => {
-        this.geneshorizTransferedChildCount = this.genesHistoryService.genesGainbyHTCount;
-        this.dataSource = new SpeciesDataSourcehorizTransfered(this.genesHistoryService, this.paginator, this.sort);
-
-        this.genesHistoryService.getHorizTransGenes(this.ChildSpecies).then(response => {
-          this.geneshorizTransferedChildCount = this.genesHistoryService.genesGainbyHTCount;
-          this.dataSource = new SpeciesDataSourcehorizTransfered(this.genesHistoryService, this.paginator, this.sort);
+        this.genesHistoryService.getDirectInheritedGenes(this.ParentSpecies,this.ChildSpecies).then(response => {
+          this.genesDirectCount = this.genesHistoryService.genesDirectInheritedCount;
+          this.dataSource = new SpeciesDataSourceDirect(this.genesHistoryService, this.paginator, this.sort);
         });
       });
 
-      /* this.speciesService.getSpeciesDetail(this.ParentSpecies).then(response => {
+      this.speciesService.getSpeciesDetail(this.ParentSpecies).then(response => {
         this.ParentspeciesDetail = this.speciesService.speciesDetail;
         //console.log(this.speciesDetail);
-      }); */
+      });
       this.speciesService.getSpeciesDetail(this.ChildSpecies).then(response => {
         this.ChildspeciesDetail = this.speciesService.speciesDetail;
         //console.log(this.speciesDetail);
@@ -101,17 +101,23 @@ export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.geneshorizTransfered, `${this.ChildSpecies} genes gained by horizontal transfer.csv`, ["parent_gene_ptn","child_gene_ptn", "horizTrans_node_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesDirect, `${this.ChildSpecies} genes directly inherited from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "pthr"]);
   }
 
   openGenePreview(species) {
     this.genesDialogService.openGenePreview(species);
   }
 
+  openParentSpeciesDetail() {
+    this.router.navigateByUrl(`species/${this.ParentspeciesDetail.short_name}`);
+  }
   openChildSpeciesDetail() {
     this.router.navigateByUrl(`species/${this.ChildspeciesDetail.short_name}`);
   }
 
+  openParentSpeciesPreview() {
+    this.speciesDialogService.openSpeciesPreview(this.ParentspeciesDetail.short_name);
+  }
   openChildSpeciesPreview() {
     this.speciesDialogService.openSpeciesPreview(this.ChildspeciesDetail.short_name);
   }
@@ -135,7 +141,7 @@ export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
 
 }
 
-export class SpeciesDataSourcehorizTransfered extends DataSource<any> {
+export class SpeciesDataSourceDirect extends DataSource<any> {
   private filterChange = new BehaviorSubject('');
   private filteredDataChange = new BehaviorSubject('');
 
@@ -145,7 +151,7 @@ export class SpeciesDataSourcehorizTransfered extends DataSource<any> {
     private matSort3: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.genesGainbyHT;
+    this.filteredData = this.speciesDetailsService.genesDirectInherited;
   }
 
   get filteredData(): any {
@@ -173,7 +179,7 @@ export class SpeciesDataSourcehorizTransfered extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.genesGainbyHT.slice();
+      let data = this.speciesDetailsService.genesDirectInherited.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);
@@ -200,17 +206,11 @@ export class SpeciesDataSourcehorizTransfered extends DataSource<any> {
       let propertyB: number | string = '';
 
       switch (this.matSort3.active) {
-        case 'parent_gene_ptn':
-          [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
-          break;
         case 'child_gene_ptn':
           [propertyA, propertyB] = [a.child_gene_ptn, b.child_gene_ptn];
           break;
-        case 'event_ptn':
-          [propertyA, propertyB] = [a.event_ptn, b.event_ptn];
-          break;
-        case 'parent_species_long':
-          [propertyA, propertyB] = [a.parent_species_long, b.parent_species_long];
+        case 'parent_gene_ptn':
+          [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
           break;
         /* case 'name':
           [propertyA, propertyB] = [a.name, b.name];
@@ -231,5 +231,3 @@ export class SpeciesDataSourcehorizTransfered extends DataSource<any> {
   }
 
 }
-
-

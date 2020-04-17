@@ -55,13 +55,31 @@
           </div>
       </div> -->
 
-      <div *ngIf="speciesDetail?.timescale" class="agb-card-simple mat-elevation-z1">
+      <div *ngIf="speciesDetail?.long_name != 'LUCA'" class="agb-card-simple mat-elevation-z1">
         <div class="agb-header" fxLayout="row" fxLayoutAlign="start center">
           <div class="agb-title">
             Genome History of {{speciesDetail.long_name}}
           </div>
         </div>
-        <div class="agb-body">
+        <div *ngIf="speciesDetail?.long_name == 'SAR/HA_supergroup'" class="agb-body">
+          <p>
+            Parent Species <a href = "/species/{{ ParentSpeciesDetail.long_name }}" target="_blank">{{ ParentSpeciesDetail.long_name }}</a> ({{ ParentSpeciesDetail.timescale }} mya)</p>
+            <p><a href = "/genes/genome-history/{{ ParentSpeciesDetail.long_name }}/SAR%2FHA_supergroup" target="_blank">
+              Genome History of {{ speciesDetail.long_name }}
+            </a>
+          </p>
+        </div>
+
+        <div *ngIf="ParentSpeciesDetail?.long_name == 'SAR/HA_supergroup'" class="agb-body">
+          <p>
+            Parent Species <a href = "/species/SAR%2FHA_supergroup" target="_blank">{{ ParentSpeciesDetail.long_name }}</a> ({{ ParentSpeciesDetail.timescale }} mya)</p>
+            <p><a href = "/genes/genome-history/SAR%2FHA_supergroup/{{ speciesDetail.long_name }}" target="_blank">
+              Genome History of {{ speciesDetail.long_name }}
+            </a>
+          </p>
+        </div>
+
+        <div *ngIf="ParentSpeciesDetail?.long_name != 'SAR/HA_supergroup' && speciesDetail?.long_name != 'SAR/HA_supergroup'" class="agb-body">
           <p>
             Parent Species <a href = "/species/{{ ParentSpeciesDetail.long_name }}" target="_blank">{{ ParentSpeciesDetail.long_name }}</a> ({{ ParentSpeciesDetail.timescale }} mya)</p>
             <p><a href = "/genes/genome-history/{{ ParentSpeciesDetail.long_name }}/{{ speciesDetail.long_name }}" target="_blank">
@@ -69,6 +87,7 @@
             </a>
           </p>
         </div>
+        
     </div>
 
         

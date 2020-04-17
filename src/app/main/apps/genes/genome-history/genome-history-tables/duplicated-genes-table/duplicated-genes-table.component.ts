@@ -21,16 +21,16 @@ import { GenesDialogService } from '../../../dialog.service';
 import { SpeciesDialogService } from '../../../../species/dialog.service';
 
 @Component({
-  selector: 'app-loss-genes-table',
-  templateUrl: './loss-genes-table.component.html',
-  styleUrls: ['./loss-genes-table.component.scss'],
+  selector: 'app-duplicated-genes-table',
+  templateUrl: './duplicated-genes-table.component.html',
+  styleUrls: ['./duplicated-genes-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: noctuaAnimations
 })
-export class LossGenesTableComponent implements OnInit, OnDestroy {
+export class DuplicatedGenesTableComponent implements OnInit, OnDestroy {
 
-  dataSource: SpeciesDataSourceLoss | null;
-  displayedColumns_Loss = ['parent_gene_ptn', 'loss_node_ptn', 'pthr'];
+  dataSource: SpeciesDataSourceDuplicated | null;
+  displayedColumns_duplicated = ['parent_gene_ptn', 'child_gene_ptn','duplication_node_ptn', 'pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -41,8 +41,9 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort)
   sort: MatSort;
   genes: any[] = [];
-  genesLoss: any[] = [];
-  genesLossCount: any;
+  genesduplicated: any[] = [];
+  genesduplicatedParentCount: any;
+  genesduplicatedChildCount: any;
   proxy_species: any[];
   hasProxyGene: boolean;
   noProxyGene: boolean;
@@ -62,15 +63,18 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.ParentSpecies = decodeURIComponent(params['parent']);
+      this.ParentSpecies.replace("/", "%2F");
       this.ChildSpecies = decodeURIComponent(params['child']);
+      this.ChildSpecies.replace("/", "%2F");
+      this.genesHistoryService.getDuplicatedGenes(this.ParentSpecies, this.ChildSpecies, 1, 50).then(response => {
+        this.genesduplicatedParentCount = this.genesHistoryService.genesInheritedByDupParentCount;
+        this.genesduplicatedChildCount = this.genesHistoryService.genesInheritedByDupChildCount;
+        this.dataSource = new SpeciesDataSourceDuplicated(this.genesHistoryService, this.paginator, this.sort);
 
-      this.genesHistoryService.getLossGenes(this.ChildSpecies, 1, 50).then(response => {
-        this.genesLossCount = this.genesHistoryService.genesLossCount;
-        this.dataSource = new SpeciesDataSourceLoss(this.genesHistoryService, this.paginator, this.sort);
-
-        this.genesHistoryService.getLossGenes(this.ChildSpecies).then(response => {
-          this.genesLossCount = this.genesHistoryService.genesLossCount;
-          this.dataSource = new SpeciesDataSourceLoss(this.genesHistoryService, this.paginator, this.sort);
+        this.genesHistoryService.getDuplicatedGenes(this.ParentSpecies,this.ChildSpecies).then(response => {
+          this.genesduplicatedParentCount = this.genesHistoryService.genesInheritedByDupParentCount;
+          this.genesduplicatedChildCount = this.genesHistoryService.genesInheritedByDupChildCount;
+          this.dataSource = new SpeciesDataSourceDuplicated(this.genesHistoryService, this.paginator, this.sort);
         });
       });
 
@@ -101,17 +105,23 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesLoss, `${this.ParentSpecies} genes lost in ${this.ChildSpecies}.csv`, ["parent_gene_ptn", "loss_node_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesduplicated, `${this.ChildSpecies} genes duplicated from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "duplication_node_ptn", "pthr"]);
   }
 
   openGenePreview(species) {
     this.genesDialogService.openGenePreview(species);
   }
 
+  openParentSpeciesDetail() {
+    this.router.navigateByUrl(`species/${this.ParentspeciesDetail.short_name}`);
+  }
   openChildSpeciesDetail() {
     this.router.navigateByUrl(`species/${this.ChildspeciesDetail.short_name}`);
   }
 
+  openParentSpeciesPreview() {
+    this.speciesDialogService.openSpeciesPreview(this.ParentspeciesDetail.short_name);
+  }
   openChildSpeciesPreview() {
     this.speciesDialogService.openSpeciesPreview(this.ChildspeciesDetail.short_name);
   }
@@ -135,7 +145,7 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
 
 }
 
-export class SpeciesDataSourceLoss extends DataSource<any> {
+export class SpeciesDataSourceDuplicated extends DataSource<any> {
   private filterChange = new BehaviorSubject('');
   private filteredDataChange = new BehaviorSubject('');
 
@@ -145,7 +155,7 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
     private matSort3: MatSort
   ) {
     super();
-    this.filteredData = this.speciesDetailsService.genesLoss;
+    this.filteredData = this.speciesDetailsService.genesInheritedByDup;
   }
 
   get filteredData(): any {
@@ -173,7 +183,7 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
     ];
 
     return merge(...displayDataChanges).pipe(map(() => {
-      let data = this.speciesDetailsService.genesLoss.slice();
+      let data = this.speciesDetailsService.genesInheritedByDup.slice();
       data = this.filterData(data);
       this.filteredData = [...data];
       data = this.sortData(data);
@@ -203,11 +213,12 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
         case 'parent_gene_ptn':
           [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
           break;
-        
-        case 'event_ptn':
-          [propertyA, propertyB] = [a.event_ptn, b.event_ptn];
+        case 'child_gene_ptn':
+          [propertyA, propertyB] = [a.child_gene_ptn, b.child_gene_ptn];
           break;
-        
+        case 'duplication_node_ptn':
+          [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
+          break;
         /* case 'name':
           [propertyA, propertyB] = [a.name, b.name];
           break; */
@@ -227,6 +238,4 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
   }
 
 }
-
-
 

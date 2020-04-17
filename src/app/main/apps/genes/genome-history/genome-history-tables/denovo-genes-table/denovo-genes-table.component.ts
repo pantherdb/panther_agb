@@ -61,7 +61,7 @@ export class DenovoGenesTableComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       //this.ParentSpecies = decodeURIComponent(params['parent']);
       this.ChildSpecies = decodeURIComponent(params['child']);
-
+      this.ChildSpecies.replace("/", "%2F");
       this.genesHistoryService.getDenovoGenes(this.ChildSpecies, 1, 50).then(response => {
         this.genesDenovoCount = this.genesHistoryService.genesDenovoCount;
         this.dataSource = new SpeciesDataSourceDenovo(this.genesHistoryService, this.paginator, this.sort);

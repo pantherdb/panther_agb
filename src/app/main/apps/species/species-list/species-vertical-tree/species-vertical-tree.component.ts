@@ -87,7 +87,7 @@ export class SpeciesVerticalTreeComponent {
     this.species = node.data.short_name;
     this.taxonId = node.data.taxon_id;
     //console.log(this.species, '--path ', node.path);
-    console.log(this.taxonId);
+    //console.log(this.taxonId);
 
     this.router.navigate([`species/genes`, {
       outlets: {
