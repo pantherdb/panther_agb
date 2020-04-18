@@ -119,6 +119,10 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
     this.speciesDialogService.openSpeciesPreview(this.ChildspeciesDetail.short_name);
   }
 
+  openPanther(pthr) {
+    window.open(`http://www.pantherdb.org/panther/family.do?clsAccession=${pthr}`);
+  }
+
   changeProxyGenes(value) {
     //console.log(value);
     //this.selected_proxy_species = value;

@@ -21,7 +21,8 @@
             Public ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_denovo" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_denovo" fxFlex="160px" matRipple (click)="openGenePreview(gene_denovo.child_gene_ptn)"
+        routerLinkActive="active">
           <p class="text-truncate">{{gene_denovo.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
@@ -33,13 +34,13 @@
       </ng-container> -->
       <ng-container cdkColumnDef="pthr_denovo">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_denovo">
+        <mat-cell *cdkCellDef="let gene_denovo" matRipple (click)="openPanther(gene_denovo.pthr)"
+        routerLinkActive="active">
           <p class="">{{gene_denovo.pthr}}</p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_denovo" class="agb-column-subtoolbar"></mat-header-row>
-      <mat-row *cdkRowDef="let gene_denovo; columns: displayedColumns_denovo;" class="gene" matRipple (click)="openGenePreview(gene_denovo.child_gene_ptn)"
-        routerLinkActive="active"></mat-row>
+      <mat-row *cdkRowDef="let gene_denovo; columns: displayedColumns_denovo;" class="gene"></mat-row>
     </mat-table>
     <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"
       [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">

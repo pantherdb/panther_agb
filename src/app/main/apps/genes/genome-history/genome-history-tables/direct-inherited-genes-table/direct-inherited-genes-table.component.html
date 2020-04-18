@@ -21,7 +21,8 @@
             Parent Gene Public ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_direct" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_direct" fxFlex="160px" matRipple (click)="openGenePreview(gene_direct.parent_gene_ptn)"
+        routerLinkActive="active">
           <p class="text-truncate">{{gene_direct.parent_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
@@ -31,7 +32,8 @@
             Child Gene Public ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_direct" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_direct" fxFlex="160px" matRipple (click)="openGenePreview(gene_direct.child_gene_ptn)"
+        routerLinkActive="active">
           <p class="text-truncate">{{gene_direct.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
@@ -43,13 +45,18 @@
       </ng-container> -->
       <ng-container cdkColumnDef="pthr">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_direct">
+        <mat-cell *cdkCellDef="let gene_direct" matRipple (click)="openPanther(gene_direct.pthr)"
+        routerLinkActive="active">
           <p class="">{{gene_direct.pthr}}</p>
+          <!-- <a href="http://www.pantherdb.org/panther/family.do?clsAccession={{gene_direct.pthr}}" target="_blank">
+            {{gene_direct.pthr}}
+          </a> -->
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_direct" class="agb-column-subtoolbar"></mat-header-row>
-      <mat-row *cdkRowDef="let gene_direct; columns: displayedColumns_direct;" class="gene" matRipple (click)="openGenePreview(gene_direct.child_gene_ptn)"
-        routerLinkActive="active"></mat-row>
+      <!-- <mat-row *cdkRowDef="let gene_direct; columns: displayedColumns_direct;" class="gene" matRipple (click)="openGenePreview(gene_direct.child_gene_ptn)"
+        routerLinkActive="active"></mat-row> -->
+        <mat-row *cdkRowDef="let gene_direct; columns: displayedColumns_direct;" class="gene"></mat-row>
     </mat-table>
     <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"
       [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">

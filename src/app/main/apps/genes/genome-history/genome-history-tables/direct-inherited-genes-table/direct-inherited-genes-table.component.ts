@@ -115,6 +115,10 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`species/${this.ChildspeciesDetail.short_name}`);
   }
 
+  openPanther(pthr) {
+    window.open(`http://www.pantherdb.org/panther/family.do?clsAccession=${pthr}`);
+  }
+
   openParentSpeciesPreview() {
     this.speciesDialogService.openSpeciesPreview(this.ParentspeciesDetail.short_name);
   }

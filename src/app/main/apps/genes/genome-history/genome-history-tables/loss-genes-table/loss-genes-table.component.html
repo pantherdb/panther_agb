@@ -21,7 +21,8 @@
             Parent Gene Public ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_loss" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_loss" fxFlex="160px" matRipple (click)="openGenePreview(gene_loss.parent_gene_ptn)"
+        routerLinkActive="active">
           <p class="text-truncate">{{gene_loss.parent_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
@@ -39,13 +40,13 @@
       
       <ng-container cdkColumnDef="pthr">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_loss">
+        <mat-cell *cdkCellDef="let gene_loss" matRipple (click)="openPanther(gene_loss.pthr)"
+        routerLinkActive="active">
           <p class="">{{gene_loss.pthr}}</p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_Loss" class="agb-column-subtoolbar"></mat-header-row>
-      <mat-row *cdkRowDef="let gene_loss; columns: displayedColumns_Loss;" class="gene" matRipple (click)="openGenePreview(gene_loss.parent_gene_ptn)"
-        routerLinkActive="active"></mat-row>
+      <mat-row *cdkRowDef="let gene_loss; columns: displayedColumns_Loss;" class="gene"></mat-row>
     </mat-table>
     <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"
       [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">

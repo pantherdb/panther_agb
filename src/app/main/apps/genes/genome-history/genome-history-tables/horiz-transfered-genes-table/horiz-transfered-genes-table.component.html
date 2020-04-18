@@ -21,7 +21,8 @@
             Parent Gene Public ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_horizTrans" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_horizTrans" fxFlex="160px" matRipple (click)="openGenePreview(gene_horizTrans.parent_gene_ptn)"
+        routerLinkActive="active">
           <p class="text-truncate">{{gene_horizTrans.parent_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
@@ -31,14 +32,15 @@
             Child Gene Public ID
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_horizTrans" fxFlex="160px">
+        <mat-cell *cdkCellDef="let gene_horizTrans" fxFlex="160px" matRipple (click)="openGenePreview(gene_horizTrans.child_gene_ptn)"
+        routerLinkActive="active">
           <p class="text-truncate">{{gene_horizTrans.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="horizTrans_node_ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
           <div>
-            Horizontal Transfer Node Public ID
+            Horizontal Transfer Node ID
           </div>
         </mat-header-cell>
         <mat-cell *cdkCellDef="let gene_horizTrans">
@@ -51,19 +53,20 @@
             Horizontal Transferred from Species
           </div>
         </mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_horizTrans">
+        <mat-cell *cdkCellDef="let gene_horizTrans" matRipple (click)="openSpeciesPreview(gene_horizTrans.parent_species_long)"
+        routerLinkActive="active">
           <p class="">{{gene_horizTrans.parent_species_long}}</p>
         </mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="pthr">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_horizTrans">
+        <mat-cell *cdkCellDef="let gene_horizTrans" matRipple (click)="openPanther(gene_horizTrans.pthr)"
+        routerLinkActive="active">
           <p class="">{{gene_horizTrans.pthr}}</p>
         </mat-cell>
       </ng-container>
       <mat-header-row *cdkHeaderRowDef="displayedColumns_horizTransfered" class="agb-column-subtoolbar"></mat-header-row>
-      <mat-row *cdkRowDef="let gene_horizTrans; columns: displayedColumns_horizTransfered;" class="gene" matRipple (click)="openGenePreview(gene_horizTrans.child_gene_ptn)"
-        routerLinkActive="active"></mat-row>
+      <mat-row *cdkRowDef="let gene_horizTrans; columns: displayedColumns_horizTransfered;" class="gene"></mat-row>
     </mat-table>
     <mat-paginator class="noc-paginator" #paginator [length]="dataSource?.filteredData?.length" [pageIndex]="0"
       [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
