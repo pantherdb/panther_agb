@@ -65,10 +65,12 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
       this.ChildSpecies = decodeURIComponent(params['child']);
       this.ChildSpecies.replace("/", "%2F");
       this.genesHistoryService.getDirectInheritedGenes(this.ParentSpecies, this.ChildSpecies, 1, 50).then(response => {
+        this.genesDirect = this.genesHistoryService.genesDirectInherited;
         this.genesDirectCount = this.genesHistoryService.genesDirectInheritedCount;
         this.dataSource = new SpeciesDataSourceDirect(this.genesHistoryService, this.paginator, this.sort);
 
         this.genesHistoryService.getDirectInheritedGenes(this.ParentSpecies,this.ChildSpecies).then(response => {
+          this.genesDirect = this.genesHistoryService.genesDirectInherited;
           this.genesDirectCount = this.genesHistoryService.genesDirectInheritedCount;
           this.dataSource = new SpeciesDataSourceDirect(this.genesHistoryService, this.paginator, this.sort);
         });

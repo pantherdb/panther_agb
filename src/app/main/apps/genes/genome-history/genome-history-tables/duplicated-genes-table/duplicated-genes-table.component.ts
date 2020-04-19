@@ -67,11 +67,13 @@ export class DuplicatedGenesTableComponent implements OnInit, OnDestroy {
       this.ChildSpecies = decodeURIComponent(params['child']);
       this.ChildSpecies.replace("/", "%2F");
       this.genesHistoryService.getDuplicatedGenes(this.ParentSpecies, this.ChildSpecies, 1, 50).then(response => {
+        this.genesduplicated = this.genesHistoryService.genesInheritedByDup;
         this.genesduplicatedParentCount = this.genesHistoryService.genesInheritedByDupParentCount;
         this.genesduplicatedChildCount = this.genesHistoryService.genesInheritedByDupChildCount;
         this.dataSource = new SpeciesDataSourceDuplicated(this.genesHistoryService, this.paginator, this.sort);
 
         this.genesHistoryService.getDuplicatedGenes(this.ParentSpecies,this.ChildSpecies).then(response => {
+          this.genesduplicated = this.genesHistoryService.genesInheritedByDup;
           this.genesduplicatedParentCount = this.genesHistoryService.genesInheritedByDupParentCount;
           this.genesduplicatedChildCount = this.genesHistoryService.genesInheritedByDupChildCount;
           this.dataSource = new SpeciesDataSourceDuplicated(this.genesHistoryService, this.paginator, this.sort);

@@ -67,11 +67,12 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
       this.ChildSpecies.replace("/", "%2F");
       //console.log(this.ChildSpecies);
       this.genesHistoryService.getLossGenes(this.ChildSpecies, 1, 50).then(response => {
-        
+        this.genesLoss = this.genesHistoryService.genesLoss;
         this.genesLossCount = this.genesHistoryService.genesLossCount;
         this.dataSource = new SpeciesDataSourceLoss(this.genesHistoryService, this.paginator, this.sort);
 
         this.genesHistoryService.getLossGenes(this.ChildSpecies).then(response => {
+          this.genesLoss = this.genesHistoryService.genesLoss;
           this.genesLossCount = this.genesHistoryService.genesLossCount;
           this.dataSource = new SpeciesDataSourceLoss(this.genesHistoryService, this.paginator, this.sort);
         });
@@ -102,9 +103,9 @@ export class LossGenesTableComponent implements OnInit, OnDestroy {
         this.dataSource.filter = this.filter.nativeElement.value;
       });
   }
-  download(): void {
+  download_loss(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesLoss, `${this.ParentSpecies} genes lost in ${this.ChildSpecies}.csv`, ["parent_gene_ptn", "loss_node_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesLoss, `${this.ParentSpecies} genes lost in ${this.ChildSpecies}.csv`, ["parent_gene_ptn", "event_ptn", "pthr"]);
   }
 
   openGenePreview(species) {
