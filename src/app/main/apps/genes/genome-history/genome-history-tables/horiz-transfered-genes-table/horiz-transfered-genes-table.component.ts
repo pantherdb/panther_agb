@@ -103,7 +103,7 @@ export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.geneshorizTransfered, `${this.ChildSpecies} genes gained by horizontal transfer.csv`, ["parent_gene_ptn","child_gene_ptn", "horizTrans_node_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.geneshorizTransfered, `${this.ChildSpecies} genes gained by horizontal transfer.csv`, ["parent_gene_ptn","child_gene_ptn", "parent_species_long", "event_ptn", "pthr"]);
   }
 
   openGenePreview(species) {

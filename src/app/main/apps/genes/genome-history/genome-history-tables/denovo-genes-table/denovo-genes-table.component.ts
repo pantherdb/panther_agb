@@ -97,7 +97,7 @@ export class DenovoGenesTableComponent implements OnInit, OnDestroy {
   }
   download_denovo(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesDenovo, `${this.ChildSpecies} genes denovo gained.csv`, ["child_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesDenovo, `${this.ChildSpecies} genes denovo gained.csv`, ["child_gene_ptn", "pthr"]);
   }
 
   openGenePreview(species) {

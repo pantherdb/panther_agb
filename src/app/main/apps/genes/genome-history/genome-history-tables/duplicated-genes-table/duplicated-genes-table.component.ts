@@ -107,7 +107,7 @@ export class DuplicatedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesduplicated, `${this.ChildSpecies} genes duplicated from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "duplication_node_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesduplicated, `${this.ChildSpecies} genes duplicated from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "event_ptn", "pthr"]);
   }
 
   openGenePreview(species) {
