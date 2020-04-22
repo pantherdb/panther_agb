@@ -29,7 +29,7 @@ import { SpeciesDialogService } from '../../../../species/dialog.service';
 })
 export class DenovoGenesTableComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSourceDenovo | null;
-  displayedColumns_denovo = ['ptn_denovo', 'pthr_denovo'];
+  displayedColumns_denovo = ['ptn_denovo', 'gene_name','pthr_denovo'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -97,7 +97,7 @@ export class DenovoGenesTableComponent implements OnInit, OnDestroy {
   }
   download_denovo(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesDenovo, `${this.ChildSpecies} genes denovo gained.csv`, ["child_gene_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesDenovo, `${this.ChildSpecies} genes denovo gained.csv`, ["child_gene_ptn", "child_gene_name", "pthr"]);
   }
 
   openGenePreview(species) {
@@ -200,12 +200,12 @@ export class SpeciesDataSourceDenovo extends DataSource<any> {
       let propertyB: number | string = '';
 
       switch (this.matSort3.active) {
-        case 'child_ptn':
-          [propertyA, propertyB] = [a.child_ptn, b.child_ptn];
+        case 'child_gene_ptn':
+          [propertyA, propertyB] = [a.child_gene_ptn, b.child_gene_ptn];
           break;
-        /* case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
-          break; */
+        case 'child_gene_name':
+          [propertyA, propertyB] = [a.child_gene_name, b.child_gene_name];
+          break;
         case 'pthr':
           [propertyA, propertyB] = [a.pthr, b.pthr];
           break;

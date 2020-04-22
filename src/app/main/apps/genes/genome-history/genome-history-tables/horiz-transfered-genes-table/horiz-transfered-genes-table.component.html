@@ -37,6 +37,26 @@
           <p class="text-truncate">{{gene_horizTrans.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
+      <ng-container cdkColumnDef="parent_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Parent Gene Protein Name
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans">
+          <p class="">{{gene_horizTrans.parent_gene_name}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="child_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Child Gene Protein Name
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_horizTrans">
+          <p class="">{{gene_horizTrans.child_gene_name}}</p>
+        </mat-cell>
+      </ng-container>
       <ng-container cdkColumnDef="horizTrans_node_ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
           <div>

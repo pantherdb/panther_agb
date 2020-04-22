@@ -18,7 +18,7 @@
       <ng-container cdkColumnDef="ptn_denovo">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
           <div>
-            Public ID
+            De Novo Gene Public ID
           </div>
         </mat-header-cell>
         <mat-cell *cdkCellDef="let gene_denovo" fxFlex="160px" matRipple (click)="openGenePreview(gene_denovo.child_gene_ptn)"
@@ -26,14 +26,14 @@
           <p class="text-truncate">{{gene_denovo.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
-      <!-- <ng-container cdkColumnDef="name_denovo">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
+      <ng-container cdkColumnDef="gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>De Novo Protein Name</mat-header-cell>
         <mat-cell *cdkCellDef="let gene_denovo">
-          <p class="">{{gene_denovo.name}}</p>
+          <p class="">{{gene_denovo.child_gene_name}}</p>
         </mat-cell>
-      </ng-container> -->
+      </ng-container>
       <ng-container cdkColumnDef="pthr_denovo">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Protein Family Identifier</mat-header-cell>
         <mat-cell *cdkCellDef="let gene_denovo" matRipple (click)="openPanther(gene_denovo.pthr)"
         routerLinkActive="active">
           <p class="">{{gene_denovo.pthr}}</p>

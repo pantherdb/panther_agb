@@ -29,7 +29,7 @@ import { SpeciesDialogService } from '../../../../species/dialog.service';
 })
 export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
   dataSource: SpeciesDataSourceDirect | null;
-  displayedColumns_direct = ['parent_ptn', 'child_ptn','pthr'];
+  displayedColumns_direct = ['parent_ptn', 'child_ptn','parent_gene_name', 'child_gene_name', 'pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -103,7 +103,7 @@ export class DirectInheritedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesDirect, `${this.ChildSpecies} genes directly inherited from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesDirect, `${this.ChildSpecies} genes directly inherited from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn","parent_gene_name","child_gene_name","pthr"]);
   }
 
   openGenePreview(species) {
@@ -218,9 +218,12 @@ export class SpeciesDataSourceDirect extends DataSource<any> {
         case 'parent_gene_ptn':
           [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
           break;
-        /* case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
-          break; */
+        case 'parent_gene_name':
+          [propertyA, propertyB] = [a.parent_gene_name, b.parent_gene_name];
+          break;
+        case 'child_gene_name':
+          [propertyA, propertyB] = [a.child_gene_name, b.child_gene_name];
+          break;
         case 'pthr':
           [propertyA, propertyB] = [a.pthr, b.pthr];
           break;

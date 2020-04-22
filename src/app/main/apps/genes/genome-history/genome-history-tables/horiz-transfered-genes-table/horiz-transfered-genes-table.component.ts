@@ -30,7 +30,7 @@ import { SpeciesDialogService } from '../../../../species/dialog.service';
 export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
 
   dataSource: SpeciesDataSourcehorizTransfered | null;
-  displayedColumns_horizTransfered = ['parent_gene_ptn', 'child_gene_ptn','horizTrans_node_ptn', 'transfered_from_species', 'pthr'];
+  displayedColumns_horizTransfered = ['parent_gene_ptn', 'child_gene_ptn','parent_gene_name', 'child_gene_name','horizTrans_node_ptn', 'transfered_from_species', 'pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -103,7 +103,7 @@ export class HorizTransferedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.geneshorizTransfered, `${this.ChildSpecies} genes gained by horizontal transfer.csv`, ["parent_gene_ptn","child_gene_ptn", "parent_species_long", "event_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.geneshorizTransfered, `${this.ChildSpecies} genes gained by horizontal transfer.csv`, ["parent_gene_ptn","child_gene_ptn", "parent_gene_name","child_gene_name", "parent_species_long", "event_ptn", "pthr"]);
   }
 
   openGenePreview(species) {

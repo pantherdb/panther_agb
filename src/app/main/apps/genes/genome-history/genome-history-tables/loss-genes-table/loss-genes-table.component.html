@@ -26,7 +26,16 @@
           <p class="text-truncate">{{gene_loss.parent_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
-      
+      <ng-container cdkColumnDef="parent_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
+          <div>
+            Parent Gene Protein Name
+          </div>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_loss">
+          <p class="">{{gene_loss.parent_gene_name}}</p>
+        </mat-cell>
+      </ng-container>
       <ng-container cdkColumnDef="loss_node_ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header fxFlex="160px">
           <div>

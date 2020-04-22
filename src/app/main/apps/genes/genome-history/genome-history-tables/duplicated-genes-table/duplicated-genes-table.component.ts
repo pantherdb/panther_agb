@@ -30,7 +30,7 @@ import { SpeciesDialogService } from '../../../../species/dialog.service';
 export class DuplicatedGenesTableComponent implements OnInit, OnDestroy {
 
   dataSource: SpeciesDataSourceDuplicated | null;
-  displayedColumns_duplicated = ['parent_gene_ptn', 'child_gene_ptn','duplication_node_ptn', 'pthr'];
+  displayedColumns_duplicated = ['parent_gene_ptn', 'child_gene_ptn','parent_gene_name', 'child_gene_name','duplication_node_ptn', 'pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -107,7 +107,7 @@ export class DuplicatedGenesTableComponent implements OnInit, OnDestroy {
   }
   download(): void {
     this.exporter = new ExportToCSV();
-    this.exporter.exportColumnsToCSV(this.genesduplicated, `${this.ChildSpecies} genes duplicated from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "event_ptn", "pthr"]);
+    this.exporter.exportColumnsToCSV(this.genesduplicated, `${this.ChildSpecies} genes duplicated from ${this.ParentSpecies}.csv`, ["parent_gene_ptn","child_gene_ptn", "parent_gene_name","child_gene_name","event_ptn", "pthr"]);
   }
 
   openGenePreview(species) {
@@ -225,9 +225,12 @@ export class SpeciesDataSourceDuplicated extends DataSource<any> {
         case 'duplication_node_ptn':
           [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
           break;
-        /* case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
-          break; */
+        case 'parent_gene_name':
+            [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
+            break;
+        case 'child_gene_name':
+            [propertyA, propertyB] = [a.child_gene_ptn, b.child_gene_ptn];
+            break;
         case 'pthr':
           [propertyA, propertyB] = [a.pthr, b.pthr];
           break;

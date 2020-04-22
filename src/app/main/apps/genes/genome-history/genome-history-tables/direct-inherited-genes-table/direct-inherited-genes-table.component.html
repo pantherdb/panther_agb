@@ -37,12 +37,18 @@
           <p class="text-truncate">{{gene_direct.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
-      <!-- <ng-container cdkColumnDef="name_denovo">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Protein Name</mat-header-cell>
-        <mat-cell *cdkCellDef="let gene_denovo">
-          <p class="">{{gene_denovo.name}}</p>
+      <ng-container cdkColumnDef="parent_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Parent Gene Protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_direct">
+          <p class="">{{gene_direct.parent_gene_name}}</p>
         </mat-cell>
-      </ng-container> -->
+      </ng-container>
+      <ng-container cdkColumnDef="child_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Child Gene Protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_direct">
+          <p class="">{{gene_direct.child_gene_name}}</p>
+        </mat-cell>
+      </ng-container>
       <ng-container cdkColumnDef="pthr">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>PANTHER Identifier</mat-header-cell>
         <mat-cell *cdkCellDef="let gene_direct" matRipple (click)="openPanther(gene_direct.pthr)"

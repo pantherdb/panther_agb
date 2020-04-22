@@ -30,7 +30,7 @@ import { SpeciesDialogService } from '../../../../species/dialog.service';
 export class LossGenesTableComponent implements OnInit, OnDestroy {
 
   dataSource: SpeciesDataSourceLoss | null;
-  displayedColumns_Loss = ['parent_gene_ptn', 'loss_node_ptn', 'pthr'];
+  displayedColumns_Loss = ['parent_gene_ptn', 'parent_gene_name', 'loss_node_ptn', 'pthr'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -211,7 +211,9 @@ export class SpeciesDataSourceLoss extends DataSource<any> {
         case 'parent_gene_ptn':
           [propertyA, propertyB] = [a.parent_gene_ptn, b.parent_gene_ptn];
           break;
-        
+        case 'parent_gene_name':
+            [propertyA, propertyB] = [a.parent_gene_name, b.parent_gene_name];
+            break;
         case 'event_ptn':
           [propertyA, propertyB] = [a.event_ptn, b.event_ptn];
           break;

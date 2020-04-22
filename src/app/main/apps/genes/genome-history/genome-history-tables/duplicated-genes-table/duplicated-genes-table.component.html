@@ -37,6 +37,18 @@
           <p class="text-truncate">{{gene_duplicated.child_gene_ptn}}</p>
         </mat-cell>
       </ng-container>
+      <ng-container cdkColumnDef="parent_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Parent Gene Protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_duplicated">
+          <p class="">{{gene_duplicated.parent_gene_name}}</p>
+        </mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="child_gene_name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>Child Gene Protein Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let gene_duplicated">
+          <p class="">{{gene_duplicated.child_gene_name}}</p>
+        </mat-cell>
+      </ng-container>
       <ng-container cdkColumnDef="duplication_node_ptn">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header>Duplication Node ID</mat-header-cell>
         <mat-cell *cdkCellDef="let gene_duplicated">
