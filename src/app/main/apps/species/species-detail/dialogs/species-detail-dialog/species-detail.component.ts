@@ -1,12 +1,21 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, OnDestroy, ViewChild, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatMenuTrigger } from '@angular/material';
-import { Subject } from 'rxjs';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatOptionSelectionChange } from '@angular/material';
+import { DataSource } from '@angular/cdk/collections';
+import { merge, Observable, BehaviorSubject, fromEvent, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+
+import { noctuaAnimations } from '@noctua/animations';
+import { NoctuaUtils } from '@noctua/utils/noctua-utils';
+import { takeUntil } from 'rxjs/internal/operators';
 import { GeneReplacePipe } from '@agb.common/pipes/gene-replace.pipe';
 //import { Gene } from './../../models/gene';
 import * as _ from 'lodash';
 
 import { Router } from '@angular/router';
 import { SpeciesService } from './../../../species.service';
+import { GenesHistoryService } from './../../../../genes/gene-history.service';
 import { BreadcrumbsService } from '@agb.common/services/breadcrumbs/breadcrumbs.service';
 import { SpeciesFlatTreeComponent } from './../../../species-list/species-flat-tree/species-flat-tree.component';
 
@@ -14,10 +23,22 @@ import { SpeciesFlatTreeComponent } from './../../../species-list/species-flat-t
   selector: 'app-species-detail',
   templateUrl: './species-detail.component.html',
   styleUrls: ['./species-detail.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: noctuaAnimations
 })
 
 export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
+  dataSource: any;
+  displayedColumns = ['event', 'gene_number'];
+
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+
+  @ViewChild('filter')
+  filter: ElementRef;
+  @ViewChild(MatSort)
+  sort: MatSort;
+  
   private _unsubscribeAll: Subject<any>;
   
   //@Input() speciesGeneList: SpeciesFlatTreeComponent;
@@ -27,12 +48,15 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
   ParentSpeciesDetail: any;
   parentSpeciesLongName: String;
   ParentSpeciesId: any;
+  geneHistorySum: any;
+  private unsubscribeAll: Subject<any>;
   constructor(
     private router: Router,
     private _matDialogRef: MatDialogRef<SpeciesDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private _data: any,
     private _matDialog: MatDialog,
-    private speciesService: SpeciesService) {
+    private speciesService: SpeciesService,
+    private genesHistoryService: GenesHistoryService) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -50,9 +74,15 @@ export class SpeciesDetailDialogComponent implements OnInit, OnDestroy {
         this.ParentSpeciesDetail = this.speciesService.speciesDetailById;
         this.parentSpeciesLongName = this.ParentSpeciesDetail.long_name;
         this.parentSpeciesLongName.replace("/", "_");
-        console.log(this.ParentSpeciesDetail);
+        //console.log(this.ParentSpeciesDetail);
       });
     });
+    this.genesHistoryService.getGeneHistorySummary(this.species).then(response => {
+      this.geneHistorySum = this.genesHistoryService.geneHistorySummary;
+      this.dataSource = this.genesHistoryService.geneHistorySummary;
+      //console.log(this.geneHistorySum);
+    });
+
 
   }
 

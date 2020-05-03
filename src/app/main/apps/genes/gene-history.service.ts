@@ -16,6 +16,7 @@ export class GenesHistoryService {
     genesDenovo: SpeciesGeneList[];
     genesGainbyHT: SpeciesGeneList[];
     genesInheritedByDup: SpeciesGeneList[];
+    geneHistorySummary: any;
     
     genesInheritedCount: number;
     genesDirectInheritedCount: number;
@@ -31,6 +32,22 @@ export class GenesHistoryService {
         private httpClient: HttpClient,
     ) {
         this.onSpeciesChanged = new BehaviorSubject({});
+    }
+
+    getGeneHistorySummary(cspecies): Promise<any> {
+        //pspecies = pspecies.replace("/", "%2F");
+        cspecies = cspecies.replace("/", "%2F");
+        const url = `${environment.apiUrl}/genelist/gene_history/${cspecies}`;
+
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.get<any>(url)
+                .subscribe((response: any) => {
+                    //console.log(response);
+                    this.geneHistorySummary = response['lists'];
+                    //this.onSpeciesChanged.next(this.geneHistorySummary);
+                    resolve(response);
+                }, reject);
+        });
     }
 
     getDirectInheritedGenes(pspecies:string, cspecies:string, page?: number, limit: number = 20): Promise<SpeciesGeneList[]> {
