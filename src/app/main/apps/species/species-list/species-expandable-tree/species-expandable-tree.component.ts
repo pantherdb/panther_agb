@@ -427,6 +427,44 @@ export class SpeciesD3TreeComponent implements OnInit {
             return "translate(" + source.y0 + "," + source.x0 + ")";
           })
           .on('click', Click)
+          .on('mouseover', function(d){
+            //var g = d3.select(this); // The node
+          // The class is used to remove the additional text later
+          /* var info = g.append('text')
+             .classed('info', true)
+             .attr('x', 20)
+             .attr('y', 10)
+             .html(d.gene_history.replace("\n", ';')); */
+             /* var div = d3.select(this).append("text")
+             .attr('pointer-events', 'none')
+             .attr("class", "tooltip")
+             .attr('x', 20)
+             .attr('y', 10)
+             .style("opacity", 1)
+             .html(d.gene_history.split("\n")); */
+             //console.log(d);
+             var tooltip = d3.select(this).append("foreignObject")
+                            .attr("width", 480)
+                            .attr("height", 500)
+                            .attr("class", "tooltip")
+                            .attr('x', 20)
+                            .attr('y', 10)
+                            .attr("fill-opacity","1")
+                            .append("xhtml:body")
+                            .style("font", "14px 'Helvetica Neue'")
+                            .style("opacity", 1)
+                            .style("background", "lightgray")
+                            .style("position","absolute")	
+                              .style("text-align", "center")	
+                                .style("width", "270px")
+                                  .style("height", "100px")		
+                                    .style("padding", "2px")
+                            .html(`<p>${d.gene_history.replace(/\n/g, '<br>')}</p>`);
+          })
+          .on('mouseout', function(){
+            // Remove the info text on mouse out.
+            d3.select(this).select('foreignObject.tooltip').remove()
+          })
           .on('contextmenu', (d) => {
             //console.log(d.short_name);
             (d3.event as Event).preventDefault();
