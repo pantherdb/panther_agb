@@ -428,7 +428,7 @@ export class SpeciesD3TreeComponent implements OnInit {
           })
           .on('click', Click)
           .on('mouseover', function(d){
-            //var g = d3.select(this); // The node
+            this.parentNode.appendChild(this);
           // The class is used to remove the additional text later
           /* var info = g.append('text')
              .classed('info', true)
@@ -442,7 +442,7 @@ export class SpeciesD3TreeComponent implements OnInit {
              .attr('y', 10)
              .style("opacity", 1)
              .html(d.gene_history.split("\n")); */
-             //console.log(d);
+             //console.log(d.parent.name);
              var tooltip = d3.select(this).append("foreignObject")
                             .attr("width", 480)
                             .attr("height", 500)
@@ -450,16 +450,20 @@ export class SpeciesD3TreeComponent implements OnInit {
                             .attr('x', 20)
                             .attr('y', 10)
                             .attr("fill-opacity","1")
-                            .append("xhtml:body")
+                            .append("xhtml:div")
+                            
                             .style("font", "14px 'Helvetica Neue'")
                             .style("opacity", 1)
                             .style("background", "lightgray")
                             .style("position","absolute")	
                               .style("text-align", "center")	
                                 .style("width", "270px")
-                                  .style("height", "100px")		
+                                  .style("height", "150px")		
                                     .style("padding", "2px")
-                            .html(`<p>${d.gene_history.replace(/\n/g, '<br>')}</p>`);
+                            .html(`<p><a href = "" target="_blank">
+                            Genome History of ${d.name}
+                          </a>
+                        </p><p>${d.gene_history.replace(/\n/g, '<br>')}</p>`);
           })
           .on('mouseout', function(){
             // Remove the info text on mouse out.
