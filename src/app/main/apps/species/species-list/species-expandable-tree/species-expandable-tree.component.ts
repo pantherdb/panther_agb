@@ -444,6 +444,7 @@ export class SpeciesD3TreeComponent implements OnInit {
              .html(d.gene_history.split("\n")); */
              //console.log(d.parent.name);
              var tooltip = d3.select(this).append("foreignObject")
+                            
                             .attr("width", 480)
                             .attr("height", 500)
                             .attr("class", "tooltip")
@@ -460,7 +461,7 @@ export class SpeciesD3TreeComponent implements OnInit {
                                 .style("width", "270px")
                                   .style("height", "150px")		
                                     .style("padding", "2px")
-                            .html(`<p><a href = "" target="_blank">
+                            .html(`<p><a href = "http://www.pantherdb.org">
                             Genome History of ${d.name}
                           </a>
                         </p><p>${d.gene_history.replace(/\n/g, '<br>')}</p>`);

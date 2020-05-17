@@ -35,7 +35,12 @@ export class GenomeHistoryComponent implements OnInit {
   ParentSpeciesRep: string;
   speciesDetail: any;
   exporter: any;
-  genesGained
+  genesGained;
+
+  selectedChildSpe: any;
+  speciesList: any;
+  changedParentSpe: any;
+
   private unsubscribeAll: Subject<any>;
 
   constructor(private route: ActivatedRoute, private router: Router, private genesHistoryService: GenesHistoryService,
@@ -65,7 +70,11 @@ export class GenomeHistoryComponent implements OnInit {
         //console.log(this.DenovoGenesCount);
         //this.totalDescGenesCount = this.genesHistoryService.totalDescGenesCount;
       })
-    })
+    });
+
+    this.speciesService.getSpeciesList().then(response => {
+      this.speciesList = this.speciesService.species;
+    });
   }
 
   openGenePreview(species) {
@@ -80,10 +89,17 @@ export class GenomeHistoryComponent implements OnInit {
     this.speciesDialogService.openSpeciesPreview(this.speciesDetail.short_name.replace('/', '%2F'));
   }
 
-  changeProxyGenes(value) {
+  changeChildSpe(value) {
     //console.log(value);
     //this.selected_proxy_species = value;
-    this.router.navigateByUrl(`/species/genes/(list:genes/${this.ParentSpecies}/${value})`);
+    this.speciesService.getSpeciesDetail(value).then(response => {
+      var parent_id = this.speciesService.speciesDetail.parent_id;
+      this.speciesService.getSpeciesDetailById(parent_id).then(response => {
+        //console.log(this.speciesService.speciesDetailById.long_name);
+        this.router.navigateByUrl(`/genes/genome-history/${this.speciesService.speciesDetailById.long_name.replace('/', '%2F')}/${value})`);
+      })
+    })
+    //this.router.navigateByUrl(`/genes/genome-history/${this.changedParentSpe.replace('/', '%2F')}/${value})`);
   }
 
   onSelect({ selected }) {
