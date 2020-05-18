@@ -15,13 +15,13 @@
               <a href = "/species/{{ChildSpeciesRep}}" target="_blank">{{ChildSpecies}}</a>
           </span>
         </div>
-        <mat-form-field>
+        <!-- <mat-form-field>
           <mat-label>Select a new species for its genome history</mat-label>
           <mat-select [(value)]="selectedChildSpe" (selectionChange)="changeChildSpe($event.value)">
             <mat-option *ngFor = "let spe of speciesList"  value="{{spe.long_name}}">{{spe.long_name}}</mat-option>
             
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
       <mat-accordion>
         <mat-expansion-panel class="agb-comparison-expansion agb-passed" [expanded]="true" hideToggle="true">

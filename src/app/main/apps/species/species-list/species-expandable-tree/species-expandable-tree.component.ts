@@ -461,8 +461,8 @@ export class SpeciesD3TreeComponent implements OnInit {
                                 .style("width", "270px")
                                   .style("height", "150px")		
                                     .style("padding", "2px")
-                            .html(`<p><a href = "http://www.pantherdb.org">
-                            Genome History of ${d.name}
+                            .html(`<p><a href = "">
+                            Genome History of ${d.name} (total gene number: ${d.gene_number})
                           </a>
                         </p><p>${d.gene_history.replace(/\n/g, '<br>')}</p>`);
           })
