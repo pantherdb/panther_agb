@@ -30,9 +30,11 @@ export class GenomeHistoryComponent implements OnInit {
   noProxyGene: boolean;
   ChildSpecies: string;
   ChildSpeciesRep: string;
+  ChildSpeciesDetail: any;
   selected_proxy_species: any;
   ParentSpecies: string;
   ParentSpeciesRep: string;
+  ParentSpeciesDetail: any;
   speciesDetail: any;
   exporter: any;
   genesGained;
@@ -70,6 +72,13 @@ export class GenomeHistoryComponent implements OnInit {
         //console.log(this.DenovoGenesCount);
         //this.totalDescGenesCount = this.genesHistoryService.totalDescGenesCount;
       })
+
+      this.speciesService.getSpeciesDetail(this.ChildSpecies).then(response => {
+        this.ChildSpeciesDetail = this.speciesService.speciesDetail;
+      });
+      this.speciesService.getSpeciesDetail(this.ParentSpecies).then(response => {
+        this.ParentSpeciesDetail = this.speciesService.speciesDetail;
+      });
     });
 
     this.speciesService.getSpeciesList().then(response => {

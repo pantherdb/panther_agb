@@ -7,12 +7,25 @@
           Parent Species 
           <span class="agb-subtitle">  
             <a href = "/species/{{ParentSpeciesRep}}" target="_blank">{{ParentSpecies}}</a>
+            
+            
+          </span>
+          <span class="agb-body">
+              
+            (Total protein coding gene number: {{ ParentSpeciesDetail.gene_count }})
+
           </span>
         </div>
         <div class="agb-title" fxLayout="row" fxLayoutAlign="start center">
           Child Species 
           <span class="agb-subtitle">  
               <a href = "/species/{{ChildSpeciesRep}}" target="_blank">{{ChildSpecies}}</a>
+              
+          </span>
+          <span class="agb-body">
+              
+            (Total protein coding gene number: {{ ChildSpeciesDetail.gene_count }})
+
           </span>
         </div>
         <!-- <mat-form-field>
